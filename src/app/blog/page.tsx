@@ -20,9 +20,6 @@ const page = () => {
         <>
             <Navbar />
             <Content />
-
-            
-
             <Footer />
         </>
     );
