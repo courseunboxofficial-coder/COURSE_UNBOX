@@ -71,19 +71,9 @@ export default function FinalMasterclassForm() {
               />
             </div>
 
-            {/* City */}
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">
-                Your City
-              </label>
-              <input
-                type="text"
-                placeholder="Your City"
-                className="w-full rounded-lg border border-gray-300 px-3 py-2  focus:outline-none focus:ring-2 focus:ring-blue-600"
-              />
-            </div>
+            
 
-            {/* Profession */}
+            {/* Profession
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-3">
                 Your Profession
@@ -114,7 +104,7 @@ export default function FinalMasterclassForm() {
                   )
                 )}
               </div>
-            </div>
+            </div> */}
 
             {/* Submit */}
             <button

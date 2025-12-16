@@ -76,6 +76,7 @@ const Page = ()=> {
       {/* ==== REDIRECT TO FORM ==== */}
 
       <section className="max-w-5xl max-auto px-4 bg-linear-br from-blue-200 via-blue-400">
+          
 
       </section>
 
@@ -97,7 +98,7 @@ const Page = ()=> {
 
       {/* ===== FAQ SECTION ===== */}
       <section className="max-w-5xl mx-auto px-4 mt-16">
-        <h2 className="text-2xl font-semibold text-slate-900 mb-6">
+        <h2 className="text-2xl font-bold text-slate-900 mb-6">
           Frequently Asked Questions
         </h2>
 
@@ -105,7 +106,7 @@ const Page = ()=> {
           {FAQs.map((faq, idx) => (
             <div
               key={idx}
-              className="bg-white border border-slate-200 rounded-lg p-5 shadow-sm"
+              className="bg-white border border-gray-200 rounded-lg p-5 shadow-sm"
             >
               <button
                 onClick={() => setOpenFAQ(openFAQ === idx ? null : idx)}
@@ -131,7 +132,7 @@ const Page = ()=> {
 
       {/* ===== RELATED BLOGS ===== */}
       <section className="max-w-6xl mx-auto px-4 mt-20 pb-20">
-        <h2 className="text-2xl font-semibold text-slate-900 mb-8">
+        <h2 className="text-2xl font-bold text-slate-900 mb-8">
           Related Articles
         </h2>
 
@@ -139,7 +140,7 @@ const Page = ()=> {
           {blogs.map((blog, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-xl border overflow-hidden
+              className="bg-white rounded-xl border-gray-200 shadow-lg  overflow-hidden
                          transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
             >
               <div className="relative h-40">
@@ -147,12 +148,13 @@ const Page = ()=> {
                   src={blog.image}
                   alt={blog.title}
                   
-                  className="object-cover w-full h-fulll"
+                  className="object-cover w-full h-full"
                 />
               </div>
+              <div className="inset-0 bg-linear-to-bl bg-gray-300 mt-4 h-0.5"></div>
 
               <div className="p-5">
-                <h3 className="font-semibold text-slate-900 leading-snug">
+                <h3 className="font-bold text-slate-900 leading-snug">
                   {blog.title}
                 </h3>
 
