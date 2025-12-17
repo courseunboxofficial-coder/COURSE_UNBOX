@@ -1,17 +1,45 @@
+"use client"
+
+import { supabase } from '@/lib/supabse/supabaseConfig'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Hero = () => {
-    return (
 
+    const [HeroData, setHeroData] = useState(null);
+
+    const fetchHeroData = async () => {
+
+        const {data , error } = await supabase.from("Home").select("*").eq("section" , "Hero").single();
+
+        if(error){
+
+            console.log(error);
+
+        }else{
+
+            setHeroData(data);
+          
+        }
+        
+    };
+
+    useEffect(()=>{
+        
+        fetchHeroData();
+
+    }, []);
+
+
+    return (
 
         <section className=" flex  gap-40 w-full h-[70vh] bg-gradient-to-r from-[#1C336E] to-[#3d5ba9] text-white py-20 px-8 md:px-20">
             <div>
                 <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                    India's <span className="text-yellow-400">#1 platform</span>
+                    {HeroData?.content?.HeroTitle} <span className="text-yellow-400">{HeroData?.content?.HeroTitle2}</span>
                 </h1>
                 <p className="text-lg md:text-xl ml-5 mb-10">
-                    Best Digital Marketing Institute in Delhi NCR
+                    {HeroData?.content?.HeroSubtitle1|| "This is the section"};
                 </p>
                 
 

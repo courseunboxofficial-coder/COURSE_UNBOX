@@ -3,10 +3,11 @@ import Card from '@/components/Admin/Card';
 import { ToastContainer, toast } from "react-toastify"
 import { supabase } from "@/lib/supabse/supabaseConfig"
 
-const Hero = ({collapsed} : {collapsed : boolean}) => {
+const Hero = ({ collapsed } : { collapsed : boolean }) => {
 
     const [formData, setFormData] = useState({
         HeroTitle: "",
+        HeroTitle2:"",
         HeroSubtitle1: "",
         HeroSubtitle2: ""
     });
@@ -23,11 +24,20 @@ const Hero = ({collapsed} : {collapsed : boolean}) => {
 
             const { data, error } = await supabase.from("Home").select("*").eq("section", "Hero").single();
 
+            if(error){
+
+                console.log("This is the error happens in the fetch Data : ");
+                console.log(error);
+
+            }
+
             idRef.current = data.id;
+
             console.log(idRef.current)
 
 
         }
+
 
         fetchData();
 
@@ -106,6 +116,8 @@ const Hero = ({collapsed} : {collapsed : boolean}) => {
 
 
     return (
+
+
         <>
 
             <div className={`${collapsed ? "w-[85vw]" : "w-[75vw]"} mx-auto mt-10 px-4`}>
@@ -114,19 +126,37 @@ const Hero = ({collapsed} : {collapsed : boolean}) => {
 
                     <div className="h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500" />
 
+                    <div className='text-center text-3xl font-bold mt-3'>Hero Section</div>
+
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 p-8">
 
                         <div className="space-y-4">
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    Main Heading
-                                </label>
-                                <input
-                                    value={formData.HeroTitle}
-                                    name='HeroTitle'
-                                    onChange={handleFormData}
-                                    className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
-                                />
+                            <div className='flex gap-3'>
+                                <div className=" w-full flex flex-col">
+                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                        Main Heading
+                                    </label>
+
+                                    <input
+                                        value={formData.HeroTitle}
+                                        name='HeroTitle'
+                                        onChange={handleFormData}
+                                        className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                                    />
+                                </div>
+
+                                <div className=" w-full flex flex-col">
+                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                        Main Heading 2
+                                    </label>
+
+                                    <input
+                                        value={formData.HeroTitle2}
+                                        name='HeroTitle2'
+                                        onChange={handleFormData}
+                                        className="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                                    />
+                                </div>
                             </div>
 
 
@@ -203,7 +233,7 @@ const Hero = ({collapsed} : {collapsed : boolean}) => {
                                 </p>
                             </div>
 
-                            
+
                         </div>
 
                     </div>
