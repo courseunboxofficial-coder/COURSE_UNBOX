@@ -7,7 +7,7 @@ export default function StudentLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen flex bg-[#E6F3FA]">
+    <div className="min-h-screen flex ">
       {/* Sidebar */}
       <Sidebar />
 

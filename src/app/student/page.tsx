@@ -1,6 +1,7 @@
 import RecommendedCourse from "@/components/Student/RecommendedCourse";
 import StatCard from "@/components/Student/StartCard";
 import TrendingCourse from "@/components/Student/TrendingCourse";
+import DashboardCTA from '@/components/Student/DashboardCTA'
 export default function StudentDashboard() {
   return (
     <div className="space-y-6">
@@ -13,7 +14,7 @@ export default function StudentDashboard() {
       </div>
 
       {/* Content */}
-      <div className="rounded-2xl border border-blue-100 bg-linear-to-br from-blue-50 to-white p-6 shadow-sm transition-all hover:shadow-lg">
+      <div className="cursor-pointer rounded-2xl border border-blue-100 bg-linear-to-br from-blue-50 to-white p-6 shadow-sm transition-all hover:shadow-lg">
   
         <h2 className="text-2xl font-bold text-[#025378]">
           Welcome Back Rohit 👋
@@ -28,6 +29,8 @@ export default function StudentDashboard() {
 
         <TrendingCourse/>
         <RecommendedCourse/>
+        <DashboardCTA/>
+
     </div>
   );
 }

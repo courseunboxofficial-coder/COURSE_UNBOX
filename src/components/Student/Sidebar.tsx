@@ -7,7 +7,7 @@ import Image from "next/image";
 const menu = [
   { name: "Dashboard", href: "/student", icon: Home },
   { name: "Profile", href: "/student/profile", icon: User },
-  { name: "Courses", href: "/student/courses", icon: BookOpen },
+  { name: "My Courses", href: "/student/courses", icon: BookOpen },
   { name: "Assignments", href: "/student/assignments", icon: ClipboardList },
   { name: "Results", href: "/student/results", icon: BarChart },
   { name: "Settings", href: "/student/settings", icon: Settings },

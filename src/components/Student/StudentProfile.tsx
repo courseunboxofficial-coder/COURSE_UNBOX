@@ -19,9 +19,9 @@ export default function StudentProfile({ profile }: { profile: Profile }) {
   return (
     <div className="bg-white rounded-xl shadow p-8 max-w-4xl">
       {/* HEADER */}
-      <div className="flex items-center gap-6 border-b pb-6">
+      <div className="flex items-center gap-6 border-b pb-6 cursor-pointer">
         <Image
-          src="/images/avatar.png"
+          src="/images/Student/UnboxProfile.png"
           alt="Profile"
           width={80}
           height={80}
@@ -50,11 +50,11 @@ export default function StudentProfile({ profile }: { profile: Profile }) {
 
       {/* ACTIONS */}
       <div className="flex gap-4 mt-8">
-        <button className="bg-[#025378] text-white px-6 py-2 rounded-lg hover:bg-[#01334A]">
+        <button className="bg-[#025378] text-white px-6 py-2 rounded-lg hover:bg-[#01334A] cursor-pointer">
           Edit Profile
         </button>
 
-        <button className="border border-[#025378] text-[#025378] px-6 py-2 rounded-lg">
+        <button className="border border-[#025378] text-[#025378] px-6 py-2 rounded-lg cursor-pointer">
           Change Password
         </button>
       </div>
@@ -72,7 +72,7 @@ function InfoItem({
   value: string;
 }) {
   return (
-    <div className="flex items-center gap-4 bg-[#E6F3FA] p-4 rounded-lg">
+    <div className="flex items-center gap-4 bg-[#E6F3FA] p-4 rounded-lg cursor-pointer">
       <Icon className="text-[#025378]" />
       <div>
         <p className="text-xs text-gray-600">{label}</p>

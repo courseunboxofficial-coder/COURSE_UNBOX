@@ -1,12 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { BookOpen } from "lucide-react";
 
 type Course = {
   id: string;
   title: string;
   progress: number;
+  image: string;
 };
 
 export default function MyCourses({ courses }: { courses: Course[] }) {
@@ -35,29 +37,63 @@ export default function MyCourses({ courses }: { courses: Course[] }) {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      {courses.map((course) => (
-        <div
-          key={course.id}
-          className="bg-white rounded-xl p-6 shadow hover:shadow-lg transition cursor-pointer"
-        >
-          <h3 className="font-semibold text-lg text-[#025378]">
-            {course.title}
-          </h3>
 
-          <div className="mt-4">
-            <div className="h-2 bg-gray-200 rounded">
-              <div
-                className="h-2 bg-[#025378] rounded"
-                style={{ width: `${course.progress}%` }}
+      <div className="space-y-6 max-w-5xl">
+        {courses.map((course) => (
+          <div
+            key={course.id}
+            className="bg-white rounded-xl shadow hover:shadow-lg transition flex flex-col sm:flex-row overflow-hidden"
+          >
+            {/* LEFT IMAGE */}
+            <div className="relative w-full sm:w-88 h-44 sm:h-auto">
+              <img
+                src={course.image}
+                alt={course.title}
+                
+                className="object-cover w-full h-full rounded-lg"
               />
             </div>
-            <p className="text-sm text-gray-600 mt-2">
-              Progress: {course.progress}%
-            </p>
+
+            {/* RIGHT CONTENT */}
+            <div className="flex flex-col justify-between flex-1 p-6">
+              <div>
+                <h3 className="text-xl font-semibold text-[#025378]">
+                  {course.title}
+                </h3>
+
+                {/* Progress */}
+                <div className="mt-4">
+                  <div className="h-2 bg-gray-200 rounded-full">
+                    <div
+                      className="h-2 bg-[#025378] rounded-full transition-all"
+                      style={{ width: `${course.progress}%` }}
+                    />
+                  </div>
+                  <p className="text-sm text-gray-600 mt-2">
+                    {course.progress}% completed
+                  </p>
+                </div>
+              </div>
+
+              {/* BUTTONS */}
+              <div className="flex gap-3 justify-end mt-6">
+                <Link
+                  href={`/courses/${course.id}`}
+                  className="px-4 py-2 text-sm font-semibold text-[#025378] border border-[#025378] rounded-lg hover:bg-[#025378] hover:text-white transition"
+                >
+                  View Details
+                </Link>
+
+                <Link
+                  href={`/courses/${course.id}/learn`}
+                  className="px-4 py-2 text-sm font-semibold bg-[#025378] text-white rounded-lg hover:bg-[#01334A] transition"
+                >
+                  Continue
+                </Link>
+              </div>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
   );
 }

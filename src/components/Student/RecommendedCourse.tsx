@@ -45,7 +45,7 @@ export default function RecommendedCourse(){
             className="
                 group bg-white rounded-2xl shadow-md border border-gray-200
                 hover:shadow-xl transition-all duration-300 overflow-hidden
-                w-full max-w-sm
+                w-full max-w-sm 
             "
             >
             {/* IMAGE SECTION */}
@@ -91,7 +91,7 @@ export default function RecommendedCourse(){
                     w-full mt-2 py-2.5 rounded-lg font-semibold
                     text-[#025378] border border-[#025378]
                     hover:bg-[#025378] hover:text-white
-                    transition
+                    transition cursor-pointer
                 "
                 >
                 Explore Course
