@@ -14,11 +14,12 @@ const Enquiry = () => {
   };
 
   return (
-    <div className="h-screen flex items-center justify-center bg-[#4b1faf] p-10">
-      <div className="bg-white w-[80vw] rounded-3xl shadow-lg shadow-indigo-300 hover:shadow-2xl hover:shadow-indigo-500 flex overflow-hidden transition cursor-pointer">
+    <div className="h-screen flex  items-center justify-center bg-[#4b1faf] p-2">
+      <div className="bg-white w-full md:w-[80vw] rounded-3xl shadow-lg shadow-indigo-300 hover:shadow-2xl
+       hover:shadow-indigo-500 flex overflow-hidden transition cursor-pointer">
 
 
-        <div className="w-1/2 p-8 flex flex-col justify-center">
+        <div className="md:w-1/2 w-full p-8 flex flex-col justify-center">
           <h1 className="text-4xl font-bold text-[#3c2df9] mb-8 leading-tight">
             Need <span className="text-[#2f27ce]">Help? </span>
           </h1>
@@ -71,36 +72,13 @@ const Enquiry = () => {
               />
             </div>
 
-            <div className="flex gap-3">
-
-              <div className="flex flex-col">
-                <label className="text-sm font-medium text-black">First Name</label>
-                <input
-                  type="text"
-                  name="FirstName"
-                  className="text-black w-full border border-gray-300 p-3 rounded-md mt-1 focus:ring-2 focus:ring-purple-500"
-                  placeholder="name@mail.com"
-                />
-              </div>
-
-              <div className="flex flex-col">
-                <label className="text-sm font-medium text-black">Last Name</label>
-                <input
-                  type="text"
-                  className=" text-black w-full border border-gray-300 p-3 rounded-md mt-1 focus:ring-2 focus:ring-purple-500"
-                  placeholder="Dubey"
-
-                />
-              </div>
-
-            </div>
-
+          
             <div className="flex gap-3">
               <button
                 type="submit"
-                className="w-full bg-pink-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-pink-600"
+                className="w-full bg-pink-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-pink-600 cursor-pointer"
               >
-                Login
+                Let's Connect
               </button>
 
             </div>
@@ -108,7 +86,7 @@ const Enquiry = () => {
 
 
 
-          <div className="mt-10">
+          <div className="sm:mt-10 mt-5">
             <p className="text-sm text-gray-500 mb-3">FOLLOW</p>
             <div className="flex gap-5 text-gray-600 text-xl">
               <Facebook />
@@ -121,7 +99,7 @@ const Enquiry = () => {
 
 
 
-        <div className="w-1/2 relative bg-gradient-to-br from-[#e852ff] via-[#715aff] to-[#3c2df9]">
+        <div className="w-1/2 relative bg-linear-to-br from-[#e852ff] via-[#715aff] to-[#3c2df9] hidden md:block ">
           <div className="absolute top-10 right-10 w-48 h-48 bg-pink-400 rounded-full mix-blend-screen opacity-70"></div>
           <div className="absolute bottom-12 left-16 w-56 h-56 bg-blue-400 rounded-full mix-blend-screen opacity-60"></div>
           <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-purple-500 rounded-full mix-blend-screen opacity-50 translate-x-[-50%] translate-y-[-50%]"></div>

@@ -3,6 +3,9 @@ import Image from "next/image";
 import React, { useState } from "react";
 import Navbar from "@/components/Home/Navbar";
 import Foter from "@/components/Home/Footer"
+import LetsConnect from "@/components/blog/LetsConnect";
+import Link from "next/link";
+import FinalMasterclassForm from "@/components/About/FinalMasterclassForm";
 
 const Page = ()=> {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
@@ -74,11 +77,17 @@ const Page = ()=> {
       </section>
 
       {/* ==== REDIRECT TO FORM ==== */}
+       
+      <div className='max-w-5xl mx-auto flex items-center justify-center py-6 '>
 
-      <section className="max-w-5xl max-auto px-4 bg-linear-br from-blue-200 via-blue-400">
-          
+      <Link href={"#form"}  className='text-xl py-3 px-5 bg-blue-500 text-white rounded-2xl cursor-pointer'>
+        Let's Connect
+      </Link>
 
-      </section>
+    </div>
+    
+
+      
 
       {/* ===== BLOG CONTENT ===== */}
       <section className="max-w-5xl mx-auto px-4 mt-12">
@@ -170,6 +179,8 @@ const Page = ()=> {
           ))}
         </div>
       </section>
+
+      <section id="form"><FinalMasterclassForm/></section>
     </div>
     <Foter/>
     </>

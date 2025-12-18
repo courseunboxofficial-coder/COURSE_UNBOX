@@ -11,7 +11,7 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="bg-gradient-to-b from-[#0b163f] to-[#070c26] text-gray-300">
+    <footer className="bg-linear-to-b from-[#0b163f] to-[#070c26] text-gray-300">
       {/* MAIN FOOTER */}
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-12">
@@ -26,7 +26,7 @@ export default function Footer() {
               <Image
                 src="/images/Footer/Meta-Business-Partner.webp"
                 alt="Meta Partner"
-                width={90}
+                width={89}
                 height={40}
                 className="object-contain"
               />
@@ -119,7 +119,7 @@ export default function Footer() {
 
           {/* SOCIAL */}
           <div>
-            <h4 className="text-white font-semibold mb-5 ml-12">
+            <h4 className="text-white font-semibold mb-5 sm:ml-12 ml-0">
               Follow Us
             </h4>
             <div className="flex gap-4">

@@ -1,71 +1,65 @@
-import Image from 'next/image'
-import React from 'react'
-import {NotepadText,Brain, GraduationCap,} from "lucide-react"
+import React from "react";
+import { NotepadText, Brain, GraduationCap } from "lucide-react";
 
 const Banner = () => {
-    return (
-        <section className="w-full py-4 bg-[#ffffff] px-8 md:px-20 border-2 border-[#08086d]">
-            <div className='flex items-center justify-around'>
-                <div className='w-[20vw] flex gap-4 items-center justify-center border border-blue-900 border-l-0 border-r-3 border-t-0 border-b-0 p-3'>
-                    <div className='text-2xl text-blue-950'>
-                        <NotepadText size={52}/>
-                    </div>
-                    <div className='flex flex-col gap-2'>
-                        <div className='text-2xl text-blue-950 font-bold'>
-                            40+
-                        </div>
-                        <div className='text-2xl text-gray-500'>
-                            courses
-                        </div>
-                    </div>
-                </div>
+  const stats = [
+    {
+      icon: <NotepadText size={36} />,
+      value: "40+",
+      label: "Courses",
+    },
+    {
+      icon: <GraduationCap size={36} />,
+      value: "100K+",
+      label: "Students",
+    },
+    {
+      icon: <Brain size={36} />,
+      value: "12+",
+      label: "Experience",
+    },
+    {
+      icon: <Brain size={36} />,
+      value: "12+",
+      label: "Experience",
+    },
+  ];
 
-
-                <div className='w-[20vw] flex gap-4 items-center justify-center  border border-blue-900 border-l-0 border-r-3 border-t-0 border-b-0 p-3'>
-                    <div className='text-2xl text-blue-950'>
-                        <GraduationCap size={52}/>
-                    </div>
-                    <div className='flex flex-col gap-2'>
-                        <div className='text-2xl text-blue-950 font-bold'>
-                            100K+
-                        </div>
-                        <div className='text-2xl text-gray-500'>
-                            Students
-                        </div>
-                    </div>
-                </div>
-
-                <div className=' w-[20vw] flex gap-4  items-center justify-center  border border-blue-900 border-l-0 border-r-3 border-t-0 border-b-0 p-3'>
-                    <div className='text-2xl text-blue-950 font-bold'>
-                        <Brain size={52}/>
-                    </div>
-                    <div className='flex flex-col gap-2'>
-                        <div className='text-2xl text-blue-950 font-bold'>
-                            12+
-                        </div>
-                        <div className='text-2xl text-gray-500'>
-                            Experience
-                        </div>
-                    </div>
-                </div>
-
-                <div className=' w-[20vw] flex gap-4 items-center justify-center  border border-blue-900 border-l-0 border-r-0 border-t-0 border-b-0 p-3'>
-                    <div className='text-2xl text-blue-950 font-bold'>
-                        <Brain size={52}/>
-                    </div>
-                    <div className='flex flex-col gap-2'>
-                        <div className='text-2xl text-blue-950 font-bold'>
-                            12+
-                        </div>
-                        <div className='text-2xl text-gray-500'>
-                            Experience
-                        </div>
-                    </div>
-                </div>
-
+  return (
+    <section className="w-full bg-blue-100 md:bg-white px-3 sm:px-6 md:px-20 py-4 border-y-2 border-[#08086d]">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-0 max-w-7xl mx-auto">
+        {stats.map((item, index) => (
+          <div
+            key={index}
+            className={`
+              flex items-center justify-center gap-3
+              px-4 py-3
+              rounded-lg md:rounded-none
+              shadow-lg md:shadow-none
+              bg-[#ffffff] md:bg-transparent
+              ${index < 3 ? "md:border-r md:border-blue-900" : ""}
+            `}
+          >
+           
+            <div className="text-blue-950">
+              {item.icon}
             </div>
-        </section>
-    )
-}
 
-export default Banner
+      
+            <div className="flex flex-col leading-tight">
+              <span className="text-2xl font-bold text-blue-950">
+                {item.value}
+              </span>
+              {/* Text-base */}
+              <span className="text-lg text-gray-600">
+                {item.label}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default Banner;

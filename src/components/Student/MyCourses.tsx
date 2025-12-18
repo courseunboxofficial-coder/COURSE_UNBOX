@@ -85,7 +85,7 @@ export default function MyCourses({ courses }: { courses: Course[] }) {
                 </Link>
 
                 <Link
-                  href={`/courses/${course.id}/learn`}
+                  href={`/student/courses/${course.id}`}
                   className="px-4 py-2 text-sm font-semibold bg-[#025378] text-white rounded-lg hover:bg-[#01334A] transition"
                 >
                   Continue

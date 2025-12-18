@@ -1,45 +1,109 @@
-import Image from 'next/image'
-import React from 'react'
+import Image from "next/image";
+import React from "react";
 
 const Hero = () => {
-    return (
+  return (
+    <section
+      className="
+        w-full
+        bg-linear-to-r from-[#1C336E] to-[#3d5ba9]
+        text-white
+        px-4 sm:px-6 md:px-12 lg:px-20
+        py-14 sm:py-20
+      "
+    >
+      <div
+        className="
+          max-w-7xl mx-auto
+          flex flex-col-reverse lg:flex-row
+          items-center
+          gap-10 lg:gap-20
+        "
+      >
+        {/* LEFT CONTENT */}
+        <div className="w-full lg:w-1/2 text-center lg:text-left">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
+            India&apos;s <span className="text-yellow-400">#1 platform</span>
+          </h1>
 
+          <p className="text-base sm:text-lg md:text-xl mb-8 sm:mb-10 lg:ml-5">
+            Best Digital Marketing Institute in Delhi NCR
+          </p>
 
-        <section className=" flex  gap-40 w-full h-[70vh] bg-gradient-to-r from-[#1C336E] to-[#3d5ba9] text-white py-20 px-8 md:px-20">
-            <div>
-                <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                    India's <span className="text-yellow-400">#1 platform</span>
-                </h1>
-                <p className="text-lg md:text-xl ml-5 mb-10">
-                    Best Digital Marketing Institute in Delhi NCR
-                </p>
-                
+          {/* CTA BUTTONS */}
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+            <button
+              className="
+                flex items-center justify-center gap-2
+                bg-[#e6ba2b] text-gray-800
+                px-4 py-2.5
+                rounded-full
+                font-medium
+                w-full sm:w-auto
+                hover:bg-[#b9b940]
+                transition
+                cursor-pointer
+              "
+            >
+              <Image
+                src="/images/Home/googleLogo.png"
+                width={50}
+                height={20}
+                alt="google"
+              />
+              <span>Continue with Google</span>
+            </button>
 
-                <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6">
-                    <button className="flex items-center justify-center space-x-2 bg-[#e6ba2b] text-gray-800 pr-10 pl-1 py-2 rounded-4xl font-medium w-full md:w-auto cursor-pointer hover:bg-[#b9b940] transition ease-in-out">
-                        <Image src="/images/Home/googleLogo.png" width={60} height={20} alt="google" />
-                        <span>Continue with Google</span>
-                    </button>
+            <button
+              className="
+                flex items-center justify-center gap-2
+                bg-blue-500
+                px-4 py-2.5
+                rounded-full
+                font-medium
+                w-full sm:w-auto
+                hover:bg-[#060646]
+                transition
+                cursor-pointer
+              "
+            >
+              <Image
+                src="/images/Home/GmailLogo.webp"
+                width={36}
+                height={20}
+                alt="email"
+                className="rounded-full"
+              />
+              <span>Continue with Email</span>
+            </button>
+          </div>
 
-                    <button className="flex items-center justify-center space-x-2 bg-blue-500 pr-12 pl-4 py-2 rounded-4xl font-medium w-full md:w-auto cursor-pointer hover:bg-[#060646] transition ease-in-out">
-                        <Image src="/images/Home/GmailLogo.webp" width={40} height={20} alt="email" className='rounded-full'/>
-                        <span> Continue with Email </span>
-                    </button>
-                </div>
+          <p className="text-xs sm:text-sm mt-4">
+            By continuing, you agree to our{" "}
+            <span className="underline cursor-pointer">T&amp;C</span>.
+          </p>
+        </div>
 
-                <p className="text-sm mt-4">
-                    By continuing, you agree to our <span className="underline">T&C</span>.
-                </p>
-            </div>
+        {/* RIGHT IMAGE */}
+        <div className="w-full lg:w-1/2 flex justify-center">
+          <Image
+            src="/images/Home/HeroImage.png"
+            width={520}
+            height={520}
+            alt="HeroImage"
+            className="
+              rounded-2xl
+              shadow-lg
+              hover:shadow-2xl hover:shadow-indigo-300
+              transition
+              cursor-pointer
+              w-full max-w-sm sm:max-w-md lg:max-w-lg
+            "
+          />
+        </div>
+      </div>
+    </section>
+  );
+};
 
-            <div>
-                <Image src="/images/Home/HeroImage.png" width={600} height={600} alt='HeroImage' className='rounded-2xl hover:shadow-2xl hover:shadow-indigo-300 transition cursor-pointer'/>
-            </div>
-        </section>
-
-
-
-    )
-}
-
-export default Hero
+export default Hero;
