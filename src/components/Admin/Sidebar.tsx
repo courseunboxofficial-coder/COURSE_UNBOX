@@ -68,7 +68,7 @@ const Sidebar = () => {
                 </header>
 
                 <div className="grid gap-6">
-                    {active === "home" && <HomeEditor collapsed = {collapsed}/>}
+                    {active === "home" && <HomeEditor collapsed = {collapsed} />}
                     {active === "courses" && <CourseEditor />}
                     {active === "about" && <AboutEditor />}
                     {active === "blog" && <BlogEditor />}
