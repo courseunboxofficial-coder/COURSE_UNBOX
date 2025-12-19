@@ -97,8 +97,10 @@ export default function Footer() {
           </div>
 
           {/* COMPANY / RESOURCES */}
-          <div>
-            <h4 className="text-white font-semibold mb-5">
+          <div className="md:block flex gap-28  items-center  ">
+            <div className="mt-7 sm:mt-0">
+
+              <h4 className="text-white font-semibold mb-5">
               Company
             </h4>
             <ul className="space-y-2 text-sm text-gray-400">
@@ -107,7 +109,12 @@ export default function Footer() {
               <li>Refer & Earn</li>
             </ul>
 
-            <h4 className="text-white font-semibold mt-8 mb-5">
+
+            </div>
+            
+            <div>
+
+              <h4 className="text-white font-semibold mt-8 mb-5">
               Resources
             </h4>
             <ul className="space-y-2 text-sm text-gray-400">
@@ -115,6 +122,10 @@ export default function Footer() {
               <li>Case Studies</li>
               <li>Presentations</li>
             </ul>
+
+            </div>
+
+            
           </div>
 
           {/* SOCIAL */}
