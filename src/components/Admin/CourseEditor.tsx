@@ -62,7 +62,7 @@ const CourseEditor = ({ collapsed }: { collapsed: boolean }) => {
             {active === "card" && <CourseCards onEdit={onEdit} />}
             {active === "Table" && <CourseTable onEdit={onEdit} />}
             {active === "Add" && <AddCourse collapsed={collapsed} />}
-            {active === "Edit" && (<EditCourse collapsed={collapsed} course={editItem} />)}
+            {active === "Edit" && editItem && (<EditCourse collapsed={collapsed} course={editItem} />)}
 
         </>
     );
