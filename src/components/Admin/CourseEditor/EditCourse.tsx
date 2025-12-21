@@ -284,8 +284,6 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
               </label>
               <textarea
                 name="content"
-                value={formData.content}
-                onChange={handleChange}
                 rows={4}
                 className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
               />
