@@ -47,44 +47,56 @@ const Page = ()=> {
     <Navbar/>
     <div className="w-full min-h-screen bg-slate-50">
       {/* ===== BLOG HEADER ===== */}
-      <section className="max-w-5xl mx-auto px-4 pt-16">
-        <span className="inline-block mb-3 text-sm font-medium text-blue-600">
-          Database • SQL
-        </span>
+     <section className="max-w-5xl mx-auto px-4 pt-16">
+  <div className="flex items-center gap-3 mb-4">
+    <span className="px-3 py-1 text-xs font-semibold rounded-full bg-blue-50 text-blue-600">
+      Database • SQL
+    </span>
+    <span className="text-xs text-slate-500">8 min read</span>
+  </div>
 
-        <h1 className="text-3xl sm:text-4xl font-semibold text-slate-900 leading-tight">
-          Top SQL Queries Every Data Scientist Should Know
-        </h1>
+  <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 leading-tight">
+    Top SQL Queries Every Data Scientist Should Know
+  </h1>
 
-        <p className="mt-3 text-sm text-slate-600">
-          By <span className="font-medium text-slate-800">Rohit Juyal</span> · Jun
-          28, 2025
-        </p>
-      </section>
+  {/* Gradient underline */}
+  <div className="mt-3 h-1 w-24 bg-linear-to-r from-blue-500 via-indigo-500 to-transparent rounded-full"></div>
+
+  <p className="mt-4 text-sm text-slate-600">
+    By <span className="font-medium text-slate-800">Rohit Juyal</span> · Jun 28,
+    2025
+  </p>
+    </section>
 
       {/* ===== FEATURE IMAGE ===== */}
       <section className="max-w-5xl mx-auto px-4 mt-10">
-        <div className="relative w-full h-[380px] rounded-xl overflow-hidden shadow-lg">
-          <img
-            src="https://www.techicy.com/wp-content/uploads/2018/10/qualities-of-an-excellent-tech-blog.jpg"
-            alt="Blog cover"
-
-            
-            className="object-cover w-full h-full"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-        </div>
+  <div className="group relative w-full h-[380px] rounded-2xl overflow-hidden shadow-xl">
+    <img
+      src="https://www.techicy.com/wp-content/uploads/2018/10/qualities-of-an-excellent-tech-blog.jpg"
+      alt="Blog cover"
+      className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+    />
+    <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/10 to-transparent" />
+  </div>
       </section>
+
 
       {/* ==== REDIRECT TO FORM ==== */}
        
-      <div className='max-w-5xl mx-auto flex items-center justify-center py-6 '>
+      <div className="max-w-5xl mx-auto flex justify-center py-10">
+          <Link
+            href="#form"
+            className="relative inline-flex items-center gap-2 px-7 py-3 rounded-full
+                      bg-linear-to-r from-blue-600 to-indigo-600
+                      text-white font-medium shadow-lg
+                      hover:shadow-xl hover:scale-[1.02]
+                      transition-all duration-300"
+          >
+            Let’s Connect
+            <span className="absolute inset-0 rounded-full ring-2 ring-blue-300/40"></span>
+          </Link>
+      </div>
 
-      <Link href={"#form"}  className='text-xl py-3 px-5 bg-blue-500 text-white rounded-2xl cursor-pointer'>
-        Let's Connect
-      </Link>
-
-    </div>
     
 
       
@@ -130,10 +142,11 @@ const Page = ()=> {
               </button>
 
               {openFAQ === idx && (
-                <p className="mt-3 text-sm text-slate-600 leading-relaxed">
+                <p className="mt-3 text-sm text-slate-600 leading-relaxed animate-fadeIn">
                   {faq.answer}
                 </p>
               )}
+
             </div>
           ))}
         </div>

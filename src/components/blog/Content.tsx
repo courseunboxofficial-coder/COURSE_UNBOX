@@ -1,6 +1,7 @@
+"use client"
 import Image from 'next/image';
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 
 
@@ -15,6 +16,8 @@ export type InternshipCard = {
     href: string;
 
 };
+
+const ITEMS_PER_PAGE = 4;
 
 const Content = () => {
 
@@ -149,49 +152,117 @@ const Content = () => {
 
     ];
 
+ const [blogs, setBlogs] = useState<InternshipCard[]>([]);
+const [page, setPage] = useState(1);
+const [loading, setLoading] = useState(false);
+const [hasMore, setHasMore] = useState(true);
 
-    return (
+  const loaderRef = useRef<HTMLDivElement | null>(null);
 
-        <section className="py-16">
-            <div className="mx-auto w-full px-6">
-                <h2 className="text-3xl font-bold mb-10">Latest Opportunities</h2>
+  const fetchBlogs = () => {
+    console.log(page);
+    if (loading || !hasMore) return;
 
-                <div className="flex flex-wrap gap-8 pb-4">
+    setLoading(true);
+    setTimeout(()=>{
+         const start = (page - 1) * ITEMS_PER_PAGE;
+    const end = start + ITEMS_PER_PAGE;
+    const newBlogs = cards.slice(start, end);
 
-                    {cards.map((card) => (
-                        <Link
-                            key={card.id}
-                            href={card.href}
-                            className="min-w-[340px] max-w-[340px] bg-white rounded-3xl shadow hover:shadow-2xl hover:shadow-indigo-300 transition"
-                        >
+    if (newBlogs.length === 0) {
+      setHasMore(false);
+    } else {
+      setBlogs((prev) => [...prev, ...newBlogs]);
+      setPage((prev)=>{
+        return prev+1
+      })
+    }
 
-                            <div className="relative h-44 w-full overflow-hidden rounded-t-3xl">
-                                <Image
-                                    src={card.image}
-                                    alt={card.title}
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
+    setLoading(false);
+
+    },300)
+
+   
+  };
+
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
 
 
-                            <div className="p-6">
-                                <span className="inline-block mb-3 rounded-full bg-gray-100 px-4 py-1 text-xs font-medium text-gray-700">
-                                    {card.category}
-                                </span>
-                                <h3 className="text-lg font-semibold leading-snug mb-3">
-                                    {card.title}
-                                </h3>
-                                <p className="text-sm text-gray-600 line-clamp-3">
-                                    {card.description}
-                                </p>
-                            </div>
-                        </Link>
-                    ))}
-                </div>
-            </div>
-        </section>
-    )
-}
+  useEffect(() => {
+    if (!loaderRef.current) return;
 
-export default Content
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+
+          fetchBlogs();
+        }
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "100px",
+      }
+    );
+
+    observer.observe(loaderRef.current);
+
+    return () => observer.disconnect();
+  }, [fetchBlogs]);
+
+  return (
+    <section className="py-16">
+      <div className="mx-auto w-full px-6">
+        <h2 className="text-3xl font-bold mb-10">
+          Latest Opportunities
+        </h2>
+
+        <div className="flex flex-wrap gap-8 pb-4">
+          {blogs.map((card,idx) => (
+            <Link
+              key={idx}
+              href={card.href}
+              className="min-w-[340px] max-w-[340px] bg-white rounded-3xl shadow hover:shadow-2xl hover:shadow-indigo-300 transition"
+            >
+                
+              <div className="relative h-44 w-full overflow-hidden rounded-t-3xl">
+                
+                <Image
+                  src={card.image}
+                  alt={card.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              <div className="p-6">
+                <span className="inline-block mb-3 rounded-full bg-gray-100 px-4 py-1 text-xs font-medium text-gray-700">
+                  {card.category}
+                </span>
+                <h3 className="text-lg font-semibold leading-snug mb-3">
+                  {card.title}
+                </h3>
+                <p className="text-sm text-gray-600 line-clamp-3">
+                  {card.description}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+      
+        {hasMore && (
+          <div
+            ref={loaderRef}
+            className="py-10 text-center text-gray-500"
+          >
+            {loading ? "Loading..." : "Scroll to load more"}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+};
+
+export default Content;
