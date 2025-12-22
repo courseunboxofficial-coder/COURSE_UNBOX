@@ -14,7 +14,7 @@ type Mentor = {
 
 };
 
-export const MentorTable = ({onEdit} : {onEdit : any}) => {
+export default function MentorTable ({onEdit} : {onEdit : any}) {
 
     const [mentors, setMentors] = useState<Mentor[]>([]);
 
