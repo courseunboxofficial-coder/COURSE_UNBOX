@@ -1,6 +1,7 @@
 import StudentProfile from "@/components/Student/StudentProfile";
 
 async function getStudentProfile() {
+  
   // Later fetch from DB
   return {
     name: "Rohit Juyal",

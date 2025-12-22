@@ -1,27 +1,31 @@
 import Image from "next/image";
-import React from "react";
+
 
 const Hero = () => {
+
+  // bg-linear-to-r from-[#1C336E] to-[#3d5ba9]
+
   return (
     <section
       className="
         w-full
         bg-linear-to-r from-[#1C336E] to-[#3d5ba9]
         text-white
-        px-4 sm:px-6 md:px-12 lg:px-20
-        py-14 sm:py-20
+        px-10 sm:px-6 md:px-12 lg:px-20
+        pt-14 pb-3
+        h-[58vh]
       "
     >
       <div
         className="
-          max-w-7xl mx-auto
+          w-[95%] mx-auto
           flex flex-col-reverse lg:flex-row
           items-center
           gap-10 lg:gap-20
         "
       >
         {/* LEFT CONTENT */}
-        <div className="w-full lg:w-1/2 text-center lg:text-left">
+        <div className="w-[50%] text-center content-center lg:text-left">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
             India&apos;s <span className="text-yellow-400">#1 platform</span>
           </h1>
@@ -36,7 +40,9 @@ const Hero = () => {
               className="
                 flex items-center justify-center gap-2
                 bg-[#e6ba2b] text-gray-800
-                px-4 py-2.5
+                pl-3
+                pr-7
+                px-5 py-2.5
                 rounded-full
                 font-medium
                 w-full sm:w-auto
@@ -57,8 +63,8 @@ const Hero = () => {
             <button
               className="
                 flex items-center justify-center gap-2
-                bg-blue-500
-                px-4 py-2.5
+                bg-blue-500 pl-3
+                pr-10 py-2.5
                 rounded-full
                 font-medium
                 w-full sm:w-auto
@@ -85,24 +91,21 @@ const Hero = () => {
         </div>
 
         {/* RIGHT IMAGE */}
-        <div className="w-full lg:w-1/2 flex justify-center">
+        <div className="w-[40%]">
           <Image
-            src="/images/Home/HeroImage.png"
+            src="/images/Home/Hero1.png"
             width={520}
             height={520}
             alt="HeroImage"
-            className="
-              rounded-2xl
-              shadow-lg
-              hover:shadow-2xl hover:shadow-indigo-300
-              transition
-              cursor-pointer
-              w-full max-w-sm sm:max-w-md lg:max-w-lg
-            "
+            className="w-full  rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-indigo-300 transition cursor-pointer"
           />
         </div>
+
       </div>
+
+
     </section>
+
   );
 };
 

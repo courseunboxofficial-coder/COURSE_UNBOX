@@ -4,9 +4,7 @@ export default function page() {
    
 
     return (
-
         <Sidebar/>
-        
     );
 }
 

@@ -3,15 +3,7 @@
 import { useState } from "react";
 
 export default function FinalMasterclassForm() {
-  const [profession, setProfession] = useState<string[]>([]);
-
-  const toggleProfession = (value: string) => {
-    setProfession((prev) =>
-      prev.includes(value)
-        ? prev.filter((item) => item !== value)
-        : [...prev, value]
-    );
-  };
+ 
 
   return (
     <section className="bg-linear-to-b from-blue-50 via-white to-blue-100 py-6 sm:py-10">

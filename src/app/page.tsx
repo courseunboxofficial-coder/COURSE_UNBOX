@@ -8,21 +8,12 @@ import Footer from "@/components/Home/Footer"
 import Enquiry from "@/components/Home/Enquiry";
 import Mentors from "@/components/Home/Mentors";
 import Testimonials from "@/components/Home/Testimonials";
+import Partners from "@/components/Home/Partners";
+import Hire from "@/components/Home/Hire";
+import TopCompanies from "@/components/Home/TopCompanies";
+import LetsConnect from "@/components/Home/LetsConnect";
 
 export default function Home() {
-
-  const courses = [
-    { id: 1, title: "Web Development with MERN", category: "Development", image: "/images/Home/courseImage.webp" },
-    { id: 2, title: "Python", category: "Development", image: "/images/Home/TopCourse.jpg" },
-    { id: 3, title: "Data Science", category: "IT & Software", image: "/images/Home/courseImage.webp" },
-    { id: 4, title: "Data Analytics", category: "Business", image: "/images/Home/TopCourse.jpg" },
-    { id: 5, title: "Power BI", category: "Business", image: "/images/Home/courseImage.webp" },
-    { id: 6, title: "UI/UX Design", category: "Design", image: "/images/Home/TopCourse.jpg" },
-    { id: 7, title: "Unity 3D", category: "Development", image: "/images/Home/courseImage.webp" },
-    { id: 8, title: "React", category: "Development", image: "/images/Home/TopCourse.jpg" },
-  ];
-
-
 
   return (
 
@@ -31,12 +22,16 @@ export default function Home() {
 
       <Navbar />
       <Hero />
+      <Partners />
       <Banner />
-      <Courses courses={courses} />
+      <Courses />
       <Enquiry />
       <TopCourses />
+      <Hire />
       <Mentors />
       <Testimonials />
+      <TopCompanies/>
+      <LetsConnect/>
       <Footer />
 
     </main>

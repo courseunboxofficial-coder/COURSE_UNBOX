@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import { useState } from "react"
 
@@ -63,7 +65,7 @@ const Module = () => {
 
 
                 <div className="flex items-center gap-4 mb-10">
-                    <span className="h-10 w-1 bg-orange-500 rounded" />
+                    <span className="h-10 w-1 bg-[#060650] rounded" />
                     <h2 className="text-3xl font-bold text-black">Your Guide To Upskilling: Our Curriculum</h2>
                 </div>
 
@@ -74,9 +76,9 @@ const Module = () => {
                         <button
                             key={tab}
                             onClick={() => setActiveTab(index)}
-                            className={`rounded-lg px-6 py-3 text-sm font-medium transition border cursor-pointer 
+                            className={`rounded-2xl px-8 py-4 text-sm font-medium transition border cursor-pointer 
                 ${activeTab === index
-                                    ? "bg-orange-500 text-white border-orange-500"
+                                    ? "bg-[#050546] text-white border-[#070769]"
                                     : "bg-white text-gray-700 border-gray-200 hover:bg-gray-50"
                                 }`}
                         >

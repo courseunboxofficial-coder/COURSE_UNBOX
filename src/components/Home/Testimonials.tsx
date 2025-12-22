@@ -37,11 +37,13 @@ const testimonials: Testimonial[] = [
 
 const Testimonials = () => {
   return (
+
     <section className="py-20 bg-white">
+      
       <div className="max-w-7xl mx-auto px-6 text-center">
 
 
-        <h2 className="text-3xl font-bold text-yellow-500 uppercase">
+        <h2 className="text-4xl font-extrabold text-yellow-500 uppercase">
           Testimonials
         </h2>
         <div className="w-16 h-1 bg-yellow-500 mx-auto my-4" />
@@ -83,8 +85,12 @@ const Testimonials = () => {
               <p className="text-sm text-gray-500">{item.role}</p>
             </div>
           ))}
+
+
         </div>
+
       </div>
+
     </section>
   );
 };

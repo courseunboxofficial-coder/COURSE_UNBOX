@@ -3,154 +3,159 @@ import Image from 'next/image';
 import Link from 'next/link'
 import React, { useEffect, useRef, useState } from 'react'
 
+
+
+
 export type InternshipCard = {
+
     id: number;
     category: string;
     title: string;
     description: string;
     image: string;
     href: string;
+
 };
 
 const ITEMS_PER_PAGE = 4;
 
 const Content = () => {
 
-    const cards: InternshipCard[] = [
-        {
-            id: 1,
-            category: "Digital Marketing",
-            title:
-                "Content Writing Internship at NDTV in Delhi, Editing & Managing Content – Apply Now in 2025",
-            description:
-                "Why the NDTV Content Writing Internship is a big opportunity if you're searching for a content writing internship...",
-            image: "/images/Home/Course.jpg",
-            href: "/internships/content-writing",
-        },
-        {
-            id: 2,
-            category: "Data Analytics",
-            title: "6 Reasons Interactive Python Is a Game-Changer for Me",
-            description:
-                "Interactive Python reshaped the way I write code, learn new concepts, and experiment with ideas...",
-            image: "/images/Home/Course.jpg",
-            href: "/blogs/interactive-python",
-        },
+const cards: InternshipCard[] = [
+    {
+        id: 1,
+        category: "Digital Marketing",
+        title:
+            "Content Writing Internship at NDTV in Delhi, Editing & Managing Content – Apply Now in 2025",
+        description:
+            "Why the NDTV Content Writing Internship is a big opportunity if you're searching for a content writing internship...",
+        image: "/images/Home/Course.jpg",
+        href: "/internships/content-writing",
+    },
+    {
+        id: 2,
+        category: "Data Analytics",
+        title: "6 Reasons Interactive Python Is a Game-Changer for Me",
+        description:
+            "Interactive Python reshaped the way I write code, learn new concepts, and experiment with ideas...",
+        image: "/images/Home/Course.jpg",
+        href: "/blogs/interactive-python",
+    },
 
-        {
-            id: 3,
-            category: "Web Development",
-            title:
-                "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-            description:
-                "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-            image: "/images/Home/Course.jpg",
-            href: "/internships/software-engineer",
-        },
+    {
+        id: 3,
+        category: "Web Development",
+        title:
+            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
+        description:
+            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
+        image: "/images/Home/Course.jpg",
+        href: "/internships/software-engineer",
+    },
 
-        {
-            id: 4,
-            category: "Web Development",
-            title:
-                "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-            description:
-                "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-            image: "/images/Home/Course.jpg",
-            href: "/internships/software-engineer",
-        },
+    {
+        id: 4,
+        category: "Web Development",
+        title:
+            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
+        description:
+            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
+        image: "/images/Home/Course.jpg",
+        href: "/internships/software-engineer",
+    },
 
-        {
-            id: 5,
-            category: "Web Development",
-            title:
-                "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-            description:
-                "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-            image: "/images/Home/Course.jpg",
-            href: "/internships/software-engineer",
-        },
+    {
+        id: 5,
+        category: "Web Development",
+        title:
+            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
+        description:
+            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
+        image: "/images/Home/Course.jpg",
+        href: "/internships/software-engineer",
+    },
 
-        {
-            id: 6,
-            category: "Web Development",
-            title:
-                "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-            description:
-                "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-            image: "/images/Home/Course.jpg",
-            href: "/internships/software-engineer",
-        },
+    {
+        id: 6,
+        category: "Web Development",
+        title:
+            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
+        description:
+            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
+        image: "/images/Home/Course.jpg",
+        href: "/internships/software-engineer",
+    },
 
-        {
-            id: 7,
-            category: "Web Development",
-            title:
-                "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-            description:
-                "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-            image: "/images/Home/Course.jpg",
-            href: "/internships/software-engineer",
-        },
+    {
+        id: 7,
+        category: "Web Development",
+        title:
+            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
+        description:
+            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
+        image: "/images/Home/Course.jpg",
+        href: "/internships/software-engineer",
+    },
 
-        {
-            id: 8,
-            category: "Web Development",
-            title:
-                "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-            description:
-                "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-            image: "/images/Home/Course.jpg",
-            href: "/internships/software-engineer",
-        },
-        {
-            id: 9,
-            category: "Web Development",
-            title:
-                "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-            description:
-                "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-            image: "/images/Home/Course.jpg",
-            href: "/internships/software-engineer",
-        },
-        {
-            id: 10,
-            category: "Web Development",
-            title:
-                "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-            description:
-                "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-            image: "/images/Home/Course.jpg",
-            href: "/internships/software-engineer",
-        },
+    {
+        id: 8,
+        category: "Web Development",
+        title:
+            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
+        description:
+            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
+        image: "/images/Home/Course.jpg",
+        href: "/internships/software-engineer",
+    },
+    {
+        id: 9,
+        category: "Web Development",
+        title:
+            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
+        description:
+            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
+        image: "/images/Home/Course.jpg",
+        href: "/internships/software-engineer",
+    },
+    {
+        id: 10,
+        category: "Web Development",
+        title:
+            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
+        description:
+            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
+        image: "/images/Home/Course.jpg",
+        href: "/internships/software-engineer",
+    },
 
-        {
-            id: 11,
-            category: "Web Development",
-            title:
-                "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-            description:
-                "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-            image: "/images/Home/Course.jpg",
-            href: "/internships/software-engineer",
-        },
+    {
+        id: 11,
+        category: "Web Development",
+        title:
+            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
+        description:
+            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
+        image: "/images/Home/Course.jpg",
+        href: "/internships/software-engineer",
+    },
 
-        {
-            id: 12,
-            category: "Web Development",
-            title:
-                "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-            description:
-                "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-            image: "/images/Home/Course.jpg",
-            href: "/internships/software-engineer",
-        },
+    {
+        id: 12,
+        category: "Web Development",
+        title:
+            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
+        description:
+            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
+        image: "/images/Home/Course.jpg",
+        href: "/internships/software-engineer",
+    },
 
-    ];
+];
 
  const [blogs, setBlogs] = useState<InternshipCard[]>([]);
-const [page, setPage] = useState(1);
-const [loading, setLoading] = useState(false);
-const [hasMore, setHasMore] = useState(true);
+ const [page, setPage] = useState(1);
+ const [loading, setLoading] = useState(false);
+ const [hasMore, setHasMore] = useState(true);
 
   const loaderRef = useRef<HTMLDivElement | null>(null);
 
@@ -161,17 +166,17 @@ const [hasMore, setHasMore] = useState(true);
     setLoading(true);
     setTimeout(()=>{
          const start = (page - 1) * ITEMS_PER_PAGE;
-    const end = start + ITEMS_PER_PAGE;
-    const newBlogs = cards.slice(start, end);
+        const end = start + ITEMS_PER_PAGE;
+        const newBlogs = cards.slice(start, end);
 
-    if (newBlogs.length === 0) {
-      setHasMore(false);
-    } else {
-      setBlogs((prev) => [...prev, ...newBlogs]);
-      setPage((prev)=>{
-        return prev+1
-      })
-    }
+        if (newBlogs.length === 0) {
+          setHasMore(false);
+        } else {
+          setBlogs((prev) => [...prev, ...newBlogs]);
+          setPage((prev)=>{
+            return prev+1
+          })
+        }
 
     setLoading(false);
 

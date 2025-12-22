@@ -29,7 +29,7 @@ const Enquiry = () => {
 
             <div className="flex gap-3">
 
-              <div className="flex flex-col">
+              <div className="flex flex-col w-[50%]">
                 <label className="text-sm font-medium text-black">First Name</label>
                 <input
                   type="text"
@@ -39,10 +39,11 @@ const Enquiry = () => {
                 />
               </div>
 
-              <div className="flex flex-col">
+              <div className="flex flex-col w-[50%]">
                 <label className="text-sm font-medium text-black">Last Name</label>
                 <input
                   type="text"
+                  name="LastName"
                   className=" text-black w-full border border-gray-300 p-3 rounded-md mt-1 focus:ring-2 focus:ring-purple-500"
                   placeholder="Dubey"
 
@@ -72,11 +73,11 @@ const Enquiry = () => {
               />
             </div>
 
-          
+
             <div className="flex gap-3">
               <button
                 type="submit"
-                className="w-full bg-pink-500 text-white px-6 py-3 rounded-md font-semibold hover:bg-pink-600 cursor-pointer"
+                className="w-full bg-[#060647] text-white text-xl font-bold px-6 py-3 rounded-3xl  hover:bg-[#1a42ba] cursor-pointer transition"
               >
                 Let's Connect
               </button>

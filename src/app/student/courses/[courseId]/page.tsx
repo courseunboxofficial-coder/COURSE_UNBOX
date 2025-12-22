@@ -29,10 +29,10 @@ export default function CourseWatchPage() {
     course.modules[0].lessons[0]
   );
 
-    const getEmbedUrl = (url: string) => {
+  const getEmbedUrl = (url: string) => {
     const videoId = url.split("v=")[1];
     return `https://www.youtube.com/embed/${videoId}`;
-    };
+  };
 
 
   return (
@@ -57,10 +57,9 @@ export default function CourseWatchPage() {
                     key={lesson.id}
                     onClick={() => setCurrentLesson(lesson)}
                     className={`w-full flex items-center gap-2 px-3 py-2 rounded-md text-sm
-                      ${
-                        currentLesson.id === lesson.id
-                          ? "bg-blue-100 text-blue-700"
-                          : "hover:bg-gray-100 text-gray-700"
+                      ${currentLesson.id === lesson.id
+                        ? "bg-blue-100 text-blue-700"
+                        : "hover:bg-gray-100 text-gray-700"
                       }`}
                   >
                     <PlayCircle className="w-4 h-4" />

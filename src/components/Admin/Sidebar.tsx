@@ -10,11 +10,13 @@ import AboutEditor from './AboutEditor';
 import BlogEditor from './BlogEditor';
 import SettingsEditor from './SettingsEditor';
 
-import { Home, BookOpen, Info, FileText, Settings, Menu } from "lucide-react";
+import { Home, BookOpen, Info, FileText, Settings, Menu, Users } from "lucide-react";
+import MentorEditor from './MentorEditor';
 
 const sidebarItems = [
     { key: "home", label: "Home", icon: Home },
     { key: "courses", label: "Courses", icon: BookOpen },
+    { key: "mentors", label: "Mentors", icon: Users },
     { key: "about", label: "About", icon: Info },
     { key: "blog", label: "Blog", icon: FileText },
     { key: "settings", label: "Settings", icon: Settings },
@@ -64,15 +66,18 @@ const Sidebar = () => {
             <main  className={`flex-1 p-8 overflow-y-scroll transition-all duration-300 ${
     collapsed ? "ml-20" : "ml-74"}`}>
                 <header className="mb-8">
-                    <h2 className="text-2xl text-center font-bold capitalize"> {active} Section</h2>
+                    <h2 className="text-2xl text-center font-extrabold capitalize"> {active.toUpperCase()} SECTION</h2>
                 </header>
 
                 <div className="grid gap-6">
+
                     {active === "home" && <HomeEditor collapsed = {collapsed} />}
-                    {active === "courses" && <CourseEditor />}
+                    {active === "courses" && <CourseEditor collapsed = {collapsed}/>}
                     {active === "about" && <AboutEditor />}
+                    {active === "mentors" && <MentorEditor collapsed = {collapsed}/>}
                     {active === "blog" && <BlogEditor />}
                     {active === "settings" && <SettingsEditor />}
+
                 </div>
             </main>
         </div>

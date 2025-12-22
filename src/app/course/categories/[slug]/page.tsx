@@ -3,7 +3,9 @@ import CourseList from '@/components/Category/CourseList'
 import CategoryCTA from '@/components/Category/CategoryCTA'
 import Navbar from '@/components/Home/Navbar'
 import Footer from '@/components/Home/Footer'
-import Mentors from '@/components/Home/Mentors'
+import CourseHelpCTA from '@/components/Category/CourseHelpCTA'
+import TopMentors from '@/components/Category/TopMentors'
+import FAQs from '@/components/Category/FAQSCategory'
 
 interface CategoryCTAProps {
  
@@ -54,6 +56,9 @@ export default async function page({params}: {params : Promise<{slug:string}>}){
     <><Navbar/>
       <CategoryHero category={category} />
       <CourseList courses={courses} />
+      <CourseHelpCTA/>
+      <TopMentors/>
+      <FAQs/>
       <CategoryCTA category={category} />
       <Footer/>
       

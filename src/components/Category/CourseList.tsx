@@ -42,7 +42,7 @@ export default function CourseList({course}:any) {
     <section className="py-24 bg-linearr-to-b from-[#F7F9FF] to-white">
       <div className="max-w-7xl mx-auto px-6">
         {/* Heading */}
-        <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-14">
+        <h2 className="text-3xl md:text-4xl font-extrabold mb-14">
           Top Universities <span className="text-indigo-600">Data Science & Analytics</span> Courses
         </h2>
 

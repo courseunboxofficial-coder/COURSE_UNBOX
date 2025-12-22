@@ -12,8 +12,8 @@ const Hero = () => {
                 
                 <div>
 
-                    <h1 className="text-4xl font-bold leading-tight">
-                        Data Science With Generative AI <br /> Course
+                    <h1 className="text-4xl font-extrabold leading-tight">
+                        Data Science With Generative AI Course
                     </h1>
 
                     <p className="text-gray-300 mt-4 text-[15px] leading-relaxed">

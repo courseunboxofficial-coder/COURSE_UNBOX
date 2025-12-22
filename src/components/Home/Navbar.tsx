@@ -32,10 +32,10 @@ const Navbar = () => {
 
         {/* RIGHT: Buttons (Desktop) */}
         <div className="hidden md:flex items-center gap-4">
-          <button className="px-6 py-2.5 text-sm rounded-3xl border bg-[#1C336E] font-bold text-white hover:bg-blue-600 transition">
+          <button className="px-6 py-3 text-sm rounded-3xl border bg-[#1C336E] font-bold text-white hover:bg-blue-600 transition cursor-pointer">
             Login
           </button>
-          <button className="px-6 py-2.5 text-sm bg-blue-600 text-white rounded-3xl font-bold hover:bg-[#1C336E] transition">
+          <button className="px-6 py-3 text-sm bg-blue-600 text-white rounded-3xl font-bold hover:bg-[#1C336E] transition cursor-pointer">
             Register
           </button>
         </div>

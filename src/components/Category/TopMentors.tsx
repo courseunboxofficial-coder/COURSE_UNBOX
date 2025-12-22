@@ -1,0 +1,117 @@
+import Image from "next/image";
+import { ExternalLink } from "lucide-react";
+
+export default function TopMentors() {
+  return (
+    <section className="max-w-7xl mx-auto px-4 py-16">
+      
+      {/* Heading */}
+      <div className="mb-12">
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900">
+          Top <span className="text-blue-600">Mentors</span>
+        </h2>
+        <p className="mt-3 max-w-2xl text-gray-600">
+          Learn directly from highly experienced professors and industry experts
+          from India’s top institutions.
+        </p>
+      </div>
+
+      {/* Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        {/* Card 1 */}
+        <MentorCard
+          name="Prof. Sudeb Das Gupta"
+          role="Professor at IIT Roorkee"
+          image="/images/Student/UnboxProfile.png"
+          description="Dr. Sudeb Das Gupta is currently working as a Professor at IIT Roorkee. He has completed his PhD from Banaras Hindu University in Electronics Engineering and has more than 20 years of teaching experience."
+        />
+
+        {/* Card 2 */}
+        <MentorCard
+          name="Prof. Balasubramanian R"
+          role="Professor & HOD at IIT Roorkee"
+          image="/images/Student/UnboxProfile.png"
+          description="Dr. Balasubramanian is a Professor & HOD of the Computer Science Department at IIT Roorkee. He completed his PhD from IIT Madras and brings over 20 years of academic experience."
+        />
+
+        {/* Card 3 */}
+        <MentorCard
+          name="Prof. Narendra S. Chaudhari"
+          role="Professor at IIT Indore"
+          image="/images/Student/UnboxProfile.png"
+          description="Dr. Narendra Chaudhari is a Professor of Computer Science and Engineering at IIT Indore, specializing in network security, mobile computing, and machine learning."
+          readMore
+        />
+      </div>
+    </section>
+  );
+}
+
+/* --- Card Component --- */
+
+function MentorCard({
+  name,
+  role,
+  image,
+  description,
+  readMore = false,
+}: {
+  name: string;
+  role: string;
+  image: string;
+  description: string;
+  readMore?: boolean;
+}) {
+  return (
+    <div
+      className="
+        relative rounded-2xl bg-gray-100 p-6
+        border border-gray-100
+        shadow-sm hover:shadow-md
+        transition
+      "
+    >
+      {/* Profile */}
+      <div className="flex justify-center">
+        <div className="relative">
+          <Image
+            src={image}
+            alt={name}
+            width={110}
+            height={110}
+            className="rounded-full border-2 border-blue-500"
+          />
+
+          <span className="absolute bottom-1 right-1 flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-white">
+            <ExternalLink size={14} />
+          </span>
+        </div>
+      </div>
+
+      {/* Info */}
+      <div className="mt-5 text-center">
+        <h3 className="text-lg font-semibold text-gray-900">
+          {name}
+        </h3>
+
+        <p className="mt-1 text-sm text-gray-500">
+          {role}
+        </p>
+
+        <p className="mt-4 text-sm leading-relaxed text-gray-600">
+          {description}
+        </p>
+
+        {readMore && (
+          <button className="mt-4 text-sm font-semibold text-blue-600 hover:text-blue-700">
+            Read More →
+          </button>
+        )}
+      </div>
+
+      {/* Subtle accent */}
+      <div className="absolute inset-x-0 bottom-0 h-1 rounded-b-2xl bg-linear-to-r from-blue-500 to-yellow-400" />
+    </div>
+  );
+}

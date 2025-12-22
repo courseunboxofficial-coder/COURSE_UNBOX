@@ -1,26 +1,31 @@
 import React from "react";
 import { NotepadText, Brain, GraduationCap } from "lucide-react";
+import CountUp from 'react-countup';
 
 const Banner = () => {
   const stats = [
     {
-      icon: <NotepadText size={36} />,
-      value: "40+",
+      icon: <NotepadText size={52} />,
+      value: 40,
+      sign:"+",
       label: "Courses",
     },
     {
-      icon: <GraduationCap size={36} />,
-      value: "100K+",
+      icon: <GraduationCap size={52} />,
+      value: 100,
+      sign: "k+",
       label: "Students",
     },
     {
-      icon: <Brain size={36} />,
-      value: "12+",
+      icon: <Brain size={52} />,
+      value: 12,
+      sign:"+",
       label: "Experience",
     },
     {
-      icon: <Brain size={36} />,
-      value: "12+",
+      icon: <Brain size={52} />,
+      value: 12,
+      sign:"+",
       label: "Experience",
     },
   ];
@@ -48,7 +53,7 @@ const Banner = () => {
       
             <div className="flex flex-col leading-tight">
               <span className="text-2xl font-bold text-blue-950">
-                {item.value}
+                <CountUp end={item.value} duration={4}/>{item.sign}
               </span>
               {/* Text-base */}
               <span className="text-lg text-gray-600">
