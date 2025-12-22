@@ -3,6 +3,7 @@ import { Pencil, Trash2, Layers, Sparkles } from "lucide-react";
 import { supabase } from '@/lib/supabse/supabaseConfig';
 
 type Mentor = {
+
     id: number;
     name: string;
     profession: string;
@@ -10,9 +11,11 @@ type Mentor = {
     teaching_experience: number;
     description: string;
     created_at: number
+
 };
 
-const MentorTable = () => {
+export const MentorTable = ({onEdit} : {onEdit : any}) => {
+
     const [mentors, setMentors] = useState<Mentor[]>([]);
 
 
@@ -41,7 +44,23 @@ const MentorTable = () => {
 
         fetchTableData();
 
-    }, [])
+    }, []);
+
+
+    const handleDelete = async (id : number) => {
+
+        const {data , error} = await supabase.from("Mentor").delete().eq("id", id);
+
+        if(error){
+            console.log("THERE IS SOME ERROR HAPPENS IN IT : ");
+            console.log(error);
+        }
+
+
+        console.log(data);
+
+    }
+
     return (
         <section className="w-full max-w-7xl mx-auto px-4 py-10">
             {/* Glass Card */}
@@ -100,13 +119,13 @@ const MentorTable = () => {
                                     </td>
 
                                     <td className="px-8 py-6 text-center">
-                                        <button className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-100 to-emerald-200 px-5 py-2.5 text-sm font-semibold text-emerald-700 shadow-md hover:shadow-lg hover:scale-105 transition-all">
+                                        <button className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-100 to-emerald-200 px-5 py-2.5 text-sm font-semibold text-emerald-700 shadow-md hover:shadow-lg hover:scale-105 transition-all" onClick={()=>onEdit(mentor)}>
                                             <Pencil size={16} /> Edit
                                         </button>
                                     </td>
 
                                     <td className="px-8 py-6 text-center">
-                                        <button className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-rose-100 to-rose-200 px-5 py-2.5 text-sm font-semibold text-rose-700 shadow-md hover:shadow-lg hover:scale-105 transition-all">
+                                        <button className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-rose-100 to-rose-200 px-5 py-2.5 text-sm font-semibold text-rose-700 shadow-md hover:shadow-lg hover:scale-105 transition-all" onClick={()=>handleDelete(mentor.id)}>
                                             <Trash2 size={16} /> Delete
                                         </button>
                                     </td>
@@ -119,5 +138,3 @@ const MentorTable = () => {
         </section>
     );
 }
-
-export default MentorTable

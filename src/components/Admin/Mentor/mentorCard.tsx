@@ -5,6 +5,7 @@ import { Pencil, Trash2, Layers, Sparkles } from "lucide-react";
 import { supabase } from "@/lib/supabse/supabaseConfig";
 
 type Mentor = {
+    
     id: number;
     name: string;
     profession: string;
@@ -12,6 +13,7 @@ type Mentor = {
     teaching_experience: number;
     description: string;
     created_at: number
+
 };
 
 
