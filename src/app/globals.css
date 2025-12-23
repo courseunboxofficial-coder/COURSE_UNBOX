@@ -64,6 +64,9 @@
   animation: marquee-reverse 20s linear infinite;
 }
 
+
+
+
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
 }
@@ -81,3 +84,42 @@
   background-color: #2563eb; /* blue-600 */
 }
 
+
+
+
+
+/* fix */
+
+/* scrollbar space reserve karega */
+.custom-scrollbar {
+  scrollbar-gutter: stable;
+}
+
+/* optional – clean scrollbar look */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+
+
+/* justify + scrollbar fix */
+.custom-scrollbar {
+  overflow-y: auto;
+  padding-right: 12px;        /* scrollbar ki jagah pehle se */
+  box-sizing: content-box;   /* width stable rakhega */
+}
+
+/* smooth scrollbar (optional) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 8px;
+}

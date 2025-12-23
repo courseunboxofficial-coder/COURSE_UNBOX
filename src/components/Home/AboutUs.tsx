@@ -252,7 +252,7 @@ export default function AboutUs() {
           ref={contentRef}
           className={`text-gray-700 leading-relaxed pr-2  text-justify ${expanded ? "overflow-y-auto custom-scrollbar" : "overflow-hidden"}`}
           style={{ height: "130px" }}>
-          <p>
+          <p className="">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
             vel urna in sapien vestibulum euismod. Proin sit amet metus ut
             neque dapibus ullamcorper. Sed vitae risus eu purus bibendum
