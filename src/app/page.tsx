@@ -15,6 +15,7 @@ import LetsConnect from "@/components/Home/LetsConnect";
 import CertificationBanner from "@/components/Home/Deepak";
 import StatsSection from "@/components/Home/StatsSection";
 import Trending from "@/components/Home/Trending";
+import AboutUs from "@/components/Home/AboutUs";
 
 export default function Home() {
 
@@ -35,6 +36,7 @@ export default function Home() {
       <CertificationBanner/>
       <StatsSection/>
       <Trending/>
+      <AboutUs/>
       <Testimonials />
       <TopCompanies/>
       <LetsConnect/>
