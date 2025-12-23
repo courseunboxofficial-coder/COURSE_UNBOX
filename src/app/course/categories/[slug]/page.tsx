@@ -53,7 +53,8 @@ export default async function page({params}: {params : Promise<{slug:string}>}){
             }
         ]
      return (
-    <><Navbar/>
+      <>
+      <Navbar/>
       <CategoryHero category={category} />
       <CourseList courses={courses} />
       <CourseHelpCTA/>

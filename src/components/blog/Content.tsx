@@ -165,7 +165,7 @@ const cards: InternshipCard[] = [
 
     setLoading(true);
     setTimeout(()=>{
-         const start = (page - 1) * ITEMS_PER_PAGE;
+        const start = (page - 1) * ITEMS_PER_PAGE;
         const end = start + ITEMS_PER_PAGE;
         const newBlogs = cards.slice(start, end);
 
