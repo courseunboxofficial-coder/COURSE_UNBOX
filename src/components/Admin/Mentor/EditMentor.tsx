@@ -2,6 +2,7 @@ import { supabase } from '@/lib/supabse/supabaseConfig';
 import React, { useEffect, useState } from 'react'
 
 type Mentor = {
+
     id: number;
     name: string;
     profession: string;
@@ -15,11 +16,13 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
 
     const [imageURL, setimageURL] = useState("");
     const [formData, setFormData] = useState({
+
         name: "",
         profession: "",
         work_experience: 0,
         teaching_experience: 0,
         description: ""
+
     });
 
 
@@ -32,11 +35,13 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
 
     useEffect(() => {
         setFormData({
+
             name: mentor.name,
             profession: mentor.profession,
             work_experience: mentor.work_experience,
             teaching_experience: mentor.teaching_experience,
             description: mentor.description,
+
         })
     }, []);
 
@@ -70,24 +75,29 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
 
     const handleEditData = async () => {
 
+
         const { data, error } = await supabase.from("Mentors").update(
 
             {
+
                 name: formData.name,
                 profession: formData.profession,
-                work_experience: formData.work_experience,
-                teaching_experience: formData.teaching_experience,
+                work_Experience: formData.work_experience,
+                teaching_Experience: formData.teaching_experience,
                 description: formData.description,
-                image: imageURL
+                Image: imageURL
 
             }
+
 
         ).eq("id", mentor.id);
 
 
         if (error) {
+
             console.log("The error ocuur in this is : ");
             console.log(error);
+
         }
 
         console.log(data);
@@ -98,7 +108,7 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
 
     return (
 
-        
+
         <div className={`${collapsed ? "w-[85vw]" : "w-[75vw]"} mx-auto mt-10 px-4`}>
             <div className="rounded-2xl border border-blue-200 bg-white shadow-xl overflow-hidden">
                 <div className="h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500" />
@@ -124,6 +134,7 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
                                 className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
                             />
                         </div>
+
 
                         <div>
                             <label className="block text-sm font-medium mb-2">
@@ -152,8 +163,23 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
                             />
                         </div>
 
+                        <div>
+                            <label className="block text-sm font-medium mb-2">
+                                Teaching Experience
+                            </label>
+                            <input
+                                type='text'
+                                name="teaching_experience"
+                                value={formData.teaching_experience}
+                                onChange={handleChange}
+                                className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                            />
+                        </div>
+
 
                     </div>
+
+
 
 
                     {/* Description */}
@@ -170,6 +196,9 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
                             className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
                         />
                     </div>
+
+
+
 
                     {/* Image Upload */}
 
@@ -194,11 +223,14 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
                     <button className="mt-6 px-10 py-4 rounded-3xl bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition" onClick={handleEditData}>
                         Save Course
                     </button>
+
                 </div>
+
 
                 {/* ================= PREVIEW ================= */}
 
                 <div className="rounded-2xl border border-gray-200 bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-8">
+
                     <p className="text-xs font-medium text-gray-500 mb-3">
                         LIVE PREVIEW
                     </p>
@@ -228,6 +260,8 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
         </div>
 
     )
+
+
 }
 
 export default EditMentor

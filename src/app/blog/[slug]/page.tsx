@@ -7,44 +7,55 @@ import BlogCategories from "@/components/blog/BlogCategories";
 import FinalCTASection from "@/components/blog/FinalCTASection";
 import LeftContent from "@/components/blog/LeftContent";
 
-const Page = ()=> {
+const Page = () => {
 
   return (
     <>
-    <Navbar/>
-    <div className="w-full min-h-screen bg-slate-50"  >
+      <Navbar />
 
-       <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-[70%_30%] gap-10" >
-          
-          {/* ================= LEFT CONTENT ================= */}
-         <LeftContent/>
+      <div className="w-full min-h-screen bg-slate-50"  >
 
-          {/* ================= RIGHT SIDEBAR ================= */}
-          <aside className="relative shadow-xs">
-                <div className="sticky top-44 space-y-6">
-                  <AdCard />
-                  <BlogCategories />
-                </div>
-           </aside>
+        <div className="max-w-7xl mx-auto px-4">
+
+          <div className="grid grid-cols-1 lg:grid-cols-[70%_30%] gap-10" >
+
+
+            <LeftContent />
+
+
+            <aside className="relative shadow-xs">
+
+              <div className="sticky top-44 space-y-6">
+
+                <AdCard />
+
+                <BlogCategories />
+
+              </div>
+
+            </aside>
+
+          </div>
+
         </div>
+
+
+
+
+
+        <BlogFAQ />
+
+
+        <RelatedBlog />
+
+
+        <FinalCTASection />
+
       </div>
 
-
-    
-
-      {/* ===== FAQ SECTION ===== */}
-      <BlogFAQ/>
-
-      {/* ===== RELATED BLOGS ===== */}
-      <RelatedBlog/>
-      
-      {/* ==== Final CTA ==== */}
-      <FinalCTASection/>
-    </div>
-    <Foter/>
+      <Foter />
     </>
-    
+
   );
 };
 

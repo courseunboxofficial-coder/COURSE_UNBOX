@@ -15,6 +15,8 @@ import LetsConnect from "@/components/Home/LetsConnect";
 import CertificationBanner from "@/components/Home/Deepak";
 import StatsSection from "@/components/Home/StatsSection";
 import Trending from "@/components/Home/Trending";
+import AboutUs from "@/components/Home/AboutUs";
+import Faq from "@/components/Home/Faq";
 
 export default function Home() {
 
@@ -23,7 +25,7 @@ export default function Home() {
 
     <main className="w-full min-h-screen bg-white">
 
-      <Navbar />
+      {/* <Navbar />
       <Hero />
       <Partners />
       <Banner />
@@ -31,14 +33,16 @@ export default function Home() {
       <Enquiry />
       <TopCourses />
       <Hire />
-      <Mentors />
+      <Mentors /> */}
       <CertificationBanner/>
       <StatsSection/>
       <Trending/>
-      <Testimonials />
+      <AboutUs/>
+      <Faq/>
+      {/* <Testimonials />
       <TopCompanies/>
       <LetsConnect/>
-      <Footer />
+      <Footer /> */}
 
     </main>
 

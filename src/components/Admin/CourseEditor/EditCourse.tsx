@@ -10,6 +10,8 @@ type Course = {
   language: string;
   domain: string;
   Delivery_Mode: string;
+  low : number,
+  high : number,
   content: {
     title: string;
     subtitle: string;
@@ -45,6 +47,8 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
     Duration: 0,
     language: "",
     domain: "",
+    low : 0,
+    high : 0,
     Delivery_Mode: "",
     image: null as File | null,
   });
@@ -101,13 +105,6 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
 
   const handleEditData = async () => {
 
-    console.log("THE DATA IS : ");
-    console.log(formData.title);
-    console.log(formData.description);
-    console.log(formData.startDate);
-    console.log(formData.Duration);
-    console.log(formData.language);
-    console.log(formData.domain)
     const {data , error} = await supabase.from("Courses").update(
 
       {
@@ -119,6 +116,8 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
         language : formData.language,
         content  : course.content,
         domain : formData.domain,
+        low : 0,
+        high : 0,
         Delivery_Mode: formData.Delivery_Mode,
         image : imageURL
 
@@ -236,6 +235,32 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                   type="number"
                   name="Duration"
                   value={formData.Duration}
+                  onChange={handleChange}
+                  className="w-full rounded-xl border px-4 py-3 text-sm"
+                />
+              </div>
+
+              <div className="w-full">
+                <label className="block text-sm font-medium mb-2">
+                  Low Package
+                </label>
+                <input
+                  type="number"
+                  name="low"
+                  value={formData.low}
+                  onChange={handleChange}
+                  className="w-full rounded-xl border px-4 py-3 text-sm"
+                />
+              </div>
+
+              <div className="w-full">
+                <label className="block text-sm font-medium mb-2">
+                  High Package
+                </label>
+                <input
+                  type="number"
+                  name="high"
+                  value={formData.high}
                   onChange={handleChange}
                   className="w-full rounded-xl border px-4 py-3 text-sm"
                 />

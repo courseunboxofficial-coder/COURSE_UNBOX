@@ -1,215 +1,114 @@
 "use client"
+import { supabase } from '@/lib/supabse/supabaseConfig';
 import Image from 'next/image';
 import Link from 'next/link'
 import React, { useEffect, useRef, useState } from 'react'
 
-
-
-
 export type InternshipCard = {
 
-    id: number;
-    category: string;
-    title: string;
-    description: string;
-    image: string;
-    href: string;
+  id: number;
+  domain: string;
+  title: string;
+  content: string;
+  FAQ: string;
 
 };
 
-const ITEMS_PER_PAGE = 4;
+// const ITEMS_PER_PAGE = 4;
 
 const Content = () => {
 
-const cards: InternshipCard[] = [
-    {
-        id: 1,
-        category: "Digital Marketing",
-        title:
-            "Content Writing Internship at NDTV in Delhi, Editing & Managing Content – Apply Now in 2025",
-        description:
-            "Why the NDTV Content Writing Internship is a big opportunity if you're searching for a content writing internship...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/content-writing",
-    },
-    {
-        id: 2,
-        category: "Data Analytics",
-        title: "6 Reasons Interactive Python Is a Game-Changer for Me",
-        description:
-            "Interactive Python reshaped the way I write code, learn new concepts, and experiment with ideas...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/interactive-python",
-    },
+  const [blogs, setBlogs] = useState<InternshipCard[]>([]);
 
-    {
-        id: 3,
-        category: "Web Development",
-        title:
-            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-        description:
-            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/software-engineer",
-    },
+  // const [page, setPage] = useState(1);
+  // const [loading, setLoading] = useState(false);
+  // const [hasMore, setHasMore] = useState(true);
 
-    {
-        id: 4,
-        category: "Web Development",
-        title:
-            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-        description:
-            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/software-engineer",
-    },
+  // const loaderRef = useRef<HTMLDivElement | null>(null);
 
-    {
-        id: 5,
-        category: "Web Development",
-        title:
-            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-        description:
-            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/software-engineer",
-    },
+  // const fetchBlogs = () => {
 
-    {
-        id: 6,
-        category: "Web Development",
-        title:
-            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-        description:
-            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/software-engineer",
-    },
+  //   console.log(page);
+  //   if (loading || !hasMore) return;
 
-    {
-        id: 7,
-        category: "Web Development",
-        title:
-            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-        description:
-            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/software-engineer",
-    },
+  //   setLoading(true);
+  //   setTimeout(() => {
 
-    {
-        id: 8,
-        category: "Web Development",
-        title:
-            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-        description:
-            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/software-engineer",
-    },
-    {
-        id: 9,
-        category: "Web Development",
-        title:
-            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-        description:
-            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/software-engineer",
-    },
-    {
-        id: 10,
-        category: "Web Development",
-        title:
-            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-        description:
-            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/software-engineer",
-    },
+  //     const start = (page - 1) * ITEMS_PER_PAGE;
+  //     const end = start + ITEMS_PER_PAGE;
+  //     const newBlogs = cards.slice(start, end);
 
-    {
-        id: 11,
-        category: "Web Development",
-        title:
-            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-        description:
-            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/software-engineer",
-    },
+  //     if (newBlogs.length === 0) {
 
-    {
-        id: 12,
-        category: "Web Development",
-        title:
-            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-        description:
-            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/software-engineer",
-    },
+  //       setHasMore(false);
 
-];
+  //     } else {
 
- const [blogs, setBlogs] = useState<InternshipCard[]>([]);
- const [page, setPage] = useState(1);
- const [loading, setLoading] = useState(false);
- const [hasMore, setHasMore] = useState(true);
+  //       setBlogs((prev) => [...prev, ...newBlogs]);
 
-  const loaderRef = useRef<HTMLDivElement | null>(null);
+  //       setPage((prev) => {
 
-  const fetchBlogs = () => {
-    console.log(page);
-    if (loading || !hasMore) return;
+  //         return prev + 1
 
-    setLoading(true);
-    setTimeout(()=>{
-        const start = (page - 1) * ITEMS_PER_PAGE;
-        const end = start + ITEMS_PER_PAGE;
-        const newBlogs = cards.slice(start, end);
+  //       })
+  //     }
 
-        if (newBlogs.length === 0) {
-          setHasMore(false);
-        } else {
-          setBlogs((prev) => [...prev, ...newBlogs]);
-          setPage((prev)=>{
-            return prev+1
-          })
-        }
 
-    setLoading(false);
+  //     setLoading(false);
 
-    },300)
+  //   }, 300)
 
-   
-  };
 
-  useEffect(() => {
-    fetchBlogs();
-  }, []);
+  // };
+
+  // useEffect(() => {
+  //   fetchBlogs();
+  // }, []);
+
+
+  // useEffect(() => {
+  //   if (!loaderRef.current) return;
+
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       if (entries[0].isIntersecting) {
+
+  //         fetchBlogs();
+  //       }
+  //     },
+  //     {
+  //       threshold: 0.1,
+  //       rootMargin: "100px",
+  //     }
+  //   );
+
+  //   observer.observe(loaderRef.current);
+
+  //   return () => observer.disconnect();
+
+  // }, [fetchBlogs]);
 
 
   useEffect(() => {
-    if (!loaderRef.current) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
+    const getBlogData = async () => {
 
-          fetchBlogs();
-        }
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "100px",
+      const { data, error } = await supabase.from("Blogs").select("*");
+
+      if (error) {
+
+        console.log("There is some of the error I have got");
+
       }
-    );
 
-    observer.observe(loaderRef.current);
+      setBlogs(data || []);
 
-    return () => observer.disconnect();
-  }, [fetchBlogs]);
+      console.log("THE BLOG DATA COME FROM THE DATA BASE IS : ");
+      console.log(data);
+
+    }
+
+  })
 
   return (
     <section className="py-16">
@@ -219,15 +118,15 @@ const cards: InternshipCard[] = [
         </h2>
 
         <div className="flex flex-wrap gap-8 pb-4">
-          {blogs.map((card,idx) => (
+          {blogs.map((card, idx) => (
             <Link
               key={idx}
-              href={card.href}
+              href="/blogs"
               className="min-w-[340px] max-w-[340px] bg-white rounded-3xl shadow hover:shadow-2xl hover:shadow-indigo-300 transition"
             >
-                
+
               <div className="relative h-44 w-full overflow-hidden rounded-t-3xl">
-                
+
                 <Image
                   src={card.image}
                   alt={card.title}
@@ -251,7 +150,7 @@ const cards: InternshipCard[] = [
           ))}
         </div>
 
-      
+
         {hasMore && (
           <div
             ref={loaderRef}

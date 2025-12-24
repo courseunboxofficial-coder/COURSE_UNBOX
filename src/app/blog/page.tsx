@@ -13,8 +13,11 @@ const page = () => {
 
         <>
             <Navbar />
+
             <LetsConnect/>
+
             <Content />
+            
             <Footer />
         </>
     );

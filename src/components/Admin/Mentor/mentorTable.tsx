@@ -63,9 +63,11 @@ export default function MentorTable ({onEdit} : {onEdit : any}) {
 
     return (
         <section className="w-full max-w-7xl mx-auto px-4 py-10">
-            {/* Glass Card */}
+
+            
             <div className="relative overflow-hidden rounded-[32px] bg-white/80 backdrop-blur-xl shadow-[0_30px_80px_rgba(0,0,0,0.12)] border border-gray-100">
-                {/* Decorative Gradient */}
+            
+               
                 <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-indigo-500 via-violet-500 to-pink-500" />
 
                 {/* Header */}
