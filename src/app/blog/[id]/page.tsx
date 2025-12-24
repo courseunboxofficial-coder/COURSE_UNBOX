@@ -7,9 +7,21 @@ import BlogCategories from "@/components/blog/BlogCategories";
 import FinalCTASection from "@/components/blog/FinalCTASection";
 import LeftContent from "@/components/blog/LeftContent";
 
-const Page = () => {
+
+
+
+
+
+const Page = async ({ params }: { params: Promise<{ id: string }>}) => {
+
+  const {id} = await params;
+
+  console.log("THE ID WE HAVE GOT IS : ");
+  console.log(id);
+
 
   return (
+
     <>
       <Navbar />
 
@@ -20,7 +32,7 @@ const Page = () => {
           <div className="grid grid-cols-1 lg:grid-cols-[70%_30%] gap-10" >
 
 
-            <LeftContent />
+            <LeftContent BlogId={id}/>
 
 
             <aside className="relative shadow-xs">
@@ -40,10 +52,7 @@ const Page = () => {
         </div>
 
 
-
-
-
-        <BlogFAQ />
+        <BlogFAQ BlogId={id}/>
 
 
         <RelatedBlog />

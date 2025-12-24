@@ -90,15 +90,18 @@ const Content = () => {
   // }, [fetchBlogs]);
 
 
+
+
   useEffect(() => {
 
     const getBlogData = async () => {
 
-      const { data, error } = await supabase.from("Blogs").select("*");
+      const { data, error } = await supabase.from("Blog").select("*");
 
       if (error) {
 
         console.log("There is some of the error I have got");
+        console.log(error);
 
       }
 
@@ -109,27 +112,43 @@ const Content = () => {
 
     }
 
-  })
+
+    getBlogData();
+
+  }, []);
 
   return (
     <section className="py-16">
       <div className="mx-auto w-full px-6">
-        <h2 className="text-3xl font-bold mb-10">
+        <h2 className="relative inline-block font-extrabold text-5xl mb-10">
           Latest Opportunities
+          <svg
+            className="absolute left-0 -bottom-6 w-full"
+            viewBox="0 0 300 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 15 C 60 5, 240 5, 295 15"
+              stroke="#2BB0FF"
+              strokeWidth="6"
+              strokeLinecap="round"
+            />
+          </svg>
         </h2>
 
         <div className="flex flex-wrap gap-8 pb-4">
           {blogs.map((card, idx) => (
             <Link
               key={idx}
-              href="/blogs"
+              href={`/blog/${card.id}`}
               className="min-w-[340px] max-w-[340px] bg-white rounded-3xl shadow hover:shadow-2xl hover:shadow-indigo-300 transition"
             >
 
               <div className="relative h-44 w-full overflow-hidden rounded-t-3xl">
 
                 <Image
-                  src={card.image}
+                  src="/images/Home/UIUX.png"
                   alt={card.title}
                   fill
                   className="object-cover"
@@ -138,13 +157,16 @@ const Content = () => {
 
               <div className="p-6">
                 <span className="inline-block mb-3 rounded-full bg-gray-100 px-4 py-1 text-xs font-medium text-gray-700">
-                  {card.category}
+                  {card.domain}
                 </span>
                 <h3 className="text-lg font-semibold leading-snug mb-3">
                   {card.title}
                 </h3>
                 <p className="text-sm text-gray-600 line-clamp-3">
-                  {card.description}
+                  {
+                    card.content.slice(0, 400)
+                  }
+                  ...
                 </p>
               </div>
             </Link>
@@ -152,14 +174,17 @@ const Content = () => {
         </div>
 
 
-        {hasMore && (
+        {/* {hasMore && (
           <div
             ref={loaderRef}
             className="py-10 text-center text-gray-500"
           >
             {loading ? "Loading..." : "Scroll to load more"}
           </div>
-        )}
+        )} */}
+
+
+
       </div>
     </section>
   );

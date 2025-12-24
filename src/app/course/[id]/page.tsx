@@ -7,7 +7,9 @@ import Navbar from "@/components/Home/Navbar";
 import Module from "@/components/course/Module";
 import Mentors from "@/components/course/Mentors";
 import StillConfusedSection from "@/components/course/getConnected";
+import CertificationBanner from "@/components/Home/Deepak";
 import TopCompanies from "@/components/Home/TopCompanies";
+import LetsConnect from "@/components/Home/LetsConnect";
 
 
 
@@ -24,8 +26,9 @@ export default async function CoursePage({ params }: { params: Promise<{ id: str
                 <Enquiry />
                 <Module />
                 <Mentors />
+                <CertificationBanner/>
                 <TopCompanies />
-                <StillConfusedSection />
+                <LetsConnect/>
             </div>
             <Footer />
 

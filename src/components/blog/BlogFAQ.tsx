@@ -1,35 +1,83 @@
 "use client"
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-export default function BlogFAQ(){
-    const [openIndex, setOpenIndex] = useState<number | null>(null);
+import { supabase } from "@/lib/supabse/supabaseConfig";
 
-  const faqs = [
-    {
-      question: "How long does it take to master DSA?",
-      answer:
-        "Mastering DSA depends on consistency. With daily practice, most learners take 6–9 months to become confident.",
-    },
-  ];
 
-   
-    return (
+type Blog = {
+
+  id: string;
+  domain: string;
+  title: string;
+  content: string;
+
+  FAQ: {
+    question: string;
+    answer: string;
+  }[];
+
+  created_at: string;
+  
+};
+
+export default function BlogFAQ({ BlogId }: { BlogId: string }) {
+
+
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [Blogs, setBlogs] = useState<Blog | null>(null);
+
+  const getBlogData = async () => {
+
+    const { data, error } = await supabase
+      .from("Blog")
+      .select("*")
+      .eq("id", BlogId)
+      .single();
+
+    if (error) {
+
+      console.error(error);
+
+    }
+
+    console.log("THE DATA IS : ");
+    console.log(data);
+
+    setBlogs(data);
+
+  }
+
+
+
+  useEffect(() => {
+
+    getBlogData();
+
+  }, []);
+
+
+
+  return (
     <section className="max-w-5xl mx-32 px-4 py-16 cursor-pointer">
-      
+
       {/* Heading */}
       <div className="mb-10 ">
         <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900">
           Frequently Asked <span className="text-blue-600">Questions</span>
         </h2>
-        
+
       </div>
 
       {/* FAQ List */}
       <div className="space-y-4">
-        {faqs.map((faq, index) => {
+
+        {Blogs?.FAQ.map((faq, index) => {
+
           const isOpen = openIndex === index;
 
           return (
+
             <div
               key={index}
               className="
@@ -68,7 +116,7 @@ export default function BlogFAQ(){
                 </div>
               )}
 
-              
+
               <div className="h-0.5 bg-linear-to-r from-blue-500 rounded-b-xl" />
             </div>
           );
