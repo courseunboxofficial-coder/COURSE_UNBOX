@@ -18,7 +18,6 @@ export type InternshipCard = {
 
 const Content = () => {
 
-
   const [blogs, setBlogs] = useState<InternshipCard[]>([]);
 
   // const [page, setPage] = useState(1);

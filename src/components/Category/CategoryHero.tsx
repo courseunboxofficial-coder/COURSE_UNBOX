@@ -102,44 +102,44 @@ export default function CategoryHero({ categories }: any) {
 
       <div className="max-w-5xl mx-auto bg-white rounded-xl flex flex-col sm:flex-row justify-around items-center text-black py-6 gap-6">
 
-  {/* CARD 1 */}
-  <div className="flex items-center gap-2">
-    <IndianRupee color="#d18800" size={45} />
-    <div>
-      <p className="text-lg sm:text-2xl font-bold">
-        <CountUp prefix="INR " end={1200000} suffix="+" />
-      </p>
-      <p className="text-xs sm:text-sm text-gray-700">
-        Average salary at entry level
-      </p>
-    </div>
-  </div>
+          {/* CARD 1 */}
+          <div className="flex items-center gap-2">
+            <IndianRupee color="#d18800" size={45} />
+            <div>
+              <p className="text-lg sm:text-2xl font-bold">
+                <CountUp prefix="INR " end={1200000} suffix="+" />
+              </p>
+              <p className="text-xs sm:text-sm text-gray-700">
+                Average salary at entry level
+              </p>
+            </div>
+          </div>
 
-  {/* CARD 2 */}
-  <div className="flex items-center gap-2">
-    <IndianRupee color="#d18800" size={45} />
-    <div>
-      <p className="text-lg sm:text-2xl font-bold">
-        <CountUp prefix="INR " end={1800000} suffix="+" />
-      </p>
-      <p className="text-xs sm:text-sm text-gray-700">
-        Highest salary offered
-      </p>
-    </div>
-  </div>
+          {/* CARD 2 */}
+          <div className="flex items-center gap-2">
+            <IndianRupee color="#d18800" size={45} />
+            <div>
+              <p className="text-lg sm:text-2xl font-bold">
+                <CountUp prefix="INR " end={1800000} suffix="+" />
+              </p>
+              <p className="text-xs sm:text-sm text-gray-700">
+                Highest salary offered
+              </p>
+            </div>
+          </div>
 
-  {/* CARD 3 */}
-  <div className="flex items-center gap-2">
-    <IndianRupee color="#d18800" size={45} />
-    <div>
-      <p className="text-lg sm:text-2xl font-bold">
-        <CountUp end={5000} suffix="+" />
-      </p>
-      <p className="text-xs sm:text-sm text-gray-700">
-        Hiring partners
-      </p>
-    </div>
-  </div>
+          {/* CARD 3 */}
+          <div className="flex items-center gap-2">
+            <IndianRupee color="#d18800" size={45} />
+            <div>
+              <p className="text-lg sm:text-2xl font-bold">
+                <CountUp end={5000} suffix="+" />
+              </p>
+              <p className="text-xs sm:text-sm text-gray-700">
+                Hiring partners
+              </p>
+            </div>
+          </div>
 
      </div>
 
