@@ -6,6 +6,7 @@ import Footer from '@/components/Home/Footer'
 import CourseHelpCTA from '@/components/Category/CourseHelpCTA'
 import TopMentors from '@/components/Category/TopMentors'
 import FAQs from '@/components/Category/FAQSCategory'
+import CategoryOverview from '@/components/Category/CategoryOverview'
 
 interface CategoryCTAProps {
  
@@ -59,6 +60,7 @@ export default async function page({params}: {params : Promise<{slug:string}>}){
       <CourseList courses={courses} />
       <CourseHelpCTA/>
       <TopMentors/>
+      <CategoryOverview/>
       <FAQs/>
       <CategoryCTA category={category} />
       <Footer/>

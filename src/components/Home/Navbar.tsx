@@ -24,7 +24,7 @@ const Navbar = () => {
           
           <div className="hidden md:flex items-center space-x-15 font-bold text-gray-700">
             <Link href={"/"} className="cursor-pointer hover:text-blue-600">Home</Link>
-            <Link href={"/courses"} className="cursor-pointer hover:text-blue-600">Courses</Link>
+            <Link href={"/course"} className="cursor-pointer hover:text-blue-600">Courses</Link>
             <Link href={"/about"} className="cursor-pointer hover:text-blue-600">About Us</Link>
             <Link href={"/blog"} className="cursor-pointer hover:text-blue-600">Blogs</Link>
           </div>
@@ -55,7 +55,7 @@ const Navbar = () => {
 
           <div className="flex flex-col gap-4 font-bold text-gray-700">
             <Link href={"/"} className="hover:text-blue-600 cursor-pointer">Home</Link>
-            <Link href={"/courses"} className="hover:text-blue-600 cursor-pointer">Courses</Link>
+            <Link href={"/course"} className="hover:text-blue-600 cursor-pointer">Courses</Link>
             <Link href={"/about"} className="hover:text-blue-600 cursor-pointer">About Us</Link>
             <Link href={"/blog"} className="hover:text-blue-600 cursor-pointer">Blogs</Link>
           </div>

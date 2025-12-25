@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import PopUpForm from "./PopUpForm";
+import { Check } from "lucide-react";
 
 export default function FinalCTA() {
   const [isOpen , setIsOpen] = useState(false);
@@ -10,18 +11,19 @@ export default function FinalCTA() {
   return (
     <section
       className="w-full"
-      style={{
-        backgroundImage: "url('/images/Course/ImageForFinalCTA.png')",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-      }}
+     style={{
+      backgroundImage: "url('/images/Course/ImageForFinalCTA.png')",
+      backgroundPosition: "center 90%",
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat",
+    }}
+
     >
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-14 px-6 lg:px-16 py-16">
 
         {/* ================= LEFT CONTENT ================= */}
         <div className="max-w-xl text-white">
-          <h2 className="text-2xl md:text-3xl font-extrabold leading-tight">
+          <h2 className="text-3xl md:text-4xl font-extrabold leading-tight">
             Take the First Step <br />
             <span className="text-yellow-400">Towards Your Career</span>
           </h2>
@@ -32,9 +34,9 @@ export default function FinalCTA() {
           </p>
 
           <ul className="mt-8 space-y-4 text-blue-100">
-            <li>✔ Industry-designed curriculum</li>
-            <li>✔ Live mentorship & doubt sessions</li>
-            <li>✔ Placement & internship assistance</li>
+            <li className="flex items-center gap-2"> <Check size={18} className="mt-1"/> <p className="">Industry-designed curriculum</p></li>
+            <li className="flex items-center gap-2"> <Check size={18} className="mt-1"/> <p>Live mentorship & doubt sessions</p> </li>
+            <li className="flex items-center gap-2"> <Check size={18} className="mt-1"/> <p>Placement & internship assistance</p></li>
           </ul>
         </div>
 

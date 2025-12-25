@@ -5,12 +5,18 @@ import Navbar from "@/components/Home/Navbar"
 import Footer from "@/components/Home/Footer"
 import AllCoursesFAQs from '@/components/AllCourses/AllCoursesFAQs'
 import FinalCTA from "@/components/AllCourses/FinalCTA"
+import CoursesOverview from "@/components/AllCourses/CourseOverview"
+import AllCoursesCTA from "@/components/AllCourses/AllCoursesCTA"
+
 export default function page(){
     return (
         <>
         <Navbar/>
         <Hero/>
         <CourseContainer/>
+        <AllCoursesCTA/>
+        <CoursesOverview/>
+        
         <AllCoursesFAQs/>
         <FinalCTA/>
         <Footer/>
