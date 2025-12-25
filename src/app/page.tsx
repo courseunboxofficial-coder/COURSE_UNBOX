@@ -15,8 +15,11 @@ import LetsConnect from "@/components/Home/LetsConnect";
 import CertificationBanner from "@/components/Home/Deepak";
 import StatsSection from "@/components/Home/StatsSection";
 import Trending from "@/components/Home/Trending";
+import PhotoGallery from "@/components/Home/PhotoGallery";
 import AboutUs from "@/components/Home/AboutUs";
 import Faq from "@/components/Home/Faq";
+import TestimonialsSection from "@/components/About/TestimonialsSection";
+import DigiCourseSection from "@/components/Home/DigiCourseSection";
 
 export default function Home() {
 
@@ -24,26 +27,28 @@ export default function Home() {
 
 
     <main className="w-full min-h-screen bg-white">
-
-      {/* <Navbar />
+      {/*  <Navbar />
       <Hero />
       <Partners />
       <Banner />
       <Courses />
       <Enquiry />
       <TopCourses />
-      <Hire />
-      <Mentors /> */}
+      <Hire /> */}
+      <Mentors />
       <CertificationBanner/>
       <StatsSection/>
       <Trending/>
       <AboutUs/>
+      <TestimonialsSection/>
+      <PhotoGallery/>
+      <DigiCourseSection/>
+      {/* <Faq/> */}
       <Faq/>
-      {/* <Testimonials />
+      <Testimonials />
       <TopCompanies/>
       <LetsConnect/>
-      <Footer /> */}
-
+      <Footer />
     </main>
 
   );

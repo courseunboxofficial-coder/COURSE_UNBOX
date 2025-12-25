@@ -47,7 +47,7 @@ function Faq() {
 
   return (
     <section className="w-full bg-[#F5F6F8] py-12">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-7xl mx-auto px-5">
         <div className="flex flex-col gap-4">
           {questions.map((data, index) => {
             const isOpen = currentIndex === index;
