@@ -16,6 +16,8 @@ type course = {
     title: string,
     subtitle: string
   }[];
+  low:number,
+  high:number,
   created_at: number;
   domain: string;
   Delivery_Mode: string
