@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Banner = () => {
+const Banner = ({courseId} : {courseId : string}) => {
     return (
         <section className="bg-white h-[16vh] text-black py-6 border-b border-gray-200">
             <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-5 text-center">

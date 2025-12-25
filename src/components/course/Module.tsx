@@ -45,7 +45,7 @@ const Module = () => {
         {
             id: 2,
             title: "Future of Data Science",
-            lectures: [{ id: 1, title: "Lecture 1 : What is DS?", locked: true },
+            lectures: [{ id: 1, title: "Lecture 1 : What is DS next Module?", locked: true },
             { id: 2, title: "Lecture 2 : Why DS Matters", locked: true },
             { id: 3, title: "Lecture 3 : DS Roles (DS, ML Engineer, AI Engineer)", locked: true },
             { id: 4, title: "Lecture 4 : Tools used in DS", locked: true },
