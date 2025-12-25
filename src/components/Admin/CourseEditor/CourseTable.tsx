@@ -29,6 +29,8 @@ const CourseTable = ({ onEdit }: { onEdit: any }) => {
   const [courses, setCourses] = useState<course[]>([]);
 
   const fetchTableData = async () => {
+
+
     const { data, error } = await supabase.from("Courses").select("*");
 
     if (error) {
@@ -47,6 +49,8 @@ const CourseTable = ({ onEdit }: { onEdit: any }) => {
   };
 
   const handleDelete = async (id: string) => {
+
+
     const { data, error } = await supabase.from("Courses").delete().eq("id", id);
 
     if (error) {

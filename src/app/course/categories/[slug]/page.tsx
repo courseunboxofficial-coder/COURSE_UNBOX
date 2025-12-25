@@ -29,6 +29,8 @@ async function getCourse(slug:string) {
     const res = await fetch('/');
     return res.json();
 }
+
+
 export default async function page({params}: {params : Promise<{slug:string}>}){
     const {slug} = await params;
     const category : CategoryCTAProps[]  =[{
@@ -53,7 +55,8 @@ export default async function page({params}: {params : Promise<{slug:string}>}){
             }
         ]
      return (
-    <><Navbar/>
+      <>
+      <Navbar/>
       <CategoryHero category={category} />
       <CourseList courses={courses} />
       <CourseHelpCTA/>

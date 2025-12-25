@@ -23,7 +23,7 @@ type Blog = {
 
 export default function LeftContent({ BlogId }: { BlogId: string }) {
 
-  const [Blogs, setBlogs] = useState<Blog | null>(null);
+const [Blogs, setBlogs] = useState<Blog | null>(null);
 
   const getBlogData = async () => {
     const { data, error } = await supabase
@@ -51,7 +51,6 @@ export default function LeftContent({ BlogId }: { BlogId: string }) {
     getBlogData();
 
   }, []);
-
   return (<article className=" border-r-gray-400 ">
     {/* ===== BLOG HEADER ===== */}
     <section className="px-4 pt-16 ">

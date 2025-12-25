@@ -118,10 +118,12 @@ const Content = () => {
   }, []);
 
   return (
+
+    
     <section className="py-16">
       <div className="mx-auto w-full px-6">
-        <h2 className="relative inline-block font-extrabold text-5xl mb-10">
-          Latest Opportunities
+        <h2 className="relative inline-block font-extrabold text-5xl mb-10 ">
+          Latest Blogs
           <svg
             className="absolute left-0 -bottom-6 w-full"
             viewBox="0 0 300 20"

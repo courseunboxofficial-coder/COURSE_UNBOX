@@ -69,6 +69,8 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
       Duration: course.Duration,
       language: course.language,
       domain: course.domain,
+      low : course.low,
+      high : course.high,
       Delivery_Mode: course.domain,
       image: null as File | null,
     })

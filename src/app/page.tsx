@@ -16,6 +16,7 @@ import CertificationBanner from "@/components/Home/Deepak";
 import StatsSection from "@/components/Home/StatsSection";
 import Trending from "@/components/Home/Trending";
 import AboutUs from "@/components/Home/AboutUs";
+import Faq from "@/components/Home/Faq";
 
 export default function Home() {
 
@@ -28,18 +29,19 @@ export default function Home() {
       <Hero />
       <Partners />
       <Banner />
+      <Trending />
       <Courses />
       <Enquiry />
       <TopCourses />
-      <Hire />
+      <Hire/>
+      <AboutUs />
+      <CertificationBanner />
       <Mentors />
-      <CertificationBanner/>
-      <StatsSection/>
-      <Trending/>
-      <AboutUs/>
+      <StatsSection />
+      <TopCompanies />
       <Testimonials />
-      <TopCompanies/>
-      <LetsConnect/>
+      <Faq />
+      <LetsConnect />
       <Footer />
 
     </main>
