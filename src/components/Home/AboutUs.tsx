@@ -234,7 +234,7 @@ export default function AboutUs() {
 
         <section className="w-full bg-[#add8e64b] py-10">
 
-    <div className="flex flex-col md:flex-row max-w-7xl mx-auto px-4 py-10 gap-8">
+    <div className="flex flex-col md:flex-row max-w-7xl mx-auto px-6 py-10 gap-8">
       
       {/* Left Section */}
       <div className="md:w-1/2 w-full rounded-2xl bg-linear-to-b from-sky-400 to-indigo-600 flex items-center justify-center min-h-[300px] shadow-lg">

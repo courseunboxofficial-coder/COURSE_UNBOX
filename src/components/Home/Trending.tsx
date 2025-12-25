@@ -342,8 +342,7 @@ export default function Trending() {
         {/* Slider Wrapper */}
         <div className="relative mt-6">
           {/* Left Button */}
-          <button
-            onClick={() => sliderRef.current?.slickPrev()}
+          <button onClick={() => sliderRef.current?.slickPrev()}
             disabled={isPrevDisabled}
             className={`absolute -left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center rounded-full  border  border-gray-300 transition
                 cursor-pointer   shadow-2xl     
