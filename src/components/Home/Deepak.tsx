@@ -56,52 +56,53 @@ export default function Deepak() {
     // </section>
 
        <section className="w-full bg-slate-50 py-10">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-5">
         {/* Header */}
         <div className="mb-6">
-      <div className="flex gap-2">
-            <span className="font-semibold">CERTIFICATION COURSES</span>
-          <span className="inline-block    text-blue-600 border border-blue-200 rounded-md px-2 py-1 mb-3">
+      <div className="flex gap-4 leading-2">
+            <span className="font-semibold text-sm sm:text-sm px-1 py-1  md:text-lg">CERTIFICATION COURSES</span>
+          <div className="  text-blue-600 border border-blue-200 rounded-md text-sm sm:text-sm px-2 py-1  md:text-lg">
          4-8 weeks
-          </span>
+          </div>
       </div>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 border-blue-500  border-l-8 px-2">
+          <h1 className="text-lg md:text-4xl font-bold text-gray-900 mt-2 border-blue-500  border-l-8 px-2">
             Fastest way to build your CV
           </h1>
 
-          <div className="flex flex-wrap gap-6 mt-4 text-black font-semibold">
+          <div className="flex flex-wrap gap-6 mt-4 text-black font-semibold  ">
             <div className="flex items-center gap-2"><Check  strokeWidth={3} size={17} className="text-blue-500 mt-[0.5px]"/><p> Learn at your own schedule</p></div>
             <div className="flex items-center gap-2"><Check  strokeWidth={3} size={17} className="text-blue-500 mt-[0.5px]"/> <p>Practical learning</p></div>
             <div className="flex items-center gap-2"><Check  strokeWidth={3} size={17} className="text-blue-500 mt-[0.5px]"/><p> Industry recognised certificate</p></div>
           </div>
         </div>
 
-        {/* Banner */}
-        <div className="relative overflow-hidden rounded-2xl bg-linear-to-r from-blue-600 via-cyan-500 to-teal-400 p-8 md:p-10 shadow-lg">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+        {/* Banner p-3*/}
+        <div className="relative overflow-hidden rounded-2xl bg-linear-to-r from-blue-600 via-cyan-500 to-teal-400  md:p-10 shadow-lg p-2.5 sm:p-3.5">
+          <div className="grid sm:grid-cols-2 gap-8 items-center">
             {/* Left Content */}
-            <div className="text-white">
+            <div className="text-white text-center sm:text-left ">
               <p className=" text-xl opacity-90">Earn your</p>
-              <h2 className="text-3xl md:text-4xl font-bold mt-2">
+              <h2 className="text-2xl md:text-3xl xl:text-4xl font-bold mt-2 ">
                 Training Certificate
               </h2>
-              <p className="mt-3  opacity-95 text-xl">
+              <p className="mt-3  opacity-95 md:text-xl text-md">
                 Get <span className="font-semibold">55% + 10% OFF</span> on all online trainings
               </p>
 
-              <button className="mt-5 inline-flex items-center gap-2 bg-white text-blue-600 font-semibold px-5 py-2.5 rounded-full shadow hover:scale-105 transition">
-                <Timer />FINAL HOURS
+              <button className="mt-5 inline-flex items-center gap-2 bg-white text-blue-600 font-semibold px-3 py-1.5 rounded-full shadow hover:scale-105 transition
+              xl:text-md text-sm">
+                <Timer size={20}/>FINAL HOURS
               </button>
             </div>
 
             {/* Right Content */}
-            <div className="relative flex justify-center md:justify-end">
-              <div className="bg-white rounded-xl shadow-xl p-5 w-64">
+            <div className="relative flex  justify-center sm:justify-end ">
+              <div className="bg-white rounded-xl shadow-xl p-5 xl:w-64 w-62 md:w-60 sm:w-55">
                 <p className="text-xs text-gray-500 mb-1">INTERNSHALA TRAININGS</p>
                 <h3 className="text-sm font-semibold text-gray-800 mb-2">
                   Certificate of Training
                 </h3>
-                <p className="text-lg font-bold text-gray-900">AKASH SHARMA</p>
+                <p className="text-sm md:text-lg font-bold text-gray-900">AKASH SHARMA</p>
                 <div className="h-1 w-16 bg-blue-500 mt-3 rounded"></div>
               </div>
             </div>

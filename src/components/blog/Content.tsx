@@ -1,235 +1,156 @@
 "use client"
+import { supabase } from '@/lib/supabse/supabaseConfig';
 import Image from 'next/image';
 import Link from 'next/link'
 import React, { useEffect, useRef, useState } from 'react'
 
-
-
-
 export type InternshipCard = {
 
-    id: number;
-    category: string;
-    title: string;
-    description: string;
-    image: string;
-    href: string;
+  id: number;
+  domain: string;
+  title: string;
+  content: string;
+  FAQ: string;
 
 };
 
-const ITEMS_PER_PAGE = 4;
+// const ITEMS_PER_PAGE = 4;
 
 const Content = () => {
 
-const cards: InternshipCard[] = [
-    {
-        id: 1,
-        category: "Digital Marketing",
-        title:
-            "Content Writing Internship at NDTV in Delhi, Editing & Managing Content – Apply Now in 2025",
-        description:
-            "Why the NDTV Content Writing Internship is a big opportunity if you're searching for a content writing internship...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/content-writing",
-    },
-    {
-        id: 2,
-        category: "Data Analytics",
-        title: "6 Reasons Interactive Python Is a Game-Changer for Me",
-        description:
-            "Interactive Python reshaped the way I write code, learn new concepts, and experiment with ideas...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/interactive-python",
-    },
 
-    {
-        id: 3,
-        category: "Web Development",
-        title:
-            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-        description:
-            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/software-engineer",
-    },
+  const [blogs, setBlogs] = useState<InternshipCard[]>([]);
 
-    {
-        id: 4,
-        category: "Web Development",
-        title:
-            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-        description:
-            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/software-engineer",
-    },
+  // const [page, setPage] = useState(1);
+  // const [loading, setLoading] = useState(false);
+  // const [hasMore, setHasMore] = useState(true);
 
-    {
-        id: 5,
-        category: "Web Development",
-        title:
-            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-        description:
-            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/software-engineer",
-    },
+  // const loaderRef = useRef<HTMLDivElement | null>(null);
 
-    {
-        id: 6,
-        category: "Web Development",
-        title:
-            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-        description:
-            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/software-engineer",
-    },
+  // const fetchBlogs = () => {
 
-    {
-        id: 7,
-        category: "Web Development",
-        title:
-            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-        description:
-            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/software-engineer",
-    },
+  //   console.log(page);
+  //   if (loading || !hasMore) return;
 
-    {
-        id: 8,
-        category: "Web Development",
-        title:
-            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-        description:
-            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/software-engineer",
-    },
-    {
-        id: 9,
-        category: "Web Development",
-        title:
-            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-        description:
-            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/software-engineer",
-    },
-    {
-        id: 10,
-        category: "Web Development",
-        title:
-            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-        description:
-            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/software-engineer",
-    },
+  //   setLoading(true);
+  //   setTimeout(() => {
 
-    {
-        id: 11,
-        category: "Web Development",
-        title:
-            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-        description:
-            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/software-engineer",
-    },
+  //     const start = (page - 1) * ITEMS_PER_PAGE;
+  //     const end = start + ITEMS_PER_PAGE;
+  //     const newBlogs = cards.slice(start, end);
 
-    {
-        id: 12,
-        category: "Web Development",
-        title:
-            "Free Software Engineer Internship at Stripe, Bengaluru – Apply Now | Stipend ₹12 LPA, Apply in 2025",
-        description:
-            "Stripe is offering a Free Software Engineer Internship in Bengaluru with a ₹12 LPA stipend...",
-        image: "/images/Home/Course.jpg",
-        href: "/blog/software-engineer",
-    },
+  //     if (newBlogs.length === 0) {
 
-];
+  //       setHasMore(false);
 
- const [blogs, setBlogs] = useState<InternshipCard[]>([]);
- const [page, setPage] = useState(1);
- const [loading, setLoading] = useState(false);
- const [hasMore, setHasMore] = useState(true);
+  //     } else {
 
-  const loaderRef = useRef<HTMLDivElement | null>(null);
+  //       setBlogs((prev) => [...prev, ...newBlogs]);
 
-  const fetchBlogs = () => {
-    console.log(page);
-    if (loading || !hasMore) return;
+  //       setPage((prev) => {
 
-    setLoading(true);
-    setTimeout(()=>{
-        const start = (page - 1) * ITEMS_PER_PAGE;
-        const end = start + ITEMS_PER_PAGE;
-        const newBlogs = cards.slice(start, end);
+  //         return prev + 1
 
-        if (newBlogs.length === 0) {
-          setHasMore(false);
-        } else {
-          setBlogs((prev) => [...prev, ...newBlogs]);
-          setPage((prev)=>{
-            return prev+1
-          })
-        }
+  //       })
+  //     }
 
-    setLoading(false);
 
-    },300)
+  //     setLoading(false);
 
-   
-  };
+  //   }, 300)
+
+
+  // };
+
+  // useEffect(() => {
+  //   fetchBlogs();
+  // }, []);
+
+
+  // useEffect(() => {
+  //   if (!loaderRef.current) return;
+
+  //   const observer = new IntersectionObserver(
+  //     (entries) => {
+  //       if (entries[0].isIntersecting) {
+
+  //         fetchBlogs();
+  //       }
+  //     },
+  //     {
+  //       threshold: 0.1,
+  //       rootMargin: "100px",
+  //     }
+  //   );
+
+  //   observer.observe(loaderRef.current);
+
+  //   return () => observer.disconnect();
+
+  // }, [fetchBlogs]);
+
+
+
 
   useEffect(() => {
-    fetchBlogs();
+
+    const getBlogData = async () => {
+
+      const { data, error } = await supabase.from("Blog").select("*");
+
+      if (error) {
+
+        console.log("There is some of the error I have got");
+        console.log(error);
+
+      }
+
+      setBlogs(data || []);
+
+      console.log("THE BLOG DATA COME FROM THE DATA BASE IS : ");
+      console.log(data);
+
+    }
+
+
+    getBlogData();
+
   }, []);
 
-
-  useEffect(() => {
-    if (!loaderRef.current) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-
-          fetchBlogs();
-        }
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "100px",
-      }
-    );
-
-    observer.observe(loaderRef.current);
-
-    return () => observer.disconnect();
-  }, [fetchBlogs]);
-
   return (
+
+    
     <section className="py-16">
       <div className="mx-auto w-full px-6">
-        <h2 className="text-3xl font-bold mb-10">
-          Latest Opportunities
+        <h2 className="relative inline-block font-extrabold text-5xl mb-10 ">
+          Latest Blogs
+          <svg
+            className="absolute left-0 -bottom-6 w-full"
+            viewBox="0 0 300 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 15 C 60 5, 240 5, 295 15"
+              stroke="#2BB0FF"
+              strokeWidth="6"
+              strokeLinecap="round"
+            />
+          </svg>
         </h2>
 
         <div className="flex flex-wrap gap-8 pb-4">
-          {blogs.map((card,idx) => (
+          {blogs.map((card, idx) => (
             <Link
               key={idx}
-              href={card.href}
+              href={`/blog/${card.id}`}
               className="min-w-[340px] max-w-[340px] bg-white rounded-3xl shadow hover:shadow-2xl hover:shadow-indigo-300 transition"
             >
-                
+
               <div className="relative h-44 w-full overflow-hidden rounded-t-3xl">
-                
+
                 <Image
-                  src={card.image}
+                  src="/images/Home/UIUX.png"
                   alt={card.title}
                   fill
                   className="object-cover"
@@ -238,28 +159,34 @@ const cards: InternshipCard[] = [
 
               <div className="p-6">
                 <span className="inline-block mb-3 rounded-full bg-gray-100 px-4 py-1 text-xs font-medium text-gray-700">
-                  {card.category}
+                  {card.domain}
                 </span>
                 <h3 className="text-lg font-semibold leading-snug mb-3">
                   {card.title}
                 </h3>
                 <p className="text-sm text-gray-600 line-clamp-3">
-                  {card.description}
+                  {
+                    card.content.slice(0, 400)
+                  }
+                  ...
                 </p>
               </div>
             </Link>
           ))}
         </div>
 
-      
-        {hasMore && (
+
+        {/* {hasMore && (
           <div
             ref={loaderRef}
             className="py-10 text-center text-gray-500"
           >
             {loading ? "Loading..." : "Scroll to load more"}
           </div>
-        )}
+        )} */}
+
+
+
       </div>
     </section>
   );

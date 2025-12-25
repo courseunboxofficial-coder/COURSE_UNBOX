@@ -8,11 +8,14 @@ const TopCourses = () => {
     { title: "MERN Stack Mastery", subtitle: "Best Course To learn About Mern Stack", domain: "Development", duration: "6 months", language: "English", image :"/images/Home/MERN STACK MASTERY.png" },
     { title: "UI/UX Design Fundamentals", subtitle: "Best Course To Learn About UI/UX", domain: "Development", duration: "7 months", language: "English", image :"/images/Home/NEXT.JS.png" },
     { title: "Next.js Advanced Development", subtitle: "Best Course To Learn About The Next.js", domain: "Development", duration: "8 months", language: "English", image :"/images/Home/UIUX.png" },
+    { title: "MERN Stack Mastery", subtitle: "Best Course To learn About Mern Stack", domain: "Development", duration: "6 months", language: "English", image :"/images/Home/MERN STACK MASTERY.png" },
+    { title: "UI/UX Design Fundamentals", subtitle: "Best Course To Learn About UI/UX", domain: "Development", duration: "7 months", language: "English", image :"/images/Home/NEXT.JS.png" },
+    { title: "Next.js Advanced Development", subtitle: "Best Course To Learn About The Next.js", domain: "Development", duration: "8 months", language: "English", image :"/images/Home/UIUX.png" },
   ]
 
   return (
 
-    <section className="w-full bg-[#e3f0fd] py-12 px-6 md:px-12 lg:px-20">
+    <section className="w-full h-screen bg-[#e3f0fd] py-12 px-6 md:px-12 lg:px-20">
 
 
       <h2 className="text-3xl sm:text-4xl md:text-5xl text-center font-extrabold mb-13 text-[#020274]">
@@ -20,13 +23,13 @@ const TopCourses = () => {
       </h2>
 
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10">
+      <div className="flex gap-10 overflow-x-auto overflow-y-hidden horizontal-scroll p-5 pb-10">
 
         {/* CARD */}
         {TopCourses.map((course, idx) => (
           <div
             key={idx}
-            className="flex flex-col w-[26vw] h-[65vh] bg-white shadow-2xl rounded-3xl
+            className="flex flex-col shrink-0 min-w-[26vw] h-[65vh] bg-white shadow-2xl rounded-3xl
                        hover:scale-[1.03] transition cursor-pointer overflow-hidden"
           >
             {/* Image */}

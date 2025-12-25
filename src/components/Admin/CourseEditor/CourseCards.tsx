@@ -5,6 +5,8 @@ import { Pencil, Trash2, Layers, Sparkles } from "lucide-react";
 import { supabase } from "@/lib/supabse/supabaseConfig";
 
 type course = {
+
+
     id : string;
     title: string;
     description: string;
@@ -15,6 +17,8 @@ type course = {
         title : string;
         subtitle : string
     }[];
+    low : number,
+    high : number,
     created_at: number;
     domain : string;
     Delivery_Mode : string
@@ -29,7 +33,7 @@ export default function CourseCards({onEdit} : {onEdit : any}) {
 
     const fetchTableData = async() =>{
 
-        const {data , error} = await supabase.from("Courses").select();
+        const {data , error} = await supabase.from("Courses").select("*");
 
         if(error){
 
