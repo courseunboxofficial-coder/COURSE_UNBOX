@@ -40,7 +40,6 @@ export default function Home() {
                   <Mentors />
                   <CertificationBanner />
                   <StatsSection />
-                  <Trending />
                   <AboutUs />
                   <TestimonialsSection />
                   <PhotoGallery />
