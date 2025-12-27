@@ -10,13 +10,9 @@ import StillConfusedSection from "@/components/course/getConnected";
 import CertificationBanner from "@/components/Home/Deepak";
 import TopCompanies from "@/components/Home/TopCompanies";
 import LetsConnect from "@/components/Home/LetsConnect";
-<<<<<<< HEAD
-import Testimonials from "@/components/course/TestimonialsSection";
-
-=======
 import CourseContent from "@/components/course/CourseContent";
 import Faq from "@/components/course/CourseFAQ";
->>>>>>> Rohit
+import Testimonials from "@/components/course/TestimonialsSection";
 
 
 export default async function CoursePage({ params }: { params: Promise<{ id: string }> }) {
@@ -28,14 +24,9 @@ export default async function CoursePage({ params }: { params: Promise<{ id: str
         <>
             <Navbar />
             <div className="w-full min-h-screen text-white">
-<<<<<<< HEAD
-                <Hero courseId={id}/>
-                <Banner courseId={id}/>
-=======
-                <Hero />
-                <Banner />
+                <Hero courseId={id} />
+                <Banner courseId={id} />
                 <CourseContent/>
->>>>>>> Rohit
                 <Enquiry />
                  
                 <Module />

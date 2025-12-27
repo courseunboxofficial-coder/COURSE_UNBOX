@@ -184,6 +184,7 @@ export default function AllCoursesPage() {
 
      {/* ================= MOBILE VIEW ================= */}
       <div className="block lg:hidden w-full px-4 py-12 space-y-4">
+        <h1 className="text-3xl font-extrabold">Our Courses</h1>
         {categories.map((cat, index) => {
           const isOpen = selected === index;
 
