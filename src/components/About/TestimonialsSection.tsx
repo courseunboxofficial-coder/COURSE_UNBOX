@@ -860,7 +860,7 @@ export default function TestimonialsSection() {
           </button>
 
           {/* Slider */}
-          <Slider ref={sliderRef} {...settings}>
+          <Slider ref={sliderRef} {...settings} className="">
             {testimonials.map((item, index) => (
               <div key={index} className="px-4 ">
 

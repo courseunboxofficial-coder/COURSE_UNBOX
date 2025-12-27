@@ -52,7 +52,7 @@ function Faq() {
       <section className="w-full bg-[#f5fbff] py-12">
 
         <div className="w-full text-center mb-5">
-          <h2 className="relative inline-block font-extrabold text-5xl mb-10 ">
+          <h2 className="relative inline-block font-extrabold text-3xl md:text-4xl lg:text-5xl mb-10 ">
             Frequently Asked Questions ?
             <svg
               className="absolute left-0 -bottom-10 w-full"
@@ -71,12 +71,12 @@ function Faq() {
         </div>
 
         <div className="flex w-full">
-          <div className="w-[40%] h-[60vh]">
+          <div className="w-[40%] h-[60vh] hidden lg:block">
             <Image src="/images/Home/FAQIMAGE.png" height={850} width={800} alt="Testimonials Section Image" />
           </div>
 
 
-          <div className="w-[60%] mx-auto px-4">
+          <div className="w-full md:w-[60%] mx-auto md:px-4 px-8">
             <div className="flex flex-col gap-4">
               {questions.map((data, index) => {
                 const isOpen = currentIndex === index;
