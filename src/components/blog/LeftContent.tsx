@@ -16,16 +16,16 @@ type Blog = {
     answer: string;
   }[];
 
-  image : string
+  image: string
 
   created_at: string;
-  
+
 };
 
 
 export default function LeftContent({ BlogId }: { BlogId: string }) {
 
-const [Blogs, setBlogs] = useState<Blog | null>(null);
+  const [Blogs, setBlogs] = useState<Blog | null>(null);
 
   const getBlogData = async () => {
     const { data, error } = await supabase
@@ -43,7 +43,7 @@ const [Blogs, setBlogs] = useState<Blog | null>(null);
     console.log("THE DATA IS : ");
     console.log(data);
 
-    setBlogs(data );
+    setBlogs(data);
   }
 
 
@@ -86,7 +86,7 @@ const [Blogs, setBlogs] = useState<Blog | null>(null);
         <img
           src={Blogs?.image}
           alt="Blog cover"
-          className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
+          className="object-contain w-full h-full transition-transform duration-700 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/10 to-transparent" />
       </div>

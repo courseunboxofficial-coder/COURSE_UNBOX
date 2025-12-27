@@ -41,7 +41,9 @@ export default function MentorCard({onEdit} : {onEdit : any}) {
     };
 
     const handleDelete = async (id : number) => {
+
         const {data , error } = await supabase.from("Mentors").delete().eq("id", id);
+        
     }
 
 

@@ -39,7 +39,29 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
         description : "",
         ranking : "",
         course : ""
-    })
+    });
+
+    const [Testimonial2 , setTestimonial2] = useState({
+        name : "",
+        role : "",
+        company : "",
+        title : "",
+        description : "",
+        ranking : "",
+        course : ""
+    });
+
+    const [Testimonial3 , setTestimonial3] = useState({
+        name : "",
+        role : "",
+        company : "",
+        title : "",
+        description : "",
+        ranking : "",
+        course : ""
+    });
+
+
 
 
 
