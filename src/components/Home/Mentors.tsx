@@ -77,7 +77,7 @@ const Mentors = () => {
     return (
 
         <div className="bg-[#eef5fc] w-full h-[87vh] mx-auto px-4 py-12 slider-container content-center">
-            <div className=" text-center text-5xl font-extrabold text-[#061b52] w-full mb-10 pl-20">
+            <div className=" text-center text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#061b52] w-full mb-10 lg:pl-20 ">
                 Our Mentors
             </div>
             <Slider {...settings} className="w-[90%] mx-auto">

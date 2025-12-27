@@ -12,7 +12,7 @@ const Navbar = () => {
     <nav className="w-full h-full md:h-18 sticky top-0 z-50 border-b bg-white shadow-md">
       <div className=" flex items-center justify-between px-4 sm:px-8 py-4">
 
-        <div className="flex items-center justify-between space-x-2 w-full md:w-[40%]">
+        <div className="flex items-center justify-between   space-x-2   w-full  lg:w-[60%] xl:w-[40%]">
           <Image
             src="/images/Home/CourseUnboxLogo.webp"
             width={100}
@@ -22,7 +22,7 @@ const Navbar = () => {
           />
 
           
-          <div className="hidden md:flex items-center space-x-15 font-bold text-gray-700">
+          <div className="hidden lg:flex items-center space-x-15 font-bold text-gray-700">
             <Link href={"/"} className="cursor-pointer hover:text-blue-600">Home</Link>
             <Link href={"/course"} className="cursor-pointer hover:text-blue-600">Courses</Link>
             <Link href={"/about"} className="cursor-pointer hover:text-blue-600">About Us</Link>
@@ -31,7 +31,7 @@ const Navbar = () => {
         </div>
 
         {/* RIGHT: Buttons (Desktop) */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden lg:flex items-center gap-4">
           <button className="px-6 py-3 text-sm rounded-3xl border bg-[#1C336E] font-bold text-white hover:bg-blue-600 transition cursor-pointer">
             Login
           </button>
@@ -42,7 +42,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-gray-700"
+          className="lg:hidden text-gray-700"
           onClick={() => setOpen(!open)}
         >
           {open ? <X size={26} /> : <Menu size={26} />}
@@ -51,7 +51,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {open && (
-        <div className="md:hidden border-t bg-white px-6 py-6 space-y-5 shadow-lg">
+        <div className="lg:hidden border-t bg-white px-6 py-6 space-y-5 shadow-lg">
 
           <div className="flex flex-col gap-4 font-bold text-gray-700">
             <Link href={"/"} className="hover:text-blue-600 cursor-pointer">Home</Link>

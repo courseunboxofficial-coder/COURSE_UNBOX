@@ -16,12 +16,12 @@ export default function Partners() {
             <div className="max-w-7xl mx-auto flex items-center gap-12 px-6">
                 {/* Left Stat */}
                 <div className="flex-shrink-0 text-white">
-                    <div className="text-3xl font-bold">100K+</div>
+                    <div className="text-xl md:text-2xl lg:text-3xl font-bold">100K+</div>
                     <div className="text-sm opacity-80">Students We Teach</div>
                 </div>
 
                 {/* Divider */}
-                <div className="h-12 w-px bg-white/30" />
+                <div className="h-8 md:h-10 lg:h-12 w-px bg-white/30" />
 
                 {/* Carousel */}
                 <div className="relative flex-1 overflow-hidden">
@@ -34,7 +34,7 @@ export default function Partners() {
                                 <img
                                     src={logo.src}
                                     alt={logo.name}
-                                    className="h-10 object-contain"
+                                    className="h-6 md:h-8 lg:h-10 object-contain"
                                 />
                             </div>
                         ))}

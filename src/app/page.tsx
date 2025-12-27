@@ -31,16 +31,17 @@ export default function Home() {
                   <Navbar />
                   <Hero />
                   <Partners />
-                  <Banner />
+                  <Banner /> 
                   <Trending />
-                  <Courses />
-                  <Enquiry />
+                   <Courses /> 
+                  <Enquiry /> 
                   <TopCourses />
-                  <Hire />
-                  <Mentors />
+                  
+                  <Hire /> 
+                  <Mentors /> 
+
                   <CertificationBanner />
-                  <StatsSection />
-                  <Trending />
+                  <StatsSection /> 
                   <AboutUs />
                   <TestimonialsSection />
                   <PhotoGallery />

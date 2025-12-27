@@ -11,13 +11,15 @@ type Blog = {
   domain: string;
   title: string;
   content: string;
-
   FAQ: {
     question: string;
     answer: string;
   }[];
 
+  image : string
+
   created_at: string;
+  
 };
 
 
@@ -82,7 +84,7 @@ const [Blogs, setBlogs] = useState<Blog | null>(null);
     <section className="px-6 sm:px-4 mt-10">
       <div className="group relative w-full h-70 sm:h-95 rounded-2xl overflow-hidden shadow-xl">
         <img
-          src="/images/Blog/Blog.webp"
+          src={Blogs?.image}
           alt="Blog cover"
           className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
         />

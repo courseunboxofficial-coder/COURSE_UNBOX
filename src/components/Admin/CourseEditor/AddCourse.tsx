@@ -31,6 +31,16 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
         sixthDescription: ""
     });
 
+    const [Testimonial1 , setTestimonial1] = useState({
+        name : "",
+        role : "",
+        company : "",
+        title : "",
+        description : "",
+        ranking : "",
+        course : ""
+    })
+
 
 
     const handleChange = (
@@ -43,6 +53,12 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
     ) => {
         setContent({ ...content, [e.target.name]: e.target.value });
+    };
+
+    const handleTestimonial = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    ) => {
+        setTestimonial1({ ...Testimonial1, [e.target.name]: e.target.value });
     };
 
 
@@ -331,8 +347,11 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                 </div>
 
                                 <div className="flex flex-col">
+
                                     <label className="block text-sm font-medium mb-2">
+
                                         First Description
+
                                     </label>
                                     <textarea
                                         name="thirdDescription"
@@ -433,14 +452,265 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
 
                 </div>
 
-                <div className="w-[95%] mx-auto flex border rounded-2xl h-[50vh]">
-                    <div>
-                    </div>
+                <div className="w-[95%] mx-auto border rounded-2xl h-[65vh]">
+                    <p className="text-2xl text-black font-bold text-center mb-4">Testimonials Section</p>
+                    <div className="flex w-full items-center justify-center gap-4">
+                        <div className="w-[30%]">
+                            <h3 className="mb-2">Testimonial 1</h3>
+                            <div className="flex flex-col mb-3">
+                                <label className="block text-sm font-medium">
+                                    Name
+                                </label>
+                                <input
+                                    name="name"
+                                    value={Testimonial1.name}
+                                    onChange={handleTestimonial}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                />
+                            </div>
 
-                    <div>
-                    </div>
+                            <div className="flex flex-col mb-3">
+                                <label className="block text-sm font-medium ">
+                                    Role
+                                </label>
+                                <input
+                                    name="role"
+                                    value={Testimonial1.role}
+                                    onChange={handleTestimonial}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                />
+                            </div>
 
-                    <div>
+                            <div className="flex flex-col">
+                                <label className="block text-sm font-medium mb-2">
+                                    Company
+                                </label>
+                                <input
+                                    name="sixthTitle"
+                                    value={Testimonial1.company}
+                                    onChange={handleTestimonial}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                />
+                            </div>
+
+                            <div className="flex flex-col">
+                                <label className="block text-sm font-medium mb-2">
+                                    Title
+                                </label>
+                                <input
+                                    name="title"
+                                    value={Testimonial1.title}
+                                    onChange={handleTestimonial}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                />
+                            </div>
+
+                            <div className="flex flex-col">
+                                <label className="block text-sm font-medium mb-2">
+                                    Description
+                                </label>
+                                <input
+                                    name="description"
+                                    value={Testimonial1.description}
+                                    onChange={handleTestimonial}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="w-[30%]">
+                            <h3 className="mb-2">Testimonial 2</h3>
+
+                            <div className="flex flex-col mb-3">
+                                <label className="block text-sm font-medium">
+                                    Name
+                                </label>
+                                <input
+                                    name="name"
+                                    value={Testimonial1.name}
+                                    onChange={handleTestimonial}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                />
+                            </div>
+
+                            <div className="flex flex-col mb-3">
+                                <label className="block text-sm font-medium ">
+                                    Role
+                                </label>
+                                <input
+                                    name="role"
+                                    value={Testimonial1.role}
+                                    onChange={handleTestimonial}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                />
+                            </div>
+
+                            <div className="flex flex-col">
+                                <label className="block text-sm font-medium mb-2">
+                                    Company
+                                </label>
+                                <input
+                                    name="sixthTitle"
+                                    value={Testimonial1.company}
+                                    onChange={handleTestimonial}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                />
+                            </div>
+
+                            <div className="flex flex-col">
+                                <label className="block text-sm font-medium mb-2">
+                                    Title
+                                </label>
+                                <input
+                                    name="title"
+                                    value={Testimonial1.title}
+                                    onChange={handleTestimonial}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                />
+                            </div>
+
+                            <div className="flex flex-col">
+                                <label className="block text-sm font-medium mb-2">
+                                    Description
+                                </label>
+                                <input
+                                    name="description"
+                                    value={Testimonial1.description}
+                                    onChange={handleTestimonial}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="w-[30%]">
+                            <h3 className="mb-2">Testimonial 2</h3>
+
+                            <div className="flex flex-col mb-3">
+                                <label className="block text-sm font-medium">
+                                    Name
+                                </label>
+                                <input
+                                    name="sixthTitle"
+                                    value={content.sixthTitle}
+                                    onChange={handleContentChange}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                />
+                            </div>
+
+                            <div className="flex flex-col mb-3">
+                                <label className="block text-sm font-medium ">
+                                    role
+                                </label>
+                                <input
+                                    name="sixthTitle"
+                                    value={content.sixthTitle}
+                                    onChange={handleContentChange}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                />
+                            </div>
+
+                            <div className="flex flex-col">
+                                <label className="block text-sm font-medium mb-2">
+                                    company
+                                </label>
+                                <input
+                                    name="sixthTitle"
+                                    value={content.sixthTitle}
+                                    onChange={handleContentChange}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                />
+                            </div>
+
+                            <div className="flex flex-col">
+                                <label className="block text-sm font-medium mb-2">
+                                    Title
+                                </label>
+                                <input
+                                    name="sixthTitle"
+                                    value={content.sixthTitle}
+                                    onChange={handleContentChange}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                />
+                            </div>
+
+                            <div className="flex flex-col">
+                                <label className="block text-sm font-medium mb-2">
+                                    Description
+                                </label>
+                                <input
+                                    name="sixthTitle"
+                                    value={content.sixthTitle}
+                                    onChange={handleContentChange}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                />
+                            </div>
+
+                        </div>
+
+                        <div className="w-[30%]">
+                            <h3 className="mb-2">Testimonial 3</h3>
+                            <div className="flex flex-col mb-3">
+                                <label className="block text-sm font-medium">
+                                    Name
+                                </label>
+                                <input
+                                    name="name"
+                                    value={Testimonial1.name}
+                                    onChange={handleTestimonial}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                />
+                            </div>
+
+                            <div className="flex flex-col mb-3">
+                                <label className="block text-sm font-medium ">
+                                    Role
+                                </label>
+                                <input
+                                    name="role"
+                                    value={Testimonial1.role}
+                                    onChange={handleTestimonial}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                />
+                            </div>
+
+                            <div className="flex flex-col">
+                                <label className="block text-sm font-medium mb-2">
+                                    Company
+                                </label>
+                                <input
+                                    name="sixthTitle"
+                                    value={Testimonial1.company}
+                                    onChange={handleTestimonial}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                />
+                            </div>
+
+                            <div className="flex flex-col">
+                                <label className="block text-sm font-medium mb-2">
+                                    Title
+                                </label>
+                                <input
+                                    name="title"
+                                    value={Testimonial1.title}
+                                    onChange={handleTestimonial}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                />
+                            </div>
+
+                            <div className="flex flex-col">
+                                <label className="block text-sm font-medium mb-2">
+                                    Description
+                                </label>
+                                <input
+                                    name="description"
+                                    value={Testimonial1.description}
+                                    onChange={handleTestimonial}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                />
+                            </div>
+                        </div>
+
+                        
                     </div>
                 </div>
 
