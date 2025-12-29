@@ -80,24 +80,50 @@ const Mentors = () => {
             <div className=" text-center text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#061b52] w-full mb-10 lg:pl-20 ">
                 Our Mentors
             </div>
-            <Slider {...settings} className="w-[90%] mx-auto">
+            <Slider {...settings} className="mx-auto">
 
 
                 {
                     MentorsData.map((mentor) => {
                         return (
-                            <div className="cursor-pointer">
-                                <div className="w-[90%] h-[60vh] bg-white rounded-2xl flex transition">
-                                    <div className="">
-                                        <Image src="/images/Home/TopCourse.jpg" height={30} width={410} alt="Mentor Image" className="rounded-tr-2xl rounded-tl-xl" />
-                                        <div className="font-bold">
-                                            {mentor.name}
-                                        </div>
+                            <div className="cursor-pointer w-full sm:max-w-sm mx-auto">
+                                <div
+                                    className="
+                                    h-[32vh]
+                                    sm:h-[36vh]
+                                    md:h-[40vh]
+                                    lg:h-[50vh]
+                                    xl:h-[60vh]
+                                    rounded-2xl
+                                    overflow-hidden
+                                    flex
+                                    flex-col
+                                    transition
+                                    hover:scale-[1.02]
+                                    duration-300
+                                    bg-white
+                                    "
+                                >
+                                    {/* IMAGE */}
+                                    <div className="relative w-full h-[70%]">
+                                    <Image
+                                        src="/images/Home/TopCourse.jpg"
+                                        alt="Mentor Image"
+                                        fill
+                                        className="object-cover"
+                                        sizes="(max-width: 768px) 100vw, 410px"
+                                    />
                                     </div>
 
-
+                                    {/* CONTENT */}
+                                    <div className="flex-1 px-4 py-3 flex items-center">
+                                    <div className="font-bold text-base sm:text-lg text-gray-900">
+                                        {mentor.name}
+                                    </div>
+                                    </div>
                                 </div>
-                            </div>
+                                </div>
+
                         )
 
                     })

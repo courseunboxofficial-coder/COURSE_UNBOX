@@ -48,17 +48,19 @@ function Faq() {
 
   return (
     <>
-      <div className="relative w-full h-[260px] sm:h-[320px] md:h-[380px] mb-8">
+      <div className="relative w-full md:w-[60vw] mx-auto px-2   h-[260px] sm:h-[320px] md:h-[380px] rounded-t-2xl shadow-b-2xl">
             <Image
                 src="/images/Course/faqs.png"
                 alt="FAQs header illustration"
                 fill
-                className="object-contain"
+                className="object-conver rounded-t-2xl"
                 priority
             />
         </div>
+      
     
-      <section className="w-full bg-[#f5fbff] py-12">
+      <section className="w-full md:w-[60vw] rounded-b-2xl px-2 mx-auto bg-[#f5fbff] py-12 bg-linear-to-b from-blue-100 via-blue-300 to-blue-500">
+        
 
 
         <div className="flex w-full">
@@ -67,7 +69,7 @@ function Faq() {
           </div> */}
 
 
-          <div className="w-[60%] mx-auto px-4">
+          <div className="w-full mx-auto px-4">
             <div className="flex flex-col gap-4">
               {questions.map((data, index) => {
                 const isOpen = currentIndex === index;

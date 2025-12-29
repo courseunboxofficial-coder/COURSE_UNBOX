@@ -15,7 +15,7 @@ const TopCourses = () => {
 
   return (
 
-    <section className="w-full h-screen bg-[#e3f0fd] py-12 px-6 md:px-12 lg:px-20">
+    <section className="w-full  bg-[#e3f0fd] py-12  px-6 md:px-12 lg:px-20">
 
 
       <h2 className="text-3xl sm:text-4xl md:text-5xl text-center font-extrabold mb-13 text-[#020274]">
@@ -29,7 +29,7 @@ const TopCourses = () => {
         {TopCourses.map((course, idx) => (
           <div
             key={idx}
-            className="flex flex-col shrink-0 min-w-[26vw] h-[65vh] bg-white shadow-2xl rounded-3xl
+            className="flex flex-col shrink-0 min-w-[26vw]  bg-white shadow-2xl rounded-3xl
                        hover:scale-[1.03] transition cursor-pointer overflow-hidden"
           >
             {/* Image */}

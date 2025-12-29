@@ -23,10 +23,22 @@ const Navbar = () => {
 
           
           <div className="hidden lg:flex items-center space-x-15 font-bold text-gray-700">
-            <Link href={"/"} className="cursor-pointer hover:text-blue-600">Home</Link>
-            <Link href={"/course"} className="cursor-pointer hover:text-blue-600">Courses</Link>
-            <Link href={"/about"} className="cursor-pointer hover:text-blue-600">About Us</Link>
-            <Link href={"/blog"} className="cursor-pointer hover:text-blue-600">Blogs</Link>
+            <Link href={"/"} className="cursor-pointer relative
+                                          after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 
+                                          after:bg-blue-600 after:transition-all after:duration-400
+                                          hover:after:w-full hover:text-blue-600">Home</Link>
+            <Link href={"/course"} className="cursor-pointer relative
+                                          after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 
+                                          after:bg-blue-600 after:transition-all after:duration-400
+                                          hover:after:w-full hover:text-blue-600">Courses</Link>
+            <Link href={"/about"} className="cursor-pointer relative
+                                          after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 
+                                          after:bg-blue-600 after:transition-all after:duration-400
+                                          hover:after:w-full hover:text-blue-600">About Us</Link>
+            <Link href={"/blog"} className="cursor-pointer relative
+                                          after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 
+                                          after:bg-blue-600 after:transition-all after:duration-400
+                                          hover:after:w-full hover:text-blue-600">Blogs</Link>
           </div>
         </div>
 

@@ -8,8 +8,27 @@ import {
   Youtube,
   Phone,
 } from "lucide-react";
+import Link from "next/link";
 
 export default function Footer() {
+const socialMedia = [
+  {
+    icon: Instagram,
+    url: "https://www.instagram.com/courseunbox/",
+  },
+  {
+    icon: Youtube,
+    url: "https://www.youtube.com/@courseunbox",
+  },
+  {
+    icon: Twitter,
+    url: "https://twitter.com/course_unbox",
+  },
+  {
+    icon: Linkedin,
+    url: "https://www.linkedin.com/company/course-unbox/",
+  },
+];
   return (
     <footer className="bg-linear-to-b from-[#0b163f] to-[#070c26] text-gray-300">
       {/* MAIN FOOTER */}
@@ -72,10 +91,41 @@ export default function Footer() {
               Digital Marketing
             </h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li>Post Graduation in Digital Marketing</li>
-              <li>Online Digital Marketing Courses</li>
-              <li>Short Term Certifications</li>
-              <li>Free Digital Marketing Courses Online</li>
+              <li>
+                <Link
+                  href="/post-graduation-digital-marketing"
+                  className="hover:text-blue-600 transition-colors"
+                >
+                  Post Graduation in Digital Marketing
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/online-digital-marketing-courses"
+                  className="hover:text-blue-600 transition-colors"
+                >
+                  Online Digital Marketing Courses
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/short-term-certifications"
+                  className="hover:text-blue-600 transition-colors"
+                >
+                  Short Term Certifications
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/free-digital-marketing-courses"
+                  className="hover:text-blue-600 transition-colors"
+                >
+                  Free Digital Marketing Courses Online
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -104,10 +154,33 @@ export default function Footer() {
               Company
             </h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li>About Us</li>
-              <li>Contact Us</li>
-              <li>Refer & Earn</li>
-            </ul>
+                <li>
+                  <Link
+                    href="/about"
+                    className="hover:text-white transition-colors"
+                  >
+                    About Us
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="/contact-us"
+                    className="hover:text-white transition-colors"
+                  >
+                    Contact Us
+                  </Link>
+                </li>
+
+                <li>
+                  <Link
+                    href="/refer-and-earn"
+                    className="hover:text-white transition-colors"
+                  >
+                    Refer & Earn
+                  </Link>
+                </li>
+              </ul>
 
 
             </div>
@@ -118,11 +191,33 @@ export default function Footer() {
               Resources
             </h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li>Blogs</li>
-              <li>Case Studies</li>
-              <li>Presentations</li>
-            </ul>
+            <li>
+              <Link
+                href="/blog"
+                className="hover:text-white transition-colors"
+              >
+                Blogs
+              </Link>
+            </li>
 
+            <li>
+              <Link
+                href="/course"
+                className="hover:text-white transition-colors"
+              >
+                Case Studies
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                href="/presentations"
+                className="hover:text-white transition-colors"
+              >
+                Presentations
+              </Link>
+            </li>
+            </ul>
             </div>
 
             
@@ -134,13 +229,14 @@ export default function Footer() {
               Follow Us
             </h4>
             <div className="flex gap-4">
-              {[Instagram, Youtube, Twitter, Linkedin].map((Icon, i) => (
-                <div
+              {socialMedia.map((item, i) => (
+                <Link
+                  href={item.url}
                   key={i}
                   className=" p-2 flex items-center justify-center rounded-full border border-white/20 hover:bg-white hover:text-[#070c26] transition cursor-pointer"
                 >
-                  <Icon size={20} />
-                </div>
+                  <item.icon size={20} />
+                </Link>
               ))}
             </div>
           </div>
