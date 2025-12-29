@@ -7,7 +7,7 @@ import Navbar from "@/components/Home/Navbar";
 import Module from "@/components/course/Module";
 import Mentors from "@/components/course/Mentors";
 import StillConfusedSection from "@/components/course/getConnected";
-import CertificationBanner from "@/components/Home/Deepak";
+import CertificationBanner from "@/components/Home/CertificationBanner";
 import TopCompanies from "@/components/Home/TopCompanies";
 import LetsConnect from "@/components/Home/LetsConnect";
 import Testimonials from "@/components/course/TestimonialsSection";

@@ -65,23 +65,23 @@ const Courses = () => {
 
     return (
 
-        <section className="w-full pt-20 py-16 bg-[#fbfdff]">
-            <h2 className="text-center font-extrabold text-5xl text-[#14399f]">
+        <section className="w-screen pt-20 py-16 bg-[#fbfdff]">
+            <h2 className="text-center font-extrabold text-3xl md:text-4xl lg:text-5xl text-[#14399f]">
                 Our Courses
             </h2>
-            <div className="w-7xl mx-auto px-6 text-center">
+            <div className="w-full xl:w-7xl mx-auto px-6 text-center">
 
-                <p className="text-gray-500 mt-2 mb-8 text-2xl">
+                <p className="text-gray-500 mt-2 mb-8 text-lg md:xl lg:text-2xl">
                     Explore a wide range of courses where learning is fun, easy, and absolutely free!
                 </p>
 
 
-                <div className="flex flex-wrap justify-center gap-4 mb-10">
+                <div className=" w-full flex    flex-wrap justify-center gap-4 mb-10">
                     {categories.map((cat) => (
                         <button
                             key={cat}
                             onClick={() => setActiveCategory(cat)}
-                            className={`px-15 py-6 rounded-full border transition-all duration-300 cursor-pointer ${activeCategory === cat
+                            className={`px-6 py-3 sm:px-8 sm:py-3 md:px-12 md:py-4 lg:px-15 lg:py-6 rounded-full border transition-all duration-300 cursor-pointer ${activeCategory === cat
                                 ? "bg-[#1C336E] text-white font-bold border-[#1C336E]"
                                 : "border-[#1C336E] text-[#1C336E] font-bold bg-white hover:bg-[#cac2f7]"
                                 }`}
@@ -90,51 +90,83 @@ const Courses = () => {
                         </button>
                     ))}
                 </div>
-
-
-                <div className="flex flex-wrap justify-center gap-8">
+                    <div className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto">
                     {filteredCourses.map((course) => (
                         <div
-                            key={course.id}
-                            className="h-[55vh] w-[20vw] border-2 bg-white border-[#2e19a7] rounded-2xl flex flex-col shadow-xl gap-1 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                        key={course.id}
+                        className="
+                            w-full
+                            sm:w-[90%]
+                            md:w-[45%]
+                            lg:w-[32%]
+                            xl:w-[28%]
+                            bg-white
+                            border-2 border-[#2e19a7]
+                            rounded-2xl
+                            flex flex-col
+                            shadow-xl
+                            hover:shadow-2xl
+                            hover:-translate-y-1
+                            transition-all
+                            duration-300
+                            cursor-pointer
+                            overflow-hidden
+                        "
                         >
+                        {/* IMAGE */}
+                        <div className="relative w-full h-[240px] lg:h-[260px]">
                             <Image
-                                src={course.image}
-                                alt={course.title}
-                                width={400}
-                                height={400}
-                                className="rounded-tr-xl rounded-tl-xl h-[30vh]"
+                            src={course.image}
+                            alt={course.title}
+                            fill
+                            className="object-cover rounded-tr-xl rounded-tl-xl"
+                            sizes="(max-width: 768px) 100vw, 400px"
                             />
-                            <div className="">
-                                <p className="mt-4 text-lg font-bold text-[#213c98]">
-                                    {course.title}
-                                </p>
+                        </div>
 
-                                <div className="w-[50%] mx-auto mt-1 mb-1 bg-indigo-100 p-1 rounded-2xl">
-                                    {course.domain}
-                                </div>
+                        {/* CONTENT */}
+                        <div className="flex flex-col flex-1 px-5 py-4 text-center gap-3">
+                            <p className="text-lg font-bold text-[#213c98] line-clamp-2">
+                            {course.title}
+                            </p>
 
-                                <div className="w-[98%] mx-auto bg-gray-100 flex shadow-2xl justify-center gap-3 p-1">
-                                    <div className="flex gap-1 border-r border-[black] p-1.5">
-                                        <Clock /> {course.Duration}
-                                    </div>
-                                    <div className="flex gap-1 border-r border-[black] p-1.5">
-                                        <ShieldCheck />  Certificate
-                                    </div>
-                                    <div className="flex gap-1 p-1.5">
-                                        <BookA />{course.language}
-                                    </div>
-
-
-                                </div>
-
-                                <Link href={`/course/${course.id}`}>
-                                    <button className="bg-[#dbb004] px-7 py-2 rounded-3xl mt-2 mb-2 cursor-pointer hover:bg-[#052f7c] hover:text-white font-bold">view</button>
-                                </Link>
+                            <div className="w-fit mx-auto bg-indigo-100 px-4 py-1 rounded-2xl text-sm font-medium">
+                            {course.domain}
                             </div>
+
+                            <div className="w-full bg-gray-100 flex justify-center gap-3 p-2 rounded-lg text-sm shadow-inner">
+                            <div className="flex items-center gap-1 border-r pr-3">
+                                <Clock size={16} /> {course.Duration}
+                            </div>
+                            <div className="flex items-center gap-1 border-r pr-3">
+                                <ShieldCheck size={16} /> Certificate
+                            </div>
+                            <div className="flex items-center gap-1">
+                                <BookA size={16} /> {course.language}
+                            </div>
+                            </div>
+
+                            <Link href={`/course/${course.id}`} className="mt-auto">
+                            <button className="
+                                w-full
+                                bg-[#dbb004]
+                                py-2.5
+                                rounded-3xl
+                                font-bold
+                                hover:bg-[#052f7c]
+                                hover:text-white
+                                transition
+                                cursor-pointer
+                            ">
+                                View
+                            </button>
+                            </Link>
+                        </div>
                         </div>
                     ))}
-                </div>
+                    </div>
+
+
             </div>
 
         </section>

@@ -12,7 +12,7 @@ import Partners from "@/components/Home/Partners";
 import Hire from "@/components/Home/Hire";
 import TopCompanies from "@/components/Home/TopCompanies";
 import LetsConnect from "@/components/Home/LetsConnect";
-import CertificationBanner from "@/components/Home/Deepak";
+import CertificationBanner from "@/components/Home/CertificationBanner";
 import StatsSection from "@/components/Home/StatsSection";
 import Trending from "@/components/Home/Trending";
 import PhotoGallery from "@/components/Home/PhotoGallery";
@@ -33,7 +33,7 @@ export default function Home() {
                   <Partners />
                   <Banner /> 
                   <Trending />
-                   {/* <Courses />  */}
+                   <Courses /> 
                   <Enquiry /> 
                   <TopCourses />
                   

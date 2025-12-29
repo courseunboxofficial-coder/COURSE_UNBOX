@@ -29,7 +29,7 @@ const TopCourses = () => {
         {TopCourses.map((course, idx) => (
           <div
             key={idx}
-            className="flex flex-col shrink-0 min-w-[26vw]  lg:h-[60vh] xl:h-[65vh] bg-white shadow-2xl rounded-3xl
+            className="flex flex-col shrink-0 min-w-[26vw]  bg-white shadow-2xl rounded-3xl
                        hover:scale-[1.03] transition cursor-pointer overflow-hidden"
           >
             {/* Image */}

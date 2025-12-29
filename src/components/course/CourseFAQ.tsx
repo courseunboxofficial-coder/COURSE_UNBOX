@@ -48,18 +48,18 @@ function Faq() {
 
   return (
     <>
-      <div className="relative w-full md:w-[60vw] mx-auto px-2   h-[260px] sm:h-[320px] md:h-[380px] rounded-2xl">
+      <div className="relative w-full md:w-[60vw] mx-auto px-2   h-[260px] sm:h-[320px] md:h-[380px] rounded-t-2xl shadow-b-2xl">
             <Image
                 src="/images/Course/faqs.png"
                 alt="FAQs header illustration"
                 fill
-                className="object-conver rounded-2xl"
+                className="object-conver rounded-t-2xl"
                 priority
             />
         </div>
       
     
-      <section className="w-full md:w-[60vw]rounded-b-2xl px-2 mx-auto bg-[#f5fbff] py-12 bg-linear-to-b from-blue-500 via-blue-300 to-blue-100">
+      <section className="w-full md:w-[60vw] rounded-b-2xl px-2 mx-auto bg-[#f5fbff] py-12 bg-linear-to-b from-blue-100 via-blue-300 to-blue-500">
         
 
 

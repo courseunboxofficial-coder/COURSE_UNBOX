@@ -111,11 +111,11 @@ const Hero = ({ courseId }: { courseId: string }) => {
                         </div>
                     </div>
 
-                    <div className=" lg:hidden space-y-3 ">
+                    <div className=" lg:hidden my-6 ">
                     <img
                         src={course?.image ||"/images/Course/CouresesHero.svg" }
                         alt="Course Banner"
-                        className="rounded-2xl shadow-lg w-[95%] h-[40vh]"
+                        className="rounded-2xl shadow-lg w-[95%] h-[30vh]"
                     />
                    </div>
 
@@ -198,7 +198,7 @@ const Hero = ({ courseId }: { courseId: string }) => {
                     <img
                         src={course?.image ||"/images/Course/CouresesHero.svg" }
                         alt="Course Banner"
-                        className="rounded-2xl shadow-lg w-[95%] h-[60vh]"
+                        className="rounded-2xl shadow-lg w-[80%] h-[40vh] xl:w-[95%] xl:h-[60vh]"
                     />
                 </div>
 
