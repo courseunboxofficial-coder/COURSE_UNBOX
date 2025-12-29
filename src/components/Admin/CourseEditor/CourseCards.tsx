@@ -5,42 +5,41 @@ import { Pencil, Trash2, Layers, Sparkles } from "lucide-react";
 import { supabase } from "@/lib/supabse/supabaseConfig";
 
 type course = {
-
-
-    id : string;
+    id: string;
     title: string;
     description: string;
-    startDate : string;
-    Duration : number;
+    startDate: string;
+    Duration: number;
     language: string;
-    content : {
-        title : string;
-        subtitle : string
+    content: {
+        title: string;
+        subtitle: string
     }[];
-    low : number,
-    high : number,
+    low: number,
+    high: number,
+    modules: {},
     created_at: number;
-    domain : string;
-    Delivery_Mode : string
+    domain: string;
+    Delivery_Mode: string,
+    image?: File | null;
 
-    
 };
 
 
-export default function CourseCards({onEdit} : {onEdit : any}) {
+export default function CourseCards({ onEdit }: { onEdit: any }) {
 
-    const [courses , setCourses] = useState<course[]>([]);
+    const [courses, setCourses] = useState<course[]>([]);
 
-    const fetchTableData = async() =>{
+    const fetchTableData = async () => {
 
-        const {data , error} = await supabase.from("Courses").select("*");
+        const { data, error } = await supabase.from("Courses").select("*");
 
-        if(error){
+        if (error) {
 
             console.log("THERE IS SOME ERROR IN IT : ");
             console.log(error);
 
-        }else{
+        } else {
 
             console.log("THIS IS THE DATA OF THE TABLE : ");
             console.log(data[0]);
@@ -50,18 +49,18 @@ export default function CourseCards({onEdit} : {onEdit : any}) {
     };
 
 
-    useEffect(()=>{
+    useEffect(() => {
 
         fetchTableData();
 
 
-    },[]);
+    }, []);
 
 
-    const handleDelete = async(id : string)=>{
-        const {data , error} = await supabase.from("Courses").delete().eq("id", id);
+    const handleDelete = async (id: string) => {
+        const { data, error } = await supabase.from("Courses").delete().eq("id", id);
 
-        if(error){
+        if (error) {
 
             console.log("This is the error : ");
             console.log(error);
@@ -100,7 +99,7 @@ export default function CourseCards({onEdit} : {onEdit : any}) {
                 </div>
             </div>
 
-            
+
             <div className="flex flex-wrap gap-10">
                 {courses.map((course) => (
                     <div
@@ -112,9 +111,9 @@ export default function CourseCards({onEdit} : {onEdit : any}) {
 
                         <div className="h-1 w-full bg-gradient-to-r from-indigo-500 to-violet-500" />
 
-                        
+
                         <div className="relative p-7 flex flex-col h-full">
-                           
+
                             <div className="mb-6">
                                 <h3 className="text-xl font-bold text-gray-900 leading-snug">
                                     {course.title}
@@ -124,29 +123,29 @@ export default function CourseCards({onEdit} : {onEdit : any}) {
                                 </p>
                             </div>
 
-                            
+
                             <div className="mb-8">
                                 <span className="inline-flex items-center rounded-full bg-indigo-50 px-5 py-2 text-xs font-semibold text-indigo-600 shadow-sm">
                                     {course.domain}
                                 </span>
                             </div>
 
-                           
+
                             <div className="flex-grow" />
 
-                            
-                            <div className="flex items-center gap-4">
-                                <button onClick={(e)=>{onEdit(course)}} className="flex-1 inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-emerald-100 to-emerald-200 px-4 py-3 text-sm font-semibold text-emerald-700 shadow-md hover:shadow-xl hover:scale-[1.04] transition-all cursor-pointer">
 
-                                    <Pencil size={16} /> 
+                            <div className="flex items-center gap-4">
+                                <button onClick={(e) => { onEdit(course) }} className="flex-1 inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-emerald-100 to-emerald-200 px-4 py-3 text-sm font-semibold text-emerald-700 shadow-md hover:shadow-xl hover:scale-[1.04] transition-all cursor-pointer">
+
+                                    <Pencil size={16} />
 
                                     Edit
 
                                 </button>
 
-                                <button className="flex-1 inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-rose-100 to-rose-200 px-4 py-3 text-sm font-semibold text-rose-700 shadow-md hover:shadow-xl hover:scale-[1.04] transition-all cursor-pointer" onClick={(e)=>{handleDelete(course.id)}}>
+                                <button className="flex-1 inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-rose-100 to-rose-200 px-4 py-3 text-sm font-semibold text-rose-700 shadow-md hover:shadow-xl hover:scale-[1.04] transition-all cursor-pointer" onClick={(e) => { handleDelete(course.id) }}>
 
-                                    <Trash2 size={16} /> 
+                                    <Trash2 size={16} />
 
                                     Delete
 
@@ -159,6 +158,6 @@ export default function CourseCards({onEdit} : {onEdit : any}) {
             </div>
 
         </section>
-        
+
     );
 }

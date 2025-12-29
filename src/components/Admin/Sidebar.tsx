@@ -3,12 +3,10 @@
 import React from 'react'
 import { useState } from "react"
 import Image from "next/image";
-
 import HomeEditor from './HomeEditor';
 import CourseEditor from './CourseEditor';
-import AboutEditor from './AboutEditor';
 import BlogEditor from './BlogEditor';
-import SettingsEditor from './SettingsEditor';
+
 
 import { Home, BookOpen, Info, FileText, Settings, Menu, Users } from "lucide-react";
 import MentorEditor from './MentorEditor';

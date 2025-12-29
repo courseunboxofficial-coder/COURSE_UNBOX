@@ -114,7 +114,7 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
                 <div className="h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500" />
 
                 <div className="text-center text-3xl font-bold mt-4">
-                    Course Editor
+                    Mentor Editor
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 p-8">
@@ -125,7 +125,7 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
 
                         <div>
                             <label className="block text-sm font-medium mb-2">
-                                Course Title
+                                Mentor Name
                             </label>
                             <input
                                 name="name"
@@ -138,7 +138,7 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
 
                         <div>
                             <label className="block text-sm font-medium mb-2">
-                                Course Title
+                                Mentor Profession
                             </label>
                             <input
                                 name="profession"
@@ -152,7 +152,7 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
 
                         <div>
                             <label className="block text-sm font-medium mb-2">
-                                Course Title
+                                Mentor Work Experience
                             </label>
                             <input
                                 type='number'
@@ -177,85 +177,93 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
                         </div>
 
 
-                    </div>
+                        {/* Description */}
 
-
-
-
-                    {/* Description */}
-
-                    <div>
-                        <label className="block text-sm font-medium mb-2">
-                            Short Description
-                        </label>
-                        <textarea
-                            name="description"
-                            value={formData.description}
-                            onChange={handleChange}
-                            rows={3}
-                            className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
-                        />
-                    </div>
-
-
-
-
-                    {/* Image Upload */}
-
-                    <div>
-                        <label className="block text-sm font-medium mb-2">
-                            Course Image
-                        </label>
-
-                        <div className="flex items-center gap-4">
-                            <label className="flex cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-blue-300 bg-blue-50 px-6 py-4 text-sm font-medium text-blue-600 hover:bg-blue-100 transition">
-                                Upload Image
-                                <input type="file" className="hidden" onChange={handleFileData} />
+                        <div>
+                            <label className="block text-sm font-medium mb-2">
+                                Short Description
                             </label>
-                            <span className="text-xs text-gray-500">
-                                PNG, JPG up to 5MB
-                            </span>
+                            <textarea
+                                name="description"
+                                value={formData.description}
+                                onChange={handleChange}
+                                rows={3}
+                                className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                            />
                         </div>
+
+
+
+
+                        {/* Image Upload */}
+
+                        <div>
+                            <label className="block text-sm font-medium mb-2">
+                                Course Image
+                            </label>
+
+                            <div className="flex items-center gap-4">
+                                <label className="flex cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-blue-300 bg-blue-50 px-6 py-4 text-sm font-medium text-blue-600 hover:bg-blue-100 transition">
+                                    Upload Image
+                                    <input type="file" className="hidden" onChange={handleFileData} />
+                                </label>
+                                <span className="text-xs text-gray-500">
+                                    PNG, JPG up to 5MB
+                                </span>
+                            </div>
+                            <div>
+                                {
+                                    imageURL.slice(0, 10)
+                                }...
+                            </div>
+                        </div>
+
+                        {/* Submit */}
+
+                        <button className="mt-6 px-10 py-4 rounded-3xl bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition cursor-pointer" onClick={handleEditData}>
+                            Save Course
+                        </button>
+
+
                     </div>
 
-                    {/* Submit */}
-
-                    <button className="mt-6 px-10 py-4 rounded-3xl bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition" onClick={handleEditData}>
-                        Save Course
-                    </button>
-
-                </div>
 
 
-                {/* ================= PREVIEW ================= */}
+                    {/* ================= PREVIEW ================= */}
 
-                <div className="rounded-2xl border border-gray-200 bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-8">
+                    <div className="rounded-2xl border border-gray-200 bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-8">
 
-                    <p className="text-xs font-medium text-gray-500 mb-3">
-                        LIVE PREVIEW
-                    </p>
-
-                    <div className="space-y-4">
-                        <h1 className="text-3xl font-bold text-gray-900">
-                            {formData.name || "Course title goes here"}
-                        </h1>
-
-                        <span className="inline-block rounded-full bg-indigo-100 px-4 py-1 text-xs font-semibold text-indigo-700">
-                            {formData.profession || "Domain"}
-                        </span>
-
-                        <p className="text-gray-600">
-                            {formData.work_experience || "Course description preview"}
+                        <p className="text-xs font-medium text-gray-500 mb-3">
+                            LIVE PREVIEW
                         </p>
 
-                        <div className="text-sm text-gray-500 space-y-1">
-                            <p>📅 Start: {formData.name || "Not set"}</p>
-                            <p>⏱ Duration: {formData.profession || "0"} days</p>
-                            <p>🌐 Mode: {formData.work_experience || "N/A"}</p>
-                            <p>🗣 Language: {formData.description || "English"}</p>
+                        <div className="space-y-4">
+                            <h1 className="text-3xl font-bold text-gray-900">
+                                {formData.name || "Course title goes here"}
+                            </h1>
+
+                            <span className="inline-block rounded-full bg-indigo-100 px-4 py-1 text-xs font-semibold text-indigo-700">
+                                {formData.profession || "Domain"}
+                            </span>
+
+                            <p className="text-gray-600">
+                                {formData.work_experience || "Course description preview"}
+                            </p>
+
+                            <div className="text-sm text-gray-500 space-y-1">
+                                <p>📅 NAME : {formData.name || "Not set"}</p>
+                                <p>⏱ PROFESSION : {formData.profession || "0"} days</p>
+                                <p>🌐 WORK EXPEIENCE: {formData.work_experience || "N/A"}</p>
+                                <p>🗣 DESCRIPTION : {formData.description || "English"}</p>
+                            </div>
                         </div>
                     </div>
+
+
                 </div>
+
+
+
             </div>
         </div>
 

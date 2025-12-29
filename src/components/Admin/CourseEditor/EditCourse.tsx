@@ -21,24 +21,7 @@ type Course = {
 }
 
 const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course }) => {
-
-  console.log(course);
-  // const [content , setContent] = useState({
-  //   firstTitle : "",
-  //   firstSubTitle : "",
-  //   secondTitle : "",
-  //   secondSubtitle : "",
-  //   thirdTitle : "",
-  //   thirdSubTitle : "",
-  //   fourthTitle : "",
-  //   fourtSubTitle : "",
-  //   fifthTitle : "",
-  //   fifthSubTitle : "",
-  //   sixthTitle : "",
-  //   sixthSubTitle : ""
-
-  // });
-
+  
   const [imageURL , setimageURL] = useState("");
   const [formData, setFormData] = useState({
     title: "",

@@ -13,15 +13,22 @@ type Course = {
     language: string;
     domain: string;
     Delivery_Mode: string;
-
     content: {
         title: string;
         subtitle: string;
     }[];
-
+    price: number,
     high: number,
-    low:number,
-    image:string,
+    low: number,
+    modules: Record<
+        string,
+        {
+            module: string;
+            title: string;
+            lectures: string[];
+        }[]
+    >,
+    image: string,
 }
 
 const Hero = ({ courseId }: { courseId: string }) => {
@@ -150,8 +157,8 @@ const Hero = ({ courseId }: { courseId: string }) => {
                                 <p className="text-sm text-white/80">Course Fee</p>
 
                                 <div className="flex items-end gap-3 mt-2">
-                                    <h4 className="text-xl sm:text-2xl md:text-3xl font-extrabold">₹34,999</h4>
-                                    <span className="line-through text-white/60">₹45,000</span>
+                                    <h4 className="text-3xl font-extrabold">₹{course?.price}</h4>
+                                    <span className="line-through text-white/60">₹{course?.price! + 10001}</span>
                                 </div>
 
                                 <span className="inline-block mt-3 bg-white text-purple-700 px-4 py-1 rounded-full text-sm font-semibold">

@@ -14,7 +14,18 @@ import Testimonials from "@/components/course/TestimonialsSection";
 
 import CourseContent from "@/components/course/CourseContent";
 import Faq from "@/components/course/CourseFAQ";
+import { supabase } from "@/lib/supabse/supabaseConfig";
 
+export async function generateMetadata({params}:{params : Promise<{id:string}>}) {
+    const {id} = await params;
+
+    const {data, error} = await supabase.from('Courses').select("*").eq("id", id);
+
+    return {
+        title : data,
+        description : data
+    }
+}
 
 export default async function CoursePage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params
@@ -27,9 +38,9 @@ export default async function CoursePage({ params }: { params: Promise<{ id: str
             <div className="w-full min-h-screen text-white">
                 <Hero courseId={id}/>
                 <Banner courseId={id}/>
-                <Enquiry /> 
-                <Module />
-                <Mentors />
+                <Enquiry courseId={id}/> 
+                <Module courseId={id}/>
+                <Mentors/>
                 <Testimonials courseId={id}/>
                 <CertificationBanner/>
                 <TopCompanies />

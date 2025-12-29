@@ -36,6 +36,7 @@ const Courses = () => {
     console.log(courses);
 
     useEffect(() => {
+
         const handleFetchCourseData = async () => {
             const { data, error } = await supabase.from("Courses").select("*");
 
@@ -66,6 +67,8 @@ const Courses = () => {
     return (
 
         <section className="w-screen pt-20 py-16 bg-[#fbfdff]">
+                  <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px) [background-size:24px_24px]" />
+
             <h2 className="text-center font-extrabold text-3xl md:text-4xl lg:text-5xl text-[#14399f]">
                 Our Courses
             </h2>

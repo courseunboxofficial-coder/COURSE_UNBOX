@@ -11,10 +11,10 @@ export default function CourseOverview() {
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px) bg-size-[24px_24px]" />
 
       <div className="max-w-7xl mx-auto px-4 py-12 bg-[radial-gradient(#ffffff_1px,transparent_1px)">
-      <h2 className="text-2xl md:text-4xl font-extrabold mb-4">
+      <div className="text-2xl md:text-4xl font-extrabold mb-4">
        <h2>About the <span className="text-blue-600">Data Science</span> Courses</h2>
 
-      </h2>
+      </div>
 
       <p className="text-gray-700 leading-relaxed text-base md:text-lg ">
         Data Science courses focus on building strong foundations in data analysis,

@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react'
-import Card from '@/components/Admin/Card';
 import { ToastContainer, toast } from "react-toastify"
 import { supabase } from "@/lib/supabse/supabaseConfig"
 

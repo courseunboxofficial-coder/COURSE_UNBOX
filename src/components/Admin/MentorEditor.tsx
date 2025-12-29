@@ -1,5 +1,4 @@
 "use client"
-
 import React, { useState } from 'react'
 import MentorTable from './Mentor/mentorTable';
 import MentorCard from './Mentor/mentorCard';
@@ -7,6 +6,7 @@ import AddMentor from './Mentor/AddMentor';
 import EditMentor from './Mentor/EditMentor';
 
 type Mentor = {
+    
     id: number;
     name: string;
     profession: string;
@@ -14,6 +14,7 @@ type Mentor = {
     teaching_experience: number;
     description: string;
     created_at: number
+
 };
 
 const MentorEditor = ({ collapsed }: { collapsed: boolean }) => {
@@ -50,7 +51,7 @@ const MentorEditor = ({ collapsed }: { collapsed: boolean }) => {
 
             {active === "card" && <MentorCard onEdit={onEdit} />}
             {active === "Table" && <MentorTable onEdit={onEdit} />}
-            {active === "Add" && <AddMentor collapsed={collapsed} />}
+            {active === "Add" && <AddMentor collapsed={collapsed}/>}
             {active === "Edit" && editItem && (<EditMentor collapsed={collapsed} mentor={editItem} />)}
 
         </>
