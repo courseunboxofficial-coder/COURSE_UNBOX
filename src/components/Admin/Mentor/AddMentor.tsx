@@ -10,6 +10,7 @@ type Mentor = {
   teaching_experience: number;
   description: string;
   created_at: number
+  
 };
 
 const AddMentor = ({ collapsed}: { collapsed: boolean}) => {

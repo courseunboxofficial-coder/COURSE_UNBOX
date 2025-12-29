@@ -51,11 +51,13 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+
     const handleContentChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
     ) => {
         setContent({ ...content, [e.target.name]: e.target.value });
     };
+
 
 
     const handleSave = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -76,7 +78,6 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
                 { question: content.fifthQuestion, answer: content.fifthAnswer },
                 { question: content.sixthQuestion, answer: content.sixthAnswer },
             ],
-
             image: imageURL
 
         }]).select().single();
@@ -98,6 +99,7 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
 
         setloading(false);
         toast.success("Blog updated successfully");
+        
     }
 
 
@@ -129,6 +131,7 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
     }
 
     return (
+
         <div className={`${collapsed ? "w-[85vw]" : "w-[75vw]"} mx-auto mt-10 px-4`}>
             <form onSubmit={handleSave}>
                 <div className="rounded-2xl border border-blue-200 bg-white shadow-xl overflow-hidden">
