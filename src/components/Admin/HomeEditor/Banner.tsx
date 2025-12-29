@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Card from "@/components/Admin/Card"
 import { supabase } from '@/lib/supabse/supabaseConfig';
 
 const Banner = ({ collapsed }: { collapsed: boolean }) => {
