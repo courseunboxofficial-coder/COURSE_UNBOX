@@ -12,7 +12,7 @@ type Mentor = {
   created_at: number
 };
 
-const AddMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor }) => {
+const AddMentor = ({ collapsed}: { collapsed: boolean}) => {
 
   const [imageURL, setimageURL] = useState("");
   const [formData, setFormData] = useState({

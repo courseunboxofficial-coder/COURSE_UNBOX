@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useState } from 'react'
-import { supabase } from "@/lib/supabse/supabaseConfig"
 import Hero from './HomeEditor/Hero';
 import Banner from './HomeEditor/Banner';
 import TrendingImage from './HomeEditor/TrendingImage';

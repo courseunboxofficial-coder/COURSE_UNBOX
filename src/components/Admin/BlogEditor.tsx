@@ -1,9 +1,5 @@
 "use client"
 import React, { useState } from 'react'
-import CourseCards from './CourseEditor/CourseCards';
-import CourseTable from './CourseEditor/CourseTable';
-import AddCourse from './CourseEditor/AddCourse';
-import EditCourse from './CourseEditor/EditCourse';
 import BlogCard from './BlogEditor/BlogCard';
 import BlogTable from './BlogEditor/BlogTable';
 import AddBlog from './BlogEditor/AddBlog';
