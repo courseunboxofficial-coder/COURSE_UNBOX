@@ -13,7 +13,6 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
 
     const [imageURL, setImageURL] = useState<string>("");
     const [editorValue, setEditorValue] = useState<string>(`{
-
     "Data Science Foundations": [
 
         {
@@ -979,12 +978,14 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                         <div className="font-bold text-center text-3xl mb-4">Module Manipulate Section</div>
 
                         <Editor
+
                             height="65vh"
                             language="json"
                             theme="vs-dark"
                             value={editorValue}
                             onChange={(value) => setEditorValue(value || "")}
                             className="rounded-2xl"
+
                         />
 
                         <div className="mt-6 inline-block px-10 py-4 rounded-3xl bg-blue-600 text-white text-sm font-medium transition cursor-pointer hover:bg-[#020242] ml-3 mb-3" onClick={handleModuleParse}>

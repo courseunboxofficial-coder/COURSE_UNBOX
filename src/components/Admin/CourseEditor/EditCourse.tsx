@@ -1,4 +1,5 @@
 import { supabase } from '@/lib/supabse/supabaseConfig';
+import dynamic from 'next/dynamic';
 import React, { useEffect, useState } from 'react'
 
 type Course = {
@@ -10,30 +11,151 @@ type Course = {
   language: string;
   domain: string;
   Delivery_Mode: string;
-  low : number,
-  high : number,
+  low: number,
+  high: number,
+  price: number,
   content: {
     title: string;
     subtitle: string;
   }[];
-
-  image?: File | null;
+  Testimonials:
+  {
+    name: string,
+    role: string,
+    company: string,
+    title: string,
+    description: string,
+    ranking: string,
+    course: string
+  }[],
+  modules: Record<
+    string,
+    {
+      module: string;
+      title: string;
+      lectures: string[];
+    }[]
+  >,
+  image: string;
 }
 
+
+const Editor = dynamic(
+
+  () => import("@monaco-editor/react"),
+  { ssr: false }
+
+);
+
 const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course }) => {
-  
-  const [imageURL , setimageURL] = useState("");
+
+  const [imageURL, setimageURL] = useState("");
   const [formData, setFormData] = useState({
+
     title: "",
     description: "",
     startDate: "",
     Duration: 0,
     language: "",
     domain: "",
-    low : 0,
-    high : 0,
+    low: 0,
+    high: 0,
+    price: 0,
     Delivery_Mode: "",
-    image: null as File | null,
+    image: "",
+
+  });
+
+  const [editorValue, setEditorValue] = useState<string>(`{
+  
+      "Data Science Foundations": [
+  
+          {
+              "module": "Module 1",
+              "title": "What is Data Science?",
+              "lectures": [
+  
+                  "Lecture 1 : What is DS?",
+                  "Lecture 2 : Why DS Matters",
+                  "Lecture 3 : DS Roles (DS, ML Engineer, AI Engineer)",
+                  "Lecture 4 : Tools used in DS",
+                  "Lecture 5 : Industry examples"
+  
+              ]
+          },
+  
+          {
+              "module": "Module 2",
+              "title": "Future of Data Science",
+              "lectures": [
+                  "Lecture 1 : DS Career Growth",
+                  "Lecture 2 : AI & Data Trends",
+                  "Lecture 3 : Skills for Future"
+              ]
+          }
+  
+      ]
+  }`);
+
+
+  const [parsedMessage, setParsedMessage] = useState<{
+    status: boolean | null;
+    message: string
+  }>({
+    status: null,
+    message: ""
+  });
+
+  const [parsedJson, setParsedJson] = useState({});
+
+
+
+  const [content, setContent] = useState({
+
+    firstTitle: "",
+    firstDescription: "",
+    secondTitle: "",
+    secondDescription: "",
+    thirdTitle: "",
+    thirdDescription: "",
+    fourthTitle: "",
+    fourthDescription: "",
+    fifthTitle: "",
+    fifthDescription: "",
+    sixthTitle: "",
+    sixthDescription: ""
+
+  });
+
+
+  const [Testimonial1, setTestimonial1] = useState({
+    name: "",
+    role: "",
+    company: "",
+    title: "",
+    description: "",
+    ranking: "",
+    course: ""
+  });
+
+  const [Testimonial2, setTestimonial2] = useState({
+    name: "",
+    role: "",
+    company: "",
+    title: "",
+    description: "",
+    ranking: "",
+    course: ""
+  });
+
+  const [Testimonial3, setTestimonial3] = useState({
+    name: "",
+    role: "",
+    company: "",
+    title: "",
+    description: "",
+    ranking: "",
+    course: ""
   });
 
 
@@ -44,19 +166,129 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
   };
 
 
+  const handleContentChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    setContent({ ...content, [e.target.name]: e.target.value });
+  };
+
+  const handleTestimonial1 = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    setTestimonial1({ ...Testimonial1, [e.target.name]: e.target.value });
+  };
+
+
+  const handleTestimonial2 = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    setTestimonial2({ ...Testimonial2, [e.target.name]: e.target.value });
+  };
+
+
+  const handleTestimonial3 = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    setTestimonial3({ ...Testimonial3, [e.target.name]: e.target.value });
+  };
+
+
+  const handleModuleParse = () => {
+
+    try {
+      const parsed = JSON.parse(editorValue);
+      console.log("Valid JSON:", parsed);
+
+      setParsedMessage({ status: true, message: "Valid Json: Your Module Content is correct Now you can Save Module" });
+
+      setParsedJson(parsed);
+
+      return true;
+
+    } catch (err) {
+
+      setParsedMessage({ status: false, message: "InValid Json: Your Module Content is Incorrect you need to manipulate it" })
+      console.error("Invalid JSON");
+
+
+      return false;
+
+    }
+
+  }
+
+
   useEffect(() => {
     setFormData({
+
       title: course.title,
       description: course.description,
       startDate: course.startDate,
       Duration: course.Duration,
       language: course.language,
       domain: course.domain,
-      low : course.low,
-      high : course.high,
-      Delivery_Mode: course.domain,
-      image: null as File | null,
+      low: course.low,
+      high: course.high,
+      price: course.price,
+      Delivery_Mode: course.Delivery_Mode,
+      image: course.image 
+
     })
+
+
+    setContent({
+
+      firstTitle: course.content[0].title,
+      firstDescription: course.content[0].subtitle,
+      secondTitle: course.content[1].title,
+      secondDescription: course.content[1].subtitle,
+      thirdTitle: course.content[2].title,
+      thirdDescription: course.content[2].subtitle,
+      fourthTitle: course.content[3].title,
+      fourthDescription: course.content[3].subtitle,
+      fifthTitle: course.content[4].title,
+      fifthDescription: course.content[4].subtitle,
+      sixthTitle: course.content[5].title,
+      sixthDescription: course.content[5].subtitle
+
+    });
+
+
+
+    setTestimonial1({
+      name: course.Testimonials[0].name,
+      role: course.Testimonials[0].role,
+      company: course.Testimonials[0].company,
+      title: course.Testimonials[0].title,
+      description: course.Testimonials[0].description,
+      ranking: course.Testimonials[0].ranking,
+      course: course.Testimonials[0].course
+    });
+
+    setTestimonial2({
+      name: course.Testimonials[1].name,
+      role: course.Testimonials[1].role,
+      company: course.Testimonials[1].company,
+      title: course.Testimonials[1].title,
+      description: course.Testimonials[1].description,
+      ranking: course.Testimonials[1].ranking,
+      course: course.Testimonials[1].course
+    });
+
+    setTestimonial3({
+      name: course.Testimonials[2].name,
+      role: course.Testimonials[2].role,
+      company: course.Testimonials[2].company,
+      title: course.Testimonials[2].title,
+      description: course.Testimonials[2].description,
+      ranking: course.Testimonials[2].ranking,
+      course: course.Testimonials[2].course
+    });
+
+    setEditorValue(JSON.stringify(course.modules, null, 2));
+    setParsedJson(course.modules);
+
+
   }, []);
 
 
@@ -88,272 +320,789 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
   }
 
 
-  const handleEditData = async () => {
+  const handleEditData = async (event: React.FormEvent<HTMLFormElement>) => {
 
-    const {data , error} = await supabase.from("Courses").update(
+    event.preventDefault();
+    const validationJson = handleModuleParse();
+
+    if (!validationJson) {
+
+      alert("Your current Editor Value for Module is not in correct format please write it correctly : ")
+
+      return;
+    }
+
+    if (parsedMessage.status == false) {
+
+      alert("Your Json is Not Correct you need to write it correctly you are not able to save the Data :");
+
+      return
+
+    };
+
+
+    if (imageURL === "") {
+      alert("Your Image URL IS Empty please upload the image otherwise you are not able to save the data : ");
+
+      return;
+
+    };
+
+    const { data, error } = await supabase.from("Courses").update(
 
       {
 
-        title : formData.title, 
-        description : formData.description,
-        startDate : formData.startDate,
-        Duration : formData.Duration,
-        language : formData.language,
-        content  : course.content,
-        domain : formData.domain,
-        low : 0,
-        high : 0,
+        title: formData.title,
+        description: formData.description,
+        startDate: formData.startDate,
+        Duration: formData.Duration,
+        language: formData.language,
+        domain: formData.domain,
+        low: 0,
+        high: 0,
+        price: formData.price,
         Delivery_Mode: formData.Delivery_Mode,
-        image : imageURL
+        content: [
+
+          { title: content.firstTitle, subtitle: content.firstDescription },
+          { title: content.secondTitle, subtitle: content.secondDescription },
+          { title: content.thirdTitle, subtitle: content.thirdDescription },
+          { title: content.fourthTitle, subtitle: content.fourthDescription },
+          { title: content.fifthTitle, subtitle: content.fifthDescription },
+          { title: content.sixthTitle, subtitle: content.sixthDescription }
+
+        ],
+
+        Testimonials: [
+
+          {
+            name: Testimonial1.name,
+            role: Testimonial1.role,
+            company: Testimonial1.company,
+            title: Testimonial1.title,
+            description: Testimonial1.description,
+            ranking: Testimonial1.ranking,
+            course: Testimonial1.course
+          },
+          {
+            name: Testimonial2.name,
+            role: Testimonial2.role,
+            company: Testimonial2.company,
+            title: Testimonial2.title,
+            description: Testimonial2.description,
+            ranking: Testimonial2.ranking,
+            course: Testimonial2.course
+          },
+          {
+            name: Testimonial3.name,
+            role: Testimonial3.role,
+            company: Testimonial3.company,
+            title: Testimonial3.title,
+            description: Testimonial3.description,
+            ranking: Testimonial3.ranking,
+            course: Testimonial3.course
+          }
+
+        ],
+
+        modules: parsedJson,
+        image: imageURL
+
 
       }
 
 
 
     ).eq("id", course.id);
-    
 
-    if(error){
+
+    if (error) {
       console.log("The error ocuur in this is : ");
       console.log(error);
     }
 
     console.log(data);
-    
+
   }
 
 
 
   return (
     <div className={`${collapsed ? "w-[85vw]" : "w-[75vw]"} mx-auto mt-10 px-4`}>
-      <div className="rounded-2xl border border-blue-200 bg-white shadow-xl overflow-hidden">
-        <div className="h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500" />
+      <form onSubmit={handleEditData}>
+        <div className="rounded-2xl border border-blue-200 bg-white shadow-xl overflow-hidden">
+          <div className="h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500" />
 
-        <div className="text-center text-3xl font-bold mt-4">
-          Course Editor
-        </div>
+          <div className="text-center text-3xl font-bold mt-4">
+            Course Editor
+          </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 p-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 p-8">
 
-          {/* ================= FORM ================= */}
+            {/* ================= FORM ================= */}
 
-          <div className="space-y-5">
+            <div className="space-y-5">
 
-            {/* Title */}
+              {/* Title */}
 
-            {/* <div>COURSE ID IS : {course.id}</div>
+              {/* <div>COURSE ID IS : {course.id}</div>
             <div>COURSE title IS : {course.title}</div> */}
 
-            <div>
-              <label className="block text-sm font-medium mb-2">
-                Course Title
-              </label>
-              <input
-                name="title"
-                value={formData.title}
-                onChange={handleChange}
-                className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
-              />
-            </div>
-
-            {/* Domain + Language */}
-
-            <div className="flex gap-4">
-              <div className="w-full">
+              <div>
                 <label className="block text-sm font-medium mb-2">
-                  Domain
+                  Course Title
+                </label>
+                <input
+                  name="title"
+                  value={formData.title}
+                  onChange={handleChange}
+                  className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                />
+              </div>
+
+              {/* Domain + Language */}
+
+              <div className="flex gap-4">
+                <div className="w-full">
+                  <label className="block text-sm font-medium mb-2">
+                    Domain
+                  </label>
+                  <select
+                    name="domain"
+                    value={formData.domain}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border px-4 py-3 text-sm"
+                  >
+                    <option value="">Select Mode</option>
+                    <option value="Online">Digital Marketing</option>
+                    <option value="Offline">Development</option>
+                    <option value="Hybrid">IT & Software</option>
+                    <option value="Hybrid">Data Science</option>
+                  </select>
+                </div>
+
+                <div className="w-full">
+                  <label className="block text-sm font-medium mb-2">
+                    language
+                  </label>
+                  <select
+                    name="language"
+                    value={formData.language}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border px-4 py-3 text-sm"
+                  >
+                    <option value="">Select Mode</option>
+                    <option value="Online">English</option>
+                    <option value="Offline">Hindi</option>
+                    <option value="Hybrid">Other</option>
+                  </select>
+                </div>
+
+              </div>
+
+              {/* Start Date + Duration */}
+
+              <div className="flex gap-4">
+                <div className="w-full">
+                  <label className="block text-sm font-medium mb-2">
+                    Start Date
+                  </label>
+                  <input
+                    type="date"
+                    name="startDate"
+                    value={formData.startDate}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border px-4 py-3 text-sm"
+                  />
+                </div>
+
+                <div className="w-full">
+                  <label className="block text-sm font-medium mb-2">
+                    Duration (Days)
+                  </label>
+                  <input
+                    type="number"
+                    name="Duration"
+                    value={formData.Duration}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border px-4 py-3 text-sm"
+                  />
+                </div>
+
+                <div className="w-full">
+                  <label className="block text-sm font-medium mb-2">
+                    Low Package
+                  </label>
+                  <input
+                    type="number"
+                    name="low"
+                    value={formData.low}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border px-4 py-3 text-sm"
+                  />
+                </div>
+
+                <div className="w-full">
+                  <label className="block text-sm font-medium mb-2">
+                    High Package
+                  </label>
+                  <input
+                    type="number"
+                    name="high"
+                    value={formData.high}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border px-4 py-3 text-sm"
+                  />
+                </div>
+              </div>
+
+              {/* Delivery Mode */}
+
+              <div>
+                <label className="block text-sm font-medium mb-2">
+                  Delivery Mode
                 </label>
                 <select
                   name="Delivery_Mode"
-                  value={formData.domain}
+                  value={formData.Delivery_Mode}
                   onChange={handleChange}
                   className="w-full rounded-xl border px-4 py-3 text-sm"
                 >
                   <option value="">Select Mode</option>
-                  <option value="Online">Digital Marketing</option>
-                  <option value="Offline">Development</option>
-                  <option value="Hybrid">IT & Software</option>
-                  <option value="Hybrid">Data Science</option>
+                  <option value="Online">Online</option>
+                  <option value="Offline">Offline</option>
+                  <option value="Hybrid">Hybrid</option>
                 </select>
               </div>
 
-              <div className="w-full">
+              {/* Description */}
+
+              <div>
                 <label className="block text-sm font-medium mb-2">
-                  language
+                  Short Description
                 </label>
-                <select
-                  name=""
-                  value={formData.language}
+                <textarea
+                  name="description"
+                  value={formData.description}
                   onChange={handleChange}
-                  className="w-full rounded-xl border px-4 py-3 text-sm"
-                >
-                  <option value="">Select Mode</option>
-                  <option value="Online">English</option>
-                  <option value="Offline">Hindi</option>
-                  <option value="Hybrid">Other</option>
-                </select>
-              </div>
-
-            </div>
-
-            {/* Start Date + Duration */}
-
-            <div className="flex gap-4">
-              <div className="w-full">
-                <label className="block text-sm font-medium mb-2">
-                  Start Date
-                </label>
-                <input
-                  type="date"
-                  name="startDate"
-                  value={formData.startDate}
-                  onChange={handleChange}
-                  className="w-full rounded-xl border px-4 py-3 text-sm"
+                  rows={3}
+                  className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
                 />
               </div>
 
-              <div className="w-full">
+
+              {/* Image Upload */}
+
+              <div>
                 <label className="block text-sm font-medium mb-2">
-                  Duration (Days)
+                  Course Image
                 </label>
-                <input
-                  type="number"
-                  name="Duration"
-                  value={formData.Duration}
-                  onChange={handleChange}
-                  className="w-full rounded-xl border px-4 py-3 text-sm"
-                />
+
+                <div className="flex items-center gap-4">
+                  <label className="flex cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-blue-300 bg-blue-50 px-6 py-4 text-sm font-medium text-blue-600 hover:bg-blue-100 transition">
+                    Upload Image
+                    <input type="file" className="hidden" onChange={handleFileData} />
+                  </label>
+                  <span className="text-xs text-gray-500">
+                    PNG, JPG up to 5MB
+                  </span>
+                </div>
+
+                <div>
+                  {
+                    imageURL.slice(0, 10)
+                  }...
+                </div>
               </div>
 
-              <div className="w-full">
-                <label className="block text-sm font-medium mb-2">
-                  Low Package
-                </label>
-                <input
-                  type="number"
-                  name="low"
-                  value={formData.low}
-                  onChange={handleChange}
-                  className="w-full rounded-xl border px-4 py-3 text-sm"
-                />
+
+            </div>
+
+            <div>
+
+
+
+              {/* content */}
+
+              <div className="h-[80vh] border p-3 rounded-3xl">
+                <p className="text-center text-2xl font-bold mb-5">Why choose this course section ?</p>
+
+                <div className="flex gap-4 justify-between">
+                  <div className="flex flex-col mb-3">
+                    <label className="block text-sm font-medium mb-2">
+                      FirstTitle
+                    </label>
+                    <input
+                      name="firstTitle"
+                      value={content.firstTitle}
+                      onChange={handleContentChange}
+                      className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                      required
+                    />
+                  </div>
+
+                  <div className="flex flex-col">
+                    <label className="block text-sm font-medium mb-2">
+                      First Description
+                    </label>
+                    <textarea
+                      name="firstDescription"
+                      value={content.firstDescription}
+                      onChange={handleContentChange}
+                      rows={2}
+                      className="w-full rounded-xl border px-4 text-sm resize-none"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="flex gap-4 justify-between">
+                  <div className="flex flex-col mb-3">
+                    <label className="block text-sm font-medium mb-2">
+                      SecondTitle
+                    </label>
+                    <input
+                      name="secondTitle"
+                      value={content.secondTitle}
+                      onChange={handleContentChange}
+                      className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                      required
+                    />
+                  </div>
+
+                  <div className="flex flex-col">
+                    <label className="block text-sm font-medium mb-2">
+                      Second Description
+                    </label>
+                    <textarea
+                      name="secondDescription"
+                      value={content.secondDescription}
+                      onChange={handleContentChange}
+                      rows={2}
+                      className="w-full rounded-xl border px-4 text-sm resize-none"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="flex gap-4 justify-between">
+                  <div className="flex flex-col mb-3">
+                    <label className="block text-sm font-medium mb-2">
+                      ThirdTitle
+                    </label>
+                    <input
+                      name="thirdTitle"
+                      value={content.thirdTitle}
+                      onChange={handleContentChange}
+                      className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                      required
+                    />
+                  </div>
+
+                  <div className="flex flex-col">
+
+                    <label className="block text-sm font-medium mb-2">
+
+                      Third Description
+
+                    </label>
+                    <textarea
+                      name="thirdDescription"
+                      value={content.thirdDescription}
+                      onChange={handleContentChange}
+                      rows={2}
+                      className="w-full rounded-xl border px-4 text-sm resize-none"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="flex gap-4 justify-between">
+                  <div className="flex flex-col mb-3">
+                    <label className="block text-sm font-medium mb-2">
+                      fourthTitle
+                    </label>
+                    <input
+                      name="fourthTitle"
+                      value={content.fourthTitle}
+                      onChange={handleContentChange}
+                      className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                      required
+                    />
+                  </div>
+
+                  <div className="flex flex-col">
+                    <label className="block text-sm font-medium mb-2">
+                      fourth Description
+                    </label>
+                    <textarea
+                      name="fourthDescription"
+                      value={content.fourthDescription}
+                      onChange={handleContentChange}
+                      rows={2}
+                      className="w-full rounded-xl border px-4 text-sm resize-none"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="flex gap-4 justify-between">
+                  <div className="flex flex-col mb-3">
+                    <label className="block text-sm font-medium mb-2">
+                      FifthTitle
+                    </label>
+                    <input
+                      name="fifthTitle"
+                      value={content.fifthTitle}
+                      onChange={handleContentChange}
+                      className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                      required
+                    />
+                  </div>
+
+                  <div className="flex flex-col">
+                    <label className="block text-sm font-medium mb-2">
+                      Fifth Description
+                    </label>
+                    <textarea
+                      name="fifthDescription"
+                      value={content.fifthDescription}
+                      onChange={handleContentChange}
+                      rows={2}
+                      className="w-full rounded-xl border px-4 text-sm resize-none"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="flex gap-4 justify-between">
+                  <div className="flex flex-col mb-3">
+                    <label className="block text-sm font-medium mb-2">
+                      sixthTitle
+                    </label>
+                    <input
+                      name="sixthTitle"
+                      value={content.sixthTitle}
+                      onChange={handleContentChange}
+                      className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                      required
+                    />
+                  </div>
+
+                  <div className="flex flex-col">
+                    <label className="block text-sm font-medium mb-2">
+                      sixth Description
+                    </label>
+                    <textarea
+                      name="sixthDescription"
+                      value={content.sixthDescription}
+                      onChange={handleContentChange}
+                      rows={2}
+                      className="w-full rounded-xl border px-4 text-sm resize-none"
+                      required
+                    />
+                  </div>
+                </div>
+
               </div>
 
-              <div className="w-full">
-                <label className="block text-sm font-medium mb-2">
-                  High Package
-                </label>
-                <input
-                  type="number"
-                  name="high"
-                  value={formData.high}
-                  onChange={handleChange}
-                  className="w-full rounded-xl border px-4 py-3 text-sm"
-                />
-              </div>
             </div>
-
-            {/* Delivery Mode */}
-
-            <div>
-              <label className="block text-sm font-medium mb-2">
-                Delivery Mode
-              </label>
-              <select
-                name="Delivery_Mode"
-                value={formData.Delivery_Mode}
-                onChange={handleChange}
-                className="w-full rounded-xl border px-4 py-3 text-sm"
-              >
-                <option value="">Select Mode</option>
-                <option value="Online">Online</option>
-                <option value="Offline">Offline</option>
-                <option value="Hybrid">Hybrid</option>
-              </select>
-            </div>
-
-            {/* Description */}
-
-            <div>
-              <label className="block text-sm font-medium mb-2">
-                Short Description
-              </label>
-              <textarea
-                name="description"
-                value={formData.description}
-                onChange={handleChange}
-                rows={3}
-                className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
-              />
-            </div>
-
-            {/* Content */}
-
-            <div>
-              <label className="block text-sm font-medium mb-2">
-                Course Content
-              </label>
-              <textarea
-                name="content"
-                rows={4}
-                className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
-              />
-            </div>
-
-            {/* Image Upload */}
-
-            <div>
-              <label className="block text-sm font-medium mb-2">
-                Course Image
-              </label>
-
-              <div className="flex items-center gap-4">
-                <label className="flex cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-blue-300 bg-blue-50 px-6 py-4 text-sm font-medium text-blue-600 hover:bg-blue-100 transition">
-                  Upload Image
-                  <input type="file" className="hidden" onChange={handleFileData} />
-                </label>
-                <span className="text-xs text-gray-500">
-                  PNG, JPG up to 5MB
-                </span>
-              </div>
-            </div>
-
-            {/* Submit */}
-
-            <button className="mt-6 px-10 py-4 rounded-3xl bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition" onClick={handleEditData}>
-              Save Course
-            </button>
           </div>
 
-          {/* ================= PREVIEW ================= */}
+          <div className="w-[95%] mx-auto border rounded-2xl h-[75vh]">
+            <p className="text-2xl text-black font-bold text-center mb-4">Testimonials Section</p>
+            <div className="flex w-full items-center justify-center gap-4">
+              <div className="w-[30%]">
+                <h3 className="mb-2 font-bold">Testimonial 1</h3>
+                <div className="flex flex-col mb-3">
+                  <label className="block text-sm font-medium">
+                    Name
+                  </label>
+                  <input
+                    name="name"
+                    value={Testimonial1.name}
+                    onChange={handleTestimonial1}
+                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
+                  />
+                </div>
 
-          <div className="rounded-2xl border border-gray-200 bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-8">
-            <p className="text-xs font-medium text-gray-500 mb-3">
-              LIVE PREVIEW
-            </p>
+                <div className="flex flex-col mb-3">
+                  <label className="block text-sm font-medium ">
+                    Role
+                  </label>
+                  <input
+                    name="role"
+                    value={Testimonial1.role}
+                    onChange={handleTestimonial1}
+                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
+                  />
+                </div>
 
-            <div className="space-y-4">
-              <h1 className="text-3xl font-bold text-gray-900">
-                {formData.title || "Course title goes here"}
-              </h1>
+                <div className="flex flex-col">
+                  <label className="block text-sm font-medium mb-2">
+                    Company
+                  </label>
+                  <input
+                    name="company"
+                    value={Testimonial1.company}
+                    onChange={handleTestimonial1}
+                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
+                  />
+                </div>
 
-              <span className="inline-block rounded-full bg-indigo-100 px-4 py-1 text-xs font-semibold text-indigo-700">
-                {formData.domain || "Domain"}
-              </span>
+                <div className="flex flex-col">
+                  <label className="block text-sm font-medium mb-2">
+                    Title
+                  </label>
+                  <input
+                    name="title"
+                    value={Testimonial1.title}
+                    onChange={handleTestimonial1}
+                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
+                  />
+                </div>
 
-              <p className="text-gray-600">
-                {formData.description || "Course description preview"}
+                <div className="flex flex-col">
+                  <label className="block text-sm font-medium mb-2">
+                    Description
+                  </label>
+                  <input
+                    name="description"
+                    value={Testimonial1.description}
+                    onChange={handleTestimonial1}
+                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
+                  />
+                </div>
+
+                <div className="flex flex-col">
+                  <label className="block text-sm font-medium mb-2">
+                    Rating
+                  </label>
+                  <input
+                    name="ranking"
+                    value={Testimonial1.ranking}
+                    onChange={handleTestimonial1}
+                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="w-[30%]">
+                <h3 className="mb-2 font-bold">Testimonial 2</h3>
+
+                <div className="flex flex-col mb-3">
+                  <label className="block text-sm font-medium">
+                    Name
+                  </label>
+                  <input
+                    name="name"
+                    value={Testimonial2.name}
+                    onChange={handleTestimonial2}
+                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
+                  />
+                </div>
+
+                <div className="flex flex-col mb-3">
+                  <label className="block text-sm font-medium ">
+                    Role
+                  </label>
+                  <input
+                    name="role"
+                    value={Testimonial2.role}
+                    onChange={handleTestimonial2}
+                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
+                  />
+                </div>
+
+                <div className="flex flex-col">
+                  <label className="block text-sm font-medium mb-2">
+                    Company
+                  </label>
+                  <input
+                    name="company"
+                    value={Testimonial2.company}
+                    onChange={handleTestimonial2}
+                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
+                  />
+                </div>
+
+                <div className="flex flex-col">
+                  <label className="block text-sm font-medium mb-2">
+                    Title
+                  </label>
+                  <input
+                    name="title"
+                    value={Testimonial2.title}
+                    onChange={handleTestimonial2}
+                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
+                  />
+                </div>
+
+                <div className="flex flex-col">
+                  <label className="block text-sm font-medium mb-2">
+                    Description
+                  </label>
+                  <input
+                    name="description"
+                    value={Testimonial2.description}
+                    onChange={handleTestimonial2}
+                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
+                  />
+                </div>
+
+                <div className="flex flex-col">
+                  <label className="block text-sm font-medium mb-2">
+                    Ranting
+                  </label>
+                  <input
+                    name="ranking"
+                    value={Testimonial2.ranking}
+                    onChange={handleTestimonial2}
+                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="w-[30%]">
+                <h3 className="mb-2 font-bold">Testimonial 3</h3>
+
+                <div className="flex flex-col mb-3">
+                  <label className="block text-sm font-medium">
+                    Name
+                  </label>
+                  <input
+                    name="name"
+                    value={Testimonial3.name}
+                    onChange={handleTestimonial3}
+                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
+                  />
+                </div>
+
+                <div className="flex flex-col mb-3">
+                  <label className="block text-sm font-medium ">
+                    role
+                  </label>
+                  <input
+                    name="role"
+                    value={Testimonial3.role}
+                    onChange={handleTestimonial3}
+                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
+                  />
+                </div>
+
+                <div className="flex flex-col">
+                  <label className="block text-sm font-medium mb-2">
+                    company
+                  </label>
+                  <input
+                    name="company"
+                    value={Testimonial3.company}
+                    onChange={handleTestimonial3}
+                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
+                  />
+                </div>
+
+                <div className="flex flex-col">
+                  <label className="block text-sm font-medium mb-2">
+                    Title
+                  </label>
+                  <input
+                    name="title"
+                    value={Testimonial3.title}
+                    onChange={handleTestimonial3}
+                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
+                  />
+                </div>
+
+                <div className="flex flex-col">
+                  <label className="block text-sm font-medium mb-2">
+                    Description
+                  </label>
+                  <input
+                    name="description"
+                    value={Testimonial3.description}
+                    onChange={handleTestimonial3}
+                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
+                  />
+                </div>
+
+                <div className="flex flex-col">
+                  <label className="block text-sm font-medium mb-2">
+                    Ranking
+                  </label>
+                  <input
+                    name="ranking"
+                    value={Testimonial3.ranking}
+                    onChange={handleTestimonial3}
+                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
+                  />
+                </div>
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+          {/* Editor for Module */}
+
+          <div className="w-[95%] mx-auto border rounded-2xl h-full mt-5 mb-5 p-4">
+            <div className="font-bold text-center text-3xl mb-4">Module Manipulate Section</div>
+
+            <Editor
+
+              height="65vh"
+              language="json"
+              theme="vs-dark"
+              value={editorValue}
+              onChange={(value) => setEditorValue(value || "")}
+              className="rounded-2xl"
+
+            />
+
+            <div className="mt-6 inline-block px-10 py-4 rounded-3xl bg-blue-600 text-white text-sm font-medium transition cursor-pointer hover:bg-[#020242] ml-3 mb-3" onClick={handleModuleParse}>
+              Save Converted Module
+            </div>
+
+            <div className="w-full bg-[#708cf1] border-none rounded-2xl h-[10vh]">
+
+              <p className="text-center text-xl font-bold ">Output Box</p>
+              <p className={`text-center text-xl font-bold ${parsedMessage.status ? "text-green-300" : "text-red-400"}`}>
+                {
+                  parsedMessage.message
+                }
               </p>
 
-              <div className="text-sm text-gray-500 space-y-1">
-                <p>📅 Start: {formData.startDate || "Not set"}</p>
-                <p>⏱ Duration: {formData.Duration || "0"} days</p>
-                <p>🌐 Mode: {formData.Delivery_Mode || "N/A"}</p>
-                <p>🗣 Language: {formData.language || "English"}</p>
-              </div>
             </div>
           </div>
+
+          {/* Submit */}
+
+          <button type='submit' className="mt-6 px-10 py-4 rounded-3xl bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition ml-5 mb-5">
+            Save Course
+          </button>
+
         </div>
-      </div>
+      </form>
     </div>
   )
 }

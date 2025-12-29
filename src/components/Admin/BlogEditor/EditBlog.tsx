@@ -1,6 +1,14 @@
 import { supabase } from '@/lib/supabse/supabaseConfig';
+import dynamic from 'next/dynamic';
 import React, { useEffect, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify';
+
+import "suneditor/dist/css/suneditor.min.css";
+
+
+const SunEditor = dynamic(() => import("suneditor-react"), {
+    ssr: false,
+});
 
 type blog = {
 
@@ -11,8 +19,9 @@ type blog = {
         question: string;
         answer: string
     }[];
-    image: string ,
+    image: string,
     created_at: number;
+    author: string,
     domain: string;
 
 };
@@ -27,6 +36,8 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: blog }) => {
         content: "",
         domain: ""
     });
+
+    const [editorContent, setEditorContent] = useState("");
 
     const [content, setContent] = useState({
 
@@ -91,6 +102,8 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: blog }) => {
             sixthAnswer: blog.FAQ?.[5]?.answer || "",
         });
 
+        setEditorContent(blog.content);
+
 
     }, []);
 
@@ -123,7 +136,10 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: blog }) => {
     }
 
 
-    const handleEditData = async () => {
+    const handleEditData = async (event: React.FormEvent<HTMLFormElement>) => {
+
+
+        event.preventDefault();
 
         setloading(true);
 
@@ -227,24 +243,7 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: blog }) => {
                             </div>
 
 
-                            {/* Description */}
-
-                            <div>
-                                <label className="block text-sm font-medium mb-2">
-                                    Short Description
-                                </label>
-                                <textarea
-                                    name="content"
-                                    value={formData.content}
-                                    onChange={handleChange}
-                                    rows={15}
-                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
-                                />
-                            </div>
-
-
                             {/* Image Upload */}
-
 
                             <div>
                                 <label className="block text-sm font-medium mb-2">
@@ -258,10 +257,11 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: blog }) => {
                                     </label>
                                     <span className="text-xs text-gray-500">
                                         PNG, JPG up to 5MB
-                                    </span> <br/>
-                                    <div>
-                                        {imageURL}
-                                    </div>
+                                    </span> <br />
+
+                                </div>
+                                <div>
+                                    {imageURL.slice(0,10)}...
                                 </div>
                             </div>
 
@@ -443,8 +443,29 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: blog }) => {
 
                         </div>
 
+                    </div>
 
+                    <div className="h-[85vh] w-full rounded-2xl border p-5 overflow-hidden ">
 
+                        <SunEditor
+                            defaultValue={editorContent}
+                            setOptions={{
+                                minHeight: "65vh",
+                                maxHeight: "70vh",
+                                buttonList: [
+                                    ["undo", "redo"],
+                                    ["formatBlock"],   // H1, H2, H3 works here
+                                    ["bold", "italic", "underline"],
+                                    ["list"],
+                                    ["align"],
+                                    ["link", "image"],
+                                ],
+                            }}
+
+                            onChange={(content) => {
+                                setEditorContent(content);
+                            }}
+                        />
                     </div>
 
                     {/* Submit */}

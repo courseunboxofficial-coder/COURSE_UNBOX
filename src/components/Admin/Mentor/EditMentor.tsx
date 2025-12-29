@@ -34,6 +34,7 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
 
 
     useEffect(() => {
+          if (!mentor) return;
         setFormData({
 
             name: mentor.name,
@@ -43,7 +44,7 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
             description: mentor.description,
 
         })
-    }, []);
+    }, [mentor]);
 
 
     const handleFileData = async (event: React.ChangeEvent<HTMLInputElement>) => {
