@@ -16,12 +16,13 @@ type course = {
     title: string,
     subtitle: string
   }[];
-  low:number,
-  high:number,
+  low: number,
+  high: number,
+  modules: {},
   created_at: number;
   domain: string;
-  Delivery_Mode: string
-
+  Delivery_Mode: string,
+  image?: File | null;
 
 };
 
@@ -62,13 +63,13 @@ const CourseTable = ({ onEdit }: { onEdit: any }) => {
       return;
     };
 
-    
+
     const notify = () => {
       toast("Data is Deleted");
     };
 
     notify();
-    
+
 
   }
 

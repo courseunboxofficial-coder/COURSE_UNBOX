@@ -42,7 +42,7 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button
-          className="lg:hidden text-gray-700"
+          className="lg:hidden text-gray-700 cursor-pointer transition"
           onClick={() => setOpen(!open)}
         >
           {open ? <X size={26} /> : <Menu size={26} />}

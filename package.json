@@ -9,7 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@monaco-editor/react": "^4.7.0",
     "@supabase/supabase-js": "^2.89.0",
+    "@tailwindcss/typography": "^0.5.19",
     "lucide": "^0.560.0",
     "lucide-react": "^0.560.0",
     "next": "16.0.8",
@@ -19,7 +21,10 @@
     "react-dom": "19.2.1",
     "react-slick": "^0.31.0",
     "react-toastify": "^11.0.5",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "suneditor": "^2.47.8",
+    "suneditor-react": "^3.6.1",
+    "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -29,7 +34,6 @@
     "@types/react-slick": "^0.23.13",
     "eslint": "^9",
     "eslint-config-next": "16.0.8",
-    "tailwindcss": "^4",
     "typescript": "^5"
   }
 }

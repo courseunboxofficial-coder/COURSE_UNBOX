@@ -1,167 +1,89 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Lock, ChevronRight } from "lucide-react";
+import { supabase } from "@/lib/supabse/supabaseConfig";
 
-const TABS = [
-    "Data Science Foundations",
-    "Python",
-    "Statistics",
-    "EDA",
-    "Machine Learning",
-    "SQL",
-    "MLOps",
-];
+type Course = {
+    id: string;
+    title: string;
+    description: string;
+    startDate: string;
+    Duration: number;
+    language: string;
+    domain: string;
+    Delivery_Mode: string;
+    content: {
+        title: string;
+        subtitle: string;
+    }[];
+    price: number,
+    high: number,
+    low: number,
+    modules: Record<
+        string,
+        {
+            module: string;
+            title: string;
+            lectures: string[];
+        }[]
+    >,
+    image: string,
+}
 
-const CURRICULUM: Record<string, any[]> = {
-    "Data Science Foundations": [
-        {
-            module: "Module 1",
-            title: "What is Data Science?",
-            lectures: [
-                "Lecture 1 : What is DS?",
-                "Lecture 2 : Why DS Matters",
-                "Lecture 3 : DS Roles (DS, ML Engineer, AI Engineer)",
-                "Lecture 4 : Tools used in DS",
-                "Lecture 5 : Industry examples",
-            ],
-        },
-        {
-            module: "Module 2",
-            title: "Future of Data Science",
-            lectures: [
-                "Lecture 1 : DS Career Growth",
-                "Lecture 2 : AI & Data Trends",
-                "Lecture 3 : Skills for Future",
-            ],
-        },
-    ],
-
-
-    "Python": [
-        {
-            module: "Module 1",
-            title: "What is Data Science?",
-            lectures: [
-                "Lecture 1 : What is DS?",
-                "Lecture 2 : Why DS Matters",
-                "Lecture 3 : DS Roles (DS, ML Engineer, AI Engineer)",
-                "Lecture 4 : Tools used in DS",
-                "Lecture 5 : Industry examples",
-            ],
-        },
-        {
-            module: "Module 2",
-            title: "Future of Data Science",
-            lectures: [
-                "Lecture 1 : DS Career Growth",
-                "Lecture 2 : AI & Data Trends",
-                "Lecture 3 : Skills for Future",
-            ],
-        },
-    ],
-
-    "Statistics": [
-        {
-            module: "Module 1",
-            title: "What is Data Science?",
-            lectures: [
-                "Lecture 1 : What is DS?",
-                "Lecture 2 : Why DS Matters",
-                "Lecture 3 : DS Roles (DS, ML Engineer, AI Engineer)",
-                "Lecture 4 : Tools used in DS",
-                "Lecture 5 : Industry examples",
-            ],
-        },
-        {
-            module: "Module 2",
-            title: "Future of Data Science",
-            lectures: [
-                "Lecture 1 : DS Career Growth",
-                "Lecture 2 : AI & Data Trends",
-                "Lecture 3 : Skills for Future",
-            ],
-        },
-    ],
-
-    "EDA": [
-        {
-            module: "Module 1",
-            title: "What is Data Science?",
-            lectures: [
-                "Lecture 1 : What is DS?",
-                "Lecture 2 : Why DS Matters",
-                "Lecture 3 : DS Roles (DS, ML Engineer, AI Engineer)",
-                "Lecture 4 : Tools used in DS",
-                "Lecture 5 : Industry examples",
-            ],
-        },
-        {
-            module: "Module 2",
-            title: "Future of Data Science",
-            lectures: [
-                "Lecture 1 : DS Career Growth",
-                "Lecture 2 : AI & Data Trends",
-                "Lecture 3 : Skills for Future",
-            ],
-        },
-    ],
-
-    "Machine Learning": [
-        {
-            module: "Module 1",
-            title: "What is Data Science?",
-            lectures: [
-                "Lecture 1 : What is DS?",
-                "Lecture 2 : Why DS Matters",
-                "Lecture 3 : DS Roles (DS, ML Engineer, AI Engineer)",
-                "Lecture 4 : Tools used in DS",
-                "Lecture 5 : Industry examples",
-            ],
-        },
-        {
-            module: "Module 2",
-            title: "Future of Data Science",
-            lectures: [
-                "Lecture 1 : DS Career Growth",
-                "Lecture 2 : AI & Data Trends",
-                "Lecture 3 : Skills for Future",
-            ],
-        },
-    ],
-
-    "SQL": [
-        {
-            module: "Module 1",
-            title: "What is Data Science?",
-            lectures: [
-                "Lecture 1 : What is DS?",
-                "Lecture 2 : Why DS Matters",
-                "Lecture 3 : DS Roles (DS, ML Engineer, AI Engineer)",
-                "Lecture 4 : Tools used in DS",
-                "Lecture 5 : Industry examples",
-            ],
-        },
-        {
-            module: "Module 2",
-            title: "Future of Data Science",
-            lectures: [
-                "Lecture 1 : DS Career Growth",
-                "Lecture 2 : AI & Data Trends",
-                "Lecture 3 : Skills for Future",
-            ],
-        },
-    ],
-
-
-
+type ModuleType = {
+    module: string;
+    title: string;
+    lectures: string[];
 };
 
-export default function Module() {
-    const [activeTab, setActiveTab] = useState(TABS[0]);
-    const [activeModule, setActiveModule] = useState(0);
+export default function Module({ courseId }: { courseId: string }) {
 
-    const modules = CURRICULUM[activeTab] || [];
+    const [course, setCourse] = useState<Course | null>(null);
+    const [activeTab, setActiveTab] = useState<string | null>(null);
+    const [activeModule, setActiveModule] = useState(0);
+    console.log("THE COURSE COMING IS : ");
+    console.log(course);
+
+
+    const getData = async () => {
+        const { data, error } = await supabase
+            .from("Courses")
+            .select("*")
+            .eq("id", courseId)
+            .single();
+
+        if (error) {
+
+            console.log("THE GOT IN THE MODULE SECTION IS : ");
+            console.log(error);
+
+        }
+
+        console.log("THE DATA OF THE MODULE SECTION IS : ")
+        console.log(data);
+
+        console.log("THE Modules is : ");
+
+        console.log(data.modules);
+
+
+        setCourse(data);
+        setActiveTab(Object.keys(data.modules)[0]);
+
+
+    };
+
+    useEffect(() => {
+        getData();
+    }, []);
+
+
+
+    /* Derived Modules */
+    const modules: ModuleType[] =
+        course && activeTab ? course.modules[activeTab] : [];
+
 
     return (
         <section className="p-10 bg-[#f5fafd]">
@@ -176,27 +98,35 @@ export default function Module() {
                 {/* Tabs */}
 
                 <div className="flex gap-3 mb-8 overflow-x-auto overflow-y-hidden scrollbar-hide scroll-smooth">
-                    {TABS.map((tab) => (
-                        <button
-                            key={tab}
-                            onClick={() => {
-                                setActiveTab(tab);
-                                setActiveModule(0);
-                            }}
-                            className={`px-20 py-6 text-black shrink-0 rounded-4xl text-sm font-medium transition cursor-pointer 
-              ${activeTab === tab
-                                    ? "bg-[#030363] text-white"
-                                    : "bg-[white] hover:bg-gray-200"
-                                }`}
-                        >
-                            {tab}
-                        </button>
-                    ))}
+                    {course &&
+                        Object.keys(course.modules).map((tab) => (
+
+                            <button
+                                key={tab}
+                                onClick={() => {
+                                    setActiveTab(tab);
+                                    setActiveModule(0);
+                                }}
+                                className={`px-20 py-6 text-black shrink-0 rounded-4xl text-sm font-medium transition cursor-pointer 
+        ${activeTab === tab
+                                        ? "bg-[#030363] text-white"
+                                        : "bg-white hover:bg-gray-200"
+                                    }`}
+                            >
+                                {tab}
+
+                            </button>
+
+
+                        ))}
+
+
                 </div>
 
                 {/* Content */}
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 border border-black rounded-lg p-4">
+
                     {/* Left Modules */}
 
                     <div className="md:col-span-1 border-r pr-4">

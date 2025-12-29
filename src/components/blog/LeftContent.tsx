@@ -10,6 +10,7 @@ type Blog = {
   id: string;
   domain: string;
   title: string;
+  author: string;
   content: string;
   FAQ: {
     question: string;
@@ -54,6 +55,7 @@ export default function LeftContent({ BlogId }: { BlogId: string }) {
 
   }, []);
   return (<article className=" border-r-gray-400 ">
+
     {/* ===== BLOG HEADER ===== */}
     <section className="px-4 pt-16 ">
 
@@ -75,7 +77,7 @@ export default function LeftContent({ BlogId }: { BlogId: string }) {
       <div className="mt-3 h-1 w-24 bg-linear-to-r from-blue-500 via-indigo-500 to-transparent rounded-full"></div>
 
       <p className="mt-4 text-sm text-slate-600">
-        By <span className="font-medium text-slate-800">Rohit Juyal</span> · Jun 28,
+        By <span className="font-medium text-slate-800">{Blogs?.author}</span> · Jun 28,
         2025
       </p>
     </section>
@@ -111,13 +113,16 @@ export default function LeftContent({ BlogId }: { BlogId: string }) {
 
     {/* ===== BLOG CONTENT ===== */}
     <section className="mx-auto px-4 mt-12">
-      <div className="prose prose-slate max-w-none">
-        <p>
+      <div className="
+  prose prose-slate max-w-none
+  prose-ul:list-disc
+  prose-ul:pl-6
+  prose-ol:list-decimal
+  prose-li:marker:text-slate-500
+"
+        dangerouslySetInnerHTML={{ __html: Blogs?.content ?? "" }}
+      />
 
-          {Blogs?.content}
-
-        </p>
-      </div>
     </section>
   </article>)
 }

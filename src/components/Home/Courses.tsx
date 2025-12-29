@@ -36,6 +36,7 @@ const Courses = () => {
     console.log(courses);
 
     useEffect(() => {
+
         const handleFetchCourseData = async () => {
             const { data, error } = await supabase.from("Courses").select("*");
 
@@ -76,14 +77,14 @@ const Courses = () => {
                 </p>
 
 
-                <div className="flex flex-wrap justify-center gap-4 mb-10">
+                <div className="flex flex-wrap justify-center gap-4 mb-10 ">
                     {categories.map((cat) => (
                         <button
                             key={cat}
                             onClick={() => setActiveCategory(cat)}
-                            className={`px-15 py-6 rounded-full border transition-all duration-300 cursor-pointer ${activeCategory === cat
-                                ? "bg-[#1C336E] text-white font-bold border-[#1C336E]"
-                                : "border-[#1C336E] text-[#1C336E] font-bold bg-white hover:bg-[#cac2f7]"
+                            className={` px-15 py-6 max-md:px-6 max-md:py-3 max-w-full whitespace-nowrap rounded-full border transition-all duration-300 cursor-pointer  ${activeCategory === cat
+                                    ? "bg-[#1C336E] text-white font-bold border-[#1C336E]"
+                                    : "border-[#1C336E] text-[#1C336E] font-bold bg-white hover:bg-[#cac2f7]"
                                 }`}
                         >
                             {cat}
@@ -92,11 +93,19 @@ const Courses = () => {
                 </div>
 
 
-                <div className="flex flex-wrap justify-center gap-8">
+                <div className="flex flex-wrap justify-center gap-8 max-md:flex-col max-md:justify-center max-md:items-center">
                     {filteredCourses.map((course) => (
                         <div
                             key={course.id}
-                            className="h-[55vh] w-[20vw] border-2 bg-white border-[#2e19a7] rounded-2xl flex flex-col shadow-xl gap-1 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 cursor-pointer"
+                            className="
+        h-[55vh] w-[20vw]
+        max-md:w-[25%] max-md:h-auto
+        max-sm:w-[30%]
+        border-2 bg-white border-[#2e19a7]
+        rounded-2xl flex flex-col shadow-xl gap-1
+        hover:shadow-2xl hover:-translate-y-1
+        transition-all duration-300 cursor-pointer
+    "
                         >
                             <Image
                                 src={course.image}
