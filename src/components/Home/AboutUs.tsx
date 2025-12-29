@@ -214,7 +214,7 @@
 //   );
 // }
 
-
+"use client"
 
 import { useState, useRef } from "react";
 
@@ -224,7 +224,7 @@ export default function AboutUs() {
 
   const handleToggle = () => {
     if (expanded && contentRef.current) {
-      contentRef.current.scrollTop = 0; // ✅ reset scroll position
+      contentRef.current.scrollTop = 0; // 
     }
     setExpanded(!expanded);
   };
