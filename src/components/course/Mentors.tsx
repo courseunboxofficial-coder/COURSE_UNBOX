@@ -8,15 +8,38 @@ import Image from "next/image";
 
 const Mentors = () => {
     var settings = {
-        dots: true,
-        infinite: true,
+    dots: true,
+    infinite: true,
+    slidesToShow: 3,         
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
+
+  responsive: [
+    {
+      breakpoint: 1280, // large tablets / small laptops
+      settings: {
         slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        speed: 2000,
-        autoplaySpeed: 2000,
-        cssEase: "linear",
-    };
+      },
+    },
+    {
+      breakpoint: 1024, // tablets
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+    {
+      breakpoint: 768, // mobile
+      settings: {
+        slidesToShow: 1,
+        dots: true,
+      },
+    },
+  ],
+};
+
 
     return (
 

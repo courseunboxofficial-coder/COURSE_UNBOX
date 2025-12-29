@@ -11,10 +11,10 @@ export default function CategoryOverview() {
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px) [background-size:24px_24px]" />
 
       <div className="max-w-7xl mx-auto px-4 py-12 bg-[radial-gradient(#ffffff_1px,transparent_1px)">
-      <h2 className="text-2xl md:text-4xl font-extrabold mb-4 text-black">
+      <div className="text-2xl md:text-4xl font-extrabold mb-4 text-black">
        <h2>About the <span className="text-blue-600">Data Science</span> Courses</h2>
 
-      </h2>
+      </div>
 
       <div className="w-20 h-1 mb-6 bg-linear-to-r from-blue-600 to-yellow-400 rounded-full" />
 

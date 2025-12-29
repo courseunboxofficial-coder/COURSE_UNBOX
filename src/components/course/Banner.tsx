@@ -60,7 +60,7 @@ const Banner = ({ courseId }: { courseId: string }) => {
 
 
     return (
-        <section className="bg-white h-[16vh] text-black py-6 border-b border-gray-200">
+        <section className="bg-white  text-black py-6 border-b border-gray-200">
             <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-5 text-center">
 
                 <div className="py-4 border-r border-gray-300">

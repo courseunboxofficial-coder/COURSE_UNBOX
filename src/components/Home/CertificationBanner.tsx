@@ -4,7 +4,7 @@ import { Check, Timer } from "lucide-react";
 import React from "react";
 import Countdown from "react-countdown";
 
-export default function Deepak() {
+export default function CertificationBanner() {
   // Target time (same duration you used)
   const TARGET_TIME =
     Date.now() +

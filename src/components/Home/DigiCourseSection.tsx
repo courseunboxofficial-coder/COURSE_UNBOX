@@ -8,14 +8,14 @@ export default function DigiCourseSection() {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <section className="w-full bg-slate-50 py-5">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-5">
+    <section className="max-w-7xl mx-auto px-6 rounded-xl border-gray-200 shadow-xl bg-linear-to-br from-blue-300 via-yellow-50 to-blue-300 my-20 ">
+      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px) [background-size:24px_24px]" />
 
-          {/* Title */}
-          <h2 className="text-lg md:text-3xl font-bold text-gray-900 mb-2">
-            Digital Marketing Course
-          </h2>
+      <div className="max-w-7xl mx-auto px-4 py-12 bg-[radial-gradient(#ffffff_1px,transparent_1px)">
+       <div className="text-2xl md:text-4xl font-extrabold mb-4 text-black">
+       <h2>About the <span className="text-blue-600">Digital Marketing </span> Course</h2>
+
+      </div>
 
           {/* Short Description */}
           <p className="text-gray-600 leading-relaxed mb-4">
@@ -26,16 +26,16 @@ export default function DigiCourseSection() {
 
 
           {/* Expandable Content */}
-          <div  className={`transition-all duration-500 ease-in-out overflow-hidden ${expanded ? "max-h-250 opacity-100" : "max-h-0 opacity-0"}`}>
-            <div className="pt-2 space-y-2 text-gray-600 leading-relaxed">
+          <div  className={`transition-all duration-500 ease-in-out overflow-hidden ${expanded ? "max-h-250 opacity-100 mb-4" : "max-h-0 opacity-0"}`}>
+            <div className="pt-2 space-y-3 text-gray-600 leading-relaxed">
 
               <p> This Digital Marketing course covers all essential modules, including Search Engine Optimization (SEO), Social Media Marketing (SMM), Google Ads, Facebook Ads, Email Marketing,
-                Content Strategy, and Web Analytics.</p>
+                Content Strategy, and Web Analytics.
 
-              <p>You will work on real-world projects, understand audience targeting, keyword research, conversion optimization, and performance tracking using tools like Google Analytics and
-                Search Console.</p>
+              You will work on real-world projects, understand audience targeting, keyword research, conversion optimization, and performance tracking using tools like Google Analytics and
+                Search Console.
 
-              <p>By the end of the course, you will be job-ready with practical
+              By the end of the course, you will be job-ready with practical
                 skills, industry insights, and a strong portfolio to showcase
                 your expertise.</p>
             </div>
@@ -57,9 +57,8 @@ export default function DigiCourseSection() {
               <ChevronDown size={18} />
             )}
           </button>
+    </div>
 
-        </div>
-      </div>
     </section>
   );
 }
