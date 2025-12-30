@@ -7,40 +7,45 @@ import AddCourse from './CourseEditor/AddCourse';
 import EditCourse from './CourseEditor/EditCourse';
 
 type Course = {
-    id: string;
+  id: string;
+  title: string;
+  description: string;
+  startDate: string;
+  Duration: number;
+  language: string;
+  domain: string;
+  Delivery_Mode: string;
+  low: number,
+  high: number,
+  price: number,
+  content: {
     title: string;
-    description: string;
-    startDate: string;
-    Duration: number;
-    language: string;
-    domain: string;
-    Delivery_Mode: string;
-    low: number,
-    high: number,
-    price: number,
-    content: {
-        title: string;
-        subtitle: string;
-    }[];
-    Testimonials:
+    subtitle: string;
+  }[];
+  Testimonials:
+  {
+    name: string,
+    role: string,
+    company: string,
+    title: string,
+    description: string,
+    ranking: string,
+    course: string
+  }[],
+  modules: Record<
+    string,
     {
-        name: string,
-        role: string,
-        company: string,
-        title: string,
-        description: string,
-        ranking: string,
-        course: string
-    }[],
-    modules: Record<
-        string,
-        {
-            module: string;
-            title: string;
-            lectures: string[];
-        }[]
-    >,
-    image: string;
+      module: string;
+      title: string;
+      lectures: string[];
+    }[]
+  >,
+
+  FAQ: {
+    question: string;
+    answer: string
+  }[];
+  image: string;
 }
 
 
