@@ -7,25 +7,41 @@ import AddCourse from './CourseEditor/AddCourse';
 import EditCourse from './CourseEditor/EditCourse';
 
 type Course = {
-
-    id: string;
+  id: string;
+  title: string;
+  description: string;
+  startDate: string;
+  Duration: number;
+  language: string;
+  domain: string;
+  Delivery_Mode: string;
+  low: number,
+  high: number,
+  price: number,
+  content: {
     title: string;
-    description: string;
-    startDate: string;
-    Duration: number;
-    language: string;
-
-    content: {
-        title: string;
-        subtitle: string;
-    }[];
-    low : number,
-    high : number,
-    created_at: number;
-    domain: string;
-    Delivery_Mode: string
-
-};
+    subtitle: string;
+  }[];
+  Testimonials:
+  {
+    name: string,
+    role: string,
+    company: string,
+    title: string,
+    description: string,
+    ranking: string,
+    course: string
+  }[],
+  modules: Record<
+    string,
+    {
+      module: string;
+      title: string;
+      lectures: string[];
+    }[]
+  >,
+  image: string;
+}
 
 
 const CourseEditor = ({ collapsed }: { collapsed: boolean }) => {
