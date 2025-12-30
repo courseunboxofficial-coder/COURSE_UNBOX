@@ -21,7 +21,8 @@ import Faq from "@/components/Home/Faq";
 import TestimonialsSection from "@/components/About/TestimonialsSection";
 import DigiCourseSection from "@/components/Home/DigiCourseSection";
 import PhotoGalleryCarousel from "@/components/Home/PhotoGallery";
-
+import HomeEnquiry from "@/components/Home/HomeEnquiry";
+import { UpdatedBanner } from "@/components/Home/UpdatedBanner";
 export default function Home() {
 
       return (
@@ -31,10 +32,12 @@ export default function Home() {
                   <Navbar />
                   <Hero />
                   <Partners />
-                  <Banner />
+                  {/* <Banner /> */}
+                  <UpdatedBanner/>
                   <Trending />
                   <Courses />
-                  <Enquiry />
+                  {/* <Enquiry /> */}
+                  <HomeEnquiry/>
                   <TopCourses />
                   <Hire />
                   <Mentors />

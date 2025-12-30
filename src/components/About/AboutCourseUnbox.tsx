@@ -9,7 +9,7 @@ export default function AboutCourseUnbox() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
 
         {/* LEFT CONTENT */}
-        <div className="bg-white py-10 sm:py-16 px-6 sm:px-10 shadow-lg rounded-2xl">
+        <div className="bg-white py-10 sm:py-16 px-6 sm:px-10 shadow-lg rounded-2xl cursor-pointer">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-800 mb-5 sm:mb-6">
             About Course Unbox
           </h2>
@@ -66,7 +66,7 @@ export default function AboutCourseUnbox() {
                        text-base sm:text-lg
                        px-6 sm:px-8 py-3
                        rounded-lg shadow-md
-                       transition-all duration-200"
+                       transition-all duration-200 cursor-pointer"
           >
             » Book Your Seat
           </button>

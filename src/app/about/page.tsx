@@ -22,7 +22,7 @@ export default function AboutPage() {
         <>
 
             <Navbar />
-            <div className="w-full bg-white">
+            <div className="w-full bg-white ">
                 
                 {/* STATS SECTION */}
                 <AboutCourseUnbox/>

@@ -2,7 +2,6 @@
 import { IndianRupee , TrendingUp, Globe  } from "lucide-react";
 import CountUp from "../Category/CountUp";
 import PopUpForm from "./PopUpForm";
-
 import Image from "next/image";
 import { useState } from "react";
 
@@ -13,10 +12,11 @@ export default function Hero(){
     return (
       <>
       <PopUpForm  isOpen={isOpen} onCancel={()=>setIsOpen(false)} onConfirm={()=>setIsOpen(false)}/>
-      <section className="relative overflow-hidden bg-linear-to-r from-[#003a8f] via-[#004fb3] to-[#0066d6] py-3">
+
+      <section className="relative overflow-hidden bg-linear-to-r from-[#003a8f] via-[#004fb3] to-[#0066d6] py-3 z-99 ">
       
       {/* Soft Pattern Overlay */}
-      <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] bg-size-[24px_24px]" />
+     <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(#ffffff_1px,transparent_1px)] bg-size-[24px_24px]" />
 
       <div className="relative max-w-7xl mx-auto px-6 pt-4 sm:pt-12 pb-4 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         
@@ -43,7 +43,7 @@ export default function Hero(){
             )}
           </p>
 
-          <button onClick={()=>setExpanded(!expanded)} className="mt-5 text-blue-200 underline underline-offset-4 hover:text-white transition cursor-pointer">
+          <button onClick={()=>setExpanded(!expanded)} className="mt-5 text-blue-200 underline underline-offset-4 hover:text-white transition cursor-pointer z-90">
             {expanded ? "Read Less" : "Read More"}
           </button>
 
@@ -69,7 +69,7 @@ export default function Hero(){
 
                 {/* HIRED Stamp */}
                 <div className="absolute top-8 left-8 bg-white text-blue-600 font-bold px-4 py-2 rounded-lg shadow-lg rotate-[-8deg]">
-                HIRED
+                  HIRED
                 </div>
             </div>
 

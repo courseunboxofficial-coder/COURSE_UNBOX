@@ -3,7 +3,7 @@ import { supabase } from "@/lib/supabse/supabaseConfig";
 import Image from "next/image";
 import { title } from "process";
 import { useEffect, useState } from "react";
-import { Send } from "lucide-react";
+import { Send , FileText} from "lucide-react";
 import PopUpForm from "../AllCourses/PopUpForm";
 
 
@@ -61,7 +61,7 @@ const Hero = () => {
                 w-full sm:w-auto
                 hover:bg-[#b9b940]
                 transition
-                pointer-events-auto
+                z-99
                 cursor-pointer
               "
               onClick={()=>setIsOpen(true)}
@@ -72,33 +72,37 @@ const Hero = () => {
                 height={20}
                 alt="google"
               /> */}
-              <Send fill="#ffffff" className="text-gray-300" size={22}/>
+              <Send fill="#ffffff" className="text-gray-300" size={24}/>
               <span className="cursor-pointer" onClick={()=>setIsOpen(true )}>Let's connect</span>
             </button>
 
-            <button
+            <a
               className="
                 flex items-center justify-center gap-2
                 bg-blue-500 pl-3
-                pr-10 py-2.5
+                pr-10 py-4
                 rounded-full
                 cursor-pointer
                 font-medium
                 w-full sm:w-auto
                 hover:bg-[#060646]
                 transition
+                z-99
                 
               "
+              href="/brochure.pdf"
+              download
             >
-              <Image
+              {/* <Image
                 src="/images/Home/GmailLogo.webp"
                 width={36}
                 height={20}
                 alt="email"
                 className="rounded-full"
-              />
-              <span>Continue with Email</span>
-            </button>
+              /> */}
+              <FileText size={24}/>
+              <span>Download Brochure</span>
+            </a>
           </div>
 
           <p className="text-xs sm:text-sm mt-4">
@@ -124,16 +128,16 @@ const Hero = () => {
     </section>
 
 
-    {/* MOBILE / SMALL SCREENS */}
-<section
-    className="
-      md:hidden
-      w-full
-      bg-linear-to-r from-[#1C336E] to-[#3d5ba9]
-      text-white
-      px-4 py-16
-    "
->
+       {/* MOBILE / SMALL SCREENS */}
+      <section
+          className="
+            md:hidden
+            w-full
+            bg-linear-to-r from-[#1C336E] to-[#3d5ba9]
+            text-white
+            px-4 py-16
+          "
+      >
   
     <div className="text-center mb-12">
       <h1 className="text-3xl font-bold mb-4">

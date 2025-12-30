@@ -4,16 +4,20 @@ import Image from "next/image";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
-
+import Router from "next/router";
+import { useRouter } from "next/navigation";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   return (
-    <nav className="w-full h-full md:h-18 sticky top-0 z-50 border-b bg-white shadow-md">
+    <nav className="w-full h-full md:h-18 sticky top-0 z-100 border-b bg-white shadow-md">
       <div className=" flex items-center justify-between px-4 sm:px-8 py-4">
 
-        <div className="flex items-center justify-between   space-x-2   w-full  lg:w-[60%] xl:w-[40%]">
-          <Image
+        <div className="flex items-center justify-between  space-x-2   w-full  lg:w-[60%] xl:w-[40%]">
+          <Link href={"/"}>
+            
+            <Image
             src="/images/Home/CourseUnboxLogo.webp"
             width={100}
             height={30}
@@ -21,6 +25,9 @@ const Navbar = () => {
             className="cursor-pointer"
           />
 
+          
+          </Link>
+          
           
           <div className="hidden lg:flex items-center space-x-15 font-bold text-gray-700">
             <Link href={"/"} className="cursor-pointer relative

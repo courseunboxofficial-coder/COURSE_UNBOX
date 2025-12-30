@@ -4,44 +4,32 @@ import { ChevronDown, CircleQuestionMark } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 
-let questions = [
+let faqs =[
   {
-    ques:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, dolores porro aut eligendi saepe illum?",
-    ans:
-      "Lorem answer - 1  ipsum dolor sit amet consectetur adipisicing elit. Perferendis fugit fugiat illo, debitis qui consequatur dignissimos. Suscipit beatae doloremque esse in necessitatibus saepe. Ratione, fuga.",
+    ques: "Which is the best Digital Marketing Institute in Delhi NCR for practical learning?",
+    ans: "The best Digital Marketing Institute in Delhi NCR is one that focuses on hands-on training, real-world projects, updated tools, and career support—not just theory. Institutes like Course Unbox emphasize live projects, industry tools, and mentor-led learning to help students become job-ready rather than just certified."
   },
   {
-    ques:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, dolores porro aut eligendi saepe illum?",
-    ans:
-      "Lorem answer - 2 ipsum dolor sit amet consectetur adipisicing elit. Perferendis fugit fugiat illo, debitis qui consequatur dignissimos. Suscipit beatae doloremque esse in necessitatibus saepe. Ratione, fuga.",
+    ques: "What skills should I learn from a Digital Marketing course in Delhi NCR?",
+    ans: "A good Digital Marketing course in Delhi NCR should cover SEO, Google Ads and performance marketing, social media marketing, content marketing, email marketing, web analytics, and real campaign optimization. Practical exposure to tools like Google Analytics, Search Console, and paid ad platforms is essential for real career growth."
   },
   {
-    ques:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, dolores porro aut eligendi saepe illum?",
-    ans:
-      "Lorem answer - 3 ipsum dolor sit amet consectetur adipisicing elit. Perferendis fugit fugiat illo, debitis qui consequatur dignissimos. Suscipit beatae doloremque esse in necessitatibus saepe. Ratione, fuga.",
+    ques: "Is Digital Marketing a good career option in Delhi NCR?",
+    ans: "Yes, digital marketing is a strong career choice in Delhi NCR due to the region’s high concentration of startups, agencies, and corporate businesses. Skilled digital marketers are in demand for roles like SEO specialist, performance marketer, social media manager, and content strategist, with opportunities for both full-time jobs and freelancing."
   },
   {
-    ques:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, dolores porro aut eligendi saepe illum?",
-    ans:
-      "Lorem answer - 4 ipsum dolor sit amet consectetur adipisicing elit. Perferendis fugit fugiat illo, debitis qui consequatur dignissimos. Suscipit beatae doloremque esse in necessitatibus saepe. Ratione, fuga.",
+    ques: "How much does a Digital Marketing course cost in Delhi NCR?",
+    ans: "The fees for a Digital Marketing course in Delhi NCR vary depending on course depth, duration, tools access, and placement support. Instead of choosing a course based only on price, learners should compare curriculum quality, live projects, trainer experience, and post-course career guidance. Course Unbox offers transparent pricing with industry-aligned training and practical exposure."
   },
   {
-    ques:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, dolores porro aut eligendi saepe illum?",
-    ans:
-      "Lorem answer - 5 ipsum dolor sit amet consectetur adipisicing elit. Perferendis fugit fugiat illo, debitis qui consequatur dignissimos. Suscipit beatae doloremque esse in necessitatibus saepe. Ratione, fuga.",
+    ques: "Does Course Unbox provide placement support after Digital Marketing training?",
+    ans: "Yes, Course Unbox provides structured placement and career support, including resume building, interview preparation, portfolio guidance, and job referrals based on skill performance. The focus is on helping learners transition confidently into real digital marketing roles."
   },
   {
-    ques:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis, dolores porro aut eligendi saepe illum?",
-    ans:
-      "Lorem answer - 6 ipsum dolor sit amet consectetur adipisicing elit. Perferendis fugit fugiat illo, debitis qui consequatur dignissimos. Suscipit beatae doloremque esse in necessitatibus saepe. Ratione, fuga.",
-  },
-];
+    ques: "Who should join a Digital Marketing Institute in Delhi NCR?",
+    ans: "A Digital Marketing Institute in Delhi NCR is suitable for students, working professionals, career switchers, freelancers, and business owners. No prior technical background is required—only the willingness to learn, practice, and adapt. Structured institutes like Course Unbox make the learning process easier through guided mentorship and practical training."
+  }
+]
 
 function Faq() {
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
@@ -52,10 +40,10 @@ function Faq() {
       <section className="w-full bg-[#f5fbff] py-12">
 
         <div className="w-full text-center mb-5">
-          <h2 className="relative inline-block font-extrabold text-3xl md:text-4xl lg:text-5xl mb-10 ">
-            Frequently Asked Questions ?
+          <h2 className="relative inline-block font-extrabold text-3xl md:text-4xl lg:text-5xl mb-16 ">
+           FAQs : Digital Marketing Institute in Delhi NCR
             <svg
-              className="absolute left-0 -bottom-10 w-full"
+              className="absolute left-0 -bottom-16 w-full"
               viewBox="0 0 300 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -78,7 +66,7 @@ function Faq() {
 
           <div className="w-full md:w-[60%] mx-auto md:px-4 px-8">
             <div className="flex flex-col gap-4">
-              {questions.map((data, index) => {
+              {faqs.map((data, index) => {
                 const isOpen = currentIndex === index;
                 // xl:px-5 xl:py-4 
                 return (

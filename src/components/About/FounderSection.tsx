@@ -2,8 +2,13 @@
 
 import Image from "next/image";
 import { Linkedin } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 
 export default function FounderSection() {
+  const router = useRouter();
+  
   return (
     <section className="bg-linear-to-br p-4 sm:p-6">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
@@ -12,30 +17,32 @@ export default function FounderSection() {
         <div className="relative">
           <div className="absolute -inset-4 bg-blue-200/40 rounded-3xl blur-2xl"></div>
 
-          <div className="relative rounded-2xl overflow-hidden shadow-xl border border-blue-200 bg-white">
+          <div className="relative rounded-2xl overflow-hidden shadow-xl border border-blue-200 bg-white ">
             <Image
               src="/images/About/Founder.webp"
               alt="Jugal Chauhan Founder Course Unbox"
               width={600}
               height={450}
-              className="w-full object-cover"
+              className="w-full object-cover "
+              
             />
           </div>
 
           {/* CTA */}
-          <a
-            href="#"
+          <button onClick={()=>router.push("/https://www.linkedin.com/in/jugalchauhandm/?originalSubdomain=in")}
+
+         
             className="inline-flex items-center justify-center gap-2
                        mt-5 sm:mt-6
                        w-full sm:w-auto
                        px-6 py-3
                        bg-blue-700 hover:bg-blue-800
                        text-white font-semibold
-                       rounded-lg shadow-md transition cursor-pointer"
+                       rounded-lg shadow-md transition cursor-pointer z-99"
           >
             Connect on LinkedIn
             <Linkedin size={18} />
-          </a>
+          </button>
         </div>
 
         {/* CONTENT SIDE */}

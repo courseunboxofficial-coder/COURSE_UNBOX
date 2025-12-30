@@ -52,6 +52,7 @@ export default function PopUpForm({isOpen,onCancel, onConfirm}:IPopForm) {
                 bg-gray-100 hover:bg-gray-200
                 text-gray-700 hover:text-black
                 transition
+                cursor-pointer
               "
             >
               <X className="w-5 h-5 sm:w-6 sm:h-6" />
