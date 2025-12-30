@@ -1,7 +1,7 @@
 "use client";
 import { supabase } from "@/lib/supabse/supabaseConfig";
 import React, { useRef, useState } from "react";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import dynamic from 'next/dynamic';
 import "suneditor/dist/css/suneditor.min.css";
 
@@ -82,6 +82,7 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
 
         }]).select().single();
 
+
         if (error) {
             console.log("THE ERROR COMES IS : ");
             console.log(error);
@@ -98,7 +99,7 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
         }
 
         setloading(false);
-        toast.success("Blog updated successfully");
+        toast.success("Blog Added successfully");
         
     }
 
@@ -450,6 +451,8 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
                 </div>
 
             </form>
+
+            <ToastContainer/>
 
         </div>
 

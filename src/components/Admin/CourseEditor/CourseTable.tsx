@@ -158,9 +158,9 @@ const CourseTable = ({ onEdit }: { onEdit: any }) => {
             </table>
           </div>
         </div>
+        <ToastContainer />
       </section>
-      <ToastContainer />
-
+      
     </>
   );
 }

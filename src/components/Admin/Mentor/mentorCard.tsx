@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Pencil, Trash2, Layers, Sparkles } from "lucide-react";
 import { supabase } from "@/lib/supabse/supabaseConfig";
+import { toast } from "react-toastify";
 
 type Mentor = {
     
@@ -43,6 +44,15 @@ export default function MentorCard({onEdit} : {onEdit : any}) {
     const handleDelete = async (id : number) => {
 
         const {data , error } = await supabase.from("Mentors").delete().eq("id", id);
+
+        if(error){
+            console.log("THERE IS SOME ERROR OCCUR : ");
+            toast.error("There is some error ocuur");
+        }
+
+        toast.success("The Mentor Data is Delete : ");
+
+         setMentors((prev) => prev.filter((mentor) => mentor.id !== id));
         
     }
 

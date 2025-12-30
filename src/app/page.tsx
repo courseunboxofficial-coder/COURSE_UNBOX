@@ -1,4 +1,4 @@
-"use client";
+
 import Banner from "@/components/Home/Banner";
 import Courses from "@/components/Home/Courses";
 import Hero from "@/components/Home/Hero";

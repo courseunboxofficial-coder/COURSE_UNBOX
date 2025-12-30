@@ -1,6 +1,7 @@
 import { supabase } from '@/lib/supabse/supabaseConfig';
 import dynamic from 'next/dynamic';
 import React, { useEffect, useState } from 'react'
+import { toast, ToastContainer } from 'react-toastify';
 
 type Course = {
   id: string;
@@ -50,6 +51,7 @@ const Editor = dynamic(
 const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course }) => {
 
   const [imageURL, setimageURL] = useState("");
+  const [loading, setloading] = useState(false);
   const [formData, setFormData] = useState({
 
     title: "",
@@ -231,7 +233,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
       high: course.high,
       price: course.price,
       Delivery_Mode: course.Delivery_Mode,
-      image: course.image 
+      image: course.image
 
     })
 
@@ -323,6 +325,10 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
   const handleEditData = async (event: React.FormEvent<HTMLFormElement>) => {
 
     event.preventDefault();
+
+
+    setloading(true);
+
     const validationJson = handleModuleParse();
 
     if (!validationJson) {
@@ -411,17 +417,18 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
 
       }
 
-
-
     ).eq("id", course.id);
 
 
     if (error) {
       console.log("The error ocuur in this is : ");
       console.log(error);
+      toast.error("There is some error occur : ");
+      setloading(false);
     }
 
     console.log(data);
+    setloading(false);
 
   }
 
@@ -1097,12 +1104,15 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
 
           {/* Submit */}
 
-          <button type='submit' className="mt-6 px-10 py-4 rounded-3xl bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition ml-5 mb-5">
-            Save Course
+          <button type='submit' className="mt-6 px-10 py-4 rounded-3xl bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition ml-5 mb-5 cursor-pointer">
+            {
+              loading ? "...Loading" : "Save Course"
+            }
           </button>
 
         </div>
       </form>
+      <ToastContainer />
     </div>
   )
 }

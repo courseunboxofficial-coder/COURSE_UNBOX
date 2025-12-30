@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Pencil, Trash2, Layers, Sparkles } from "lucide-react";
 import { supabase } from "@/lib/supabse/supabaseConfig";
+import { toast, ToastContainer } from "react-toastify";
 
 type blog = {
 
@@ -22,6 +23,7 @@ type blog = {
 export default function BlogCard({ onEdit }: { onEdit: any }) {
 
     const [Blogs, setBlogs] = useState<blog[]>([]);
+    const [loading, setloading] = useState(false);
 
     const fetchTableData = async () => {
 
@@ -51,16 +53,22 @@ export default function BlogCard({ onEdit }: { onEdit: any }) {
 
 
     const handleDelete = async (id: string) => {
+        console.log("This is Running correctly : ");
+
         const { data, error } = await supabase.from("Blog").delete().eq("id", id);
 
         if (error) {
 
-            console.log("This is the error : ");
+            console.log("THE ERROR OCCUR IS : ");
             console.log(error);
-            return
+            setloading(false);
+            toast.error("There is some error");
+            return;
         }
 
-        console.log(data);
+        toast.success("Data is Deleted");
+        setBlogs((prev) => prev.filter((blog) => blog.id !== id));
+
     }
 
 
@@ -136,11 +144,12 @@ export default function BlogCard({ onEdit }: { onEdit: any }) {
 
                                 </button>
 
-                                <button className="flex-1 inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-rose-100 to-rose-200 px-4 py-3 text-sm font-semibold text-rose-700 shadow-md hover:shadow-xl hover:scale-[1.04] transition-all cursor-pointer" onClick={(e) => { handleDelete(blog.id)}}>
+                                <button className="flex-1 inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-br from-rose-100 to-rose-200 px-4 py-3 text-sm font-semibold text-rose-700 shadow-md hover:shadow-xl hover:scale-[1.04] transition-all cursor-pointer" onClick={(e) => { handleDelete(blog.id) }}>
 
                                     <Trash2 size={16} />
 
-                                    Delete
+                                   Delete
+                                    
 
                                 </button>
                             </div>
@@ -149,6 +158,8 @@ export default function BlogCard({ onEdit }: { onEdit: any }) {
                 ))}
 
             </div>
+
+            <ToastContainer />
 
         </section>
 

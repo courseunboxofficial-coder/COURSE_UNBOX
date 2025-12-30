@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Pencil, Trash2, BookOpen } from "lucide-react";
 import { supabase } from "@/lib/supabse/supabaseConfig";
+import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 
 type blog = {
@@ -10,6 +11,7 @@ type blog = {
     id: string;
     title: string;
     content: string;
+    author: string;
     FAQ: {
         question: string;
         answer: string
@@ -24,6 +26,7 @@ const BlogTable = ({ onEdit }: { onEdit: any }) => {
 
 
     const [Blogs, setBlogs] = useState<blog[]>([]);
+  
 
     const fetchTableData = async () => {
 
@@ -47,22 +50,26 @@ const BlogTable = ({ onEdit }: { onEdit: any }) => {
 
     const handleDelete = async (id: string) => {
 
+        console.log("This is Running correctly : ");
+
+        
 
         const { data, error } = await supabase.from("Blog").delete().eq("id", id);
 
         if (error) {
             console.log("THE ERROR OCCUR IS : ");
             console.log(error);
-
+          
+            toast.error("There is some error");
             return;
         };
 
 
-        const notify = () => {
-            toast("Data is Deleted");
-        };
+       
+        toast.success("Data is Deleted");
+        setBlogs((prev) => prev.filter((blog) => blog.id !== id));
 
-        notify();
+        
 
 
     }
@@ -144,6 +151,7 @@ const BlogTable = ({ onEdit }: { onEdit: any }) => {
                                             <button className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-rose-100 to-rose-200 px-5 py-2.5 text-sm font-semibold text-rose-700 shadow-md hover:shadow-lg hover:scale-105 transition-all cursor-pointer" onClick={(e) => { handleDelete(blog.id) }}>
                                                 <Trash2 size={16} />
                                                 Delete
+                                                
                                             </button>
                                         </td>
                                     </tr>
@@ -152,8 +160,10 @@ const BlogTable = ({ onEdit }: { onEdit: any }) => {
                         </table>
                     </div>
                 </div>
+
+               <ToastContainer />
             </section>
-            <ToastContainer />
+
 
         </>
     );

@@ -1,15 +1,21 @@
+"use client"
 import { supabase } from "@/lib/supabse/supabaseConfig";
 import Image from "next/image";
 import { title } from "process";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Send } from "lucide-react";
+import PopUpForm from "../AllCourses/PopUpForm";
 
 
 const Hero = () => {
+  
+  const [isOpen , setIsOpen] = useState(false);
 
   return (
     <>
-      <section
-        className="
+    <PopUpForm isOpen={isOpen} onCancel={()=>setIsOpen(false)} onConfirm={()=>setIsOpen(false)}/>
+    <section
+      className="
         w-full hidden md:block
         bg-linear-to-r from-[#1C336E] to-[#3d5ba9]
         text-white
@@ -17,9 +23,12 @@ const Hero = () => {
         pt-14 pb-3
         xl:h-[58vh]
       "
-      >
-        <div
-          className="
+    >
+
+
+
+      <div
+        className="
           w-[95%] mx-auto
           flex flex-row
           items-center
@@ -36,12 +45,14 @@ const Hero = () => {
               Indias no.1 Ai/digital Marketing Institution
             </p>
 
-            {/* CTA BUTTONS */}
-            <div className="flex flex-col xl:flex-row gap-4 sm:gap-6">
-              <button
-                className="
+
+
+          {/* CTA BUTTONS */}
+          <div className="flex flex-col xl:flex-row gap-4 sm:gap-6">
+            <button
+              className="
                 flex items-center justify-center gap-2
-                bg-[#e6ba2b] text-gray-800
+                bg-[#e6ba2b] text-white
                 pl-3
                 pr-7
                 px-5 py-2.5
@@ -50,17 +61,20 @@ const Hero = () => {
                 w-full sm:w-auto
                 hover:bg-[#b9b940]
                 transition
+                pointer-events-auto
                 cursor-pointer
               "
-              >
-                <Image
-                  src="/images/Home/googleLogo.png"
-                  width={50}
-                  height={20}
-                  alt="google"
-                />
-                <span>Continue with Google</span>
-              </button>
+              onClick={()=>setIsOpen(true)}
+            >
+              {/* <Image
+                src="/images/Home/googleLogo.png"
+                width={50}
+                height={20}
+                alt="google"
+              /> */}
+              <Send fill="#ffffff" className="text-gray-300" size={22}/>
+              <span className="cursor-pointer" onClick={()=>setIsOpen(true )}>Let's connect</span>
+            </button>
 
               <button
                 className="
@@ -68,11 +82,12 @@ const Hero = () => {
                 bg-blue-500 pl-3
                 pr-10 py-2.5
                 rounded-full
+                cursor-pointer
                 font-medium
                 w-full sm:w-auto
                 hover:bg-[#060646]
                 transition
-                cursor-pointer
+                
               "
               >
                 <Image

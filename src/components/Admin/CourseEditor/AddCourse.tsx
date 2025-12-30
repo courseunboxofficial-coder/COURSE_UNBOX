@@ -3,6 +3,7 @@ import { supabase } from "@/lib/supabse/supabaseConfig";
 import dynamic from "next/dynamic";
 import { title } from "process";
 import React, { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 const Editor = dynamic(
     () => import("@monaco-editor/react"),
@@ -12,6 +13,7 @@ const Editor = dynamic(
 const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
 
     const [imageURL, setImageURL] = useState<string>("");
+    const [loading , setloading] = useState(false);
     const [editorValue, setEditorValue] = useState<string>(`{
     "Data Science Foundations": [
 
@@ -176,7 +178,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
 
 
     const handleSave = async (event: React.FormEvent<HTMLFormElement>) => {
-
+        setloading(true);
         event.preventDefault();
         const validationJson = handleModuleParse();
 
@@ -265,11 +267,13 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
         if (error) {
             console.log("THE ERROR COMES IS : ");
             console.log(error);
-
+            toast.error("There is somne of the error : ");
+            setloading(false);
             return
         };
 
-
+        toast.success("Data is Added SuccesFully : ");
+        setloading(false);
         console.log(data);
     }
 
@@ -1008,13 +1012,17 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                     {/* Submit */}
 
                     <button type="submit" className="mt-6 px-10 py-4 rounded-3xl bg-blue-600 text-white text-sm font-medium transition cursor-pointer hover:bg-[#020242] ml-3 mb-3">
-                        Save Course
+                        {
+                            loading ? "...Loading" : "Save Course"
+                        }
                     </button>
 
 
                 </div>
 
             </form>
+
+            <ToastContainer/>
         </div>
     );
 };
