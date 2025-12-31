@@ -5,31 +5,53 @@ import { Pencil, Trash2, BookOpen } from "lucide-react";
 import { supabase } from "@/lib/supabse/supabaseConfig";
 import { toast, ToastContainer } from "react-toastify";
 
-type course = {
+type Course = {
   id: string;
   title: string;
   description: string;
-  startDate: number;
+  startDate: string;
   Duration: number;
   language: string;
-  content: {
-    title: string,
-    subtitle: string
-  }[];
+  domain: string;
+  Delivery_Mode: string;
   low: number,
   high: number,
-  modules: {},
-  created_at: number;
-  domain: string;
-  Delivery_Mode: string,
-  image?: File | null;
+  price: number,
+  content: {
+    title: string;
+    subtitle: string;
+  }[];
+  Testimonials:
+  {
+    name: string,
+    role: string,
+    company: string,
+    title: string,
+    description: string,
+    ranking: string,
+    course: string
+  }[],
+  modules: Record<
+    string,
+    {
+      module: string;
+      title: string;
+      lectures: string[];
+    }[]
+  >,
 
-};
+  FAQ: {
+    question: string;
+    answer: string
+  }[];
+  image: string;
+}
+
 
 const CourseTable = ({ onEdit }: { onEdit: any }) => {
 
 
-  const [courses, setCourses] = useState<course[]>([]);
+  const [courses, setCourses] = useState<Course[]>([]);
 
   const fetchTableData = async () => {
 
@@ -158,9 +180,9 @@ const CourseTable = ({ onEdit }: { onEdit: any }) => {
             </table>
           </div>
         </div>
+        <ToastContainer />
       </section>
-      <ToastContainer />
-
+      
     </>
   );
 }

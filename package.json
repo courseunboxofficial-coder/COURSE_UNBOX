@@ -5,10 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "node server.js",
     "lint": "eslint"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@monaco-editor/react": "^4.7.0",
     "@supabase/supabase-js": "^2.89.0",
     "@tailwindcss/typography": "^0.5.19",

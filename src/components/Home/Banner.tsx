@@ -1,6 +1,6 @@
 "use client"
 import React from "react";
-import { NotepadText, Brain, GraduationCap } from "lucide-react";
+import { NotepadText, Brain, GraduationCap, Award } from "lucide-react";
 import CountUp from 'react-countup';
 
 const Banner = () => {
@@ -18,16 +18,16 @@ const Banner = () => {
       label: "Students",
     },
     {
-      icon: <Brain size={52} />,
+      icon: <Award size={52} />,
       value: 12,
       sign:"+",
       label: "Experience",
     },
     {
       icon: <Brain size={52} />,
-      value: 12,
+      value: 450000,
       sign:"+",
-      label: "Experience",
+      label: "Average Salary",
     },
   ];
 

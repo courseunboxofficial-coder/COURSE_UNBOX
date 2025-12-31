@@ -62,47 +62,43 @@ const TrendingImage = ({ collapsed }: { collapsed: boolean }) => {
     };
 
     const handleData = async () => {
-
         setloading(true);
 
+        const { data: existingData, error: fetchError } = await supabase
+            .from("Home")
+            .select("content")
+            .eq("section", "Trending")
+            .single();
 
-        const { data, error } = await supabase.from("Home").insert([{
-            section: "Trending",
-            content: [
-                { key: "Image1", Image: formData.Image1 },
-                { key: "Image2", Image: formData.Image2 },
-                { key: "Image3", Image: formData.Image3 },
-                { key: "Image4", Image: formData.Image4 },
-                { key: "Image5", Image: formData.Image5 },
-                { key: "Image6", Image: formData.Image6 },
-                { key: "Image7", Image: formData.Image7 },
-                { key: "Image8", Image: formData.Image8 },
-            ]
+        if (fetchError || !existingData) {
+            console.error("Error fetching existing data", fetchError);
+            setloading(false);
+            return;
+        }
 
-        }]).select();
+        const mergedContent = existingData.content.map((item: any) => {
+            const newImage = formData[item.key as keyof typeof formData];
+            return {
+                ...item,
+                Image: newImage && newImage !== "" ? newImage : item.Image
+            };
+        });
 
-        console.log(data);
+        const { error } = await supabase
+            .from("Home")
+            .update({ content: mergedContent })
+            .eq("section", "Trending");
+
+        setloading(false);
 
         if (error) {
-
-            console.log("There is some error happend in the code : ", error);
-
+            console.error("Update failed:", error);
+            return;
         }
 
-
-        if (data !== null) {
-
-            setloading(false);
-
-            const notify = () => {
-                toast("Data is saved");
-            }
-
-            notify();
-
-        }
-
+        toast("Trending images updated successfully ✅");
     };
+
 
 
     return (

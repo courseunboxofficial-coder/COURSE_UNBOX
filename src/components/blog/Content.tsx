@@ -11,6 +11,7 @@ export type InternshipCard = {
   title: string;
   content: string;
   FAQ: string;
+  image : string
 
 };
 
@@ -150,7 +151,7 @@ const Content = () => {
               <div className="relative h-44 w-full overflow-hidden rounded-t-3xl">
 
                 <Image
-                  src="/images/Home/UIUX.png"
+                  src={card.image}
                   alt={card.title}
                   fill
                   className="object-cover"

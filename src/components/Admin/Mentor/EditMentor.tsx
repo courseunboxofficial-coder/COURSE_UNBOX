@@ -1,5 +1,6 @@
 import { supabase } from '@/lib/supabse/supabaseConfig';
 import React, { useEffect, useState } from 'react'
+import { toast, ToastContainer } from 'react-toastify';
 
 type Mentor = {
 
@@ -25,6 +26,8 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
 
     });
 
+    const [loading, setloading] = useState(false);
+
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -34,6 +37,7 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
 
 
     useEffect(() => {
+        if (!mentor) return;
         setFormData({
 
             name: mentor.name,
@@ -43,7 +47,7 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
             description: mentor.description,
 
         })
-    }, []);
+    }, [mentor]);
 
 
     const handleFileData = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,9 +77,10 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
 
     }
 
-    const handleEditData = async () => {
-
-
+    const handleEditData = async (event: React.FormEvent<HTMLFormElement>) => {
+        
+        event.preventDefault();
+        setloading(true)
         const { data, error } = await supabase.from("Mentors").update(
 
             {
@@ -94,13 +99,17 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
 
 
         if (error) {
-
             console.log("The error ocuur in this is : ");
             console.log(error);
+            toast.error("There is some Error in it  : ");
+            setloading(false);
 
+            return
         }
 
+        toast.success("The Data is Edited Succesfully : ");
         console.log(data);
+        setloading(false);
 
     }
 
@@ -120,112 +129,115 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 p-8">
 
                     {/* ================= FORM ================= */}
+                    <form onSubmit={handleEditData}>
+                        <div className="space-y-5">
 
-                    <div className="space-y-5">
-
-                        <div>
-                            <label className="block text-sm font-medium mb-2">
-                                Mentor Name
-                            </label>
-                            <input
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
-                            />
-                        </div>
-
-
-                        <div>
-                            <label className="block text-sm font-medium mb-2">
-                                Mentor Profession
-                            </label>
-                            <input
-                                name="profession"
-                                value={formData.profession}
-                                onChange={handleChange}
-                                className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
-                            />
-                        </div>
-
-
-
-                        <div>
-                            <label className="block text-sm font-medium mb-2">
-                                Mentor Work Experience
-                            </label>
-                            <input
-                                type='number'
-                                name="work_experience"
-                                value={formData.work_experience}
-                                onChange={handleChange}
-                                className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
-                            />
-                        </div>
-
-                        <div>
-                            <label className="block text-sm font-medium mb-2">
-                                Teaching Experience
-                            </label>
-                            <input
-                                type='text'
-                                name="teaching_experience"
-                                value={formData.teaching_experience}
-                                onChange={handleChange}
-                                className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
-                            />
-                        </div>
-
-
-                        {/* Description */}
-
-                        <div>
-                            <label className="block text-sm font-medium mb-2">
-                                Short Description
-                            </label>
-                            <textarea
-                                name="description"
-                                value={formData.description}
-                                onChange={handleChange}
-                                rows={3}
-                                className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
-                            />
-                        </div>
-
-
-
-
-                        {/* Image Upload */}
-
-                        <div>
-                            <label className="block text-sm font-medium mb-2">
-                                Course Image
-                            </label>
-
-                            <div className="flex items-center gap-4">
-                                <label className="flex cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-blue-300 bg-blue-50 px-6 py-4 text-sm font-medium text-blue-600 hover:bg-blue-100 transition">
-                                    Upload Image
-                                    <input type="file" className="hidden" onChange={handleFileData} />
-                                </label>
-                                <span className="text-xs text-gray-500">
-                                    PNG, JPG up to 5MB
-                                </span>
-                            </div>
                             <div>
-                                {
-                                    imageURL.slice(0, 10)
-                                }...
+                                <label className="block text-sm font-medium mb-2">
+                                    Mentor Name
+                                </label>
+                                <input
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                                />
                             </div>
+
+
+                            <div>
+                                <label className="block text-sm font-medium mb-2">
+                                    Mentor Profession
+                                </label>
+                                <input
+                                    name="profession"
+                                    value={formData.profession}
+                                    onChange={handleChange}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                                />
+                            </div>
+
+
+
+                            <div>
+                                <label className="block text-sm font-medium mb-2">
+                                    Mentor Work Experience
+                                </label>
+                                <input
+                                    type='number'
+                                    name="work_experience"
+                                    value={formData.work_experience}
+                                    onChange={handleChange}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="block text-sm font-medium mb-2">
+                                    Teaching Experience
+                                </label>
+                                <input
+                                    type='text'
+                                    name="teaching_experience"
+                                    value={formData.teaching_experience}
+                                    onChange={handleChange}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                                />
+                            </div>
+
+
+                            {/* Description */}
+
+                            <div>
+                                <label className="block text-sm font-medium mb-2">
+                                    Short Description
+                                </label>
+                                <textarea
+                                    name="description"
+                                    value={formData.description}
+                                    onChange={handleChange}
+                                    rows={3}
+                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                />
+                            </div>
+
+
+
+
+                            {/* Image Upload */}
+
+                            <div>
+                                <label className="block text-sm font-medium mb-2">
+                                    Course Image
+                                </label>
+
+                                <div className="flex items-center gap-4">
+                                    <label className="flex cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-blue-300 bg-blue-50 px-6 py-4 text-sm font-medium text-blue-600 hover:bg-blue-100 transition">
+                                        Upload Image
+                                        <input type="file" className="hidden" onChange={handleFileData} />
+                                    </label>
+                                    <span className="text-xs text-gray-500">
+                                        PNG, JPG up to 5MB
+                                    </span>
+                                </div>
+                                <div>
+                                    {
+                                        imageURL.slice(0, 10)
+                                    }...
+                                </div>
+                            </div>
+
+                            {/* Submit */}
+
+                            <button className="mt-6 px-10 py-4 rounded-3xl bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition cursor-pointer">
+                                {
+                                    loading ? "...Loading" : "Save Mentor"
+                                }
+                            </button>
+
+
                         </div>
-
-                        {/* Submit */}
-
-                        <button className="mt-6 px-10 py-4 rounded-3xl bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition cursor-pointer" onClick={handleEditData}>
-                            Save Course
-                        </button>
-
-
-                    </div>
+                    </form>
 
 
 
@@ -261,10 +273,10 @@ const EditMentor = ({ collapsed, mentor }: { collapsed: boolean, mentor: Mentor 
 
 
                 </div>
-
-
-
             </div>
+
+            <ToastContainer />
+
         </div>
 
     )

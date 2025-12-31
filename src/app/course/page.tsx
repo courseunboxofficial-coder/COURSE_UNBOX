@@ -24,7 +24,6 @@ export default function page(){
         <CourseContainer/>
         <AllCoursesCTA/>
         <CoursesOverview/>
-        
         <AllCoursesFAQs/>
         <FinalCTA/>
         <Footer/>

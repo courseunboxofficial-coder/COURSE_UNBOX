@@ -4,31 +4,53 @@ import React, { useEffect, useState } from "react";
 import { Pencil, Trash2, Layers, Sparkles } from "lucide-react";
 import { supabase } from "@/lib/supabse/supabaseConfig";
 
-type course = {
-    id: string;
+type Course = {
+  id: string;
+  title: string;
+  description: string;
+  startDate: string;
+  Duration: number;
+  language: string;
+  domain: string;
+  Delivery_Mode: string;
+  low: number,
+  high: number,
+  price: number,
+  content: {
     title: string;
-    description: string;
-    startDate: string;
-    Duration: number;
-    language: string;
-    content: {
-        title: string;
-        subtitle: string
-    }[];
-    low: number,
-    high: number,
-    modules: {},
-    created_at: number;
-    domain: string;
-    Delivery_Mode: string,
-    image?: File | null;
+    subtitle: string;
+  }[];
+  Testimonials:
+  {
+    name: string,
+    role: string,
+    company: string,
+    title: string,
+    description: string,
+    ranking: string,
+    course: string
+  }[],
+  modules: Record<
+    string,
+    {
+      module: string;
+      title: string;
+      lectures: string[];
+    }[]
+  >,
 
-};
+  FAQ: {
+    question: string;
+    answer: string
+  }[];
+  image: string;
+}
+
 
 
 export default function CourseCards({ onEdit }: { onEdit: any }) {
 
-    const [courses, setCourses] = useState<course[]>([]);
+    const [courses, setCourses] = useState<Course[]>([]);
 
     const fetchTableData = async () => {
 

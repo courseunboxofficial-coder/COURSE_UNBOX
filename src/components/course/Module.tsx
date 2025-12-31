@@ -86,12 +86,12 @@ export default function Module({ courseId }: { courseId: string }) {
 
 
     return (
-        <section className="p-10 bg-[#f5fafd]">
+        <section className="p-10 bg-[#f6fbff]">
             <div className="w-full p-6">
 
                 {/* Heading */}
 
-                <h2 className="text-3xl font-bold mb-6 text-black">
+                <h2 className="text-3xl font-bold mb-6 p-2 text-black border-l-8">
                     Your Guide To Upskilling: Our Curriculum
                 </h2>
 
@@ -125,7 +125,7 @@ export default function Module({ courseId }: { courseId: string }) {
 
                 {/* Content */}
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 border border-black rounded-lg p-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 rounded-lg p-4 bg-white shadow-xl">
 
                     {/* Left Modules */}
 
@@ -137,11 +137,11 @@ export default function Module({ courseId }: { courseId: string }) {
                                 className={`w-full text-left p-4 mb-2 rounded-md flex justify-between items-center transition cursor-pointer
                 ${activeModule === index
                                         ? "bg-[#040455] border-l-4 border-[#02025a]"
-                                        : "hover:bg-[#020286]"
+                                        : "hover:bg-[#020286] bg-blue-300"
                                     }`}
                             >
                                 <div>
-                                    <p className="text-xs text-gray-500">{mod.module}</p>
+                                    <p className="text-xs text-white">{mod.module}</p>
                                     <p className="font-medium text-white">{mod.title}</p>
                                 </div>
                                 <ChevronRight className="text-gray-400" />
@@ -154,9 +154,9 @@ export default function Module({ courseId }: { courseId: string }) {
                         {modules[activeModule]?.lectures.map((lecture: string) => (
                             <div
                                 key={lecture}
-                                className="flex items-center justify-between p-4 border rounded-md mb-3"
+                                className="flex bg-white items-center justify-between p-4 border-2 border-black rounded-md mb-3"
                             >
-                                <p className="text-sm text-black">{lecture}</p>
+                                <p className="text-sm font-bold text-black">{lecture}</p>
                                 <Lock className="w-4 h-4 text-[#a1a112]" />
                             </div>
                         ))}

@@ -4,12 +4,15 @@ import BlogCard from './BlogEditor/BlogCard';
 import BlogTable from './BlogEditor/BlogTable';
 import AddBlog from './BlogEditor/AddBlog';
 import EditBlog from './BlogEditor/EditBlog';
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 type blog = {
 
     id: string;
     title: string;
     content: string;
+    author: string;
     FAQ: {
         question: string;
         answer: string
@@ -59,7 +62,6 @@ const BlogEditor = ({ collapsed }: { collapsed: boolean }) => {
             {active === "Table" && <BlogTable onEdit={onEdit} />}
             {active === "Add" && <AddBlog collapsed={collapsed} />}
             {active === "Edit" && editItem && (<EditBlog collapsed={collapsed} blog={editItem} />)}
-
         </>
     );
 }

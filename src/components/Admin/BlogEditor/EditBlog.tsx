@@ -1,6 +1,14 @@
 import { supabase } from '@/lib/supabse/supabaseConfig';
+import dynamic from 'next/dynamic';
 import React, { useEffect, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify';
+
+import "suneditor/dist/css/suneditor.min.css";
+
+
+const SunEditor = dynamic(() => import("suneditor-react"), {
+    ssr: false,
+});
 
 type blog = {
 
@@ -11,8 +19,9 @@ type blog = {
         question: string;
         answer: string
     }[];
-    image: string ,
+    image: string,
     created_at: number;
+    author: string,
     domain: string;
 
 };
@@ -27,6 +36,8 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: blog }) => {
         content: "",
         domain: ""
     });
+
+    const [editorContent, setEditorContent] = useState("");
 
     const [content, setContent] = useState({
 
@@ -66,7 +77,6 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: blog }) => {
             title: blog.title,
             content: blog.content,
             domain: blog.domain,
-
         });
 
         setimageURL(blog.image)
@@ -91,6 +101,9 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: blog }) => {
             sixthAnswer: blog.FAQ?.[5]?.answer || "",
         });
 
+        setEditorContent(blog.content);
+
+        setimageURL(blog.image);
 
     }, []);
 
@@ -123,7 +136,10 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: blog }) => {
     }
 
 
-    const handleEditData = async () => {
+    const handleEditData = async (event: React.FormEvent<HTMLFormElement>) => {
+
+
+        event.preventDefault();
 
         setloading(true);
 
@@ -175,284 +191,306 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: blog }) => {
     return (
         <>
             <div className={`${collapsed ? "w-[85vw]" : "w-[75vw]"} mx-auto mt-10 px-4`}>
-                <div className="rounded-2xl border border-blue-200 bg-white shadow-xl overflow-hidden">
-                    <div className="h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500" />
+                <form onSubmit={handleEditData}>
+                    <div className="rounded-2xl border border-blue-200 bg-white shadow-xl overflow-hidden">
+                        <div className="h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500" />
 
-                    <div className="text-center text-3xl font-bold mt-4">
-                        Blog Editor
-                    </div>
+                        <div className="text-center text-3xl font-bold mt-4">
+                            Blog Editor
+                        </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 p-8">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 p-8">
 
-                        {/* ================= FORM ================= */}
+                            {/* ================= FORM ================= */}
 
-                        <div className="space-y-5">
+                            <div className="space-y-5">
 
-                            {/* Title */}
+                                {/* Title */}
 
-                            <div>
-                                <label className="block text-sm font-medium mb-2">
-                                    Blog Title
-                                </label>
-                                <input
-                                    name="title"
-                                    value={formData.title}
-                                    onChange={handleChange}
-                                    className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
-                                />
-                            </div>
-
-
-                            {/* Domain + Language */}
-
-                            <div className="flex gap-4">
-                                <div className="w-full">
+                                <div>
                                     <label className="block text-sm font-medium mb-2">
-                                        Domain
+                                        Blog Title
                                     </label>
-                                    <select
-                                        name="domain"
-                                        value={formData.domain}
+                                    <input
+                                        name="title"
+                                        value={formData.title}
                                         onChange={handleChange}
-                                        className="w-full rounded-xl border px-4 py-3 text-sm"
-                                    >
-                                        <option value="">Select Domain</option>
-                                        <option value="Digital Marketing">Digital Marketing</option>
-                                        <option value="Development">Development</option>
-                                        <option value="IT & Software">IT & Software</option>
-                                        <option value="Data Science">Data Science</option>
-                                    </select>
+                                        className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                                        required
+                                    />
                                 </div>
 
-                            </div>
+
+                                {/* Domain + Language */}
+
+                                <div className="flex gap-4">
+                                    <div className="w-full">
+                                        <label className="block text-sm font-medium mb-2">
+                                            Domain
+                                        </label>
+                                        <select
+                                            name="domain"
+                                            value={formData.domain}
+                                            onChange={handleChange}
+                                            className="w-full rounded-xl border px-4 py-3 text-sm"
+                                            required
+                                        >
+                                            <option value="">Select Domain</option>
+                                            <option value="Digital Marketing">Digital Marketing</option>
+                                            <option value="Development">Development</option>
+                                            <option value="IT & Software">IT & Software</option>
+                                            <option value="Data Science">Data Science</option>
+                                        </select>
+                                    </div>
+
+                                </div>
 
 
-                            {/* Description */}
+                                {/* Image Upload */}
 
-                            <div>
-                                <label className="block text-sm font-medium mb-2">
-                                    Short Description
-                                </label>
-                                <textarea
-                                    name="content"
-                                    value={formData.content}
-                                    onChange={handleChange}
-                                    rows={15}
-                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
-                                />
-                            </div>
-
-
-                            {/* Image Upload */}
-
-
-                            <div>
-                                <label className="block text-sm font-medium mb-2">
-                                    Blog Image
-                                </label>
-
-                                <div className="flex items-center gap-4">
-                                    <label className="flex cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-blue-300 bg-blue-50 px-6 py-4 text-sm font-medium text-blue-600 hover:bg-blue-100 transition">
-                                        Upload Image
-                                        <input type="file" className="hidden" onChange={handleFileData} />
+                                <div>
+                                    <label className="block text-sm font-medium mb-2">
+                                        Blog Image
                                     </label>
-                                    <span className="text-xs text-gray-500">
-                                        PNG, JPG up to 5MB
-                                    </span> <br/>
+
+                                    <div className="flex items-center gap-4">
+                                        <label className="flex cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-blue-300 bg-blue-50 px-6 py-4 text-sm font-medium text-blue-600 hover:bg-blue-100 transition">
+                                            Upload Image
+                                            <input type="file" className="hidden" onChange={handleFileData} />
+                                        </label>
+                                        <span className="text-xs text-gray-500">
+                                            PNG, JPG up to 5MB
+                                        </span> <br />
+
+                                    </div>
                                     <div>
-                                        {imageURL}
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                        <div>
-                            {/* content */}
-
-                            <div className="h-[80vh] border p-3 rounded-3xl">
-                                <p className="text-center text-2xl font-bold mb-5"> Frequently Asked Questions ? </p>
-
-                                <div className="flex gap-4 justify-between">
-                                    <div className="flex flex-col mb-3">
-                                        <label className="block text-sm font-medium mb-2">
-                                            First Question
-                                        </label>
-                                        <input
-                                            name="firstQuestion"
-                                            value={content.firstQuestion}
-                                            onChange={handleContentChange}
-                                            className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
-                                        />
-                                    </div>
-
-                                    <div className="flex flex-col">
-                                        <label className="block text-sm font-medium mb-2">
-                                            First Answer
-                                        </label>
-                                        <textarea
-                                            name="firstAnswer"
-                                            value={content.firstAnswer}
-                                            onChange={handleContentChange}
-                                            rows={2}
-                                            className="w-full rounded-xl border px-4 text-sm resize-none"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="flex gap-4 justify-between">
-                                    <div className="flex flex-col mb-3">
-                                        <label className="block text-sm font-medium mb-2">
-                                            Second Question
-                                        </label>
-                                        <input
-                                            name="secondTitle"
-                                            value={content.secondQuestion}
-                                            onChange={handleContentChange}
-                                            className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
-                                        />
-                                    </div>
-
-                                    <div className="flex flex-col">
-                                        <label className="block text-sm font-medium mb-2">
-                                            Second Answer
-                                        </label>
-                                        <textarea
-                                            name="secondDescription"
-                                            value={content.secondAnswer}
-                                            onChange={handleContentChange}
-                                            rows={2}
-                                            className="w-full rounded-xl border px-4 text-sm resize-none"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="flex gap-4 justify-between">
-                                    <div className="flex flex-col mb-3">
-                                        <label className="block text-sm font-medium mb-2">
-                                            Third Question
-                                        </label>
-                                        <input
-                                            name="thirdTitle"
-                                            value={content.thirdQuestion}
-                                            onChange={handleContentChange}
-                                            className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
-                                        />
-                                    </div>
-
-                                    <div className="flex flex-col">
-
-                                        <label className="block text-sm font-medium mb-2">
-
-                                            Third Answer
-
-                                        </label>
-                                        <textarea
-                                            name="thirdDescription"
-                                            value={content.thirdAnswer}
-                                            onChange={handleContentChange}
-                                            rows={2}
-                                            className="w-full rounded-xl border px-4 text-sm resize-none"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="flex gap-4 justify-between">
-                                    <div className="flex flex-col mb-3">
-                                        <label className="block text-sm font-medium mb-2">
-                                            fourth Question
-                                        </label>
-                                        <input
-                                            name="fourthTitle"
-                                            value={content.fourthQuestion}
-                                            onChange={handleContentChange}
-                                            className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
-                                        />
-                                    </div>
-
-                                    <div className="flex flex-col">
-                                        <label className="block text-sm font-medium mb-2">
-                                            fourth Answer
-                                        </label>
-                                        <textarea
-                                            name="fourthDescription"
-                                            value={content.fourthAnswer}
-                                            onChange={handleContentChange}
-                                            rows={2}
-                                            className="w-full rounded-xl border px-4 text-sm resize-none"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="flex gap-4 justify-between">
-                                    <div className="flex flex-col mb-3">
-                                        <label className="block text-sm font-medium mb-2">
-                                            Fifth Question
-                                        </label>
-                                        <input
-                                            name="fifthTitle"
-                                            value={content.fifthQuestion}
-                                            onChange={handleContentChange}
-                                            className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
-                                        />
-                                    </div>
-
-                                    <div className="flex flex-col">
-                                        <label className="block text-sm font-medium mb-2">
-                                            Fifth Answer
-                                        </label>
-                                        <textarea
-                                            name="fifthDescription"
-                                            value={content.fifthAnswer}
-                                            onChange={handleContentChange}
-                                            rows={2}
-                                            className="w-full rounded-xl border px-4 text-sm resize-none"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="flex gap-4 justify-between">
-                                    <div className="flex flex-col mb-3">
-                                        <label className="block text-sm font-medium mb-2">
-                                            sixth Answer
-                                        </label>
-                                        <input
-                                            name="sixthTitle"
-                                            value={content.sixthQuestion}
-                                            onChange={handleContentChange}
-                                            className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
-                                        />
-                                    </div>
-
-                                    <div className="flex flex-col">
-                                        <label className="block text-sm font-medium mb-2">
-                                            sixth Question
-                                        </label>
-                                        <textarea
-                                            name="sixthDescription"
-                                            value={content.sixthAnswer}
-                                            onChange={handleContentChange}
-                                            rows={2}
-                                            className="w-full rounded-xl border px-4 text-sm resize-none"
-                                        />
+                                        {imageURL && imageURL.slice(0, 10)}...
                                     </div>
                                 </div>
 
                             </div>
 
+
+                            <div>
+                                {/* content */}
+
+                                <div className="h-[80vh] border p-3 rounded-3xl">
+                                    <p className="text-center text-2xl font-bold mb-5"> Frequently Asked Questions ? </p>
+
+                                    <div className="flex gap-4 justify-between">
+                                        <div className="flex flex-col mb-3">
+                                            <label className="block text-sm font-medium mb-2">
+                                                First Question
+                                            </label>
+                                            <input
+                                                name="firstQuestion"
+                                                value={content.firstQuestion}
+                                                onChange={handleContentChange}
+                                                className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                                required
+                                            />
+                                        </div>
+
+                                        <div className="flex flex-col">
+                                            <label className="block text-sm font-medium mb-2">
+                                                First Answer
+                                            </label>
+                                            <textarea
+                                                name="firstAnswer"
+                                                value={content.firstAnswer}
+                                                onChange={handleContentChange}
+                                                rows={2}
+                                                className="w-full rounded-xl border px-4 text-sm resize-none"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="flex gap-4 justify-between">
+                                        <div className="flex flex-col mb-3">
+                                            <label className="block text-sm font-medium mb-2">
+                                                Second Question
+                                            </label>
+                                            <input
+                                                name="secondTitle"
+                                                value={content.secondQuestion}
+                                                onChange={handleContentChange}
+                                                className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                                required
+                                            />
+                                        </div>
+
+                                        <div className="flex flex-col">
+                                            <label className="block text-sm font-medium mb-2">
+                                                Second Answer
+                                            </label>
+                                            <textarea
+                                                name="secondDescription"
+                                                value={content.secondAnswer}
+                                                onChange={handleContentChange}
+                                                rows={2}
+                                                className="w-full rounded-xl border px-4 text-sm resize-none"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="flex gap-4 justify-between">
+                                        <div className="flex flex-col mb-3">
+                                            <label className="block text-sm font-medium mb-2">
+                                                Third Question
+                                            </label>
+                                            <input
+                                                name="thirdTitle"
+                                                value={content.thirdQuestion}
+                                                onChange={handleContentChange}
+                                                className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                                required
+                                            />
+                                        </div>
+
+                                        <div className="flex flex-col">
+
+                                            <label className="block text-sm font-medium mb-2">
+
+                                                Third Answer
+
+                                            </label>
+                                            <textarea
+                                                name="thirdDescription"
+                                                value={content.thirdAnswer}
+                                                onChange={handleContentChange}
+                                                rows={2}
+                                                className="w-full rounded-xl border px-4 text-sm resize-none"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="flex gap-4 justify-between">
+                                        <div className="flex flex-col mb-3">
+                                            <label className="block text-sm font-medium mb-2">
+                                                fourth Question
+                                            </label>
+                                            <input
+                                                name="fourthTitle"
+                                                value={content.fourthQuestion}
+                                                onChange={handleContentChange}
+                                                className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                                required
+                                            />
+                                        </div>
+
+                                        <div className="flex flex-col">
+                                            <label className="block text-sm font-medium mb-2">
+                                                fourth Answer
+                                            </label>
+                                            <textarea
+                                                name="fourthDescription"
+                                                value={content.fourthAnswer}
+                                                onChange={handleContentChange}
+                                                rows={2}
+                                                className="w-full rounded-xl border px-4 text-sm resize-none"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="flex gap-4 justify-between">
+                                        <div className="flex flex-col mb-3">
+                                            <label className="block text-sm font-medium mb-2">
+                                                Fifth Question
+                                            </label>
+                                            <input
+                                                name="fifthTitle"
+                                                value={content.fifthQuestion}
+                                                onChange={handleContentChange}
+                                                className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                                required
+                                            />
+                                        </div>
+
+                                        <div className="flex flex-col">
+                                            <label className="block text-sm font-medium mb-2">
+                                                Fifth Answer
+                                            </label>
+                                            <textarea
+                                                name="fifthDescription"
+                                                value={content.fifthAnswer}
+                                                onChange={handleContentChange}
+                                                rows={2}
+                                                className="w-full rounded-xl border px-4 text-sm resize-none"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="flex gap-4 justify-between">
+                                        <div className="flex flex-col mb-3">
+                                            <label className="block text-sm font-medium mb-2">
+                                                sixth Answer
+                                            </label>
+                                            <input
+                                                name="sixthTitle"
+                                                value={content.sixthQuestion}
+                                                onChange={handleContentChange}
+                                                className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                                required
+                                            />
+                                        </div>
+
+                                        <div className="flex flex-col">
+                                            <label className="block text-sm font-medium mb-2">
+                                                sixth Question
+                                            </label>
+                                            <textarea
+                                                name="sixthDescription"
+                                                value={content.sixthAnswer}
+                                                onChange={handleContentChange}
+                                                rows={2}
+                                                className="w-full rounded-xl border px-4 text-sm resize-none"
+                                                required
+                                            />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
                         </div>
 
+                        <div className="h-[85vh] w-full rounded-2xl border p-5 overflow-hidden ">
 
+                            <SunEditor
+                                defaultValue={editorContent}
+                                setOptions={{
+                                    minHeight: "65vh",
+                                    maxHeight: "70vh",
+                                    buttonList: [
+                                        ["undo", "redo"],
+                                        ["formatBlock"],   // H1, H2, H3 works here
+                                        ["bold", "italic", "underline"],
+                                        ["list"],
+                                        ["align"],
+                                        ["link", "image"],
+                                    ],
+                                }}
+
+                                onChange={(content) => {
+                                    setEditorContent(content);
+                                }}
+                            />
+                        </div>
+
+                        {/* Submit */}
+                        <button type='submit' className="mt-6 px-10 py-4 rounded-3xl bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition mb-4 ml-4 cursor-pointer" >
+                            {loading ? "...Loading" : "Update Blog"}
+                        </button>
 
                     </div>
 
-                    {/* Submit */}
-                    <button className="mt-6 px-10 py-4 rounded-3xl bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition mb-4 ml-4 cursor-pointer" onClick={handleEditData}>
-                        {loading ? "...Loading" : "Update Blog"}
-                    </button>
-
-                </div>
+                </form>
 
 
 

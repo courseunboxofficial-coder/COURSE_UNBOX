@@ -3,6 +3,7 @@ import { supabase } from "@/lib/supabse/supabaseConfig";
 import dynamic from "next/dynamic";
 import { title } from "process";
 import React, { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 
 const Editor = dynamic(
     () => import("@monaco-editor/react"),
@@ -12,8 +13,8 @@ const Editor = dynamic(
 const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
 
     const [imageURL, setImageURL] = useState<string>("");
+    const [loading, setloading] = useState(false);
     const [editorValue, setEditorValue] = useState<string>(`{
-
     "Data Science Foundations": [
 
         {
@@ -82,6 +83,23 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
         sixthDescription: ""
     });
 
+    const [FAQ, setFAQ] = useState({
+
+        firstQuestion: "",
+        firstAnswer: "",
+        secondQuestion: "",
+        secondAnswer: "",
+        thirdQuestion: "",
+        thirdAnswer: "",
+        fourthQuestion: "",
+        fourthAnswer: "",
+        fifthQuestion: "",
+        fifthAnswer: "",
+        sixthQuestion: "",
+        sixthAnswer: ""
+
+    });
+
     const [Testimonial1, setTestimonial1] = useState({
         name: "",
         role: "",
@@ -120,6 +138,13 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
     ) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+
+    const handleFAQChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    ) => {
+        setFAQ({ ...FAQ, [e.target.name]: e.target.value });
     };
 
 
@@ -177,11 +202,11 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
 
 
     const handleSave = async (event: React.FormEvent<HTMLFormElement>) => {
-
+        setloading(true);
         event.preventDefault();
         const validationJson = handleModuleParse();
 
-        if(!validationJson){
+        if (!validationJson) {
 
             alert("Your current Editor Value for Module is not in correct format please write it correctly : ")
 
@@ -227,6 +252,15 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
 
             ],
 
+            FAQ: [
+                { question: FAQ.firstQuestion, answer: FAQ.firstAnswer },
+                { question: FAQ.secondQuestion, answer: FAQ.secondAnswer },
+                { question: FAQ.thirdQuestion, answer: FAQ.thirdAnswer },
+                { question: FAQ.fourthQuestion, answer: FAQ.fourthAnswer },
+                { question: FAQ.fifthQuestion, answer: FAQ.fifthAnswer },
+                { question: FAQ.sixthQuestion, answer: FAQ.sixthAnswer },
+            ],
+
             Testimonials: [
 
                 {
@@ -258,7 +292,8 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                 }
 
             ],
-            modules : parsedJson,
+
+            modules: parsedJson,
             image: imageURL
 
         }]).select().single();
@@ -266,11 +301,13 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
         if (error) {
             console.log("THE ERROR COMES IS : ");
             console.log(error);
-
+            toast.error("There is somne of the error : ");
+            setloading(false);
             return
         };
 
-
+        toast.success("Data is Added SuccesFully : ");
+        setloading(false);
         console.log(data);
     }
 
@@ -352,10 +389,10 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                         required
                                     >
                                         <option value="">Select Mode</option>
-                                        <option value="digi">Digital Marketing</option>
-                                        <option value="deve">Development</option>
-                                        <option value="IT">IT & Software</option>
-                                        <option value="Data">Data Science</option>
+                                        <option value="digital Marketing">Digital Marketing</option>
+                                        <option value="developement">Development</option>
+                                        <option value="IT & Software">IT & Software</option>
+                                        <option value="Data Science">Data Science</option>
 
                                     </select>
                                 </div>
@@ -485,7 +522,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
 
                             <div>
                                 <label className="block text-sm font-medium mb-2">
-                                    Short Description
+                                    About Us
                                 </label>
                                 <textarea
                                     name="description"
@@ -715,6 +752,181 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                         </div>
 
 
+
+                    </div>
+
+                    <div>
+                        {/* content */}
+
+                        <div className="h-[80vh] border p-5 rounded-3xl mb-7">
+                            <p className="text-center text-2xl font-bold mb-5"> Frequently Asked Questions ? </p>
+
+                            <div className="flex gap-4 justify-between w-full">
+                                <div className="flex flex-col mb-3 w-full">
+                                    <label className="block text-sm font-medium mb-2">
+                                        First Question
+                                    </label>
+                                    <input
+                                        name="firstQuestion"
+                                        value={FAQ.firstQuestion}
+                                        onChange={handleFAQChange}
+                                        className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                    />
+                                </div>
+
+                                <div className="flex flex-col w-full">
+                                    <label className="block text-sm font-medium mb-2 ">
+                                        First Answer
+                                    </label>
+                                    <textarea
+                                        name="firstAnswer"
+                                        value={FAQ.firstAnswer}
+                                        onChange={handleFAQChange}
+                                        rows={2}
+                                        className="w-full rounded-xl border px-4 text-sm resize-none"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="flex gap-4 justify-between">
+                                <div className="flex flex-col mb-3 w-full">
+                                    <label className="block text-sm font-medium mb-2">
+                                        Second Question
+                                    </label>
+                                    <input
+                                        name="secondQuestion"
+                                        value={FAQ.secondQuestion}
+                                        onChange={handleFAQChange}
+                                        className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                    />
+                                </div>
+
+                                <div className="flex flex-col w-full">
+                                    <label className="block text-sm font-medium mb-2 ">
+                                        Second Answer
+                                    </label>
+                                    <textarea
+                                        name="secondAnswer"
+                                        value={FAQ.secondAnswer}
+                                        onChange={handleFAQChange}
+                                        rows={2}
+                                        className="w-full rounded-xl border px-4 text-sm resize-none"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="flex gap-4 justify-between">
+                                <div className="flex flex-col mb-3 w-full">
+                                    <label className="block text-sm font-medium mb-2">
+                                        Third Question
+                                    </label>
+                                    <input
+                                        name="thirdQuestion"
+                                        value={FAQ.thirdQuestion}
+                                        onChange={handleFAQChange}
+                                        className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                    />
+                                </div>
+
+                                <div className="flex flex-col w-full">
+
+                                    <label className="block text-sm font-medium mb-2">
+
+                                        Third Answer
+
+                                    </label>
+                                    <textarea
+                                        name="thirdAnswer"
+                                        value={FAQ.thirdAnswer}
+                                        onChange={handleFAQChange}
+                                        rows={2}
+                                        className="w-full rounded-xl border px-4 text-sm resize-none"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="flex gap-4 justify-between">
+                                <div className="flex flex-col mb-3 w-full">
+                                    <label className="block text-sm font-medium mb-2">
+                                        fourth Question
+                                    </label>
+                                    <input
+                                        name="fourthQuestion"
+                                        value={FAQ.fourthQuestion}
+                                        onChange={handleFAQChange}
+                                        className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                    />
+                                </div>
+
+                                <div className="flex flex-col w-full">
+                                    <label className="block text-sm font-medium mb-2">
+                                        fourth Answer
+                                    </label>
+                                    <textarea
+                                        name="fourthAnswer"
+                                        value={FAQ.fourthAnswer}
+                                        onChange={handleFAQChange}
+                                        rows={2}
+                                        className="w-full rounded-xl border px-4 text-sm resize-none"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="flex gap-4 justify-between">
+                                <div className="flex flex-col mb-3 w-full">
+                                    <label className="block text-sm font-medium mb-2">
+                                        Fifth Question
+                                    </label>
+                                    <input
+                                        name="fifthQuestion"
+                                        value={FAQ.fifthQuestion}
+                                        onChange={handleFAQChange}
+                                        className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                    />
+                                </div>
+
+                                <div className="flex flex-col w-full">
+                                    <label className="block text-sm font-medium mb-2">
+                                        Fifth Answer
+                                    </label>
+                                    <textarea
+                                        name="fifthAnswer"
+                                        value={FAQ.fifthAnswer}
+                                        onChange={handleFAQChange}
+                                        rows={2}
+                                        className="w-full rounded-xl border px-4 text-sm resize-none"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="flex gap-4 justify-between w-full">
+                                <div className="flex flex-col mb-3 w-full">
+                                    <label className="block text-sm font-medium mb-2">
+                                        sixth Answer
+                                    </label>
+                                    <input
+                                        name="sixthQuestion"
+                                        value={FAQ.sixthQuestion}
+                                        onChange={handleFAQChange}
+                                        className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                    />
+                                </div>
+
+                                <div className="flex flex-col w-full">
+                                    <label className="block text-sm font-medium mb-2">
+                                        sixth Question
+                                    </label>
+                                    <textarea
+                                        name="sixthAnswer"
+                                        value={FAQ.sixthAnswer}
+                                        onChange={handleFAQChange}
+                                        rows={2}
+                                        className="w-full rounded-xl border px-4 text-sm resize-none"
+                                    />
+                                </div>
+                            </div>
+
+                        </div>
 
                     </div>
 
@@ -979,12 +1191,14 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                         <div className="font-bold text-center text-3xl mb-4">Module Manipulate Section</div>
 
                         <Editor
+
                             height="65vh"
                             language="json"
                             theme="vs-dark"
                             value={editorValue}
                             onChange={(value) => setEditorValue(value || "")}
                             className="rounded-2xl"
+
                         />
 
                         <div className="mt-6 inline-block px-10 py-4 rounded-3xl bg-blue-600 text-white text-sm font-medium transition cursor-pointer hover:bg-[#020242] ml-3 mb-3" onClick={handleModuleParse}>
@@ -1007,13 +1221,17 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                     {/* Submit */}
 
                     <button type="submit" className="mt-6 px-10 py-4 rounded-3xl bg-blue-600 text-white text-sm font-medium transition cursor-pointer hover:bg-[#020242] ml-3 mb-3">
-                        Save Course
+                        {
+                            loading ? "...Loading" : "Save Course"
+                        }
                     </button>
 
 
                 </div>
 
             </form>
+
+            <ToastContainer />
         </div>
     );
 };

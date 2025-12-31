@@ -1,7 +1,7 @@
 "use client";
 import { supabase } from "@/lib/supabse/supabaseConfig";
 import React, { useRef, useState } from "react";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import dynamic from 'next/dynamic';
 import "suneditor/dist/css/suneditor.min.css";
 
@@ -51,11 +51,13 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+
     const handleContentChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
     ) => {
         setContent({ ...content, [e.target.name]: e.target.value });
     };
+
 
 
     const handleSave = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -76,10 +78,10 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
                 { question: content.fifthQuestion, answer: content.fifthAnswer },
                 { question: content.sixthQuestion, answer: content.sixthAnswer },
             ],
-
             image: imageURL
 
         }]).select().single();
+
 
         if (error) {
             console.log("THE ERROR COMES IS : ");
@@ -97,7 +99,8 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
         }
 
         setloading(false);
-        toast.success("Blog updated successfully");
+        toast.success("Blog Added successfully");
+        
     }
 
 
@@ -129,6 +132,7 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
     }
 
     return (
+
         <div className={`${collapsed ? "w-[85vw]" : "w-[75vw]"} mx-auto mt-10 px-4`}>
             <form onSubmit={handleSave}>
                 <div className="rounded-2xl border border-blue-200 bg-white shadow-xl overflow-hidden">
@@ -447,6 +451,8 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
                 </div>
 
             </form>
+
+            <ToastContainer/>
 
         </div>
 

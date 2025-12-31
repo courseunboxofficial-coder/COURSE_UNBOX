@@ -32,12 +32,10 @@ export default function Home() {
                   <Navbar />
                   <Hero />
                   <Partners />
-                  {/* <Banner /> */}
-                  <UpdatedBanner/>
+                  <Banner />
                   <Trending />
                   <Courses />
-                  {/* <Enquiry /> */}
-                  <HomeEnquiry/>
+                  <Enquiry />
                   <TopCourses />
                   <Hire />
                   <Mentors />

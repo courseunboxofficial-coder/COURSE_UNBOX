@@ -2,15 +2,46 @@
 
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const Enquiry = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
+  const [phone, setPhone] = useState("");
+  const [occupation, setOccupation] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ email, password, rememberMe });
+
+    const templateParams = {
+      name: `${firstName} ${lastName}`,
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+      phone: phone,
+      occupation: occupation
+    };
+
+    emailjs
+      .send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        templateParams,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      )
+      .then(() => {
+        alert("Message sent successfully!");
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPhone("");
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Failed to send message");
+      });
   };
 
   return (
@@ -33,7 +64,7 @@ const Enquiry = () => {
                 <label className="text-sm font-medium text-black">First Name</label>
                 <input
                   type="text"
-                  name="FirstName"
+                  name="firstName"
                   className="text-black w-full border border-gray-300 p-3 rounded-md mt-1 focus:ring-2 focus:ring-purple-500"
                   placeholder="name@mail.com"
                 />
@@ -43,7 +74,7 @@ const Enquiry = () => {
                 <label className="text-sm font-medium text-black">Last Name</label>
                 <input
                   type="text"
-                  name="LastName"
+                  name="lastName"
                   className=" text-black w-full border border-gray-300 p-3 rounded-md mt-1 focus:ring-2 focus:ring-purple-500"
                   placeholder="Dubey"
 
@@ -66,12 +97,38 @@ const Enquiry = () => {
             <div>
               <label className="text-sm font-medium text-gray-600">Phone Number</label>
               <input
-                type="number"
+                type="phone"
                 className="text-black w-full border border-gray-300 p-3 rounded-md mt-1 focus:ring-2 focus:ring-purple-500"
                 placeholder="name@mail.com"
 
               />
             </div>
+
+            <div>
+              <label className="text-sm font-medium text-gray-600">
+                Occupation
+              </label>
+
+              <select
+                value={occupation}
+                onChange={(e) => setOccupation(e.target.value)}
+                className="border border-gray-300 p-3 rounded-md w-full text-black
+               focus:ring-2 focus:ring-purple-500 focus:outline-none
+               bg-white cursor-pointer"
+                required
+              >
+                <option value="" disabled>
+                  Select your occupation
+                </option>
+                <option value="Student">Student</option>
+                <option value="Professional">Professional</option>
+                <option value="Housewife">Housewife</option>
+                <option value="Business Owner">Business Owner</option>
+                <option value="Freelancer">Freelancer</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
 
 
             <div className="flex gap-3">

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Pencil, Trash2, Layers, Sparkles } from "lucide-react";
 import { supabase } from '@/lib/supabse/supabaseConfig';
+import { toast, ToastContainer } from 'react-toastify';
 
 type Mentor = {
 
@@ -54,7 +55,10 @@ export default function MentorTable ({onEdit} : {onEdit : any}) {
         if(error){
             console.log("THERE IS SOME ERROR HAPPENS IN IT : ");
             console.log(error);
+            toast.error("The error happens in this is : ");
         }
+
+        toast.success("Mentor Data is Delete Succesfully : ");
 
 
         console.log(data);
@@ -121,13 +125,13 @@ export default function MentorTable ({onEdit} : {onEdit : any}) {
                                     </td>
 
                                     <td className="px-8 py-6 text-center">
-                                        <button className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-100 to-emerald-200 px-5 py-2.5 text-sm font-semibold text-emerald-700 shadow-md hover:shadow-lg hover:scale-105 transition-all" onClick={()=>onEdit(mentor)}>
+                                        <button className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-100 to-emerald-200 px-5 py-2.5 text-sm font-semibold text-emerald-700 shadow-md hover:shadow-lg hover:scale-105 transition-all cursor-pointer" onClick={()=>onEdit(mentor)}>
                                             <Pencil size={16} /> Edit
                                         </button>
                                     </td>
 
                                     <td className="px-8 py-6 text-center">
-                                        <button className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-rose-100 to-rose-200 px-5 py-2.5 text-sm font-semibold text-rose-700 shadow-md hover:shadow-lg hover:scale-105 transition-all" onClick={()=>handleDelete(mentor.id)}>
+                                        <button className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-rose-100 to-rose-200 px-5 py-2.5 text-sm font-semibold text-rose-700 shadow-md hover:shadow-lg hover:scale-105 transition-all cursor-pointer" onClick={()=>handleDelete(mentor.id)}>
                                             <Trash2 size={16} /> Delete
                                         </button>
                                     </td>
@@ -137,6 +141,7 @@ export default function MentorTable ({onEdit} : {onEdit : any}) {
                     </table>
                 </div>
             </div>
+            <ToastContainer/>
         </section>
     );
 }

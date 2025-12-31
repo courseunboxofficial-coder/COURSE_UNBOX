@@ -12,10 +12,12 @@ import { Home, BookOpen, Info, FileText, Settings, Menu, Users } from "lucide-re
 import MentorEditor from './MentorEditor';
 
 const sidebarItems = [
+
     { key: "home", label: "Home", icon: Home },
     { key: "courses", label: "Courses", icon: BookOpen },
     { key: "mentors", label: "Mentors", icon: Users },
     { key: "blog", label: "Blog", icon: FileText },
+    
 ];
 
 const Sidebar = () => {
