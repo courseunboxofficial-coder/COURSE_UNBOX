@@ -45,7 +45,7 @@ const Enquiry = () => {
   };
 
   return (
-    <div className="h-screen flex  items-center justify-center bg-[#4b1faf] p-2">
+    <div className="min-h-screen flex  items-center justify-center bg-[#4b1faf] p-2">
       <div className="bg-white w-full md:w-[80vw] rounded-3xl shadow-lg shadow-indigo-300 hover:shadow-2xl
        hover:shadow-indigo-500 flex overflow-hidden transition cursor-pointer">
 

@@ -69,7 +69,7 @@ const Enquiry = ({ courseId }: { courseId: string }) => {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-indigo-600 to-pink-500 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-indigo-600 to-pink-500 text-white max-sm:h-[110vh] max-md:h-[110vh] max-lg:h-[110vh]">
 
       <section className="mx-auto max-w-7xl px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
         <div>
