@@ -228,6 +228,120 @@ export default function DigiCourseSection() {
 
             </p>
 
+            <p>
+              A robust digital marketing training program will help students become familiar with
+             and learn to comfortably use various analytic tools to measure, assess and enhance their digital marketing efforts. Tools that enable beginners to become job-ready professionals include:
+
+            </p>
+
+            <ul className="list-disc pl-6 space-y-2">
+              <li>
+                Google Analytics for tracking web activity
+
+              </li>
+              <li>
+                Google Search Console for SEO insights
+
+              </li>
+              <li>
+                Keyword Research and SEO Tools
+
+              </li>
+              <li>
+                Social Media Scheduling and Analytics Tools
+              </li>
+            </ul>
+
+            <p>It is only through using them in a hands-on way that students will gain the practical experience they need 
+              to become job-ready.
+             </p>
+
+             <p className="font-medium text-gray-800">Career Opportunities After Completing Digital Marketing Training
+             </p>
+             <p>Digital Marketing has many opportunities for the type of work individuals will be doing, based on skill set and interest level. The questions that come to mind first when Learners experience their First Digital Marketing Training in an accredited Digital Marketing Institute in the NCR are:
+             </p>
+
+              <ul className="list-disc pl-5 space-y-2">
+              <li>Digital Marketing Executive</li>
+              <li>SEO Specialist</li>
+              <li>Digital Marketing Performance Marketer</li>
+              <li>Social Media Manager</li>
+              <li>Content Strategist</li>
+            </ul>
+
+            <p>
+              Many students also pursue or create their own freelance businesses, thanks to the ability to progress through their business life as they desire.
+            </p>
+
+            <h3>Placement Support and Career Guidance</h3>
+            <p>With learning skills being a small part of the entire journey, it is equally important to know how to apply for jobs and market yourself, as well as build a strong portfolio and prepare for successful interviews.
+            </p>
+
+            <p>The following are some of the many services offered by a professional institute:</p>
+
+            <ul className="list-disc pl-5 space-y-2">
+              <li>Resume-development assistance</li>
+              <li>Mock interview opportunities</li>
+              <li>Industry exposure and access to a mentor</li>
+              <li>Referrals to job openings based on demonstrated skill level</li>
+            </ul>
+
+
+            <p>Course Unbox designs its courses to help individuals become career-ready by educating students on what is required in their specific industries
+               to be successful and how to market themselves to meet those demands.
+            </p>
+
+
+
+            <h3 className="text-xl font-semibold text-slate-900">Who Should Join a Digital Marketing Institute in Delhi NCR?</h3>
+
+              <p>
+                Digital marketing is a skill that can be learned by anyone who is willing to adapt and grow.
+                It does not require prior technical knowledge or professional experience, making it an
+                accessible career option for many learners.
+              </p>
+
+              <ul className="list-disc pl-5 space-y-2" >
+                <li>Students exploring new and high-growth career opportunities</li>
+                <li>Working professionals looking to upgrade or switch their skill set</li>
+                <li>Small business owners aiming to strengthen their online presence</li>
+                <li>Freelancers who want to expand their service offerings</li>
+              </ul>
+
+              <p>
+                Enrolling in a structured digital marketing institute helps simplify the learning process
+                through guided training, practical exposure, and a clear learning roadmap.
+              </p>
+
+              <h3  className="text-xl font-semibold text-slate-900">Why Course Unbox Is a Trusted Learning Choice</h3>
+
+              <p>
+                Course Unbox is dedicated to helping learners gain a strong understanding of digital
+                marketing while building clarity, confidence, and practical capability. The focus is on
+                preparing students for real-world success rather than just theoretical knowledge.
+              </p>
+
+              <h4>What Sets Course Unbox Apart</h4>
+
+              <ul className="list-disc pl-5 space-y-2" >
+                <li>Up-to-date curriculum aligned with current industry needs</li>
+                <li>Hands-on learning with practical assignments and projects</li>
+                <li>Experienced instructors with real-world industry exposure</li>
+                <li>A balanced approach to skill development and career growth</li>
+              </ul>
+
+              <p>
+                Course Unbox emphasizes learning by doing. Instead of overwhelming students with excessive
+                information, it focuses on understanding, application, and consistency—helping learners
+                truly master digital marketing skills.
+              </p>
+
+
+
+            
+
+
+
             <h3 className="text-xl font-semibold text-slate-900">
               Final Thoughts: Best Digital Marketing Institute in Delhi NCR
             </h3>
