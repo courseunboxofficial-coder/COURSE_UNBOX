@@ -15,7 +15,7 @@ export default function FounderSection() {
 
         {/* IMAGE SIDE */}
         <div className="relative">
-          <div className="absolute -inset-4 bg-blue-200/40 rounded-3xl blur-2xl"></div>
+          {/* <div className="absolute -inset-4 bg-blue-200/40 rounded-3xl blur-2xl"></div> */}
 
           <div className="relative rounded-2xl overflow-hidden shadow-xl border border-blue-200 bg-white ">
             <Image
@@ -29,7 +29,7 @@ export default function FounderSection() {
           </div>
 
           {/* CTA */}
-          <button onClick={()=>router.push("/https://www.linkedin.com/in/jugalchauhandm/?originalSubdomain=in")}
+          <a href={"https://www.linkedin.com/in/jugalchauhandm/?originalSubdomain=in"}
 
          
             className="inline-flex items-center justify-center gap-2
@@ -42,7 +42,8 @@ export default function FounderSection() {
           >
             Connect on LinkedIn
             <Linkedin size={18} />
-          </button>
+          </a>
+          
         </div>
 
         {/* CONTENT SIDE */}

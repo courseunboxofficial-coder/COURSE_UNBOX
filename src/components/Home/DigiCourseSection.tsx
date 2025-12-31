@@ -213,6 +213,22 @@ export default function DigiCourseSection() {
             </p>
 
             <h3 className="text-xl font-semibold text-slate-900">
+              Course Fees for the Best Digital Marketing Institute in Delhi NCR
+            </h3>
+
+            <p>
+              One of the most common questions learners have is how much digital marketing courses cost in Delhi NCR.Pricing differs across institutes, but the most important factors should always be quality of curriculum, hands-on practice, and career support. Always compare what you are getting for the fee — not just the number.
+
+              Course Unbox offers industry-aligned training with transparent pricing, practical projects, and placement assistance that matches the learner’s goals, making it a wise choice among digital marketing courses in Delhi NCR.
+
+            </p>
+
+            <p className="font-medium text-slate-800">
+              Importance of Learning Tools Used by Industry Professionals
+
+            </p>
+
+            <h3 className="text-xl font-semibold text-slate-900">
               Final Thoughts: Best Digital Marketing Institute in Delhi NCR
             </h3>
 
