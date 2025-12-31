@@ -11,16 +11,16 @@ import { supabase } from "@/lib/supabse/supabaseConfig";
 import { title } from "process";
 
 
-export async function generateMetadata({params} : {params : Promise<{id : string}>}) {
-   const {id} = await params;
+// export async function generateMetadata({params} : {params : Promise<{id : string}>}) {
+//    const {id} = await params;
 
-   const {data , error} = await supabase.from("Blogs").select("*").eq("id", id);
+//    const {data , error} = await supabase.from("Blogs").select("*").eq("id", id);
 
-   return {
-      title : data,
-      description : data
-   }
-} 
+//    return {
+//       title : data,
+//       description : data
+//    }
+// } 
 
 
 

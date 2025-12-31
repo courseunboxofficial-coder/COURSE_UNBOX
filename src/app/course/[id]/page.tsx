@@ -15,16 +15,16 @@ import Faq from "@/components/course/CourseFAQ";
 import { supabase } from "@/lib/supabse/supabaseConfig";
 import Mentors from "@/components/Home/Mentors";
 
-export async function generateMetadata({params}:{params : Promise<{id:string}>}) {
-    const {id} = await params;
+// export async function generateMetadata({params}:{params : Promise<{id:string}>}) {
+//     const {id} = await params;
 
-    const {data, error} = await supabase.from('Courses').select("*").eq("id", id);
+//     const {data, error} = await supabase.from('Courses').select("*").eq("id", id);
 
-    return {
-        title : data,
-        description : data
-    }
-}
+//     return {
+//         title : data,
+//         description : data
+//     }
+// }
 
 export default async function CoursePage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = await params
