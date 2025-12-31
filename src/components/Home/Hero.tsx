@@ -38,11 +38,11 @@ const Hero = () => {
         {/* LEFT CONTENT */}
         <div className="w-[50%] text-center content-center lg:text-left">
           <h1 className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
-            India&apos;s <span className="text-yellow-400">#1 platform</span>
+            Get Certified By Amazon <span className="text-yellow-400">And FlipKart</span>
           </h1>
 
           <p className="text-sm sm:text-base md:text-lg lg:text-lg mb-8 sm:mb-10 lg:ml-5">
-            Best Digital Marketing Institute in Delhi NCR
+            Indias no.1 Ai/Digital Marketing Institution
           </p>
 
 
