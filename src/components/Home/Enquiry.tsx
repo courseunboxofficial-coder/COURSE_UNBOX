@@ -5,6 +5,8 @@ import { useState } from "react";
 import emailjs from "@emailjs/browser";
 
 const Enquiry = () => {
+
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -16,12 +18,14 @@ const Enquiry = () => {
     e.preventDefault();
 
     const templateParams = {
+
       name: `${firstName} ${lastName}`,
       first_name: firstName,
       last_name: lastName,
       email: email,
       phone: phone,
       occupation: occupation
+
     };
 
     emailjs
@@ -66,7 +70,8 @@ const Enquiry = () => {
                   type="text"
                   name="firstName"
                   className="text-black w-full border border-gray-300 p-3 rounded-md mt-1 focus:ring-2 focus:ring-purple-500"
-                  placeholder="name@mail.com"
+                  placeholder="Myname"
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
               </div>
 
@@ -77,6 +82,7 @@ const Enquiry = () => {
                   name="lastName"
                   className=" text-black w-full border border-gray-300 p-3 rounded-md mt-1 focus:ring-2 focus:ring-purple-500"
                   placeholder="Dubey"
+                   onChange={(e) => setLastName(e.target.value)}
 
                 />
               </div>
@@ -91,6 +97,7 @@ const Enquiry = () => {
                 placeholder="name@mail.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
 
@@ -99,8 +106,8 @@ const Enquiry = () => {
               <input
                 type="phone"
                 className="text-black w-full border border-gray-300 p-3 rounded-md mt-1 focus:ring-2 focus:ring-purple-500"
-                placeholder="name@mail.com"
-
+                placeholder="9643065630"
+                 onChange={(e) => setPhone(e.target.value)}
               />
             </div>
 
