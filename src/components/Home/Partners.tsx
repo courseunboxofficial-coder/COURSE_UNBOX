@@ -12,7 +12,7 @@ const logos = [
 
 export default function Partners() {
     return (
-        <div className="w-full bg-linear-to-r from-[#1C336E] to-[#3d5ba9] py-8 overflow-hidden">
+        <div className="w-full bg-linear-to-r from-[#1C336E] to-[#3d5ba9] py-8 overflow-hidden shadow-2xl">
             <div className="max-w-7xl mx-auto flex items-center gap-12 px-6">
                 {/* Left Stat */}
                 <div className="flex-shrink-0 text-white">

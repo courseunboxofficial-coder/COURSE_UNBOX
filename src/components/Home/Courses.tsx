@@ -67,7 +67,7 @@ const Courses = () => {
     return (
 
         <section className="w-screen pt-20 py-16 bg-[#fbfdff]">
-                  <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px) [background-size:24px_24px]" />
+            <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px) [background-size:24px_24px]" />
 
             <h2 className="text-center font-extrabold text-3xl md:text-4xl lg:text-5xl text-[#14399f]">
                 Our Courses
@@ -93,11 +93,11 @@ const Courses = () => {
                         </button>
                     ))}
                 </div>
-                    <div className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto">
+                <div className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto">
                     {filteredCourses.map((course) => (
                         <div
-                        key={course.id}
-                        className="
+                            key={course.id}
+                            className="
                             w-full
                             sm:w-[90%]
                             md:w-[45%]
@@ -107,7 +107,7 @@ const Courses = () => {
                             border-2 border-[#2e19a7]
                             rounded-2xl
                             flex flex-col
-                            shadow-xl
+                            shadow-2xl
                             hover:shadow-2xl
                             hover:-translate-y-1
                             transition-all
@@ -116,41 +116,41 @@ const Courses = () => {
                             overflow-hidden
                         "
                         >
-                        {/* IMAGE */}
-                        <div className="relative w-full h-[240px] lg:h-[260px]">
-                            <Image
-                            src={course.image}
-                            alt={course.title}
-                            fill
-                            className="object-cover rounded-tr-xl rounded-tl-xl"
-                            sizes="(max-width: 768px) 100vw, 400px"
-                            />
-                        </div>
-
-                        {/* CONTENT */}
-                        <div className="flex flex-col flex-1 px-5 py-4 text-center gap-3">
-                            <p className="text-lg font-bold text-[#213c98] line-clamp-2">
-                            {course.title}
-                            </p>
-
-                            <div className="w-fit mx-auto bg-indigo-100 px-4 py-1 rounded-2xl text-sm font-medium">
-                            {course.domain}
+                            {/* IMAGE */}
+                            <div className="relative w-full h-[240px] lg:h-[260px]">
+                                <Image
+                                    src={course.image}
+                                    alt={course.title}
+                                    fill
+                                    className="object-cover rounded-tr-xl rounded-tl-xl"
+                                    sizes="(max-width: 768px) 100vw, 400px"
+                                />
                             </div>
 
-                            <div className="w-full bg-gray-100 flex justify-center gap-3 p-2 rounded-lg text-sm shadow-inner">
-                            <div className="flex items-center gap-1 border-r pr-3">
-                                <Clock size={16} /> {course.Duration}
-                            </div>
-                            <div className="flex items-center gap-1 border-r pr-3">
-                                <ShieldCheck size={16} /> Certificate
-                            </div>
-                            <div className="flex items-center gap-1">
-                                <BookA size={16} /> {course.language}
-                            </div>
-                            </div>
+                            {/* CONTENT */}
+                            <div className="flex flex-col flex-1 px-5 py-4 text-center gap-3">
+                                <p className="text-lg font-bold text-[#213c98] line-clamp-2">
+                                    {course.title}
+                                </p>
 
-                            <Link href={`/course/${course.id}`} className="mt-auto">
-                            <button className="
+                                <div className="w-fit mx-auto bg-indigo-100 px-4 py-1 rounded-2xl text-sm font-medium">
+                                    {course.domain}
+                                </div>
+
+                                <div className="w-full bg-gray-100 flex justify-center gap-3 p-2 rounded-lg text-sm shadow-inner">
+                                    <div className="flex items-center gap-1 border-r pr-3">
+                                        <Clock size={16} /> {course.Duration}
+                                    </div>
+                                    <div className="flex items-center gap-1 border-r pr-3">
+                                        <ShieldCheck size={16} /> Certificate
+                                    </div>
+                                    <div className="flex items-center gap-1">
+                                        <BookA size={16} /> {course.language}
+                                    </div>
+                                </div>
+
+                                <Link href={`/course/${course.id}`} className="mt-auto">
+                                    <button className="
                                 w-full
                                 bg-[#dbb004]
                                 py-2.5
@@ -161,13 +161,13 @@ const Courses = () => {
                                 transition
                                 cursor-pointer
                             ">
-                                View
-                            </button>
-                            </Link>
-                        </div>
+                                        View
+                                    </button>
+                                </Link>
+                            </div>
                         </div>
                     ))}
-                    </div>
+                </div>
 
 
             </div>

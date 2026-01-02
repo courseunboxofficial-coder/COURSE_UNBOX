@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabse/supabaseConfig";
+import emailjs from "@emailjs/browser";
 
 type Course = {
   id: string;
@@ -69,7 +70,7 @@ const Enquiry = ({ courseId }: { courseId: string }) => {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-indigo-600 to-pink-500 text-white max-sm:h-[110vh] max-md:h-[110vh] max-lg:h-[110vh]">
+    <div className="min-h-screen bg-gradient-to-br from-blue-600 via-indigo-600 to-pink-500 text-white">
 
       <section className="mx-auto max-w-7xl px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
         <div>

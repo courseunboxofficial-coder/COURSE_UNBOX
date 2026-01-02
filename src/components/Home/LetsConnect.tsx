@@ -3,38 +3,69 @@ import React from 'react'
 const LetsConnect = () => {
     return (
 
-        <section className='h-[60vh] pt-10' >
-
-            <div className="w-[80%] h-[70vh] mx-auto mb-0 mt-10 bg-[#020e52] py-8 px-3 md:px-12 rounded-2xl flex gap-10">
-
-                <div className="relative mt-10">
-
+        <section className="w-full pt-10 px-4">
+            <div
+                className="
+      max-w-7xl mx-auto
+      bg-[#020e52]
+      rounded-tr-2xl
+      rounded-tl-2xl
+      flex flex-col lg:flex-row
+      items-center
+      gap-8 lg:gap-12
+      px-4 sm:px-8 lg:px-12
+      py-8 lg:py-12
+    "
+            >
+                {/* Image Section */}
+                <div className="relative w-full lg:w-1/2 flex justify-center">
                     <img
                         src="/images/Home/PeopleGather.png"
                         alt="confused person"
-                        className="w-[480px] h-[260px] object-cover rounded-xl"
+                        className="
+          w-full
+          max-w-xs sm:max-w-sm md:max-w-md
+          h-auto
+          object-cover
+          rounded-xl
+        "
                     />
 
-                    <span className="absolute -top-10 left-28 text-5xl">❓</span>
+                    <span className="absolute -top-6 sm:-top-8 right-6 sm:right-10 text-4xl sm:text-5xl">
+                        ❓
+                    </span>
                 </div>
 
-                <div className="mt-10 text-white">
-
-                    <div className='text-6xl font-bold mb-5 max-md:text-3xl max-sm:text-2xl max-lg:text-3xl'>
+                {/* Content Section */}
+                <div className="w-full lg:w-1/2 text-white text-center lg:text-left">
+                    <h2
+                        className="
+          font-bold
+          text-2xl sm:text-3xl md:text-4xl lg:text-5xl
+          leading-tight
+          mb-6
+        "
+                    >
                         Build skills that employers look for, not just marks
-                    </div>
+                    </h2>
 
-                    <button className="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold  py-4 px-3 mt-4 rounded-lg transition shadow-md cursor-pointer">
+                    <button
+                        className="
+          inline-flex items-center gap-2
+          bg-yellow-400 hover:bg-yellow-500
+          text-gray-900 font-semibold
+          py-3 px-6
+          rounded-lg
+          transition shadow-md
+        "
+                    >
                         Our Courses
                         <span className="text-xl">→</span>
                     </button>
-
                 </div>
-
             </div>
-
-
         </section>
+
 
 
     )

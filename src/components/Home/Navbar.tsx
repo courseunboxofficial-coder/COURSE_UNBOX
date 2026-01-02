@@ -41,7 +41,7 @@ const Navbar = () => {
             <Link href={"/about"} className="cursor-pointer relative
                                           after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 
                                           after:bg-blue-600 after:transition-all after:duration-400
-                                          hover:after:w-full hover:text-blue-600">About Us</Link>
+                                          hover:after:w-full md:text-md hover:text-blue-600">About Us</Link>
             <Link href={"/blog"} className="cursor-pointer relative
                                           after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 
                                           after:bg-blue-600 after:transition-all after:duration-400

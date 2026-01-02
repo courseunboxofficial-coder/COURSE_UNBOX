@@ -1,9 +1,5 @@
 "use client";
-
-import Slider, { Settings } from "react-slick";
 import { useEffect, useRef, useState } from "react";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import { ChevronLeft, ChevronRight, TrendingUp } from "lucide-react";
 import { supabase } from "@/lib/supabse/supabaseConfig";
 import Image from "next/image";
@@ -11,37 +7,8 @@ import Image from "next/image";
 type ImageType = { key: string; Image: string }
 
 export default function Trending() {
-  const sliderRef = useRef<Slider | null>(null);
-  const [currentSlide, setCurrentSlide] = useState<number>(0);
- const [Images, setImages] = useState<ImageType[]>([]);
 
-  const totalSlides = 8;
-  const slidesToShow = 3;
-
-  const settings: Settings = {
-    dots: false,
-    infinite: false,
-    speed: 600,
-    slidesToShow: slidesToShow,
-    slidesToScroll: 1,
-    arrows: false,
-    beforeChange: (_current: number, next: number) => {
-      setCurrentSlide(next);
-    },
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: { slidesToShow: 2 },
-      },
-      {
-        breakpoint: 640,
-        settings: { slidesToShow: 1 },
-      },
-    ],
-  };
-
-  const isPrevDisabled = currentSlide === 0;
-  const isNextDisabled = currentSlide >= totalSlides - slidesToShow;
+  const [Images, setImages] = useState<ImageType[]>([]);
 
   const getImagesData = async () => {
     const { data, error } = await supabase.from("Home").select("*").eq("section", "Trending").single();
@@ -64,60 +31,77 @@ export default function Trending() {
     getImagesData();
   }, []);
 
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+
+  const scroll = (direction: "left" | "right") => {
+    if (!scrollRef.current) return;
+    const cardWidth = 320;
+    scrollRef.current.scrollBy({
+      left: direction === "left" ? -cardWidth : cardWidth,
+      behavior: "smooth",
+    });
+  };
+
   return (
 
 
-    <section className="w-full py-20 bg-[#eaf7ff]">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex  items-center  gap-2 ">
-          <h2 className="text-3xl font-bold text-gray-900">Trending Now </h2>
-          <TrendingUp className="h-7.5 w-7.5 rounded-full p-1 pl-0 text-white bg-green-500 inline-block" />
+    <section className="w-full bg-[#e2eff9] py-14 px-4">
+      <div className="max-w-6xl mx-auto">
+
+        {/* Title – aligned to carousel start */}
+        <div className="flex items-center gap-2 mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+            Trending Now
+          </h2>
+          <div className="rounded-full bg-green-300 p-1">
+            <TrendingUp className="text-blue-600" />
+          </div>
         </div>
 
+        {/* Carousel – centered */}
+        <div className="relative">
 
-
-
-        <div className="relative mt-6">
-
-
+          {/* Left Arrow */}
           <button
-            onClick={() => sliderRef.current?.slickPrev()}
-            disabled={isPrevDisabled}
-            className={`absolute -left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center rounded-3xl  border  border-gray-300 transition
-                cursor-pointer shadow-2xl     
-                 ${isPrevDisabled ? "bg-gray-200 text-gray-400 " : "bg-white text-gray-700 hover:bg-sky-500 hover:text-white"}`}>
-            <ChevronLeft className="text-gray-300" />
-          </button>
-
-
-
-          <button onClick={() => sliderRef.current?.slickNext()} disabled={isNextDisabled}
-            className={`absolute -right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center rounded-full border border-gray-300 transition
-                cursor-pointer  
-              ${isNextDisabled ? "bg-gray-200 text-gray-400" : "bg-white text-gray-700 hover:bg-sky-500 hover:text-white "}`}
+            onClick={() => scroll("left")}
+            className="hidden md:flex absolute -left-5 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg p-3 rounded-full cursor-pointer hover:bg-blue-300 transition"
           >
-            <ChevronRight className="text-gray-300" />
+            <ChevronLeft />
           </button>
 
-          {/* Slider */}
-          <Slider ref={sliderRef} {...settings}>
+          {/* Right Arrow */}
+          <button
+            onClick={() => scroll("right")}
+            className="hidden md:flex absolute -right-5 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg p-3 rounded-full cursor-pointer hover:bg-blue-300 transition"
+          >
+            <ChevronRight />
+          </button>
+
+          {/* Cards Track */}
+          <div
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar"
+          >
             {Images.map((image, index) => (
-              <div key={index} className="px-3">
-                <div className="h-65 rounded-3xl bg-white  shadow-[rgba(100,100,111,0.2)_0px_7px_29px_0px] flex items-center justify-center text-xl font-semibold text-gray-700 cursor-pointer hover:shadow-2xl">
-                  <Image
-                    src={image.Image}
-                    width={400}
-                    height={250}
-                    alt={`Trending ${index}`}
-                    className="rounded-3xl object-cover"
-                  />
-                </div>
+              <div
+                key={index}
+                className="relative min-w-[370px] max-w-[370px] min-h-[250px] rounded-3xl overflow-hidden shadow-xl"
+              >
+                <Image
+                  src={image.Image}
+                  alt="Course Image"
+                  fill
+                  className="object-cover"
+                />
               </div>
             ))}
-          </Slider>
+          </div>
         </div>
       </div>
     </section>
+
   );
 }
 

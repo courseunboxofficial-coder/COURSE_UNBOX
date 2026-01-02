@@ -312,7 +312,7 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: blog }) => {
                                                 Second Question
                                             </label>
                                             <input
-                                                name="secondTitle"
+                                                name="secondQuestion"
                                                 value={content.secondQuestion}
                                                 onChange={handleContentChange}
                                                 className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
@@ -325,7 +325,7 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: blog }) => {
                                                 Second Answer
                                             </label>
                                             <textarea
-                                                name="secondDescription"
+                                                name="secondAnswer"
                                                 value={content.secondAnswer}
                                                 onChange={handleContentChange}
                                                 rows={2}
@@ -341,7 +341,7 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: blog }) => {
                                                 Third Question
                                             </label>
                                             <input
-                                                name="thirdTitle"
+                                                name="thirdQuestion"
                                                 value={content.thirdQuestion}
                                                 onChange={handleContentChange}
                                                 className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
@@ -357,7 +357,7 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: blog }) => {
 
                                             </label>
                                             <textarea
-                                                name="thirdDescription"
+                                                name="thirdAnswer"
                                                 value={content.thirdAnswer}
                                                 onChange={handleContentChange}
                                                 rows={2}
@@ -373,7 +373,7 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: blog }) => {
                                                 fourth Question
                                             </label>
                                             <input
-                                                name="fourthTitle"
+                                                name="fourthQuestion"
                                                 value={content.fourthQuestion}
                                                 onChange={handleContentChange}
                                                 className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
@@ -386,7 +386,7 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: blog }) => {
                                                 fourth Answer
                                             </label>
                                             <textarea
-                                                name="fourthDescription"
+                                                name="fourthAnswer"
                                                 value={content.fourthAnswer}
                                                 onChange={handleContentChange}
                                                 rows={2}
@@ -402,7 +402,7 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: blog }) => {
                                                 Fifth Question
                                             </label>
                                             <input
-                                                name="fifthTitle"
+                                                name="fifthQuestion"
                                                 value={content.fifthQuestion}
                                                 onChange={handleContentChange}
                                                 className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
@@ -415,7 +415,7 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: blog }) => {
                                                 Fifth Answer
                                             </label>
                                             <textarea
-                                                name="fifthDescription"
+                                                name="fifthAnswer"
                                                 value={content.fifthAnswer}
                                                 onChange={handleContentChange}
                                                 rows={2}
@@ -431,7 +431,7 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: blog }) => {
                                                 sixth Answer
                                             </label>
                                             <input
-                                                name="sixthTitle"
+                                                name="sixthQuestion"
                                                 value={content.sixthQuestion}
                                                 onChange={handleContentChange}
                                                 className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
@@ -444,7 +444,7 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: blog }) => {
                                                 sixth Question
                                             </label>
                                             <textarea
-                                                name="sixthDescription"
+                                                name="sixthAnswer"
                                                 value={content.sixthAnswer}
                                                 onChange={handleContentChange}
                                                 rows={2}
