@@ -113,7 +113,7 @@ export default function CourseList({course}:any) {
                   
                   </div>
 
-                  <div className="p-6 flex flex-col h-[260px]">
+                  <div className="p-6 flex flex-col">
                     <h3 className="font-semibold text-lg mb-4">
                       {course.title}
                     </h3>

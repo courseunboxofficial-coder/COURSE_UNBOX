@@ -59,7 +59,7 @@ export default function PhotoGalleryCarousel() {
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="mt-2 text-3xl md:text-4xl font-bold text-gray-900">
-             Photo Gallery
+            Our Photo Gallery
           </h2>
         </div>
 
