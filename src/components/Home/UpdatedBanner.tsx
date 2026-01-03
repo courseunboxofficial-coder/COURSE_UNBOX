@@ -43,8 +43,8 @@ export const UpdatedBanner = () => {
           {
             stats.map((item,idx)=>{
 
-                return (<>
-                     <div key={idx} className="flex items-center gap-2  rounded-lg md:rounded-0 p-4 md:p-0 justify-center md:justify-normal">
+                return (<React.Fragment key={idx}>
+                     <div className="flex items-center gap-2  rounded-lg md:rounded-0 p-4 md:p-0 justify-center md:justify-normal">
                             {item.icon}
                             <div>
                             <p className="text-lg sm:text-2xl font-bold">
@@ -57,7 +57,7 @@ export const UpdatedBanner = () => {
                            </div>
                      </div>
                     {idx<=2 && <div className="hidden md:block bg-linear-to-br from-yellow-100 via-yellow-400 to-amber-100 h-12 w-0.5"/>}
-                   </>
+                   </React.Fragment>
              )
 
             })
