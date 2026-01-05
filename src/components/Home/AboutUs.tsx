@@ -3,10 +3,14 @@
 import { supabase } from "@/lib/supabse/supabaseConfig";
 import { useState, useRef, useEffect } from "react";
 
+type About = {
+  content : string
+}
+
 export default function AboutUs() {
   const [expanded, setExpanded] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState<About | null>(null);
 
   const handleToggle = () => {
     if (expanded && contentRef.current) {
@@ -20,8 +24,10 @@ export default function AboutUs() {
     const {data , error } = await supabase.from("Home").select("*").eq("section", "AboutHome").single();
 
     if(error){
-      console.log("THERE IS ERROR IN THE HOWM ABOUT SECTION : ");
+
+      console.log("THERE IS ERROR IN THE HOME ABOUT SECTION : ");
       console.log(error);
+
     }
 
     console.log("THE ABOUT HOME DATA IS : ");
@@ -59,7 +65,7 @@ export default function AboutUs() {
           className={`text-gray-700 leading-relaxed pr-2  text-justify ${expanded ? "overflow-y-auto custom-scrollbar" : "overflow-hidden"}`}
           style={{ height: "130px" }}>
           <p className="">
-            {content}
+            {content?.content}
           </p>
         </div>
 
