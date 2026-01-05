@@ -63,6 +63,8 @@ export default function MentorTable ({onEdit} : {onEdit : any}) {
 
         console.log(data);
 
+        setMentors((prev) => prev.filter((mentor) => mentor.id !== id));
+
     }
 
     return (

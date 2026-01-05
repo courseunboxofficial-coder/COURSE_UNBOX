@@ -6,37 +6,64 @@ import { supabase } from "@/lib/supabse/supabaseConfig";
 import emailjs from "@emailjs/browser";
 
 type Course = {
-  id: string;
-  title: string;
-  description: string;
-  startDate: string;
-  Duration: number;
-  language: string;
-  domain: string;
-  Delivery_Mode: string;
-  content: {
+
+    id: string;
     title: string;
-    subtitle: string;
-  }[];
-  price: number,
-  high: number,
-  low: number,
-  modules: Record<
-    string,
+    description: string;
+    startDate: string;
+    Duration: number;
+    language: string;
+    domain: string;
+    Delivery_Mode: string;
+    low: number,
+    high: number,
+    price: number,
+    content: {
+        title: string;
+        subtitle: string;
+    }[];
+    Testimonials:
     {
-      module: string;
-      title: string;
-      lectures: string[];
-    }[]
-  >,
-  image: string,
+        name: string,
+        role: string,
+        company: string,
+        title: string,
+        description: string,
+        ranking: string,
+        course: string
+    }[],
+    modules: Record<
+        string,
+        {
+            module: string;
+            title: string;
+            lectures: string[];
+        }[]
+    >,
+
+    FAQ: {
+        question: string;
+        answer: string
+    }[];
+
+    meta: {
+        title: string,
+        description: string
+    },
+
+    slug: string,
+
+    alt: string,
+
+    image: string;
+
 }
 
 
-const Enquiry = ({ courseId }: { courseId: string }) => {
+const Enquiry = ({ courseSlug }: { courseSlug : string }) => {
 
   console.log("THE COURSE ID IS :")
-  console.log(courseId);
+  console.log(courseSlug);
 
   const [course, setCourse] = useState<Course | null>(null);
 
@@ -44,7 +71,7 @@ const Enquiry = ({ courseId }: { courseId: string }) => {
 
   const getData = async () => {
 
-    const { data, error } = await supabase.from("Courses").select("*").eq("id", courseId).single();
+    const { data, error } = await supabase.from("Courses").select("*").eq("slug", courseSlug).single();
 
     if (error) {
 

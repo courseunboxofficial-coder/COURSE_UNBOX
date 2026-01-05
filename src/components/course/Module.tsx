@@ -5,6 +5,7 @@ import { Lock, ChevronRight } from "lucide-react";
 import { supabase } from "@/lib/supabse/supabaseConfig";
 
 type Course = {
+
     id: string;
     title: string;
     description: string;
@@ -13,13 +14,23 @@ type Course = {
     language: string;
     domain: string;
     Delivery_Mode: string;
+    low: number,
+    high: number,
+    price: number,
     content: {
         title: string;
         subtitle: string;
     }[];
-    price: number,
-    high: number,
-    low: number,
+    Testimonials:
+    {
+        name: string,
+        role: string,
+        company: string,
+        title: string,
+        description: string,
+        ranking: string,
+        course: string
+    }[],
     modules: Record<
         string,
         {
@@ -28,7 +39,23 @@ type Course = {
             lectures: string[];
         }[]
     >,
-    image: string,
+
+    FAQ: {
+        question: string;
+        answer: string
+    }[];
+
+    meta: {
+        title: string,
+        description: string
+    },
+
+    slug: string,
+
+    alt: string,
+
+    image: string;
+
 }
 
 type ModuleType = {
@@ -37,7 +64,7 @@ type ModuleType = {
     lectures: string[];
 };
 
-export default function Module({ courseId }: { courseId: string }) {
+export default function Module({ courseSlug }: { courseSlug: string }) {
 
     const [course, setCourse] = useState<Course | null>(null);
     const [activeTab, setActiveTab] = useState<string | null>(null);
@@ -50,7 +77,7 @@ export default function Module({ courseId }: { courseId: string }) {
         const { data, error } = await supabase
             .from("Courses")
             .select("*")
-            .eq("id", courseId)
+            .eq("slug", courseSlug)
             .single();
 
         if (error) {
@@ -165,74 +192,74 @@ export default function Module({ courseId }: { courseId: string }) {
 
 
                 {/* ================= MOBILE VIEW ================= */}
-               <div className="md:hidden  py-6 bg-slate-50">
+                <div className="md:hidden  py-6 bg-slate-50">
 
                     <div className="space-y-3">
                         {modules.map((mod, index) => {
-                        const isOpen = activeModule === index;
+                            const isOpen = activeModule === index;
 
-                        return (
-                            <div
-                            key={mod.title}
-                            className="bg-white rounded-xl border border-slate-200 overflow-hidden transition-shadow duration-300"
-                            >
-                            {/* MODULE HEADER */}
-                            <button
-                                onClick={() => setActiveModule(isOpen ? -1 : index)}
-                                className={`
+                            return (
+                                <div
+                                    key={mod.title}
+                                    className="bg-white rounded-xl border border-slate-200 overflow-hidden transition-shadow duration-300"
+                                >
+                                    {/* MODULE HEADER */}
+                                    <button
+                                        onClick={() => setActiveModule(isOpen ? -1 : index)}
+                                        className={`
                                 w-full flex items-center justify-between p-4
                                 transition-colors duration-300
                                 ${isOpen ? "bg-indigo-100" : "hover:bg-slate-50"}
                                 `}
-                            >
-                                <div className="text-left">
-                                <p className="text-[11px] uppercase tracking-wide text-slate-500">
-                                    {mod.module}
-                                </p>
-                                <p className="text-sm font-semibold text-slate-900">
-                                    {mod.title}
-                                </p>
-                                </div>
+                                    >
+                                        <div className="text-left">
+                                            <p className="text-[11px] uppercase tracking-wide text-slate-500">
+                                                {mod.module}
+                                            </p>
+                                            <p className="text-sm font-semibold text-slate-900">
+                                                {mod.title}
+                                            </p>
+                                        </div>
 
-                                <ChevronRight
-                                className={`
+                                        <ChevronRight
+                                            className={`
                                     w-5 h-5 text-slate-400
                                     transition-transform duration-300
                                     ${isOpen ? "rotate-90" : ""}
                                 `}
-                                />
-                            </button>
+                                        />
+                                    </button>
 
-                            {/* LECTURES */}
-                            {isOpen && (
-                                <div className="px-4 pb-4 space-y-2 animate-fadeIn mt-2">
-                                {mod.lectures.map((lecture: string) => (
-                                    <div
-                                    key={lecture}
-                                    className="
+                                    {/* LECTURES */}
+                                    {isOpen && (
+                                        <div className="px-4 pb-4 space-y-2 animate-fadeIn mt-2">
+                                            {mod.lectures.map((lecture: string) => (
+                                                <div
+                                                    key={lecture}
+                                                    className="
                                         flex items-center justify-around
                                         p-3 rounded-lg
                                         bg-slate-50 border border-slate-200
                                     "
-                                    >
-                                    <p className="text-sm text-slate-800 font-medium">
-                                        {lecture}
-                                    </p>
-                                     <div className="bg-gray-200 p-1 rounded-full" >
-                                        <Lock className="size-4 text-slate-500 " />
-                                    </div>  
-                                    </div>
-                                ))}
+                                                >
+                                                    <p className="text-sm text-slate-800 font-medium">
+                                                        {lecture}
+                                                    </p>
+                                                    <div className="bg-gray-200 p-1 rounded-full" >
+                                                        <Lock className="size-4 text-slate-500 " />
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
                                 </div>
-                            )}
-                            </div>
-                        );
+                            );
                         })}
                     </div>
-                    </div>
-
-                    
                 </div>
+
+
+            </div>
 
         </section>
     );

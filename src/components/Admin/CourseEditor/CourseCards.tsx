@@ -3,47 +3,60 @@
 import React, { useEffect, useState } from "react";
 import { Pencil, Trash2, Layers, Sparkles } from "lucide-react";
 import { supabase } from "@/lib/supabse/supabaseConfig";
+import { toast, ToastContainer } from "react-toastify";
 
 type Course = {
-  id: string;
-  title: string;
-  description: string;
-  startDate: string;
-  Duration: number;
-  language: string;
-  domain: string;
-  Delivery_Mode: string;
-  low: number,
-  high: number,
-  price: number,
-  content: {
-    title: string;
-    subtitle: string;
-  }[];
-  Testimonials:
-  {
-    name: string,
-    role: string,
-    company: string,
-    title: string,
-    description: string,
-    ranking: string,
-    course: string
-  }[],
-  modules: Record<
-    string,
-    {
-      module: string;
-      title: string;
-      lectures: string[];
-    }[]
-  >,
 
-  FAQ: {
-    question: string;
-    answer: string
-  }[];
-  image: string;
+    id: string;
+    title: string;
+    description: string;
+    startDate: string;
+    Duration: number;
+    language: string;
+    domain: string;
+    Delivery_Mode: string;
+    low: number,
+    high: number,
+    price: number,
+    content: {
+        title: string;
+        subtitle: string;
+    }[];
+    Testimonials:
+    {
+        name: string,
+        role: string,
+        company: string,
+        title: string,
+        description: string,
+        ranking: string,
+        course: string
+    }[],
+    modules: Record<
+        string,
+        {
+            module: string;
+            title: string;
+            lectures: string[];
+        }[]
+    >,
+
+    FAQ: {
+        question: string;
+        answer: string
+    }[];
+
+    meta: {
+        title: string,
+        description: string
+    },
+
+    slug: string,
+
+    alt: string,
+
+    image: string;
+
 }
 
 
@@ -89,7 +102,15 @@ export default function CourseCards({ onEdit }: { onEdit: any }) {
             return
         }
 
+        const notify = () => {
+            toast("Data is Deleted");
+        };
+
+        notify();
+
         console.log(data);
+
+        setCourses((prev) => prev.filter((course) => course.id !== id));
     }
 
 
@@ -178,7 +199,7 @@ export default function CourseCards({ onEdit }: { onEdit: any }) {
                 ))}
 
             </div>
-
+            <ToastContainer/>
         </section>
 
     );

@@ -49,7 +49,7 @@ type Course = {
 }
 
 
-export default function CategoryOverview({courseId } : {courseId : string}) {
+export default function CategoryOverview({courseSlug } : {courseSlug : string}) {
   const [expanded, setExpanded] = useState(false);
   const [content, setContent] = useState<Course | null>(null);
 
@@ -58,7 +58,7 @@ export default function CategoryOverview({courseId } : {courseId : string}) {
     const { data, error } = await supabase
       .from("Courses")
       .select("*")
-      .eq("id", courseId)
+      .eq("slug", courseSlug)
       .single();
 
     if (error) {

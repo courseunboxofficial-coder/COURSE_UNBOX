@@ -14,11 +14,17 @@ const SunEditor = dynamic(() => import("suneditor-react"), {
 const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
 
     const [imageURL, setImageURL] = useState("");
+
     const [formData, setFormData] = useState({
+
         title: "",
         content: "",
         domain: "",
         author: "",
+        slug: "",
+        alt: "",
+        subcontent : ""
+
     });
 
     const [content, setContent] = useState({
@@ -73,20 +79,38 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
 
     };
 
-
-
-
+    
     const handleSave = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        setloading(true);
 
-        if(imageURL == ""){
+        event.preventDefault();
+
+        if (imageURL == "") {
 
             setloading(false);
             alert("You also need to Give the image Url currently you image is empty");
             return;
 
         }
+        
+        const slug = formData.slug
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/(^-|-$)/g, "");
+
+        const { data: existingBlogs, error: slugError } = await supabase.from("Blog").select("*").eq("slug", slug);
+
+        if (slugError) {
+            console.error(slugError);
+            return;
+        }
+
+        if (existingBlogs.length > 0) {
+            alert("Slug already exists. Please use a unique slug.");
+            return;
+        }
+
+        setloading(true);
+
 
         const { data, error } = await supabase.from("Blog").insert([{
 
@@ -94,6 +118,9 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
             domain: formData.domain,
             content: editorContent,
             author: formData.author,
+            slug: slug,
+            alt: formData.alt,
+            subcontent : formData.subcontent,
             FAQ: [
                 { question: content.firstQuestion, answer: content.firstAnswer },
                 { question: content.secondQuestion, answer: content.secondAnswer },
@@ -265,6 +292,53 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
                                         value={meta.metaDescription}
                                         onChange={handleMeta}
                                         className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                                        required
+                                    />
+                                </div>
+
+                            </div>
+
+
+                            <div className="flex gap-4">
+                                <div className="w-full">
+                                    <label className="block text-sm font-medium mb-2">
+                                        Slug
+                                    </label>
+                                    <input
+                                        name="slug"
+                                        value={formData.slug}
+                                        onChange={handleChange}
+                                        className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                                        required
+                                    />
+                                </div>
+
+                                <div className="w-full">
+                                    <label className="block text-sm font-medium mb-2">
+                                        Alt Tag For Image
+                                    </label>
+                                    <input
+                                        name="alt"
+                                        value={formData.alt}
+                                        onChange={handleChange}
+                                        className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                                        required
+                                    />
+                                </div>
+
+                            </div>
+
+                            <div className="flex gap-4">
+                                <div className="w-full">
+                                    <label className="block text-sm font-medium mb-2">
+                                        SubContent
+                                    </label>
+                                    <textarea
+                                        name="subcontent"
+                                        value={formData.subcontent}
+                                        onChange={handleChange}
+                                        rows={2}
+                                        className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none resize-none"
                                         required
                                     />
                                 </div>

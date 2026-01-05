@@ -7,6 +7,7 @@ import AddCourse from './CourseEditor/AddCourse';
 import EditCourse from './CourseEditor/EditCourse';
 
 type Course = {
+
   id: string;
   title: string;
   description: string;
@@ -45,7 +46,18 @@ type Course = {
     question: string;
     answer: string
   }[];
+
+  meta: {
+    title: string,
+    description: string
+  },
+
+  slug: string,
+
+  alt: string,
+
   image: string;
+
 }
 
 

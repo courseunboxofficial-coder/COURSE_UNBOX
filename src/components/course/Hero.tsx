@@ -5,6 +5,7 @@ import { CheckCircle, Star } from "lucide-react";
 import { supabase } from '@/lib/supabse/supabaseConfig';
 
 type Course = {
+
     id: string;
     title: string;
     description: string;
@@ -13,13 +14,23 @@ type Course = {
     language: string;
     domain: string;
     Delivery_Mode: string;
+    low: number,
+    high: number,
+    price: number,
     content: {
         title: string;
         subtitle: string;
     }[];
-    price: number,
-    high: number,
-    low: number,
+    Testimonials:
+    {
+        name: string,
+        role: string,
+        company: string,
+        title: string,
+        description: string,
+        ranking: string,
+        course: string
+    }[],
     modules: Record<
         string,
         {
@@ -28,16 +39,32 @@ type Course = {
             lectures: string[];
         }[]
     >,
-    image: string,
+
+    FAQ: {
+        question: string;
+        answer: string
+    }[];
+
+    meta: {
+        title: string,
+        description: string
+    },
+
+    slug: string,
+
+    alt: string,
+
+    image: string;
+
 }
 
-const Hero = ({ courseId }: { courseId: string }) => {
+const Hero = ({ courseSlug }: { courseSlug : string }) => {
     const [course, setCourse] = useState<Course | null>(null);
 
 
     const getData = async () => {
 
-        const { data, error } = await supabase.from("Courses").select("*").eq("id", courseId).single();
+        const { data, error } = await supabase.from("Courses").select("*").eq("slug", courseSlug).single();
 
         if (error) {
 
@@ -119,12 +146,12 @@ const Hero = ({ courseId }: { courseId: string }) => {
                     </div>
 
                     <div className=" lg:hidden my-6 ">
-                    <img
-                        src={course?.image ||"/images/Course/CouresesHero.svg" }
-                        alt="Course Banner"
-                        className="rounded-2xl shadow-lg w-[95%] h-[30vh]"
-                    />
-                   </div>
+                        <img
+                            src={course?.image || "/images/Course/CouresesHero.svg"}
+                            alt="Course Banner"
+                            className="rounded-2xl shadow-lg w-[95%] h-[30vh]"
+                        />
+                    </div>
 
 
 
@@ -203,7 +230,7 @@ const Hero = ({ courseId }: { courseId: string }) => {
 
                 <div className="hidden lg:flex justify-center">
                     <img
-                        src={course?.image ||"/images/Course/CouresesHero.svg" }
+                        src={course?.image || "/images/Course/CouresesHero.svg"}
                         alt="Course Banner"
                         className="rounded-2xl shadow-lg w-[80%] h-[40vh] xl:w-[95%] xl:h-[60vh]"
                     />

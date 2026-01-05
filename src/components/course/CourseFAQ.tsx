@@ -49,7 +49,7 @@ type Course = {
   
 }
 
-function Faq({courseId} : {courseId : string}) {
+function Faq({courseSlug} : {courseSlug : string}) {
 
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
 
@@ -60,7 +60,7 @@ function Faq({courseId} : {courseId : string}) {
       const { data, error } = await supabase
         .from("Courses")
         .select("*")
-        .eq("id", courseId)
+        .eq("slug", courseSlug)
         .single();
   
       if (error) {

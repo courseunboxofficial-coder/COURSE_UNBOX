@@ -14,6 +14,13 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
 
     const [imageURL, setImageURL] = useState<string>("");
     const [loading, setloading] = useState(false);
+    const [meta, setMeta] = useState({
+
+        metaTitle: "",
+        metaDescription: ""
+
+    });
+
     const [editorValue, setEditorValue] = useState<string>(`{
     "Data Science Foundations": [
 
@@ -66,6 +73,8 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
         low: 0,
         high: 0,
         Delivery_Mode: "",
+        alt: "",
+        slug: ""
     });
 
     const [content, setContent] = useState({
@@ -175,6 +184,12 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
         setTestimonial3({ ...Testimonial3, [e.target.name]: e.target.value });
     };
 
+    const handleMeta = async (event: React.ChangeEvent<HTMLInputElement>) => {
+
+        setMeta({ ...meta, [event.target.name]: event.target.value });
+
+    };
+
 
     const handleModuleParse = () => {
 
@@ -202,7 +217,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
 
 
     const handleSave = async (event: React.FormEvent<HTMLFormElement>) => {
-        setloading(true);
+
         event.preventDefault();
         const validationJson = handleModuleParse();
 
@@ -223,10 +238,36 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
 
 
         if (imageURL === "") {
+
             alert("Your Image URL IS Empty please upload the image otherwise you are not able to save the data : ");
 
             return;
         };
+
+
+        const slug = formData.slug
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/(^-|-$)/g, "");
+
+        const { data: existingBlogs, error: slugError } = await supabase.from("Courses").select("*").eq("slug", slug);
+
+        if (slugError) {
+
+            console.error(slugError);
+            return;
+
+        }
+
+        if (existingBlogs.length > 0) {
+
+            alert("Slug already exists. Please use a unique slug.");
+            return;
+
+        }
+
+
+        setloading(true);
 
 
         const { data, error } = await supabase.from("Courses").insert([{
@@ -241,6 +282,12 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
             price: formData.price,
             low: formData.low,
             high: formData.high,
+            alt: formData.alt,
+            slug: slug,
+            meta: {
+                title: meta.metaTitle,
+                description: meta.metaDescription
+            },
             content: [
 
                 { title: content.firstTitle, subtitle: content.firstDescription },
@@ -520,6 +567,66 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                             </div>
 
 
+                            <div className="flex gap-4">
+                                <div className="w-full">
+                                    <label className="block text-sm font-medium mb-2">
+                                        Meta Title
+                                    </label>
+                                    <input
+                                        name="metaTitle"
+                                        value={meta.metaTitle}
+                                        onChange={handleMeta}
+                                        className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                                        required
+                                    />
+                                </div>
+
+                                <div className="w-full">
+                                    <label className="block text-sm font-medium mb-2">
+                                        Meta Description
+                                    </label>
+                                    <input
+                                        name="metaDescription"
+                                        value={meta.metaDescription}
+                                        onChange={handleMeta}
+                                        className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                                        required
+                                    />
+                                </div>
+
+                            </div>
+
+
+                            <div className="flex gap-4">
+                                <div className="w-full">
+                                    <label className="block text-sm font-medium mb-2">
+                                        Slug
+                                    </label>
+                                    <input
+                                        name="slug"
+                                        value={formData.slug}
+                                        onChange={handleChange}
+                                        className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                                        required
+                                    />
+                                </div>
+
+                                <div className="w-full">
+                                    <label className="block text-sm font-medium mb-2">
+                                        Alt Tag For Image
+                                    </label>
+                                    <input
+                                        name="alt"
+                                        value={formData.alt}
+                                        onChange={handleChange}
+                                        className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                                        required
+                                    />
+                                </div>
+
+                            </div>
+
+
                             <div>
                                 <label className="block text-sm font-medium mb-2">
                                     About Us
@@ -533,6 +640,9 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                     required
                                 />
                             </div>
+
+
+
 
 
                             {/* Image Upload */}
@@ -571,7 +681,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                 <p className="text-center text-2xl font-bold mb-5">Why choose this course section ?</p>
 
                                 <div className="flex gap-4 justify-between">
-                                    <div className="flex flex-col mb-3">
+                                    <div className="flex flex-col mb-3 w-full">
                                         <label className="block text-sm font-medium mb-2">
                                             FirstTitle
                                         </label>
@@ -584,7 +694,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                         />
                                     </div>
 
-                                    <div className="flex flex-col">
+                                    <div className="flex flex-col w-full">
                                         <label className="block text-sm font-medium mb-2">
                                             First Description
                                         </label>
@@ -600,7 +710,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                 </div>
 
                                 <div className="flex gap-4 justify-between">
-                                    <div className="flex flex-col mb-3">
+                                    <div className="flex flex-col mb-3 w-full">
                                         <label className="block text-sm font-medium mb-2">
                                             SecondTitle
                                         </label>
@@ -613,7 +723,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                         />
                                     </div>
 
-                                    <div className="flex flex-col">
+                                    <div className="flex flex-col w-full">
                                         <label className="block text-sm font-medium mb-2">
                                             Second Description
                                         </label>
@@ -629,7 +739,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                 </div>
 
                                 <div className="flex gap-4 justify-between">
-                                    <div className="flex flex-col mb-3">
+                                    <div className="flex flex-col mb-3 w-full">
                                         <label className="block text-sm font-medium mb-2">
                                             ThirdTitle
                                         </label>
@@ -642,7 +752,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                         />
                                     </div>
 
-                                    <div className="flex flex-col">
+                                    <div className="flex flex-col w-full">
 
                                         <label className="block text-sm font-medium mb-2">
 
@@ -661,7 +771,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                 </div>
 
                                 <div className="flex gap-4 justify-between">
-                                    <div className="flex flex-col mb-3">
+                                    <div className="flex flex-col mb-3 w-full">
                                         <label className="block text-sm font-medium mb-2">
                                             fourthTitle
                                         </label>
@@ -674,7 +784,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                         />
                                     </div>
 
-                                    <div className="flex flex-col">
+                                    <div className="flex flex-col w-full">
                                         <label className="block text-sm font-medium mb-2">
                                             fourth Description
                                         </label>
@@ -690,7 +800,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                 </div>
 
                                 <div className="flex gap-4 justify-between">
-                                    <div className="flex flex-col mb-3">
+                                    <div className="flex flex-col mb-3 w-full">
                                         <label className="block text-sm font-medium mb-2">
                                             FifthTitle
                                         </label>
@@ -703,7 +813,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                         />
                                     </div>
 
-                                    <div className="flex flex-col">
+                                    <div className="flex flex-col w-full">
                                         <label className="block text-sm font-medium mb-2">
                                             Fifth Description
                                         </label>
@@ -719,7 +829,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                 </div>
 
                                 <div className="flex gap-4 justify-between">
-                                    <div className="flex flex-col mb-3">
+                                    <div className="flex flex-col mb-3 w-full">
                                         <label className="block text-sm font-medium mb-2">
                                             sixthTitle
                                         </label>
@@ -732,7 +842,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                         />
                                     </div>
 
-                                    <div className="flex flex-col">
+                                    <div className="flex flex-col w-full">
                                         <label className="block text-sm font-medium mb-2">
                                             sixth Description
                                         </label>

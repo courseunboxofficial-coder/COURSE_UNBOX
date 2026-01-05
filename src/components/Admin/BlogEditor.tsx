@@ -7,35 +7,39 @@ import EditBlog from './BlogEditor/EditBlog';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 
-type blog = {
+type Blog = {
 
-    id: string;
-    title: string;
-    content: string;
-    FAQ: {
-        question: string;
-        answer: string
-    }[];
-    image: string,
+  id: string;
+  title: string;
+  content: string;
+  FAQ: {
+    question: string;
+    answer: string
+  }[];
+  image: string,
 
-    meta: {
+  meta: {
 
-        title: string,
-        description: string
-    },
+    title: string,
+    description: string
+  },
 
-    created_at: number;
-    author: string,
-    domain: string;
+  slug: string,
+  alt: string,
+  subcontent: string,
+  created_at: number;
+  author: string,
+  domain: string;
 
 };
+
 
 
 
 const BlogEditor = ({ collapsed }: { collapsed: boolean }) => {
 
     const [active, setActive] = useState("card");
-    const [editItem, setEditItem] = useState<blog | null>(null);
+    const [editItem, setEditItem] = useState<Blog | null>(null);
 
     const handleCardView = () => {
         setActive("card");
@@ -45,7 +49,7 @@ const BlogEditor = ({ collapsed }: { collapsed: boolean }) => {
         setActive("Table")
     }
 
-    const onEdit = (blog: blog) => {
+    const onEdit = (blog: Blog) => {
         setActive("Edit");
         setEditItem(blog);
 

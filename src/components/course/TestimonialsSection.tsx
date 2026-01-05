@@ -17,13 +17,13 @@ type testimonials = {
 
 }
 
-export default function Testimonials({ courseId }: { courseId: string }) {
+export default function Testimonials({ courseSlug }: { courseSlug : string }) {
 
     const [Testimonials, setTestimonials] = useState<testimonials[]>([]);
 
     const getTestimonialsData = async () => {
 
-        const { data, error } = await supabase.from("Courses").select("Testimonials").eq("id", courseId).single();
+        const { data, error } = await supabase.from("Courses").select("Testimonials").eq("slug", courseSlug).single();
 
         if (error) {
 

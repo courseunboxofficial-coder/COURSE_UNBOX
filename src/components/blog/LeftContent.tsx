@@ -9,21 +9,28 @@ import Image from "next/image";
 type Blog = {
 
   id: string;
-  domain: string;
   title: string;
-  author: string;
   content: string;
   FAQ: {
     question: string;
-    answer: string;
+    answer: string
   }[];
+  image: string,
 
-  image: string;
+  meta: {
 
-  created_at: string;
+    title: string,
+    description: string
+  },
+
+  slug: string,
+  alt: string,
+  subcontent: string,
+  created_at: number;
+  author: string,
+  domain: string;
 
 };
-
 
 export default function LeftContent({ BlogId }: { BlogId: string }) {
 
@@ -33,7 +40,7 @@ export default function LeftContent({ BlogId }: { BlogId: string }) {
     const { data, error } = await supabase
       .from("Blog")
       .select("*")
-      .eq("id", BlogId)
+      .eq("slug", BlogId)
       .single();
 
     if (error) {
@@ -88,7 +95,7 @@ export default function LeftContent({ BlogId }: { BlogId: string }) {
       <div className="group relative w-full aspect-[16/9] rounded-2xl overflow-hidden shadow-xl">
         <img
           src={Blogs?.image}
-          alt="Blog cover"
+          alt={Blogs?.alt}
           className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
         />
         <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/10 to-transparent" />

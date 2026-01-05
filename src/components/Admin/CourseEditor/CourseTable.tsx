@@ -6,6 +6,7 @@ import { supabase } from "@/lib/supabse/supabaseConfig";
 import { toast, ToastContainer } from "react-toastify";
 
 type Course = {
+
   id: string;
   title: string;
   description: string;
@@ -44,7 +45,18 @@ type Course = {
     question: string;
     answer: string
   }[];
+
+  meta: {
+    title: string,
+    description: string
+  },
+
+  slug: string,
+
+  alt: string,
+
   image: string;
+
 }
 
 
@@ -91,6 +103,8 @@ const CourseTable = ({ onEdit }: { onEdit: any }) => {
     };
 
     notify();
+
+    setCourses((prev) => prev.filter((course) => course.id !== id));
 
 
   }
@@ -182,7 +196,7 @@ const CourseTable = ({ onEdit }: { onEdit: any }) => {
         </div>
         <ToastContainer />
       </section>
-      
+
     </>
   );
 }

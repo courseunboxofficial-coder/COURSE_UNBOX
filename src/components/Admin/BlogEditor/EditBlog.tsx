@@ -10,7 +10,7 @@ const SunEditor = dynamic(() => import("suneditor-react"), {
     ssr: false,
 });
 
-type blog = {
+type Blog = {
 
     id: string;
     title: string;
@@ -20,11 +20,16 @@ type blog = {
         answer: string
     }[];
     image: string,
-    meta : {
-        
-        title : string,
-        description : string
-    }
+
+    meta: {
+
+        title: string,
+        description: string
+    },
+
+    slug: string,
+    alt: string,
+    subcontent: string,
     created_at: number;
     author: string,
     domain: string;
@@ -34,14 +39,18 @@ type blog = {
 
 
 
-const EditBlog = ({ collapsed, blog } : { collapsed: boolean; blog: blog }) => {
+
+const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: Blog }) => {
 
     const [imageURL, setimageURL] = useState("");
 
     const [formData, setFormData] = useState({
         title: "",
         content: "",
-        domain: ""
+        domain: "",
+        alt: "",
+        slug: "",
+        subcontent: ""
     });
 
     const [editorContent, setEditorContent] = useState("");
@@ -86,7 +95,7 @@ const EditBlog = ({ collapsed, blog } : { collapsed: boolean; blog: blog }) => {
     };
 
 
-    const handleMeta = async (event : React.ChangeEvent<HTMLInputElement>) => {
+    const handleMeta = async (event: React.ChangeEvent<HTMLInputElement>) => {
 
         setMeta({ ...meta, [event.target.name]: event.target.value });
 
@@ -98,6 +107,9 @@ const EditBlog = ({ collapsed, blog } : { collapsed: boolean; blog: blog }) => {
             title: blog.title,
             content: blog.content,
             domain: blog.domain,
+            alt: blog.alt,
+            slug: blog.slug,
+            subcontent: blog.subcontent
         });
 
         setimageURL(blog.image)
@@ -125,6 +137,11 @@ const EditBlog = ({ collapsed, blog } : { collapsed: boolean; blog: blog }) => {
         });
 
         setEditorContent(blog.content);
+
+        setMeta({
+            metaTitle : blog.meta.title,
+            metaDescription : blog.meta.description
+        })
 
         setimageURL(blog.image);
 
@@ -164,6 +181,23 @@ const EditBlog = ({ collapsed, blog } : { collapsed: boolean; blog: blog }) => {
 
         event.preventDefault();
 
+        const slug = formData.slug
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/(^-|-$)/g, "");
+
+        const { data: existingBlogs, error: slugError } = await supabase.from("Blog").select("*").eq("slug", slug);
+
+        if (slugError) {
+            console.error(slugError);
+            return;
+        }
+
+        if (existingBlogs.length > 1) {
+            alert("Slug already exists. Please use a unique slug.");
+            return;
+        }
+
         setloading(true);
 
         const { data, error } = await supabase.from("Blog").update(
@@ -173,6 +207,9 @@ const EditBlog = ({ collapsed, blog } : { collapsed: boolean; blog: blog }) => {
                 title: formData.title,
                 content: formData.content,
                 domain: formData.domain,
+                slug: slug,
+                alt: formData.alt,
+                subcontent: formData.subcontent,
 
                 FAQ: [
 
@@ -185,7 +222,7 @@ const EditBlog = ({ collapsed, blog } : { collapsed: boolean; blog: blog }) => {
 
                 ],
 
-                meta:{
+                meta: {
                     title: meta.metaTitle,
                     description: meta.metaDescription,
                 },
@@ -299,6 +336,53 @@ const EditBlog = ({ collapsed, blog } : { collapsed: boolean; blog: blog }) => {
                                             value={meta.metaDescription}
                                             onChange={handleMeta}
                                             className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                                            required
+                                        />
+                                    </div>
+
+                                </div>
+
+
+                                <div className="flex gap-4">
+                                    <div className="w-full">
+                                        <label className="block text-sm font-medium mb-2">
+                                            Slug
+                                        </label>
+                                        <input
+                                            name="slug"
+                                            value={formData.slug}
+                                            onChange={handleChange}
+                                            className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                                            required
+                                        />
+                                    </div>
+
+                                    <div className="w-full">
+                                        <label className="block text-sm font-medium mb-2">
+                                            Alt Tag For Image
+                                        </label>
+                                        <input
+                                            name="alt"
+                                            value={formData.alt}
+                                            onChange={handleChange}
+                                            className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                                            required
+                                        />
+                                    </div>
+
+                                </div>
+
+                                <div className="flex gap-4">
+                                    <div className="w-full">
+                                        <label className="block text-sm font-medium mb-2">
+                                            SubContent
+                                        </label>
+                                        <textarea
+                                            name="subcontent"
+                                            value={formData.subcontent}
+                                            onChange={handleChange}
+                                            rows={2}
+                                            className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none resize-none"
                                             required
                                         />
                                     </div>

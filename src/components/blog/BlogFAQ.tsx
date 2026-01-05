@@ -8,17 +8,27 @@ import { supabase } from "@/lib/supabse/supabaseConfig";
 type Blog = {
 
   id: string;
-  domain: string;
   title: string;
   content: string;
-
   FAQ: {
     question: string;
-    answer: string;
+    answer: string
   }[];
+  image: string,
 
-  created_at: string;
-  
+  meta: {
+
+    title: string,
+    description: string
+  },
+
+  slug: string,
+  alt: string,
+  subcontent: string,
+  created_at: number;
+  author: string,
+  domain: string;
+
 };
 
 export default function BlogFAQ({ BlogId }: { BlogId: string }) {
@@ -32,7 +42,7 @@ export default function BlogFAQ({ BlogId }: { BlogId: string }) {
     const { data, error } = await supabase
       .from("Blog")
       .select("*")
-      .eq("id", BlogId)
+      .eq("slug", BlogId)
       .single();
 
     if (error) {
@@ -91,7 +101,7 @@ export default function BlogFAQ({ BlogId }: { BlogId: string }) {
                 }
                 className="
                   w-full flex items-center justify-between gap-4
-                  px-6 py-4 text-left
+                  px-6 py-4 text-left cursor-pointer 
                 "
               >
                 <span className="font-semibold text-gray-900">
@@ -102,7 +112,7 @@ export default function BlogFAQ({ BlogId }: { BlogId: string }) {
                   className={`
                     flex h-8 w-8 items-center justify-center rounded-full
                     bg-blue-50 text-blue-600
-                    transition-transform duration-300
+                    transition-transform duration-300 hover:bg-[#8787fc]
                     ${isOpen ? "rotate-180" : ""}
                   `}
                 >

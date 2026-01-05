@@ -6,21 +6,57 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 type Course = {
-    id: string;
+
+  id: string;
+  title: string;
+  description: string;
+  startDate: string;
+  Duration: number;
+  language: string;
+  domain: string;
+  Delivery_Mode: string;
+  low: number,
+  high: number,
+  price: number,
+  content: {
     title: string;
-    description: string;
-    startDate: string;
-    Duration: number;
-    language: string;
-    domain: string;
-    Delivery_Mode: string;
+    subtitle: string;
+  }[];
+  Testimonials:
+  {
+    name: string,
+    role: string,
+    company: string,
+    title: string,
+    description: string,
+    ranking: string,
+    course: string
+  }[],
+  modules: Record<
+    string,
+    {
+      module: string;
+      title: string;
+      lectures: string[];
+    }[]
+  >,
 
-    content: {
-        title: string;
-        subtitle: string;
-    }[];
+  FAQ: {
+    question: string;
+    answer: string
+  }[];
 
-    image: string;
+  meta : {
+    title : string,
+    description : string
+  },
+
+  slug : string,
+
+  alt : string,
+  
+  image: string;
+
 }
 
 
@@ -149,7 +185,7 @@ const Courses = () => {
                                     </div>
                                 </div>
 
-                                <Link href={`/course/${course.id}`} className="mt-auto">
+                                <Link href={`/course/${course.slug}`} className="mt-auto">
                                     <button className="
                                 w-full
                                 bg-[#dbb004]

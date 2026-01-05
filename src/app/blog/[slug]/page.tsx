@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import Navbar from "@/components/Home/Navbar";
 import Foter from "@/components/Home/Footer"
 import RelatedBlog from "@/components/blog/RelatedBlog";
@@ -11,27 +12,46 @@ import { supabase } from "@/lib/supabse/supabaseConfig";
 import { title } from "process";
 
 
-export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
+export async function generateMetadata(
+  { params }: { params: Promise<{ slug: string }> }
+) {
 
-  const { data, error } = await supabase.from("Blogs").select("*").eq("id", id).single();
+  const { slug } = await params;
+
+  const { data } = await supabase
+    .from("Blog")
+    .select("*")
+    .eq("slug", slug)
+    .single();
 
   return {
+    title: data?.meta?.title ?? "CourseUnbox Blog",
+    description: data?.meta?.description ?? "",
+  };
 
-    title: data.meta.title,
-    description: data.meta.description
 
-  }
 }
 
 
+const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
-const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
-
-  const { id } = await params;
+  const { slug } = await params;
 
   console.log("THE ID WE HAVE GOT IS : ");
-  console.log(id);
+  console.log(slug);
+
+  const { data: blog , error } = await supabase
+    .from("Blog")
+    .select("id, slug")
+    .eq("slug", slug)
+    .maybeSingle();
+
+
+  if (!blog || error) {
+
+    notFound();
+
+  }
 
 
   return (
@@ -46,7 +66,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
           <div className="grid grid-cols-1 lg:grid-cols-[70%_30%] gap-10" >
 
 
-            <LeftContent BlogId={id} />
+            <LeftContent BlogId={slug} />
 
 
             <aside className="relative shadow-xs">
@@ -66,7 +86,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
         </div>
 
 
-        <BlogFAQ BlogId={id} />
+        <BlogFAQ BlogId={slug} />
 
 
         <RelatedBlog />

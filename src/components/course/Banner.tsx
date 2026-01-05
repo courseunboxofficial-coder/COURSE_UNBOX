@@ -4,6 +4,7 @@ import { supabase } from '@/lib/supabse/supabaseConfig';
 import React, { useEffect, useState } from 'react'
 
 type Course = {
+
     id: string;
     title: string;
     description: string;
@@ -12,13 +13,23 @@ type Course = {
     language: string;
     domain: string;
     Delivery_Mode: string;
+    low: number,
+    high: number,
+    price: number,
     content: {
         title: string;
         subtitle: string;
     }[];
-    price: number,
-    high: number,
-    low: number,
+    Testimonials:
+    {
+        name: string,
+        role: string,
+        company: string,
+        title: string,
+        description: string,
+        ranking: string,
+        course: string
+    }[],
     modules: Record<
         string,
         {
@@ -27,15 +38,31 @@ type Course = {
             lectures: string[];
         }[]
     >,
-    image: string,
+
+    FAQ: {
+        question: string;
+        answer: string
+    }[];
+
+    meta: {
+        title: string,
+        description: string
+    },
+
+    slug: string,
+
+    alt: string,
+
+    image: string;
+
 }
 
-const Banner = ({ courseId }: { courseId: string }) => {
+const Banner = ({ courseSlug }: { courseSlug : string }) => {
     const [course, setCourse] = useState<Course | null>(null);
 
     const getData = async () => {
 
-        const { data, error } = await supabase.from("Courses").select("*").eq("id", courseId).single();
+        const { data, error } = await supabase.from("Courses").select("*").eq("slug", courseSlug).single();
 
         if (error) {
 

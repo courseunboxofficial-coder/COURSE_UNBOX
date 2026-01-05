@@ -5,33 +5,37 @@ import { Pencil, Trash2, Layers, Sparkles } from "lucide-react";
 import { supabase } from "@/lib/supabse/supabaseConfig";
 import { toast, ToastContainer } from "react-toastify";
 
-type blog = {
+type Blog = {
 
-    id: string;
-    title: string;
-    content: string;
-    FAQ: {
-        question: string;
-        answer: string
-    }[];
-    image: string,
+  id: string;
+  title: string;
+  content: string;
+  FAQ: {
+    question: string;
+    answer: string
+  }[];
+  image: string,
 
-    meta : {
+  meta: {
 
-        title : string,
-        description : string
-    },
-    
-    created_at: number;
-    author: string,
-    domain: string;
+    title: string,
+    description: string
+  },
+
+  slug: string,
+  alt: string,
+  subcontent: string,
+  created_at: number;
+  author: string,
+  domain: string;
 
 };
 
 
+
 export default function BlogCard({ onEdit }: { onEdit: any }) {
 
-    const [Blogs, setBlogs] = useState<blog[]>([]);
+    const [Blogs, setBlogs] = useState<Blog[]>([]);
     const [loading, setloading] = useState(false);
 
     const fetchTableData = async () => {

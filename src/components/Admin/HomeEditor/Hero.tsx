@@ -123,7 +123,7 @@ const Hero = ({ collapsed } : { collapsed : boolean }) => {
 
                 <div className="rounded-2xl border border-blue-200 bg-white shadow-xl overflow-hidden">
 
-                    <div className="h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500" />
+                    <div className="h-1 bg-linear-to-r from-blue-500 via-indigo-500 to-purple-500" />
 
                     <div className='text-center text-3xl font-bold mt-3'>Hero Section</div>
 

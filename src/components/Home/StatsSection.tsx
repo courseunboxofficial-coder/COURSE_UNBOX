@@ -39,7 +39,7 @@ export default function StatsSection() {
           {/* Heading */}
           <div className="mb-8">
             <div className="flex items-center gap-3">
-              <span className="w-1.5 h-8 bg-sky-500 rounded-full" />
+              <span className="w-1.5 h-36 sm:h-8  bg-sky-500 rounded-full" />
               <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
                 Powering Careers with Skills That Matter
               </h2>

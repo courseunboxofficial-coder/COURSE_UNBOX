@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify';
 
 type Course = {
+
   id: string;
   title: string;
   description: string;
@@ -42,7 +43,18 @@ type Course = {
     question: string;
     answer: string
   }[];
+
+  meta: {
+    title: string,
+    description: string
+  },
+
+  slug: string,
+
+  alt: string,
+
   image: string;
+
 }
 
 
@@ -57,6 +69,11 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
 
   const [imageURL, setimageURL] = useState("");
   const [loading, setloading] = useState(false);
+  const [meta, setMeta] = useState({
+    metaTitle: "",
+    metaDescription: ""
+
+  });
   const [formData, setFormData] = useState({
 
     title: "",
@@ -70,6 +87,8 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
     price: 0,
     Delivery_Mode: "",
     image: "",
+    alt: "",
+    slug: ""
 
   });
 
@@ -223,6 +242,13 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
   };
 
 
+  const handleMeta = async (event: React.ChangeEvent<HTMLInputElement>) => {
+
+    setMeta({ ...meta, [event.target.name]: event.target.value });
+
+  };
+
+
   const handleModuleParse = () => {
 
     try {
@@ -261,6 +287,8 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
       high: course.high,
       price: course.price,
       Delivery_Mode: course.Delivery_Mode,
+      alt: course.alt,
+      slug: course.slug,
       image: course.image
 
     })
@@ -282,6 +310,11 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
       sixthDescription: course.content[5].subtitle
 
     });
+
+    setMeta({
+      metaTitle: course.title,
+      metaDescription: course.description
+    })
 
 
     setFAQ({
@@ -376,7 +409,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
     event.preventDefault();
 
 
-    setloading(true);
+
 
     const validationJson = handleModuleParse();
 
@@ -395,13 +428,28 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
 
     };
 
+    const slug = formData.slug
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/(^-|-$)/g, "");
 
-    if (imageURL === "") {
-      alert("Your Image URL IS Empty please upload the image otherwise you are not able to save the data : ");
+    const { data: existingBlogs, error: slugError } = await supabase.from("Courses").select("*").eq("slug", slug);
 
+    if (slugError) {
+
+      console.error(slugError);
       return;
 
-    };
+    }
+
+    if (existingBlogs.length > 1) {
+
+      alert("Slug already exists. Please use a unique slug.");
+      return;
+      
+    }
+
+    setloading(true);
 
     const { data, error } = await supabase.from("Courses").update(
 
@@ -416,6 +464,8 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
         low: 0,
         high: 0,
         price: formData.price,
+        alt: formData.alt,
+        slug: slug,
         Delivery_Mode: formData.Delivery_Mode,
         content: [
 
@@ -470,7 +520,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
         ],
 
         modules: parsedJson,
-        image: imageURL
+        image: imageURL || course.image
 
 
       }
@@ -487,6 +537,8 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
 
     console.log(data);
     setloading(false);
+
+    toast.success("The course is Edited Successfully : ");
 
   }
 
@@ -638,6 +690,65 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                   <option value="Offline">Offline</option>
                   <option value="Hybrid">Hybrid</option>
                 </select>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="w-full">
+                  <label className="block text-sm font-medium mb-2">
+                    Meta Title
+                  </label>
+                  <input
+                    name="metaTitle"
+                    value={meta.metaTitle}
+                    onChange={handleMeta}
+                    className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                    required
+                  />
+                </div>
+
+                <div className="w-full">
+                  <label className="block text-sm font-medium mb-2">
+                    Meta Description
+                  </label>
+                  <input
+                    name="metaDescription"
+                    value={meta.metaDescription}
+                    onChange={handleMeta}
+                    className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                    required
+                  />
+                </div>
+
+              </div>
+
+
+              <div className="flex gap-4">
+                <div className="w-full">
+                  <label className="block text-sm font-medium mb-2">
+                    Slug
+                  </label>
+                  <input
+                    name="slug"
+                    value={formData.slug}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                    required
+                  />
+                </div>
+
+                <div className="w-full">
+                  <label className="block text-sm font-medium mb-2">
+                    Alt Tag For Image
+                  </label>
+                  <input
+                    name="alt"
+                    value={formData.alt}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                    required
+                  />
+                </div>
+
               </div>
 
               {/* Description */}
