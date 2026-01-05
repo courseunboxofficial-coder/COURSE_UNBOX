@@ -22,7 +22,8 @@ const Hero = () => {
         text-white
         px-10 sm:px-6 md:px-12 lg:px-20
         pt-14 pb-3
-        xl:h-[58vh]
+        xl:h-[62vh]
+        2xl:h-[58vh]
       "
       >
 

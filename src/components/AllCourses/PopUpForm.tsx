@@ -71,12 +71,12 @@ export default function PopUpForm({ isOpen, onCancel, onConfirm }: IPopForm) {
           
 
           
-          ${isOpen ? "translate-y-16 opacity-100 z-999" : "-translate-y-full opacity-0"}
+          ${isOpen ? "translate-y-18 lg:translate-y-0 xl:translate-y-16 2xl:translate-y-18 opacity-100 z-999" : "-translate-y-full opacity-0"}
         `}>
 
 
 
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 sm:py-10 z-9999">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 lg:py-6 xl:py-10 z-9999">
 
 
 

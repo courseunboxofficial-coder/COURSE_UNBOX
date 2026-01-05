@@ -43,7 +43,7 @@ function Faq() {
           <h2 className="relative inline-block font-extrabold text-3xl md:text-4xl lg:text-5xl mb-16 ">
            FAQs : Digital Marketing Institute in Delhi NCR
             <svg
-              className="absolute left-0 -bottom-16 w-full"
+              className="absolute left-0 -bottom-7 sm:-bottom-16 w-full"
               viewBox="0 0 300 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"

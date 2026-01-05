@@ -2,8 +2,8 @@ import Link from "next/link"
 
 export default function Hire() {
   return (
-    <section className="w-full  lg:h-[70vh] px-4 md:px-10 flex justify-start items-start lg:justify-center lg:items-center">
-      <div className="max-w-7xl lg:h-[50vh] lg:mx-auto lg:my-auto bg-[#1732cb] rounded-2xl flex flex-col lg:flex-row items-center justify-between gap-10 px-6 md:px-12 py-10 text-white">
+    <section className="w-full   px-4 md:px-10 flex justify-start items-start lg:justify-center lg:items-center">
+      <div className="max-w-7xl  lg:mx-auto lg:my-auto bg-[#1732cb] rounded-2xl flex flex-col lg:flex-row items-center justify-between gap-10 px-6 md:px-12 py-6 md:py-10 text-white">
 
         {/* LEFT IMAGE SECTION */}
         <div className=" hidden relative w-full lg:w-[40%] lg:flex flex-col lg:flex-row justify-center ">
@@ -62,15 +62,6 @@ export default function Hire() {
             Course Unbox For Students
           </span>
 
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4">
-            Ready to become job-ready, not just degree-ready?
-          </h1>
-
-          <p className="text-lg text-white/90 mb-8 max-w-2xl">
-          Join 3.2 crore+ learners across India preparing for future tech careers.
-          </p>
-
-
           <div className=" lg:hidden relative w-full lg:w-[40%]  flex-col lg:flex-row justify-center py-2">
           {/* Main Person Image */}
        
@@ -78,7 +69,7 @@ export default function Hire() {
              <img
             src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=500&q=80"
             alt="Employer"
-            className="w-[40vw] h-[18vh] rounded-xl object-cover lg:hidden"
+            className="w-full h-[40vh] rounded-xl object-cover "
           />
 
         
@@ -86,16 +77,16 @@ export default function Hire() {
 
           {/* Floating Card 1 */}
           <div className="absolute right-2 top-6  lg:hidden">
-            <div className="bg-white rounded-xl shadow-lg p-4 w-56 text-gray-800">
+            <div className="bg-white rounded-xl shadow-lg p-2 w-46 text-gray-800">
               <div className="flex items-center gap-3">
                 <img
                   src="https://randomuser.me/api/portraits/women/44.jpg"
                   alt="candidate"
-                  className="w-10 h-10 rounded-full object-cover"
+                  className="w-7 h-7 rounded-full object-cover"
                 />
                 <div>
-                  <p className="text-sm font-semibold">Top Candidate</p>
-                  <div className="text-yellow-400 text-sm">★★★★★</div>
+                  <p className="text-xs font-semibold">Top Candidate</p>
+                  <div className="text-yellow-400 text-xs">★★★★★</div>
                 </div>
               </div>
             </div>
@@ -103,35 +94,47 @@ export default function Hire() {
 
           {/* AI Match Tag */}
           <div className="absolute -right-8 top-36 lg:hidden">
-            <div className="bg-emerald-400 text-white rounded-xl shadow-lg px-4 py-2 text-sm font-medium">
+            <div className="bg-emerald-400 text-white rounded-xl shadow-lg px-3 py-2 text-sm font-medium">
               Profile matched via AI ✨
             </div>
           </div>
 
           {/* Floating Card 2 */}
-          <div className="absolute right-2 top-52 lg:hidden">
-            <div className="bg-white rounded-xl shadow-lg p-4 w-56 text-gray-800">
+          <div className="absolute right-2 top-50 lg:hidden">
+            <div className="bg-white rounded-xl shadow-lg p-2 w-46 text-gray-800">
               <div className="flex items-center gap-3">
                 <img
                   src="https://randomuser.me/api/portraits/men/32.jpg"
                   alt="candidate"
-                  className="w-10 h-10 rounded-full object-cover"
+                  className="w-7 h-7 rounded-full object-cover"
                 />
                 <div>
-                  <p className="text-sm font-semibold">Skill Match</p>
-                  <div className="text-yellow-400 text-sm">★★★★★</div>
+                  <p className="text-xs font-semibold">Skill Match</p>
+                  <div className="text-yellow-400 text-xs">★★★★★</div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+         </div>
 
+
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mt-2 mb-4">
+            Ready to become job-ready, not just degree-ready?
+          </h1>
+
+
+          <p className="text-sm sm:text-lg text-white/90 mb-6 max-w-2xl">
+          Join 3.2 crore+ learners across India preparing for future tech careers.
+          </p>
+
+
+          
 
 
           <Link href="/course">
-          <button className="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold  py-4 px-3 mt-4 rounded-lg transition shadow-md cursor-pointer">
+          <button className="inline-flex items-center text-sm md:text-base gap-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold  py-2 px-2 md:p-4  rounded-lg transition shadow-md cursor-pointer">
             Our Courses
-            <span className="text-xl">→</span>
+            <span className="text-lg">→</span>
           </button>
           </Link>
         </div>

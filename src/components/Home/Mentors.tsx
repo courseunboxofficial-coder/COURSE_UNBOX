@@ -48,7 +48,7 @@ const Mentors = () => {
 
     return (
 
-        <div className="bg-[#eef5fc] w-full h-[87vh] mx-auto px-4 py-12 overflow-hidden">
+        <div className="bg-[#eef5fc] w-full mx-auto px-4 py-12 overflow-hidden">
   
             <div className="text-center text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#061b52] mb-12">
                 Our Mentors
@@ -67,11 +67,10 @@ const Mentors = () => {
                     >
                     <div
                         className="
-                        h-[32vh]
-                        sm:h-[36vh]
-                        md:h-[40vh]
-                        lg:h-[50vh]
-                        xl:h-[60vh]
+                        w-[80%]
+                        sm:w-full
+                        h-[55vh]
+                        sm:h-[60vh]
                         rounded-2xl
                         overflow-hidden
                         flex flex-col

@@ -105,7 +105,7 @@ export default function CourseList({course}:any) {
             className="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar"
            >
             {courses.map((course, idx) => (
-              <div key={idx} className="px-3">
+              <div key={idx} className="px-3  min-w-[370px] max-w-[370px]  ">
                 <div className="bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-xl transition h-full">
                   <div className="h-40 bg-linear-to-br from-indigo-600 to-blue-500 rounded-t-2xl flex items-center justify-center
                    text-white font-bold text-center ">
