@@ -1,5 +1,6 @@
-import Link from "next/link"
+"use client"
 
+import Link from "next/link"
 
 
 type Blog = {
@@ -31,9 +32,6 @@ type Blog = {
 export default function LeftContent({ Blogs }: { Blogs : Blog }) {
 
   
-
-
-
   return (<article className=" border-r-gray-400 ">
 
     {/* ===== BLOG HEADER ===== */}
