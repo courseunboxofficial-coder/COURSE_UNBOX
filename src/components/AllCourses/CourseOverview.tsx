@@ -7,7 +7,7 @@ export default function CourseOverview() {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <section className="md:max-w-7xl mx-4 md:mx-auto px-6 rounded-xl border-gray-200 shadow-xl bg-linear-to-br from-blue-300 via-yellow-50 to-blue-300">
+    <section className="md:max-w-7xl mx-4 md:mx-auto px-6 rounded-xl border-gray-200 shadow-xl bg-linear-to-br from-blue-200 via-blue-100 to-white">
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px) bg-size-[24px_24px]" />
 
       <div className="max-w-7xl mx-auto px-4 py-12 bg-[radial-gradient(#ffffff_1px,transparent_1px)">

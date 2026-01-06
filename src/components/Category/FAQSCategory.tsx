@@ -57,7 +57,7 @@ export default function FAQs() {
               key={index}
               className="
                 rounded-xl border border-gray-100 bg-white
-                shadow-md transition
+                shadow-md transition 
               "
             >
               <button
@@ -66,7 +66,7 @@ export default function FAQs() {
                 }
                 className="
                   w-full flex items-center justify-between gap-4
-                  px-6 py-4 text-left
+                  px-6 py-4 text-left cursor-pointer
                 "
               >
                 <span className="font-semibold text-gray-900">

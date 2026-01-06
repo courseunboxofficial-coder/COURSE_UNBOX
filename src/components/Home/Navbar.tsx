@@ -6,15 +6,19 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import Router from "next/router";
 import { useRouter } from "next/navigation";
+import CoursesDropdown from "./DropDown/CourseDropDown";
+import BlogsDropdown from "./DropDown/BlogsDropDown";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const [openCourses , setOpenCourses] = useState(false);
+
 
   return (
     <nav className="w-full h-full md:h-18 sticky top-0 z-100 border-b bg-white shadow-md">
       <div className=" flex items-center justify-between px-4 sm:px-8 py-4">
 
-        <div className="flex items-center justify-between  space-x-2   w-full   lg:w-[50%] xl:w-[48%] 2xl:w-[40%]">
+        <div className="flex items-center justify-between  space-x-2   w-full   lg:w-[50%] xl:w-[48%] 2xl:w-[44%]">
           <Link href={"/"}>
             
             <Image
@@ -24,28 +28,40 @@ const Navbar = () => {
             alt="logo"
             className="cursor-pointer"
           />
-
-          
           </Link>
           
           
           <div className="hidden lg:flex items-center space-x-15 font-bold text-gray-700">
-            <Link href={"/"} className="cursor-pointer relative
+            <div>
+
+              <Link href={"/"} className="cursor-pointer relative
                                           after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 
                                           after:bg-blue-600 after:transition-all after:duration-400
-                                          hover:after:w-full hover:text-blue-600">Home</Link>
-            <Link href={"/course"} className="cursor-pointer relative
-                                          after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 
-                                          after:bg-blue-600 after:transition-all after:duration-400
-                                          hover:after:w-full hover:text-blue-600">Courses</Link>
+                                          hover:after:w-full hover:text-blue-600">
+                                         Home
+                </Link>
+              
+            </div>
+  
+
+            <CoursesDropdown/>     
             <Link href={"/about"} className="cursor-pointer relative
                                           after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 
                                           after:bg-blue-600 after:transition-all after:duration-400
                                           hover:after:w-full md:text-md hover:text-blue-600">About Us</Link>
-            <Link href={"/blog"} className="cursor-pointer relative
+
+            <div>
+
+              {/* <Link href={"/blog"} className="cursor-pointer relative
                                           after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 
                                           after:bg-blue-600 after:transition-all after:duration-400
-                                          hover:after:w-full hover:text-blue-600">Blogs</Link>
+                                          hover:after:w-full hover:text-blue-600">
+                                            Blogs
+              </Link> */}
+              <BlogsDropdown/>
+
+            </div>
+            
           </div>
         </div>
 

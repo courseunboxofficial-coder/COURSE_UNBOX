@@ -105,25 +105,25 @@ export default function CourseList({course}:any) {
             className="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar"
            >
             {courses.map((course, idx) => (
-              <div key={idx} className="px-3  min-w-[370px] max-w-[370px]  ">
+              <div key={idx} className="px-3  min-w-[370px] max-w-[370px] rounded-lg ">
                 <div className="bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-xl transition h-full">
                   <div className="h-40 bg-linear-to-br from-indigo-600 to-blue-500 rounded-t-2xl flex items-center justify-center
                    text-white font-bold text-center ">
-                     <img src="https://kvch.in/assets-new/img/banner/gm.webp" alt="Course" className="w-full h-full object-center" />
+                     <img src="https://kvch.in/assets-new/img/banner/gm.webp" alt="Course" className="w-full h-full object-center rounded-lg" />
                   
                   </div>
 
-                  <div className="p-6 flex flex-col">
+                  <div className="p-6 flex flex-col h-60">
                     <h3 className="font-semibold text-lg mb-4">
                       {course.title}
                     </h3>
 
-                    <div className="text-sm text-gray-600 space-y-2 mb-6">
+                    <div className="text-sm  text-gray-600 space-y-2 mb-6">
                       <p><span className="font-medium">Duration:</span> {course.duration}</p>
                       <p><span className="font-medium">Cohort Starts:</span> {course.start}</p>
                     </div>
 
-                    <button className="mt-auto w-full py-3 rounded-xl border border-indigo-600 text-indigo-600 font-semibold hover:bg-indigo-600 hover:text-white transition">
+                    <button className="mt-auto  w-full py-3 rounded-xl cursor-pointer border border-indigo-600 text-indigo-600 font-semibold hover:bg-indigo-600 hover:text-white transition">
                       View Program
                     </button>
                   </div>

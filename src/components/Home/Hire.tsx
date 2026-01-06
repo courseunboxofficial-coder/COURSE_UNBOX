@@ -2,7 +2,7 @@ import Link from "next/link"
 
 export default function Hire() {
   return (
-    <section className="w-full   px-4 md:px-10 flex justify-start items-start lg:justify-center lg:items-center">
+    <section className="w-full my-6   px-4 md:px-10 flex justify-start items-start lg:justify-center lg:items-center">
       <div className="max-w-7xl  lg:mx-auto lg:my-auto bg-[#1732cb] rounded-2xl flex flex-col lg:flex-row items-center justify-between gap-10 px-6 md:px-12 py-6 md:py-10 text-white">
 
         {/* LEFT IMAGE SECTION */}

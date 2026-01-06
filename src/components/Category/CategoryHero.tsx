@@ -8,13 +8,13 @@ import { useState } from "react";
 export default function CategoryHero({ categories }: any) {
       const [expanded , setExpanded] = useState(false);
   return (
-    <section className="relative min-h-screen overflow-hidden bg-linear-to-r from-[#182848] to-[#4b6cb7] text-white">
+    <section className="relative max-h-screen overflow-hidden bg-linear-to-r from-[#182848] to-[#4b6cb7] text-white">
       
       {/* background shapes */}
       <div className="absolute -top-32 -left-32 w-[420px] md:w-[520px] h-[420px] md:h-[520px] bg-white/10 rounded-full blur-3xl" />
       <div className="absolute bottom-0 right-0 w-[320px] md:w-[420px] h-80 md:h-[420px] bg-black/10 rounded-full blur-3xl" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-10 lg:py-12 grid grid-cols-1 sm:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-10  grid grid-cols-1 sm:grid-cols-2 gap-12 lg:gap-16 items-center">
         
         {/* LEFT CONTENT */}
         <div className="text-left lg:text-left">
@@ -120,7 +120,7 @@ export default function CategoryHero({ categories }: any) {
         </div>
       </div>
 
-      <div className="max-w-5xl mx-4 my-4 sm:my-0  sm:mx-auto bg-white rounded-xl flex flex-col sm:flex-row justify-around items-center text-black py-6 gap-6">
+      <div className="max-w-5xl mx-4 my-4 sm:my-2  sm:mx-auto bg-white rounded-xl flex flex-col sm:flex-row justify-around items-center text-black py-6 gap-6">
 
           {/* CARD 1 */}
           <div className="flex items-center gap-2">

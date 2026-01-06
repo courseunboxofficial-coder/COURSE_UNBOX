@@ -1,8 +1,15 @@
+"use client"
 import Image from "next/image";
 import { Phone } from "lucide-react";
+import PopUpForm from "../AllCourses/PopUpForm";
+import { useState } from "react";
 
 export default function CourseHelpCTA() {
+  const [isOpen, setIsOpen] = useState(false);
+  
   return (
+    <>
+    <PopUpForm isOpen={isOpen} onConfirm={()=>setIsOpen(false)} onCancel={()=>setIsOpen(false)}/>
     <section className="max-w-7xl mx-auto px-4 py-10">
       <div
         className="
@@ -38,11 +45,12 @@ export default function CourseHelpCTA() {
           </p>
 
           <button
+            onClick={()=>setIsOpen(true)}
             className="
               mt-6 inline-flex items-center gap-2
               rounded-md bg-yellow-600 hover:bg-yellow-700
               px-6 py-3 text-sm sm:text-base font-semibold
-              text-white shadow-lg transition
+              text-white shadow-lg transition cursor-pointer
             "
           >
             <Phone size={18} />
@@ -62,5 +70,6 @@ export default function CourseHelpCTA() {
         </div>
       </div>
     </section>
+    </>
   );
 }
