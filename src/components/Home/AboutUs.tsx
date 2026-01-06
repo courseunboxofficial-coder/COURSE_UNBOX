@@ -38,7 +38,7 @@ export default function AboutUs() {
   return (
 
 
-        <section className="w-full bg-[#add8e64b] py-10">
+    <section className="w-full bg-[#add8e64b] py-10">
 
     <div className="flex flex-col md:flex-row max-w-7xl mx-auto px-6 py-10 gap-8">
       

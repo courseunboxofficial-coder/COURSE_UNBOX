@@ -30,22 +30,43 @@ const Navbar = () => {
           
           
           <div className="hidden lg:flex items-center space-x-15 font-bold text-gray-700">
-            <Link href={"/"} className="cursor-pointer relative
+            <div>
+
+              <Link href={"/"} className="cursor-pointer relative
                                           after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 
                                           after:bg-blue-600 after:transition-all after:duration-400
-                                          hover:after:w-full hover:text-blue-600">Home</Link>
-            <Link href={"/course"} className="cursor-pointer relative
+                                          hover:after:w-full hover:text-blue-600">
+                                         Home
+              </Link>
+              
+            </div>
+
+            <div>
+
+              <Link href={"/course"} className={`cursor-pointer relative
                                           after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 
                                           after:bg-blue-600 after:transition-all after:duration-400
-                                          hover:after:w-full hover:text-blue-600">Courses</Link>
+                                          hover:after:w-full hover:text-blue-600`}>Courses</Link>
+              
+            </div>
+            
+            
             <Link href={"/about"} className="cursor-pointer relative
                                           after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 
                                           after:bg-blue-600 after:transition-all after:duration-400
                                           hover:after:w-full md:text-md hover:text-blue-600">About Us</Link>
-            <Link href={"/blog"} className="cursor-pointer relative
+
+            <div>
+
+              <Link href={"/blog"} className="cursor-pointer relative
                                           after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 
                                           after:bg-blue-600 after:transition-all after:duration-400
-                                          hover:after:w-full hover:text-blue-600">Blogs</Link>
+                                          hover:after:w-full hover:text-blue-600">
+                                            Blogs
+              </Link>
+
+            </div>
+            
           </div>
         </div>
 
