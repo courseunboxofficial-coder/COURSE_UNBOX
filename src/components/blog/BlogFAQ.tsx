@@ -1,8 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { supabase } from "@/lib/supabse/supabaseConfig";
 
 
 type Blog = {
@@ -31,40 +30,11 @@ type Blog = {
 
 };
 
-export default function BlogFAQ({ BlogId }: { BlogId: string }) {
+export default function BlogFAQ({ Blogs} : { Blogs : Blog }) {
 
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [Blogs, setBlogs] = useState<Blog | null>(null);
 
-  const getBlogData = async () => {
-
-    const { data, error } = await supabase
-      .from("Blog")
-      .select("*")
-      .eq("slug", BlogId)
-      .single();
-
-    if (error) {
-
-      console.error(error);
-
-    }
-
-    console.log("THE DATA IS : ");
-    console.log(data);
-
-    setBlogs(data);
-
-  }
-
-
-
-  useEffect(() => {
-
-    getBlogData();
-
-  }, []);
 
 
 

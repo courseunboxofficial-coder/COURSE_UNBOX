@@ -1,4 +1,5 @@
 "use client"
+
 import React from "react";
 import { NotepadText, Award , GraduationCap , IndianRupee } from "lucide-react";
 import CountUp from 'react-countup';

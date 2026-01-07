@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
@@ -95,7 +96,7 @@ export default function BlogsDropdown() {
               {BLOG_MENU[activeCategory].map((blog) => (
                 <li key={blog}>
                   <Link
-                    href="/blogs"
+                    href="/blog"
                     className="hover:text-blue-600"
                   >
                     {blog}

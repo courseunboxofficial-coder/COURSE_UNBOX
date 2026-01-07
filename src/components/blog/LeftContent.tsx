@@ -1,9 +1,4 @@
-"use client"
-
-import { supabase } from "@/lib/supabse/supabaseConfig";
 import Link from "next/link"
-import { useEffect, useState } from "react";
-import Image from "next/image";
 
 
 type Blog = {
@@ -32,37 +27,9 @@ type Blog = {
 
 };
 
-export default function LeftContent({ BlogId }: { BlogId: string }) {
+export default function LeftContent({ Blogs }: { Blogs : Blog }) {
 
-  const [Blogs, setBlogs] = useState<Blog | null>(null);
-
-  const getBlogData = async () => {
-    const { data, error } = await supabase
-      .from("Blog")
-      .select("*")
-      .eq("slug", BlogId)
-      .single();
-      
-
-    if (error) {
-
-      console.error(error);
-
-    }
-
-    console.log("THE DATA IS : ");
-    console.log(data);
-
-    setBlogs(data);
-  }
-
-
-
-  useEffect(() => {
-
-    getBlogData();
-
-  }, []);
+  
   return (<article className=" border-r-gray-400 ">
 
     {/* ===== BLOG HEADER ===== */}
@@ -133,14 +100,15 @@ export default function LeftContent({ BlogId }: { BlogId: string }) {
 
 
     {/* ===== BLOG CONTENT ===== */}
-    <section className="mx-auto px-4 ">
-      <div className="
-  prose prose-slate max-w-none
-  prose-ul:list-disc
-  prose-ul:pl-6
-  prose-ol:list-decimal
-  prose-li:marker:text-slate-500
-"
+    <section className="mx-auto px-4 mt-12">
+      <div className="BlogContent
+      prose prose-slate max-w-none
+      prose-ul:list-disc prose-ul:pl-6
+      prose-ol:list-decimal prose-ol:pl-6
+      prose-li:my-1
+      prose-li:marker:text-slate-500
+      prose-p:leading-7
+    "
         dangerouslySetInnerHTML={{ __html: Blogs?.content ?? "" }}
       />
 

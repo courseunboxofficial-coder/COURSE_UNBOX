@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { supabase } from "@/lib/supabse/supabaseConfig";
 
 type Course = {
 
@@ -49,35 +48,9 @@ type Course = {
 }
 
 
-export default function CategoryOverview({courseSlug } : {courseSlug : string}) {
+export default function CategoryOverview({ courses }: { courses : Course }) {
   const [expanded, setExpanded] = useState(false);
-  const [content, setContent] = useState<Course | null>(null);
 
-
-  const getCourseData = async () => {
-    const { data, error } = await supabase
-      .from("Courses")
-      .select("*")
-      .eq("slug", courseSlug)
-      .single();
-
-    if (error) {
-
-      console.error(error);
-
-    }
-
-    console.log("THE DATA IS : ");
-    console.log(data);
-
-    setContent(data);
-  }
-
-  useEffect(() => {
-
-    getCourseData();
-
-  }, []);
 
   return (
     <section className="max-w-7xl mx-auto px-6 rounded-xl border-gray-200 shadow-xl bg-linear-to-br from-blue-300 via-blue-200 to-white my-10">
@@ -85,7 +58,7 @@ export default function CategoryOverview({courseSlug } : {courseSlug : string}) 
 
       <div className="max-w-7xl mx-auto px-4 py-12 bg-[radial-gradient(#ffffff_1px,transparent_1px)">
         <div className="text-2xl md:text-4xl font-extrabold mb-4 text-black">
-          <h2>About the <span className="text-blue-600">{content?.title}</span> Courses</h2>
+          <h2>About the <span className="text-blue-600">{courses?.title}</span> Courses</h2>
 
         </div>
 
@@ -93,14 +66,14 @@ export default function CategoryOverview({courseSlug } : {courseSlug : string}) 
 
 
         <p className="text-gray-700 leading-relaxed text-base md:text-lg ">
-          {content?.description.slice(0,300)}
+          {courses?.description.slice(0,300)}
             
           
 
           {expanded && (
             <>
               {" "}
-              {content?.description.slice(1000)}
+              {courses?.description.slice(1000)}
             </>
           )}
         </p>

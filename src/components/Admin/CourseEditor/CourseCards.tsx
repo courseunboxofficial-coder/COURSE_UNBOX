@@ -103,7 +103,9 @@ export default function CourseCards({ onEdit }: { onEdit: any }) {
         }
 
         const notify = () => {
+
             toast("Data is Deleted");
+            
         };
 
         notify();
@@ -143,7 +145,7 @@ export default function CourseCards({ onEdit }: { onEdit: any }) {
             </div>
 
 
-            <div className="flex flex-wrap gap-10">
+            <div className="flex flex-wrap gap-10 md:gap-4">
                 {courses.map((course) => (
                     <div
                         key={course.id}
@@ -199,7 +201,9 @@ export default function CourseCards({ onEdit }: { onEdit: any }) {
                 ))}
 
             </div>
+
             <ToastContainer/>
+            
         </section>
 
     );

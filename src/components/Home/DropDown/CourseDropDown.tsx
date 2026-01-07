@@ -105,12 +105,15 @@ export default function CoursesDropdown() {
             </div>
 
             {/* RIGHT COLUMN */}
+
             <div>
+
               <h4 className="font-semibold text-gray-900 mb-4  text-lg">
                 Placement Courses with AI
               </h4>
 
               <ul className="space-y-4 text-gray-600 text-sm">
+
                 <li>Full Stack Development Course</li>
                 <li>Data Science Course</li>
                 <li>Human Resource Management Course</li>
@@ -119,7 +122,9 @@ export default function CoursesDropdown() {
                 <li>Product Management Course</li>
                 <li>Financial Modelling Course</li>
                 <li>Supply Chain Logistics Course</li>
+                
               </ul>
+
             </div>
 
           </div>

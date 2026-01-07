@@ -184,3 +184,45 @@
     transform: translateX(-50%);
   }
 }
+
+.BlogContent h1 {
+  font-size: 35px;
+  font-weight:bold
+}
+
+.BlogContent h2 {
+  font-size: 30px;
+  font-weight: bold
+}
+
+.BlogContent h3 {
+  font-size : 20px;
+  font-weight : bold
+}
+
+/* ===== UNORDERED LIST ===== */
+.BlogContent ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* ===== ORDERED LIST ===== */
+.BlogContent ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* ===== LIST ITEM ===== */
+.BlogContent li {
+  margin: 0.25rem 0;
+}
+
+/* ===== BULLET / NUMBER ===== */
+.BlogContent li::marker {
+  color: #64748b; /* slate-500 */
+  font-weight: 500;
+}

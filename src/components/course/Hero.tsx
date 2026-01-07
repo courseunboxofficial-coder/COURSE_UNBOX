@@ -1,8 +1,5 @@
-"use client"
-
-import { useEffect, useState } from 'react'
 import { CheckCircle, Star } from "lucide-react";
-import { supabase } from '@/lib/supabse/supabaseConfig';
+
 
 type Course = {
 
@@ -58,34 +55,9 @@ type Course = {
 
 }
 
-const Hero = ({ courseSlug }: { courseSlug : string }) => {
-    const [course, setCourse] = useState<Course | null>(null);
 
 
-    const getData = async () => {
-
-        const { data, error } = await supabase.from("Courses").select("*").eq("slug", courseSlug).single();
-
-        if (error) {
-
-            console.log("The error coming in the Hero Section of the : ");
-            console.log(error);
-
-        }
-
-
-        console.log("THE DATA IS FOR THE PARTICULAR ID IS : ");
-        console.log(data);
-        setCourse(data);
-
-    }
-
-
-    useEffect(() => {
-
-        getData();
-
-    }, []);
+const Hero = ({ courses }: { courses: Course }) => {
 
 
     return (
@@ -117,7 +89,7 @@ const Hero = ({ courseSlug }: { courseSlug : string }) => {
                     {/* Heading */}
 
                     <div className="text-2xl md:text-3xl font-bold leading-tight max-w-4xl">
-                        <span className="text-yellow-400">{course?.title} </span>
+                        <span className="text-yellow-400">{courses?.title} </span>
                         Placement Course with AI
                         <span className="inline-block ml-2 mt-4 bg-white/15 px-4 py-1 rounded-full text-sm p-5">
                             Updated in May’25
@@ -134,7 +106,7 @@ const Hero = ({ courseSlug }: { courseSlug : string }) => {
                         <div className="flex items-center gap-3">
                             <CheckCircle className="text-green-400" />
                             <p className="text-sm md:text-lg ">
-                                Get placed with <b>₹{course?.low}-{course?.high} LPA</b> salary{" "}
+                                Get placed with <b>₹{courses?.low}-{courses?.high} LPA</b> salary{" "}
                                 <span className="underline cursor-pointer">Know more</span>
                             </p>
                         </div>
@@ -147,7 +119,7 @@ const Hero = ({ courseSlug }: { courseSlug : string }) => {
 
                     <div className=" lg:hidden my-6 ">
                         <img
-                            src={course?.image || "/images/Course/CouresesHero.svg"}
+                            src={courses?.image || "/images/Course/CouresesHero.svg"}
                             alt="Course Banner"
                             className="rounded-2xl shadow-lg w-[95%] h-[30vh]"
                         />
@@ -161,7 +133,7 @@ const Hero = ({ courseSlug }: { courseSlug : string }) => {
 
 
                         <div className='flex  items-center w-full  md:h-9 bg-[#4f0095] rounded-tr-2xl rounded-tl-2xl border border-white/20 p-3 pb-4 text-sm sm:text-lg'>
-                            <p>{course?.Duration} months online course with LIVE sessions</p>
+                            <p>{courses?.Duration} months online course with LIVE sessions</p>
                         </div>
 
                         <div className="grid grid-cols-2 gap-4 items-center pl-1 sm:pl-3">
@@ -170,7 +142,7 @@ const Hero = ({ courseSlug }: { courseSlug : string }) => {
 
                                 <p className="text-sm text-white/80">Batch starts on</p>
 
-                                <h4 className="text-lg sm:text-xl md:text-2xl font-bold mt-1">{course?.startDate}</h4>
+                                <h4 className="text-lg sm:text-xl md:text-2xl font-bold mt-1">{courses?.startDate}</h4>
 
                                 <span className="inline-block mt-3 bg-yellow-400 text-black px-3 sm:px-4 py-1 rounded-3xl sm:rounded-full  text-xs sm:text-sm font-semibold">
                                     Limited seats
@@ -184,8 +156,8 @@ const Hero = ({ courseSlug }: { courseSlug : string }) => {
                                 <p className="text-sm text-white/80">Course Fee</p>
 
                                 <div className="flex items-end gap-3 mt-2 flex-wrap">
-                                    <h4 className="text-lg sm:text-xl md:text-2xl  font-extrabold">₹{course?.price}</h4>
-                                    <span className="line-through text-white/60 text-xs  sm:text-normal">₹{course?.price! + 10001}</span>
+                                    <h4 className="text-lg sm:text-xl md:text-2xl  font-extrabold">₹{courses?.price}</h4>
+                                    <span className="line-through text-white/60 text-xs  sm:text-normal">₹{courses?.price! + 10001}</span>
                                 </div>
 
                                 <span className="inline-block mt-3 bg-white text-purple-700  px-3 sm:px-4 py-1 rounded-3xl sm:rounded-full text-xs sm:text-sm font-semibold">
@@ -230,7 +202,7 @@ const Hero = ({ courseSlug }: { courseSlug : string }) => {
 
                 <div className="hidden lg:flex justify-center">
                     <img
-                        src={course?.image || "/images/Course/CouresesHero.svg"}
+                        src={courses?.image || "/images/Course/CouresesHero.svg"}
                         alt="Course Banner"
                         className="rounded-2xl shadow-lg w-[80%] h-[40vh] xl:w-[95%] xl:h-[60vh]"
                     />

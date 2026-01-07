@@ -73,7 +73,7 @@ export default function MentorCard({onEdit} : {onEdit : any}) {
                 <div className="flex items-center gap-4">
                     <div>
                         <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight">
-                            Manage Courses
+                            Manage Mentors
                         </h2>
                         <p className="text-gray-500 mt-1">
                             Premium, industry-ready courses curated for growth

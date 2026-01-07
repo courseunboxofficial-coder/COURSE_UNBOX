@@ -1,8 +1,10 @@
 "use client";
+
 import React, { useState } from "react";
 import PopUpForm from "../AllCourses/PopUpForm";
 
 const LetsConnect = () => {
+  
   const [isOpen, setIsOpen] = useState(false);
 
   return (

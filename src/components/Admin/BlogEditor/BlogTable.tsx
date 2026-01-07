@@ -107,7 +107,7 @@ const BlogTable = ({ onEdit }: { onEdit: any }) => {
                                 <BookOpen size={22} />
                             </div>
                             <div>
-                                <h2 className="text-2xl font-bold text-gray-900">Course Management</h2>
+                                <h2 className="text-2xl font-bold text-gray-900">Blog Management</h2>
                                 <p className="text-sm text-gray-500">Manage, edit and organize courses</p>
                             </div>
                         </div>

@@ -114,7 +114,7 @@ export default function BlogCard({ onEdit }: { onEdit: any }) {
             </div>
 
 
-            <div className="flex flex-wrap gap-10">
+            <div className="flex flex-wrap gap-10 md:gap-4">
                 {Blogs.map((blog) => (
                     <div
                         key={blog.id}

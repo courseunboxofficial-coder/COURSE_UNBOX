@@ -4,11 +4,14 @@ import Image from "next/image";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
-import Router from "next/router";
 import { useRouter } from "next/navigation";
 import CoursesDropdown from "./DropDown/CourseDropDown";
 import BlogsDropdown from "./DropDown/BlogsDropDown";
+
+
+
 const Navbar = () => {
+  
   const [open, setOpen] = useState(false);
   const router = useRouter();
   const [openCourses , setOpenCourses] = useState(false);

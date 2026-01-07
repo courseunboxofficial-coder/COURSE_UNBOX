@@ -198,7 +198,7 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
                     <div className="h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500" />
 
                     <div className="text-center text-3xl font-bold mt-4">
-                        Add Course
+                        Add Blog
                     </div>
 
 
@@ -394,6 +394,7 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
                                             value={content.firstQuestion}
                                             onChange={handleContentChange}
                                             className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                            required
                                         />
                                     </div>
 
@@ -407,6 +408,7 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
                                             onChange={handleContentChange}
                                             rows={2}
                                             className="w-full rounded-xl border px-4 text-sm resize-none"
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -421,6 +423,7 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
                                             value={content.secondQuestion}
                                             onChange={handleContentChange}
                                             className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                            required
                                         />
                                     </div>
 
@@ -434,6 +437,7 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
                                             onChange={handleContentChange}
                                             rows={2}
                                             className="w-full rounded-xl border px-4 text-sm resize-none"
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -448,6 +452,7 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
                                             value={content.thirdQuestion}
                                             onChange={handleContentChange}
                                             className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                            required
                                         />
                                     </div>
 
@@ -464,6 +469,7 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
                                             onChange={handleContentChange}
                                             rows={2}
                                             className="w-full rounded-xl border px-4 text-sm resize-none"
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -478,6 +484,7 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
                                             value={content.fourthQuestion}
                                             onChange={handleContentChange}
                                             className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                            required
                                         />
                                     </div>
 
@@ -491,6 +498,7 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
                                             onChange={handleContentChange}
                                             rows={2}
                                             className="w-full rounded-xl border px-4 text-sm resize-none"
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -505,6 +513,7 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
                                             value={content.fifthQuestion}
                                             onChange={handleContentChange}
                                             className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                            required
                                         />
                                     </div>
 
@@ -518,6 +527,7 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
                                             onChange={handleContentChange}
                                             rows={2}
                                             className="w-full rounded-xl border px-4 text-sm resize-none"
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -525,19 +535,20 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
                                 <div className="flex gap-4 justify-between">
                                     <div className="flex flex-col mb-3">
                                         <label className="block text-sm font-medium mb-2">
-                                            sixth Answer
+                                            sixth Question
                                         </label>
                                         <input
                                             name="sixthQuestion"
                                             value={content.sixthQuestion}
                                             onChange={handleContentChange}
                                             className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                            required
                                         />
                                     </div>
 
                                     <div className="flex flex-col">
                                         <label className="block text-sm font-medium mb-2">
-                                            sixth Question
+                                            sixth Answer
                                         </label>
                                         <textarea
                                             name="sixthAnswer"
@@ -545,6 +556,7 @@ const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
                                             onChange={handleContentChange}
                                             rows={2}
                                             className="w-full rounded-xl border px-4 text-sm resize-none"
+                                            required
                                         />
                                     </div>
                                 </div>

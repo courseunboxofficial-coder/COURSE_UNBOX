@@ -1,9 +1,8 @@
 "use client";
 
-import { supabase } from "@/lib/supabse/supabaseConfig";
 import { ChevronDown, CircleQuestionMark } from "lucide-react";
 import Image from "next/image";
-import React, { useEffect, useState } from "react";
+import  {useState } from "react";
 
 type Course = {
 
@@ -49,40 +48,10 @@ type Course = {
   
 }
 
-function Faq({courseSlug} : {courseSlug : string}) {
+function Faq({ courses }: { courses: Course }) {
 
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
 
-  const [content, setContent] = useState<Course | null>(null);
-  
-    const getBlogData = async () => {
-  
-      const { data, error } = await supabase
-        .from("Courses")
-        .select("*")
-        .eq("slug", courseSlug)
-        .single();
-  
-      if (error) {
-  
-        console.error(error);
-  
-      }
-  
-      console.log("THE DATA IS : ");
-      console.log(data);
-  
-      setContent(data);
-  
-    }
-  
-  
-  
-    useEffect(() => {
-  
-      getBlogData();
-  
-    }, []);
   
 
   return (
@@ -117,7 +86,7 @@ function Faq({courseSlug} : {courseSlug : string}) {
 
           <div className="w-full md:w-[60%] mx-auto md:px-4 px-8">
             <div className="flex flex-col gap-4">
-              {content?.FAQ.map((data, index) => {
+              {courses?.FAQ.map((data, index) => {
                 const isOpen = currentIndex === index;
                 // xl:px-5 xl:py-4 
                 return (

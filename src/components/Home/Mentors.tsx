@@ -1,10 +1,8 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { supabase } from "@/lib/supabse/supabaseConfig";
+
 
 type Mentor = {
+    
     id: number;
     name: string;
     profession: string;
@@ -12,39 +10,11 @@ type Mentor = {
     teaching_experience: number;
     description: string;
     created_at: number
+
 };
 
-const Mentors = () => {
+const Mentors = ({MentorsData} : {MentorsData : Mentor []}) => {
 
-    
-
-    const [MentorsData, setMentorsData] = useState<Mentor[]>([]);
-
-    const fetchData = async () => {
-
-        const { data, error } = await supabase.from("Mentors").select("*");
-
-        if (error) {
-
-            console.log("There is some error I have in my code : ");
-            console.log(error);
-
-        } else {
-
-            console.log("The Mentors Data is seen in this : ");
-            console.log(data);
-            setMentorsData(data);
-
-        };
-
-    }
-
-    useEffect(() => {
-
-        console.log("THE DATA IS FETCHED INTIALLY : ");
-        fetchData();
-
-    }, [])
 
     return (
 

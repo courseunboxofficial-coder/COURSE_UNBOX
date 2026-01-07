@@ -560,10 +560,6 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
 
             <div className="space-y-5">
 
-              {/* Title */}
-
-              {/* <div>COURSE ID IS : {course.id}</div>
-            <div>COURSE title IS : {course.title}</div> */}
 
               <div>
                 <label className="block text-sm font-medium mb-2">
@@ -574,6 +570,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                   value={formData.title}
                   onChange={handleChange}
                   className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                  required
                 />
               </div>
 
@@ -589,6 +586,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     value={formData.domain}
                     onChange={handleChange}
                     className="w-full rounded-xl border px-4 py-3 text-sm"
+                    required
                   >
                     <option value="">Select Mode</option>
                     <option value="digital Marketing">Digital Marketing</option>
@@ -607,6 +605,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     value={formData.language}
                     onChange={handleChange}
                     className="w-full rounded-xl border px-4 py-3 text-sm"
+                    required
                   >
                     <option value="">Select Mode</option>
                     <option value="Online">English</option>
@@ -630,6 +629,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     value={formData.startDate}
                     onChange={handleChange}
                     className="w-full rounded-xl border px-4 py-3 text-sm"
+                    required
                   />
                 </div>
 
@@ -643,6 +643,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     value={formData.Duration}
                     onChange={handleChange}
                     className="w-full rounded-xl border px-4 py-3 text-sm"
+                    required
                   />
                 </div>
 
@@ -656,6 +657,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     value={formData.low}
                     onChange={handleChange}
                     className="w-full rounded-xl border px-4 py-3 text-sm"
+                    required
                   />
                 </div>
 
@@ -669,6 +671,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     value={formData.high}
                     onChange={handleChange}
                     className="w-full rounded-xl border px-4 py-3 text-sm"
+                    required
                   />
                 </div>
               </div>
@@ -684,6 +687,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                   value={formData.Delivery_Mode}
                   onChange={handleChange}
                   className="w-full rounded-xl border px-4 py-3 text-sm"
+                  required
                 >
                   <option value="">Select Mode</option>
                   <option value="Online">Online</option>
@@ -763,6 +767,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                   onChange={handleChange}
                   rows={3}
                   className="w-full rounded-xl border px-4 py-3 text-sm"
+                  required
                 />
               </div>
 
@@ -1002,6 +1007,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     value={FAQ.firstQuestion}
                     onChange={handleFAQChange}
                     className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
                   />
                 </div>
 
@@ -1015,6 +1021,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     onChange={handleFAQChange}
                     rows={2}
                     className="w-full rounded-xl border px-4 text-sm resize-none"
+                    required
                   />
                 </div>
               </div>
@@ -1029,6 +1036,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     value={FAQ.secondQuestion}
                     onChange={handleFAQChange}
                     className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
                   />
                 </div>
 
@@ -1042,6 +1050,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     onChange={handleFAQChange}
                     rows={2}
                     className="w-full rounded-xl border px-4 text-sm resize-none"
+                    required
                   />
                 </div>
               </div>
@@ -1056,6 +1065,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     value={FAQ.thirdQuestion}
                     onChange={handleFAQChange}
                     className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
                   />
                 </div>
 
@@ -1072,6 +1082,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     onChange={handleFAQChange}
                     rows={2}
                     className="w-full rounded-xl border px-4 text-sm resize-none"
+                    required
                   />
                 </div>
               </div>
@@ -1086,6 +1097,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     value={FAQ.fourthQuestion}
                     onChange={handleFAQChange}
                     className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
                   />
                 </div>
 
@@ -1099,6 +1111,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     onChange={handleFAQChange}
                     rows={2}
                     className="w-full rounded-xl border px-4 text-sm resize-none"
+                    required
                   />
                 </div>
               </div>
@@ -1113,6 +1126,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     value={FAQ.fifthQuestion}
                     onChange={handleFAQChange}
                     className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
                   />
                 </div>
 
@@ -1126,6 +1140,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     onChange={handleFAQChange}
                     rows={2}
                     className="w-full rounded-xl border px-4 text-sm resize-none"
+                    required
                   />
                 </div>
               </div>
@@ -1140,6 +1155,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     value={FAQ.sixthQuestion}
                     onChange={handleFAQChange}
                     className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                    required
                   />
                 </div>
 
@@ -1153,6 +1169,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     onChange={handleFAQChange}
                     rows={2}
                     className="w-full rounded-xl border px-4 text-sm resize-none"
+                    required
                   />
                 </div>
               </div>

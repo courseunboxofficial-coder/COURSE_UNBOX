@@ -1,7 +1,8 @@
 export default function Form() {
- 
+
 
   return (
+
     <section className="">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
 
@@ -12,7 +13,7 @@ export default function Form() {
           <h2 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-blue-900">
             Let's Connect
           </h2>
-         
+
           {/* Divider */}
           <div className=" my-3 sm:my-4 h-[3px] w-32 sm:w-48 rounded-full bg-linear-to-r from-transparent via-blue-600 to-transparent" />
 
@@ -21,34 +22,34 @@ export default function Form() {
 
             {/* Name */}
             <div className="flex gap-6">
-                <div>
+              <div>
                 <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1">
-                    Name
+                  Name
                 </label>
                 <input
-                    type="text"
-                    placeholder="Your First Name"
-                    className="w-full rounded-lg border border-gray-300 px-3 py-2.5 sm:py-3
+                  type="text"
+                  placeholder="Your First Name"
+                  className="w-full rounded-lg border border-gray-300 px-3 py-2.5 sm:py-3
                             text-sm sm:text-base
                             focus:outline-none focus:ring-2 focus:ring-blue-600"
                 />
-                </div>
+              </div>
 
-                <div>
+              <div>
                 <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1">
-                    Last Name
+                  Last Name
                 </label>
                 <input
-                    type="text"
-                    placeholder="Your Last Name"
-                    className="w-full rounded-lg border border-gray-300 px-3 py-2.5 sm:py-3
+                  type="text"
+                  placeholder="Your Last Name"
+                  className="w-full rounded-lg border border-gray-300 px-3 py-2.5 sm:py-3
                             text-sm sm:text-base
                             focus:outline-none focus:ring-2 focus:ring-blue-600"
                 />
-                </div>
+              </div>
 
             </div>
-            
+
 
             {/* Email */}
             <div>
@@ -99,6 +100,7 @@ export default function Form() {
           </form>
         </div>
       </div>
+
     </section>
   );
 }

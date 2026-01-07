@@ -1,8 +1,8 @@
 "use client"
-import { supabase } from "@/lib/supabse/supabaseConfig";
+
+
 import Image from "next/image";
-import { title } from "process";
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import { Send, FileText } from "lucide-react";
 import PopUpForm from "../AllCourses/PopUpForm";
 

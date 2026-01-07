@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, TrendingUp } from "lucide-react";
 import { supabase } from "@/lib/supabse/supabaseConfig";
@@ -51,7 +52,7 @@ export default function Trending() {
 
       <PopUpForm isOpen={isOpen} onCancel={() => setIsOpen(false)} onConfirm={() => setIsOpen(false)} />
 
-      <section className="w-full bg-[#e2eff9] py-14 px-4 cursor-pointer" onClick={() => setIsOpen(true)}>
+      <section className="w-full bg-[#e2eff9] py-14 px-4 cursor-pointer">
         <div className="max-w-6xl mx-auto cursor-pointer">
 
           {/* Title – aligned to carousel start */}
@@ -91,7 +92,8 @@ export default function Trending() {
               {Images.map((image, index) => (
                 <div
                   key={index}
-                  className="relative min-w-[370px] max-w-[370px] min-h-[250px] rounded-3xl overflow-hidden shadow-xl"
+                  className="relative min-w-[370px] max-w-[370px] min-h-[250px] rounded-3xl overflow-hidden shadow-xl hover:scale-105 transition ease-in-out"
+                  onClick={() => setIsOpen(true)}
                 >
                   <Image
                     src={image.Image}

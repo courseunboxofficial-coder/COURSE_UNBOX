@@ -1,7 +1,4 @@
-"use client"
 
-import { supabase } from '@/lib/supabse/supabaseConfig';
-import React, { useEffect, useState } from 'react'
 
 type Course = {
 
@@ -57,33 +54,7 @@ type Course = {
 
 }
 
-const Banner = ({ courseSlug }: { courseSlug : string }) => {
-    const [course, setCourse] = useState<Course | null>(null);
-
-    const getData = async () => {
-
-        const { data, error } = await supabase.from("Courses").select("*").eq("slug", courseSlug).single();
-
-        if (error) {
-
-            console.log("The error coming in the Banner Section of the : ");
-            console.log(error);
-
-        }
-
-
-        console.log("THE DATA IS FOR THE PARTICULAR ID IS : ");
-        console.log(data);
-        setCourse(data);
-
-    }
-
-
-    useEffect(() => {
-
-        getData();
-
-    }, []);
+const Banner = ({ courses }: { courses : Course }) => {
 
 
     return (
@@ -96,22 +67,22 @@ const Banner = ({ courseSlug }: { courseSlug : string }) => {
                 </div>
 
                 <div className="py-4 border-r border-gray-300">
-                    <h3 className="text-lg font-semibold">{course?.startDate}</h3>
+                    <h3 className="text-lg font-semibold">{courses?.startDate}</h3>
                     <p className="text-gray-600 text-sm">Date of Commencement</p>
                 </div>
 
                 <div className="py-4 border-r border-gray-300">
-                    <h3 className="text-lg font-semibold">{course?.Duration} Months</h3>
+                    <h3 className="text-lg font-semibold">{courses?.Duration} Months</h3>
                     <p className="text-gray-600 text-sm">Duration</p>
                 </div>
 
                 <div className="py-4 border-r border-gray-300">
                     <h3 className="text-lg font-semibold">Live</h3>
-                    <p className="text-gray-600 text-sm">{course?.Delivery_Mode}</p>
+                    <p className="text-gray-600 text-sm">{courses?.Delivery_Mode}</p>
                 </div>
 
                 <div className="py-4">
-                    <h3 className="text-lg font-semibold">{course?.language}</h3>
+                    <h3 className="text-lg font-semibold">{courses?.language}</h3>
                     <p className="text-gray-600 text-sm">Language</p>
                 </div>
             </div>

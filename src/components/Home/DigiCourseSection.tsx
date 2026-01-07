@@ -1,10 +1,10 @@
-
- "use client";
+"use client";
 
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 export default function DigiCourseSection() {
+
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -12,21 +12,21 @@ export default function DigiCourseSection() {
       <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px) [background-size:24px_24px]" />
 
       <div className="max-w-7xl mx-auto px-4 py-12 bg-[radial-gradient(#ffffff_1px,transparent_1px)">
-       <div className="text-2xl md:text-4xl font-extrabold mb-4 text-black">
-                <h2><span className="text-blue-600">Digital Marketing </span>Institute in Delhi NCR: Where Skills Meet Real-World Careers
+        <div className="text-2xl md:text-4xl font-extrabold mb-4 text-black">
+          <h2><span className="text-blue-600">Digital Marketing </span>Institute in Delhi NCR: Where Skills Meet Real-World Careers
           </h2>
 
-                </div>
+        </div>
 
-                    {/* Short Description */}
-                    <p className="text-gray-600 leading-relaxed mb-4">
-                      Digital marketing is no longer an optional skill. It has become a core requirement for businesses, startups, and even professionals who want to stay relevant in a digital-first economy. From small local brands to global companies, everyone needs visibility, leads, and conversions online. This rising demand has made digital marketing one of the most promising career options today.
-                    </p>
+        {/* Short Description */}
+        <p className="text-gray-600 leading-relaxed mb-4">
+          Digital marketing is no longer an optional skill. It has become a core requirement for businesses, startups, and even professionals who want to stay relevant in a digital-first economy. From small local brands to global companies, everyone needs visibility, leads, and conversions online. This rising demand has made digital marketing one of the most promising career options today.
+        </p>
 
 
-                    {/* Expandable Content */}
-                    <div  className={`transition-all duration-500 ease-in-out overflow-hidden ${expanded ? "max-h-full opacity-100 mb-4" : "max-h-0 opacity-0"}`}>
-                      <div className="pt-2 space-y-10 text-gray-600 leading-relaxed">
+        {/* Expandable Content */}
+        <div className={`transition-all duration-500 ease-in-out overflow-hidden ${expanded ? "max-h-full opacity-100 mb-4" : "max-h-0 opacity-0"}`}>
+          <div className="pt-2 space-y-10 text-gray-600 leading-relaxed">
 
             <p>
               Delhi NCR, being a major business and education hub, offers countless learning
@@ -230,7 +230,7 @@ export default function DigiCourseSection() {
 
             <p>
               A robust digital marketing training program will help students become familiar with
-             and learn to comfortably use various analytic tools to measure, assess and enhance their digital marketing efforts. Tools that enable beginners to become job-ready professionals include:
+              and learn to comfortably use various analytic tools to measure, assess and enhance their digital marketing efforts. Tools that enable beginners to become job-ready professionals include:
 
             </p>
 
@@ -252,16 +252,16 @@ export default function DigiCourseSection() {
               </li>
             </ul>
 
-            <p>It is only through using them in a hands-on way that students will gain the practical experience they need 
+            <p>It is only through using them in a hands-on way that students will gain the practical experience they need
               to become job-ready.
-             </p>
+            </p>
 
-             <p className="font-medium text-gray-800">Career Opportunities After Completing Digital Marketing Training
-             </p>
-             <p>Digital Marketing has many opportunities for the type of work individuals will be doing, based on skill set and interest level. The questions that come to mind first when Learners experience their First Digital Marketing Training in an accredited Digital Marketing Institute in the NCR are:
-             </p>
+            <p className="font-medium text-gray-800">Career Opportunities After Completing Digital Marketing Training
+            </p>
+            <p>Digital Marketing has many opportunities for the type of work individuals will be doing, based on skill set and interest level. The questions that come to mind first when Learners experience their First Digital Marketing Training in an accredited Digital Marketing Institute in the NCR are:
+            </p>
 
-              <ul className="list-disc pl-5 space-y-2">
+            <ul className="list-disc pl-5 space-y-2">
               <li>Digital Marketing Executive</li>
               <li>SEO Specialist</li>
               <li>Digital Marketing Performance Marketer</li>
@@ -288,57 +288,57 @@ export default function DigiCourseSection() {
 
 
             <p>Course Unbox designs its courses to help individuals become career-ready by educating students on what is required in their specific industries
-               to be successful and how to market themselves to meet those demands.
+              to be successful and how to market themselves to meet those demands.
             </p>
 
 
 
             <h3 className="text-xl font-semibold text-slate-900">Who Should Join a Digital Marketing Institute in Delhi NCR?</h3>
 
-              <p>
-                Digital marketing is a skill that can be learned by anyone who is willing to adapt and grow.
-                It does not require prior technical knowledge or professional experience, making it an
-                accessible career option for many learners.
-              </p>
+            <p>
+              Digital marketing is a skill that can be learned by anyone who is willing to adapt and grow.
+              It does not require prior technical knowledge or professional experience, making it an
+              accessible career option for many learners.
+            </p>
 
-              <ul className="list-disc pl-5 space-y-2" >
-                <li>Students exploring new and high-growth career opportunities</li>
-                <li>Working professionals looking to upgrade or switch their skill set</li>
-                <li>Small business owners aiming to strengthen their online presence</li>
-                <li>Freelancers who want to expand their service offerings</li>
-              </ul>
+            <ul className="list-disc pl-5 space-y-2" >
+              <li>Students exploring new and high-growth career opportunities</li>
+              <li>Working professionals looking to upgrade or switch their skill set</li>
+              <li>Small business owners aiming to strengthen their online presence</li>
+              <li>Freelancers who want to expand their service offerings</li>
+            </ul>
 
-              <p>
-                Enrolling in a structured digital marketing institute helps simplify the learning process
-                through guided training, practical exposure, and a clear learning roadmap.
-              </p>
+            <p>
+              Enrolling in a structured digital marketing institute helps simplify the learning process
+              through guided training, practical exposure, and a clear learning roadmap.
+            </p>
 
-              <h3  className="text-xl font-semibold text-slate-900">Why Course Unbox Is a Trusted Learning Choice</h3>
+            <h3 className="text-xl font-semibold text-slate-900">Why Course Unbox Is a Trusted Learning Choice</h3>
 
-              <p>
-                Course Unbox is dedicated to helping learners gain a strong understanding of digital
-                marketing while building clarity, confidence, and practical capability. The focus is on
-                preparing students for real-world success rather than just theoretical knowledge.
-              </p>
+            <p>
+              Course Unbox is dedicated to helping learners gain a strong understanding of digital
+              marketing while building clarity, confidence, and practical capability. The focus is on
+              preparing students for real-world success rather than just theoretical knowledge.
+            </p>
 
-              <h4>What Sets Course Unbox Apart</h4>
+            <h4>What Sets Course Unbox Apart</h4>
 
-              <ul className="list-disc pl-5 space-y-2" >
-                <li>Up-to-date curriculum aligned with current industry needs</li>
-                <li>Hands-on learning with practical assignments and projects</li>
-                <li>Experienced instructors with real-world industry exposure</li>
-                <li>A balanced approach to skill development and career growth</li>
-              </ul>
+            <ul className="list-disc pl-5 space-y-2" >
+              <li>Up-to-date curriculum aligned with current industry needs</li>
+              <li>Hands-on learning with practical assignments and projects</li>
+              <li>Experienced instructors with real-world industry exposure</li>
+              <li>A balanced approach to skill development and career growth</li>
+            </ul>
 
-              <p>
-                Course Unbox emphasizes learning by doing. Instead of overwhelming students with excessive
-                information, it focuses on understanding, application, and consistency—helping learners
-                truly master digital marketing skills.
-              </p>
+            <p>
+              Course Unbox emphasizes learning by doing. Instead of overwhelming students with excessive
+              information, it focuses on understanding, application, and consistency—helping learners
+              truly master digital marketing skills.
+            </p>
 
 
 
-            
+
 
 
 
@@ -369,25 +369,25 @@ export default function DigiCourseSection() {
 
           </div>
 
-          </div>
+        </div>
 
 
-               {/* Read More Button (LEFT aligned) */}
-          <button
-            onClick={() => setExpanded(!expanded)}
-            className="relative inline-flex items-center gap-2   px-5 py-2 text-sm font-semibold   text-blue-600 border border-blue-600
+        {/* Read More Button (LEFT aligned) */}
+        <button
+          onClick={() => setExpanded(!expanded)}
+          className="relative inline-flex items-center gap-2   px-5 py-2 text-sm font-semibold   text-blue-600 border border-blue-600
               rounded-full
               transition-all duration-300 ease-in-out
               hover:bg-blue-600 hover:text-white
               hover:shadow-md active:scale-95 cursor-pointer">
-            {expanded ? "Read Less" : "Read More"}
-            {expanded ? (
-              <ChevronUp size={18} />
-            ) : (
-              <ChevronDown size={18} />
-            )}
-          </button>
-    </div>
+          {expanded ? "Read Less" : "Read More"}
+          {expanded ? (
+            <ChevronUp size={18} />
+          ) : (
+            <ChevronDown size={18} />
+          )}
+        </button>
+      </div>
 
     </section>
   );

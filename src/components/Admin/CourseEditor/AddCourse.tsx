@@ -629,7 +629,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
 
                             <div>
                                 <label className="block text-sm font-medium mb-2">
-                                    About Us
+                                    About Course
                                 </label>
                                 <textarea
                                     name="description"
@@ -881,6 +881,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                         value={FAQ.firstQuestion}
                                         onChange={handleFAQChange}
                                         className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                        required
                                     />
                                 </div>
 
@@ -894,6 +895,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                         onChange={handleFAQChange}
                                         rows={2}
                                         className="w-full rounded-xl border px-4 text-sm resize-none"
+                                        required
                                     />
                                 </div>
                             </div>
@@ -908,6 +910,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                         value={FAQ.secondQuestion}
                                         onChange={handleFAQChange}
                                         className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                        required
                                     />
                                 </div>
 
@@ -921,6 +924,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                         onChange={handleFAQChange}
                                         rows={2}
                                         className="w-full rounded-xl border px-4 text-sm resize-none"
+                                        required
                                     />
                                 </div>
                             </div>
@@ -935,6 +939,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                         value={FAQ.thirdQuestion}
                                         onChange={handleFAQChange}
                                         className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                        required
                                     />
                                 </div>
 
@@ -951,6 +956,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                         onChange={handleFAQChange}
                                         rows={2}
                                         className="w-full rounded-xl border px-4 text-sm resize-none"
+                                        required
                                     />
                                 </div>
                             </div>
@@ -965,6 +971,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                         value={FAQ.fourthQuestion}
                                         onChange={handleFAQChange}
                                         className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                        required
                                     />
                                 </div>
 
@@ -978,6 +985,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                         onChange={handleFAQChange}
                                         rows={2}
                                         className="w-full rounded-xl border px-4 text-sm resize-none"
+                                        required
                                     />
                                 </div>
                             </div>
@@ -992,6 +1000,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                         value={FAQ.fifthQuestion}
                                         onChange={handleFAQChange}
                                         className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                        required
                                     />
                                 </div>
 
@@ -1005,6 +1014,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                         onChange={handleFAQChange}
                                         rows={2}
                                         className="w-full rounded-xl border px-4 text-sm resize-none"
+                                        required
                                     />
                                 </div>
                             </div>
@@ -1012,19 +1022,20 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                             <div className="flex gap-4 justify-between w-full">
                                 <div className="flex flex-col mb-3 w-full">
                                     <label className="block text-sm font-medium mb-2">
-                                        sixth Answer
+                                        sixth Question
                                     </label>
                                     <input
                                         name="sixthQuestion"
                                         value={FAQ.sixthQuestion}
                                         onChange={handleFAQChange}
                                         className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
+                                        required
                                     />
                                 </div>
 
                                 <div className="flex flex-col w-full">
                                     <label className="block text-sm font-medium mb-2">
-                                        sixth Question
+                                        sixth Answer
                                     </label>
                                     <textarea
                                         name="sixthAnswer"
@@ -1032,6 +1043,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                         onChange={handleFAQChange}
                                         rows={2}
                                         className="w-full rounded-xl border px-4 text-sm resize-none"
+                                        required
                                     />
                                 </div>
                             </div>

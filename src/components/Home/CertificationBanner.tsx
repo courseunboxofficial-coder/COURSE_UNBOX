@@ -27,9 +27,9 @@ export default function CertificationBanner() {
          4-8 weeks
           </div>
       </div>
-          <h1 className="text-lg md:text-4xl font-bold text-gray-900 mt-2 border-blue-500  border-l-8 px-2">
+          <h2 className="text-lg md:text-4xl font-bold text-gray-900 mt-2 border-blue-500  border-l-8 px-2">
             Fastest way to build your CV
-          </h1>
+          </h2>
 
           <div className="flex flex-wrap gap-6 mt-4 text-black font-semibold  ">
             <div className="flex items-center gap-2"><Check  strokeWidth={3} size={17} className="text-blue-500 mt-[0.5px]"/><p> Learn at your own schedule</p></div>

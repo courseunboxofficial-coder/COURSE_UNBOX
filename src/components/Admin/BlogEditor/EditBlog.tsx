@@ -1,14 +1,14 @@
 import { supabase } from '@/lib/supabse/supabaseConfig';
 import dynamic from 'next/dynamic';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify';
-
 import "suneditor/dist/css/suneditor.min.css";
 
 
 const SunEditor = dynamic(() => import("suneditor-react"), {
     ssr: false,
 });
+
 
 type Blog = {
 
@@ -43,10 +43,10 @@ type Blog = {
 const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: Blog }) => {
 
     const [imageURL, setimageURL] = useState("");
+    const editorRef = useRef<any>(null);
 
     const [formData, setFormData] = useState({
         title: "",
-        content: "",
         domain: "",
         alt: "",
         slug: "",
@@ -103,49 +103,45 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: Blog }) => {
 
 
     useEffect(() => {
+
+       if (!blog || !editorRef.current) return;
+
         setFormData({
             title: blog.title,
-            content: blog.content,
             domain: blog.domain,
             alt: blog.alt,
             slug: blog.slug,
             subcontent: blog.subcontent
         });
 
-        setimageURL(blog.image)
+        setimageURL(blog.image);
 
         setContent({
-
             firstQuestion: blog.FAQ?.[0]?.question || "",
             firstAnswer: blog.FAQ?.[0]?.answer || "",
-
             secondQuestion: blog.FAQ?.[1]?.question || "",
             secondAnswer: blog.FAQ?.[1]?.answer || "",
-
             thirdQuestion: blog.FAQ?.[2]?.question || "",
             thirdAnswer: blog.FAQ?.[2]?.answer || "",
-
             fourthQuestion: blog.FAQ?.[3]?.question || "",
             fourthAnswer: blog.FAQ?.[3]?.answer || "",
-
             fifthQuestion: blog.FAQ?.[4]?.question || "",
             fifthAnswer: blog.FAQ?.[4]?.answer || "",
-
             sixthQuestion: blog.FAQ?.[5]?.question || "",
             sixthAnswer: blog.FAQ?.[5]?.answer || "",
-
         });
-
+        
+        editorRef.current.setContents(blog.content);
         setEditorContent(blog.content);
 
         setMeta({
-            metaTitle : blog.meta.title,
-            metaDescription : blog.meta.description
-        })
+            metaTitle: blog.meta?.title || "",
+            metaDescription: blog.meta?.description || ""
+        });
 
-        setimageURL(blog.image);
+    }, [blog])
 
-    }, []);
+
 
 
     const handleFileData = async (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -205,7 +201,7 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: Blog }) => {
             {
 
                 title: formData.title,
-                content: formData.content,
+                content: editorContent,
                 domain: formData.domain,
                 slug: slug,
                 alt: formData.alt,
@@ -215,7 +211,7 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: Blog }) => {
 
                     { question: content.firstQuestion, answer: content.firstAnswer },
                     { question: content.secondQuestion, answer: content.secondAnswer },
-                    { question: content.thirdQuestion, answer: content.secondAnswer },
+                    { question: content.thirdQuestion, answer: content.thirdAnswer },
                     { question: content.fourthQuestion, answer: content.fourthAnswer },
                     { question: content.fifthQuestion, answer: content.fifthAnswer },
                     { question: content.sixthQuestion, answer: content.sixthAnswer },
@@ -223,8 +219,10 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: Blog }) => {
                 ],
 
                 meta: {
+
                     title: meta.metaTitle,
                     description: meta.metaDescription,
+
                 },
 
                 image: imageURL || blog.image
@@ -607,7 +605,10 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: Blog }) => {
                         <div className="h-[85vh] w-full rounded-2xl border p-5 overflow-hidden ">
 
                             <SunEditor
-                                defaultValue={editorContent}
+
+                                getSunEditorInstance={(editor) => {
+                                    editorRef.current = editor;
+                                }}
                                 setOptions={{
                                     minHeight: "65vh",
                                     maxHeight: "70vh",
@@ -619,6 +620,8 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: Blog }) => {
                                         ["align"],
                                         ["link", "image"],
                                     ],
+
+
                                 }}
 
                                 onChange={(content) => {

@@ -1,5 +1,3 @@
-
-import Banner from "@/components/Home/Banner";
 import Courses from "@/components/Home/Courses";
 import Hero from "@/components/Home/Hero";
 import Navbar from "@/components/Home/Navbar";
@@ -18,32 +16,84 @@ import Trending from "@/components/Home/Trending";
 import PhotoGallery from "@/components/Home/PhotoGallery";
 import AboutUs from "@/components/Home/AboutUs";
 import Faq from "@/components/Home/Faq";
-import TestimonialsSection from "@/components/About/TestimonialsSection";
 import DigiCourseSection from "@/components/Home/DigiCourseSection";
-import PhotoGalleryCarousel from "@/components/Home/PhotoGallery";
-import HomeEnquiry from "@/components/Home/HomeEnquiry";
 import { UpdatedBanner } from "@/components/Home/UpdatedBanner";
-import WhyChooseUs from "@/components/AllCourses/WhyChooseUs";
-export default function Home() {
+import { supabase } from "@/lib/supabse/supabaseConfig";
+import WhyChooseUs from "@/components/About/WhyChooseUs";
+
+
+const FetchCourseData = async () => {
+
+      const { data, error } = await supabase.from("Courses").select("*");
+
+      if (error) {
+            console.log("THE ERROR IS : ");
+            console.log(error);
+      }
+
+      return data;
+
+};
+
+
+const getAboutData = async () => {
+
+      const { data, error } = await supabase.from("Home").select("*").eq("section", "AboutHome").single();
+
+      if (error) {
+
+            console.log("THERE IS ERROR IN THE HOME ABOUT SECTION : ");
+            console.log(error);
+
+      }
+
+      return data;
+
+}
+
+
+const getMentorsData = async () => {
+
+      const { data, error } = await supabase.from("Mentors").select("*");
+
+      if (error) {
+
+            console.log("There is some error I have in my code : ");
+            console.log(error);
+
+      }
+
+      return data;
+
+}
+
+
+
+export default async function Home() {
+
+      const courses = await FetchCourseData();
+      const about = await getAboutData();
+      const mentors = await getMentorsData();
+
 
       return (
 
 
             <main className="w-full min-h-screen bg-white">
+
                   <Navbar />
                   <Hero />
                   <UpdatedBanner />
                   <Partners />
-                  {/* <Banner /> */}
                   <Trending />
-                  <Courses />
+                  <Courses/>
                   <Enquiry />
                   <TopCourses />
                   <Hire />
-                  <Mentors />
+                  <Mentors MentorsData = {mentors  ?? []}/>
                   <CertificationBanner />
                   <StatsSection />
-                  <AboutUs />
+                  <AboutUs about={about} />
                   <PhotoGallery />
                   <DigiCourseSection />
                   <WhyChooseUs/>
@@ -52,6 +102,7 @@ export default function Home() {
                   <TopCompanies />
                   <LetsConnect />
                   <Footer />
+
             </main>
 
       );

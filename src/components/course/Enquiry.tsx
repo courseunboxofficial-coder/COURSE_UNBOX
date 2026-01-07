@@ -1,10 +1,3 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
-import Link from "next/link";
-import { supabase } from "@/lib/supabse/supabaseConfig";
-import emailjs from "@emailjs/browser";
-
 type Course = {
 
     id: string;
@@ -60,39 +53,8 @@ type Course = {
 }
 
 
-const Enquiry = ({ courseSlug }: { courseSlug : string }) => {
+const Enquiry = ({ courses }: { courses : Course }) => {
 
-  console.log("THE COURSE ID IS :")
-  console.log(courseSlug);
-
-  const [course, setCourse] = useState<Course | null>(null);
-
-  console.log(course?.content);
-
-  const getData = async () => {
-
-    const { data, error } = await supabase.from("Courses").select("*").eq("slug", courseSlug).single();
-
-    if (error) {
-
-      console.log("The error coming in the Enquiry Section of the : ");
-      console.log(error);
-
-    }
-
-
-    console.log("THE DATA IS FOR THE PARTICULAR ID IS : ");
-    console.log(data);
-    setCourse(data);
-
-  }
-
-
-  useEffect(() => {
-
-    getData();
-
-  }, []);
 
 
 
@@ -227,7 +189,7 @@ const Enquiry = ({ courseSlug }: { courseSlug : string }) => {
               grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3
               gap-6 sm:gap-8
             ">
-              {course?.content.map((item, index) => (
+              {courses?.content.map((item, index) => (
                 <div
                   key={index}
                   className="
