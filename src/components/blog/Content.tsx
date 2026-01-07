@@ -10,6 +10,7 @@ export type InternshipCard = {
   domain: string;
   title: string;
   content: string;
+  subcontent : string
   FAQ: string;
   image : string
 
@@ -96,7 +97,7 @@ const Content = () => {
                 </h3>
                 <p className="text-sm text-gray-600 line-clamp-3">
                   {
-                    card.content.slice(0, 400)
+                    card.subcontent.slice(0, 400)
                   }
                   ...
                 </p>

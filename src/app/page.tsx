@@ -85,7 +85,7 @@ export default async function Home() {
                   <UpdatedBanner />
                   <Partners />
                   <Trending />
-                  <Courses courses={courses ?? []} />
+                  <Courses/>
                   <Enquiry />
                   <TopCourses />
                   <Hire />
