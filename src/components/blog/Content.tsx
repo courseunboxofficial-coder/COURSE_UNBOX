@@ -64,7 +64,7 @@ const Content = () => {
     const start  =  (page * 12) - 11;
     const end =  page * 12;
     
-    setCurrBlogs(blogs.slice(start,end));
+    setCurrBlogs(blogs.slice(start,end+1));
   },[blogs,page])
 
 

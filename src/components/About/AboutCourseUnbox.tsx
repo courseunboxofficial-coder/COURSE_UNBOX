@@ -2,10 +2,16 @@
 
 import Image from "next/image";
 import { CheckCircle } from "lucide-react";
+import PopUpForm from "../AllCourses/PopUpForm";
+import { useState } from "react";
 
 export default function AboutCourseUnbox() {
+  const [isOpen, setIsOpen] = useState(false);
+  
   return (
-    <section className="w-full bg-blue-50 py-12 sm:py-16">
+    <>
+      <PopUpForm isOpen={isOpen} onConfirm={()=>setIsOpen(false)} onCancel={()=>setIsOpen(false)} />
+     <section className="w-full bg-blue-50 py-12 sm:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
 
         {/* LEFT CONTENT */}
@@ -61,6 +67,7 @@ export default function AboutCourseUnbox() {
 
           {/* Button */}
           <button
+            onClick={()=>setIsOpen(true)}
             className="mt-5 sm:mt-6 bg-blue-700 hover:bg-blue-800
                        text-white font-semibold
                        text-base sm:text-lg
@@ -73,5 +80,7 @@ export default function AboutCourseUnbox() {
         </div>
       </div>
     </section>
+    </>
+    
   );
 }

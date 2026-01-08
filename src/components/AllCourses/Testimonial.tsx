@@ -4,21 +4,21 @@ const testimonials = [
   {
     name: "Aman Sharma",
     role: "Digital Marketing Executive",
-    image: "/images/testimonials/aman.jpg",
+    image: "/images/Student/UnboxProfile.png",
     review:
       "Course Unbox gave me real exposure to tools and live projects. I gained confidence, cracked interviews, and started my career within weeks.",
   },
   {
     name: "Priya Verma",
     role: "MBA Student",
-    image: "/images/testimonials/priya.jpg",
+    image: "/images/Student/UnboxProfile.png",
     review:
       "What I loved most was the practical approach. Course Unbox helped me stand out during college placements with real skills, not theory.",
   },
   {
     name: "Rohit Singh",
     role: "Freelance Marketer",
-    image: "/images/testimonials/rohit.jpg",
+    image: "/images/Student/UnboxProfile.png",
     review:
       "This institute focuses on execution. I started freelancing while learning and landed my first paid client during the course itself.",
   },
