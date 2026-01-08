@@ -19,7 +19,7 @@ import Faq from "@/components/Home/Faq";
 import DigiCourseSection from "@/components/Home/DigiCourseSection";
 import { UpdatedBanner } from "@/components/Home/UpdatedBanner";
 import { supabase } from "@/lib/supabse/supabaseConfig";
-
+import WhyChooseUs from "@/components/AllCourses/WhyChooseUs";
 
 const FetchCourseData = async () => {
 
@@ -95,6 +95,7 @@ export default async function Home() {
                   <AboutUs about={about} />
                   <PhotoGallery />
                   <DigiCourseSection />
+                  <WhyChooseUs/>
                   <Faq />
                   <Testimonials />
                   <TopCompanies />

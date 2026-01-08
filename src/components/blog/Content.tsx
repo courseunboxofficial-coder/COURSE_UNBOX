@@ -3,6 +3,8 @@ import { supabase } from '@/lib/supabse/supabaseConfig';
 import Image from 'next/image';
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import DesktopPagenation from './DesktopPagenation';
+import MobilePagenation from './MobilePagenation'
 
 export type InternshipCard = {
 
@@ -22,6 +24,15 @@ const Content = () => {
 
 
   const [blogs, setBlogs] = useState<InternshipCard[]>([]);
+  const totalBlogs = Math.ceil((blogs.length)/12);
+  const [page, setPage] = useState(1);
+  const limit = 12;
+  
+
+  const [currBlogs, setCurrBlogs] = useState<InternshipCard[]>([]);
+
+
+
 
 
   useEffect(() => {
@@ -49,12 +60,21 @@ const Content = () => {
 
   }, []);
 
+   useEffect(()=>{
+    const start  =  (page * 12) - 11;
+    const end =  page * 12;
+    
+    setCurrBlogs(blogs.slice(start,end));
+  },[blogs,page])
+
+
+
   return (
 
     
-    <section className="py-16">
+    <section className="py-16 relative">
       <div className="mx-auto w-full px-6">
-        <h2 className="relative inline-block font-extrabold text-5xl mb-10 ">
+        <h2 className="relative inline-block  font-extrabold text-xl sm:text-2xl md:text-4xl lg:text-5xl mb-10 px-20 md:px-16 lg:px-8 ">
           Latest Blogs
           <svg
             className="absolute left-0 -bottom-6 w-full"
@@ -71,12 +91,12 @@ const Content = () => {
           </svg>
         </h2>
 
-        <div className="flex flex-wrap gap-8 pb-4">
-          {blogs.map((card, idx) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:px-8 pb-4">
+          {currBlogs.map((card, idx) => (
             <Link
               key={idx}
               href={`/blog/${card.slug}`}
-              className="min-w-[340px] max-w-[340px] bg-white rounded-3xl shadow hover:shadow-2xl hover:shadow-indigo-300 transition"
+              className="md:max-w-[300px] lg:max-w-[340px] bg-white rounded-3xl shadow hover:shadow-2xl hover:shadow-indigo-300 transition"
             >
 
               <div className="relative h-44 w-full overflow-hidden rounded-t-3xl">
@@ -106,6 +126,26 @@ const Content = () => {
             </Link>
           ))}
         </div>
+
+            <div className="sticky bottom-6 hidden md:flex justify-center z-40 mt-12">
+              <DesktopPagenation
+                currentPage={page}
+                totalPages={totalBlogs}
+                onPageChange={(p) => setPage(p)}
+              />
+            </div>
+
+             <div className="md:hidden sticky bottom-6 flex justify-center z-40 mt-12">
+              <MobilePagenation
+                currentPage={page}
+                totalPages={totalBlogs}
+                onPageChange={(p) => setPage(p)}
+              />
+            </div>
+
+
+
+         
       </div>
     </section>
   );

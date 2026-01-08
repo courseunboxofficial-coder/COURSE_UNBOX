@@ -8,6 +8,10 @@ import FinalCTA from "@/components/AllCourses/FinalCTA"
 import CoursesOverview from "@/components/AllCourses/CourseOverview"
 import AllCoursesCTA from "@/components/AllCourses/AllCoursesCTA"
 import type { Metadata } from "next"
+import WhyChooseUs from "@/components/AllCourses/WhyChooseUs"
+import Mentors from "@/components/Home/Mentors"
+import CertificationBanner from "@/components/AllCourses/CertificationBanner"
+import StudentTestimonials from "@/components/AllCourses/Testimonial"
 
 export const metadata = {
   title: "All Courses | Digital Marketing, Tech & Career Programs – Course Unbox",
@@ -24,6 +28,10 @@ export default function page(){
         <CourseContainer/>
         <AllCoursesCTA/>
         <CoursesOverview/>
+        <CertificationBanner/>
+        <StudentTestimonials/>
+        <WhyChooseUs/>
+        
         <AllCoursesFAQs/>
         <FinalCTA/>
         <Footer/>

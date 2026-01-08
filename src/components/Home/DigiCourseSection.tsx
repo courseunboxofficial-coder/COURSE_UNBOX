@@ -256,8 +256,8 @@ export default function DigiCourseSection() {
               to become job-ready.
             </p>
 
-            <p className="font-medium text-gray-800">Career Opportunities After Completing Digital Marketing Training
-            </p>
+            <h4 className="font-medium text-gray-800">Career Opportunities After Completing Digital Marketing Training
+            </h4>
             <p>Digital Marketing has many opportunities for the type of work individuals will be doing, based on skill set and interest level. The questions that come to mind first when Learners experience their First Digital Marketing Training in an accredited Digital Marketing Institute in the NCR are:
             </p>
 
@@ -273,7 +273,7 @@ export default function DigiCourseSection() {
               Many students also pursue or create their own freelance businesses, thanks to the ability to progress through their business life as they desire.
             </p>
 
-            <h3>Placement Support and Career Guidance</h3>
+            <h4 className="font-medium text-gray-800">Placement Support and Career Guidance</h4>
             <p>With learning skills being a small part of the entire journey, it is equally important to know how to apply for jobs and market yourself, as well as build a strong portfolio and prepare for successful interviews.
             </p>
 
@@ -321,7 +321,7 @@ export default function DigiCourseSection() {
               preparing students for real-world success rather than just theoretical knowledge.
             </p>
 
-            <h4>What Sets Course Unbox Apart</h4>
+            <h4 className="font-medium text-gray-800">What Sets Course Unbox Apart</h4>
 
             <ul className="list-disc pl-5 space-y-2" >
               <li>Up-to-date curriculum aligned with current industry needs</li>
