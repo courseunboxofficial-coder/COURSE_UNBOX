@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight , Dot} from "lucide-react";
 
 const BLOG_MENU: Record<string, string[]> = {
   "Digital Marketing": [
@@ -36,11 +36,70 @@ const BLOG_MENU: Record<string, string[]> = {
   ],
 };
 
+type typeBlogs = {
 
-export default function BlogsDropdown() {
-  const categories = Object.keys(BLOG_MENU);
+  id: string;
+  title: string;
+  content: string;
+  FAQ: {
+    question: string;
+    answer: string
+  }[];
+  image: string,
+
+  meta: {
+
+    title: string,
+    description: string
+  },
+
+  slug: string,
+  alt: string,
+  subcontent: string,
+  created_at: Date;
+  author: string,
+  domain: string;
+
+};
+
+type CategoryMap = Record<string, typeBlogs[]>;
+
+
+
+
+export default function BlogsDropdown({blogs}:{blogs:typeBlogs[]}) {
+  console.log(blogs)
   const [open, setOpen] = useState(false);
-  const [activeCategory, setActiveCategory] = useState(categories[0]);
+ 
+      const [categories, setCategories] = useState<string[]>([]);
+      const [catBlogs, setCatBlogs] = useState<CategoryMap>({});
+      const [activeCategory, setActiveCategory] = useState<string>("");
+
+      useEffect(() => {
+      if (blogs.length === 0) return;
+
+      const uniqueCategories = [...new Set(blogs.map(b => b.domain))];
+
+      setCategories(uniqueCategories);
+
+      if (!activeCategory) {
+        setActiveCategory(uniqueCategories[0]);
+      }
+
+      const map: CategoryMap = {};
+      uniqueCategories.forEach(cat => {
+        map[cat] = blogs.filter(b => b.domain === cat);
+      });
+
+  setCatBlogs(map);
+}, [blogs]);
+
+
+      
+
+    if(!blogs){
+      return <div>Loading..</div>
+    }
 
   return (
     <div
@@ -91,18 +150,16 @@ export default function BlogsDropdown() {
 
           {/* RIGHT BLOG LIST */}
           <div className="flex-1 px-6 py-5 max-h-80 overflow-y-auto">
-            <h3 className="font-semibold text-gray-900 mb-4  text-lg">Blogs</h3>
+            <h3 className="font-semibold text-gray-900 mb-4  text-lg border border-0 border-b-blue-700">{activeCategory} Blogs</h3>
             <ul className="space-y-3 text-sm text-gray-700">
-              {BLOG_MENU[activeCategory].map((blog) => (
-                <li key={blog}>
-                  <Link
-                    href="/blog"
-                    className="hover:text-blue-600"
-                  >
-                    {blog}
-                  </Link>
-                </li>
-              ))}
+              {(catBlogs[activeCategory] || []).map((blog) => (
+                  <li key={blog.id}>
+                    <Link href={`/blog/${blog.slug}`} className="hover:text-blue-600 flex ">
+                      • {blog.title}
+                    </Link>
+                  </li>
+                ))}
+
             </ul>
 
             {/* CTA */}

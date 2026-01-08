@@ -1,4 +1,50 @@
+"use client"
+
+import { useState } from "react";
+
+import emailjs from "@emailjs/browser"
+
 export default function Form() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+
+  const handleSubmit = (e:React.FormEvent<HTMLElement>)=>{
+       e.preventDefault();
+
+    const templateParams = {
+
+      name: `${firstName} ${lastName}`,
+      first_name: firstName,
+      last_name: lastName,
+      email: email,
+      phone: phone,
+  
+
+    };
+
+    emailjs
+      .send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        templateParams,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      )
+      .then(() => {
+        alert("Message sent successfully!");
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPhone("");
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Failed to send message");
+      });
+  }
+
 
 
   return (
@@ -18,15 +64,18 @@ export default function Form() {
           <div className=" my-3 sm:my-4 h-[3px] w-32 sm:w-48 rounded-full bg-linear-to-r from-transparent via-blue-600 to-transparent" />
 
           {/* Form */}
-          <form className="space-y-3 sm:space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
 
             {/* Name */}
             <div className="flex gap-6">
               <div>
                 <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1">
-                  Name
+                 First Name
                 </label>
                 <input
+                  name="firstName"
+                  value={firstName}
+                  onChange={(e)=>setFirstName(e.target.value)}
                   type="text"
                   placeholder="Your First Name"
                   className="w-full rounded-lg border border-gray-300 px-3 py-2.5 sm:py-3
@@ -40,6 +89,10 @@ export default function Form() {
                   Last Name
                 </label>
                 <input
+                  name="lastName"
+                  value={lastName}
+                  onChange={(e)=>setLastName(e.target.value)}
+
                   type="text"
                   placeholder="Your Last Name"
                   className="w-full rounded-lg border border-gray-300 px-3 py-2.5 sm:py-3
@@ -57,13 +110,16 @@ export default function Form() {
                 Email
               </label>
               <input
+                name="email"
+                value={email}
+                onChange={(e)=>setEmail(e.target.value)}
                 type="email"
                 placeholder="your@email.com"
                 className="w-full rounded-lg border border-gray-300 px-3 py-2.5 sm:py-3
                            text-sm sm:text-base
                            focus:outline-none focus:ring-2 focus:ring-blue-600"
-              />
-            </div>
+                />
+              </div>
 
             {/* Phone */}
             <div>
@@ -71,6 +127,9 @@ export default function Form() {
                 Phone
               </label>
               <input
+                name="phone"
+                value={phone}
+                onChange={(e)=>setPhone(e.target.value)}
                 type="tel"
                 placeholder="Phone Number"
                 className="w-full rounded-lg border border-gray-300 px-3 py-2.5 sm:py-3

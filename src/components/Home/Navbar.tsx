@@ -1,20 +1,127 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import CoursesDropdown from "./DropDown/CourseDropDown";
 import BlogsDropdown from "./DropDown/BlogsDropDown";
+import { supabase } from "@/lib/supabse/supabaseConfig";
 
+
+type typeBlogs = {
+
+  id: string;
+  title: string;
+  content: string;
+  FAQ: {
+    question: string;
+    answer: string
+  }[];
+  image: string,
+
+  meta: {
+
+    title: string,
+    description: string
+  },
+
+  slug: string,
+  alt: string,
+  subcontent: string,
+  created_at: Date;
+  author: string,
+  domain: string;
+
+};
+
+type typeCourse = {
+
+    id: string;
+    title: string;
+    description: string;
+    startDate: string;
+    Duration: number;
+    language: string;
+    domain: string;
+    Delivery_Mode: string;
+    low: number,
+    high: number,
+    price: number,
+    content: {
+        title: string;
+        subtitle: string;
+    }[];
+    Testimonials:
+    {
+        name: string,
+        role: string,
+        company: string,
+        title: string,
+        description: string,
+        ranking: string,
+        course: string
+    }[],
+    modules: Record<
+        string,
+        {
+            module: string;
+            title: string;
+            lectures: string[];
+        }[]
+    >,
+
+    FAQ: {
+        question: string;
+        answer: string
+    }[];
+
+    meta: {
+        title: string,
+        description: string
+    },
+
+    slug: string,
+
+    alt: string,
+
+    image: string;
+
+}
 
 
 const Navbar = () => {
   
   const [open, setOpen] = useState(false);
-  const router = useRouter();
-  const [openCourses , setOpenCourses] = useState(false);
+  const [blogs, setBlogs] = useState<typeBlogs[]>([]);
+  const [courses, setCourses] = useState<typeCourse[]>([]);
+  
+
+  useEffect(()=>{
+    const getBlogs = async()=>{
+       const {data, error} = await supabase.from('Blog').select("*");
+       if(data){
+         setBlogs(data)
+       }
+    }
+    const getCourses = async()=>{
+      const {data, error} = await supabase.from('Courses').select("*");
+
+      if(data){
+        setCourses(courses);
+      }
+    }
+
+    getCourses();
+
+    getBlogs();
+  },[]);
+
+  console.log("Courses Section" , courses);
+
+  
+ 
 
 
   return (
@@ -51,7 +158,8 @@ const Navbar = () => {
             <Link href={"/about"} className="cursor-pointer relative
                                           after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 
                                           after:bg-blue-600 after:transition-all after:duration-400
-                                          hover:after:w-full md:text-md hover:text-blue-600">About Us</Link>
+                                          hover:after:w-full md:text-md hover:text-blue-600">About Us
+            </Link>
 
             <div>
 
@@ -61,7 +169,9 @@ const Navbar = () => {
                                           hover:after:w-full hover:text-blue-600">
                                             Blogs
               </Link> */}
-              <BlogsDropdown/>
+
+              
+             <BlogsDropdown blogs={blogs}/>
 
             </div>
             

@@ -201,8 +201,8 @@ export default function PopUpForm({ isOpen, onCancel, onConfirm }: IPopForm) {
                   value={occupation}
                   onChange={(e) => setOccupation(e.target.value)}
                   className="border border-gray-300 p-3 rounded-md w-full text-black
-               focus:ring-2 focus:ring-purple-500 focus:outline-none
-               bg-white cursor-pointer"
+                  focus:ring-2 focus:ring-purple-500 focus:outline-none
+                  bg-white cursor-pointer"
                   required
                 >
                   <option value="" disabled>
