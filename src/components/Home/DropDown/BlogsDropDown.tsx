@@ -49,7 +49,9 @@ export default function BlogsDropdown() {
       onMouseLeave={() => setOpen(false)}
     >
       {/* NAV ITEM */}
-      <button className="flex items-center gap-2 font-medium text-gray-700 hover:text-blue-400 cursor-pointer">
+      <Link
+        href={"/blog"}
+       className="flex items-center gap-2 font-medium text-gray-700 hover:text-blue-400 cursor-pointer">
         Blogs
         <span
             className={`inline-flex transition-transform duration-300 text-xs mt-1 ${
@@ -59,7 +61,7 @@ export default function BlogsDropdown() {
                 ▲
             {/* <Triangle size={12} fill="#474747" /> */}
             </span>
-      </button>
+      </Link>
 
       {/* DROPDOWN */}
    
@@ -70,7 +72,8 @@ export default function BlogsDropdown() {
           <div className="w-62 border-r border-blue-300 px-3 py-4 space-y-1 overflow-y-auto not-[]:">
             <h3 className="font-semibold text-gray-900 mb-4 px-3  text-lg">Category</h3>
             {categories.map((category) => (
-              <button
+              <Link
+                href={"/blog"}
                 key={category}
                 onMouseEnter={() => setActiveCategory(category)}
                 className={`w-full flex justify-between text-left px-3 py-4  text-sm transition cursor-pointer
@@ -82,7 +85,7 @@ export default function BlogsDropdown() {
                 `}
               >
                 {category} <ChevronRight size={20}/>
-              </button>
+              </Link>
             ))}
           </div>
 

@@ -264,8 +264,11 @@ const socialMedia = [
 
       {/* BOTTOM BAR */}
       <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-4 text-xs text-gray-400 text-center">
-          © {new Date().getFullYear()} Course Unbox. All rights reserved.
+        <div className="max-w-7xl flex justify-around mx-auto px-6 py-4 text-xs text-gray-400 text-center">
+          <Link href={"/privacy-policy"} className="cursor-pointer">Privacy Policy</Link>
+         <p>© {new Date().getFullYear()} Course Unbox. All rights reserved.</p> 
+         <Link href={"/refund-policy"} className="cursor-pointer">Refund Policy</Link>
+       
         </div>
       </div>
     </footer>

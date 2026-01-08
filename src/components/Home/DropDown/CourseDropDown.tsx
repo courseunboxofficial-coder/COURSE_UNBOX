@@ -1,5 +1,8 @@
 "use client";
 import { Triangle , TrendingUp} from "lucide-react";
+import { useState } from "react";
+import Link from "next/link";
+
 
 const COURSE_MENU: Record<string, string[]> = {
   "Digital Marketing": [
@@ -38,9 +41,6 @@ const COURSE_MENU: Record<string, string[]> = {
 };
 
 
-import { useState } from "react";
-import Link from "next/link";
-
 export default function CoursesDropdown() {
   const [open, setOpen] = useState(false);
 
@@ -51,7 +51,9 @@ export default function CoursesDropdown() {
       onMouseLeave={() => setOpen(false)}
     >
       {/* NAV ITEM */}
-      <button className="flex items-center gap-2 font-medium ">
+      <Link
+       href={"/course"}
+       className="flex items-center gap-2 font-medium ">
         Courses
         <span className="bg-orange-500 text-white text-xs px-2 py-0.5 rounded">
           OFFER
@@ -64,7 +66,7 @@ export default function CoursesDropdown() {
                 ▲
             {/* <Triangle size={12} fill="#474747" /> */}
             </span>
-      </button>
+      </Link>
 
       {/* DROPDOWN */}
     

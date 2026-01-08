@@ -1,52 +1,50 @@
+"use client"
+
+import Image from "next/image";
 import { Linkedin, TrendingUp, Star } from "lucide-react";
+import { supabase } from "@/lib/supabse/supabaseConfig";
+import { useEffect, useState } from "react";
 
+type testimonials = {
 
-type Course = {
-
-    id: string;
+    name: string;
+    role: string;
+    company: string;
     title: string;
     description: string;
-    startDate: string;
-    Duration: number;
-    language: string;
-    domain: string;
-    Delivery_Mode: string;
-    low: number,
-    high: number,
-    price: number,
-    content: {
-        title: string;
-        subtitle: string;
-    }[];
-    Testimonials:
-    {
-        name: string,
-        role: string,
-        company: string,
-        title: string,
-        description: string,
-        ranking: string,
-        course: string
-    }[],
-    modules: Record<
-        string,
-        {
-            module: string;
-            title: string;
-            lectures: string[];
-        }[]
-    >,
-
-    FAQ: {
-        question: string;
-        answer: string
-    }[];
-    image: string;
+    ranking: number;
+    course: string;
 
 }
 
-export default function Testimonials({ courses }: { courses: Course }) {
+export default function Testimonials({ courseSlug }: { courseSlug : string }) {
 
+    const [Testimonials, setTestimonials] = useState<testimonials[]>([]);
+
+    const getTestimonialsData = async () => {
+
+        const { data, error } = await supabase.from("Courses").select("Testimonials").eq("slug", courseSlug).single();
+
+        if (error) {
+
+            console.log("THERE IS SOME OF THE ERROR OCUUR IN THE COURSE TESTIMONIALS :");
+            console.log(error);
+            
+        }
+
+        console.log("THE TESTIMONAILS DATA COMEMON THE FORNTEND SIDE IS : ");
+        console.log(data);
+
+        setTestimonials(data?.Testimonials);
+    }
+
+
+
+    useEffect(() => {
+
+        getTestimonialsData();
+
+    }, []);
 
 
     return (
@@ -58,7 +56,7 @@ export default function Testimonials({ courses }: { courses: Course }) {
                 </h2>
 
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {courses.Testimonials?.map((testimonial, index) => (
+                    {Testimonials?.map((testimonial, index) => (
                         <div
                             key={index}
                             className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col justify-between"

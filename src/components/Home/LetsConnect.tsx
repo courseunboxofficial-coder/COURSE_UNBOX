@@ -62,7 +62,7 @@ const LetsConnect = () => {
                         <button
                             className="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-3 px-6 rounded-lg transition shadow-md cursor-pointer" onClick={() => setIsOpen(true)}
                         >
-                            Get Free Consultation
+                            Get Free Demo
                             <span className="text-xl">→</span>
                         </button>
                     </div>

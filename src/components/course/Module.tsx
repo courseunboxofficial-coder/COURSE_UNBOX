@@ -1,7 +1,8 @@
 "use client";
 
-import {useState } from "react";
+import { useEffect, useState } from "react";
 import { Lock, ChevronRight } from "lucide-react";
+import { supabase } from "@/lib/supabse/supabaseConfig";
 
 type Course = {
 
@@ -63,17 +64,52 @@ type ModuleType = {
     lectures: string[];
 };
 
-export default function Module({ courses }: { courses : Course }) {
-    const firstTab = Object.keys(courses.modules)[0];
+export default function Module({ courseSlug }: { courseSlug: string }) {
 
-    const [activeTab, setActiveTab] = useState<string | null>(firstTab);
+    const [course, setCourse] = useState<Course | null>(null);
+    const [activeTab, setActiveTab] = useState<string | null>(null);
     const [activeModule, setActiveModule] = useState(0);
+    console.log("THE COURSE COMING IS : ");
+    console.log(course);
+
+
+    const getData = async () => {
+        const { data, error } = await supabase
+            .from("Courses")
+            .select("*")
+            .eq("slug", courseSlug)
+            .single();
+
+        if (error) {
+
+            console.log("THE GOT IN THE MODULE SECTION IS : ");
+            console.log(error);
+
+        }
+
+        console.log("THE DATA OF THE MODULE SECTION IS : ")
+        console.log(data);
+
+        console.log("THE Modules is : ");
+
+        console.log(data.modules);
+
+
+        setCourse(data);
+        setActiveTab([...Object.keys(data.modules)].reverse()[0]);
+
+
+    };
+
+    useEffect(() => {
+        getData();
+    }, []);
 
 
 
     /* Derived Modules */
     const modules: ModuleType[] =
-        courses && activeTab ? courses.modules[activeTab] : [];
+        course && activeTab ? course.modules[activeTab] : [];
 
 
     return (
@@ -89,8 +125,8 @@ export default function Module({ courses }: { courses : Course }) {
                 {/* Tabs */}
 
                 <div className="flex gap-3 mb-8 overflow-x-auto overflow-y-hidden scrollbar-hide scroll-smooth">
-                    {courses &&
-                        Object.keys(courses.modules).map((tab) => (
+                    {course &&
+                        [...Object.keys(course.modules)].reverse().map((tab) => (
 
                             <button
                                 key={tab}
@@ -156,6 +192,7 @@ export default function Module({ courses }: { courses : Course }) {
 
 
                 {/* ================= MOBILE VIEW ================= */}
+                
                 <div className="md:hidden  py-6 bg-slate-50">
 
                     <div className="space-y-3">

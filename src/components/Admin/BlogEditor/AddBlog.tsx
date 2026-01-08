@@ -14,7 +14,6 @@ const SunEditor = dynamic(() => import("suneditor-react"), {
 const AddBlog = ({ collapsed }: { collapsed: boolean }) => {
 
     const [imageURL, setImageURL] = useState("");
-
     const [formData, setFormData] = useState({
 
         title: "",

@@ -81,16 +81,19 @@ export default function PopUpForm({ isOpen, onCancel, onConfirm }: IPopForm) {
 
 
           {/* Card */}
-          <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-5 sm:p-6 md:p-8">
+          <div className="bg-white rounded-2xl rounded-tr-0 sm:rounded-3xl shadow-2xl p-5 sm:p-6 md:p-8">
 
             {/* Close Button */}
             <button
               onClick={onCancel}
               aria-label="Close"
               className="
-                absolute 
-                top-3 right-3 
-                sm:top-4 sm:right-4
+                fixed 
+                top-3 right-3
+                sm:right-9 sm:top-2
+                md:right-18 md:top-1 
+                lg:right-56 lg:top-2
+                xl:top-4 xl:right-108
                 w-9 h-9 sm:w-10 sm:h-10
                 flex items-center justify-center
                 rounded-full

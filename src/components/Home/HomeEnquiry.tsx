@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
 import emailjs from "@emailjs/browser";
@@ -116,7 +118,7 @@ export default function HomeEnquiry() {
                 <div className=" my-3 sm:my-4 h-[3px] w-32 sm:w-48 rounded-full bg-linear-to-r from-transparent via-blue-600 to-transparent" />
 
                 {/* Form */}
-                <form className="space-y-3 sm:space-y-4">
+                <form className="space-y-3 sm:space-y-4" onSubmit={handleSubmit}>
 
                   {/* Name */}
                   <div className="flex gap-6">
@@ -126,10 +128,13 @@ export default function HomeEnquiry() {
                       </label>
                       <input
                         type="text"
+                        name="firstname"
                         placeholder="Your First Name"
                         className="w-full rounded-lg border border-gray-300 px-3 py-2.5 sm:py-3
                                     text-sm sm:text-base
                                     focus:outline-none focus:ring-2 focus:ring-blue-600"
+                                    required
+                        onChange={(e) => setFirstName(e.target.value)}
                       />
                     </div>
 
@@ -139,10 +144,13 @@ export default function HomeEnquiry() {
                       </label>
                       <input
                         type="text"
+                        name="lastname"
                         placeholder="Your Last Name"
                         className="w-full rounded-lg border border-gray-300 px-3 py-2.5 sm:py-3
                                     text-sm sm:text-base
                                     focus:outline-none focus:ring-2 focus:ring-blue-600"
+                                    required
+                        onChange={(e) => setLastName(e.target.value)}
                       />
                     </div>
 
@@ -156,10 +164,13 @@ export default function HomeEnquiry() {
                     </label>
                     <input
                       type="email"
+                      name="email"
                       placeholder="your@email.com"
                       className="w-full rounded-lg border border-gray-300 px-3 py-2.5 sm:py-3
                                 text-sm sm:text-base
                                 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                                required
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
 
@@ -170,11 +181,40 @@ export default function HomeEnquiry() {
                     </label>
                     <input
                       type="tel"
+                      name="phone"
                       placeholder="Phone Number"
                       className="w-full rounded-lg border border-gray-300 px-3 py-2.5 sm:py-3
                                 text-sm sm:text-base
                                 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                                required
+                      onChange={(e) => setPhone(e.target.value)}
                     />
+                  </div>
+
+
+                  <div>
+                    <label className="text-sm font-medium text-gray-600">
+                      Occupation
+                    </label>
+
+                    <select
+                      value={occupation}
+                      onChange={(e) => setOccupation(e.target.value)}
+                      className="border border-gray-300 p-3 rounded-md w-full text-black
+               focus:ring-2 focus:ring-purple-500 focus:outline-none
+               bg-white cursor-pointer"
+                      required
+                    >
+                      <option value="" disabled>
+                        Select your occupation
+                      </option>
+                      <option value="Student">Student</option>
+                      <option value="Professional">Professional</option>
+                      <option value="Housewife">Housewife</option>
+                      <option value="Business Owner">Business Owner</option>
+                      <option value="Freelancer">Freelancer</option>
+                      <option value="Other">Other</option>
+                    </select>
                   </div>
 
                   {/* Submit */}

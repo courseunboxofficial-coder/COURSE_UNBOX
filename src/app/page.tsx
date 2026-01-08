@@ -21,7 +21,7 @@ import { UpdatedBanner } from "@/components/Home/UpdatedBanner";
 import { supabase } from "@/lib/supabse/supabaseConfig";
 import GetCertifiedByAmazon from "@/components/Home/GetCertifiedByAmazon";
 import HomeEnquiry from "@/components/Home/HomeEnquiry";
-
+import WhyChooseUs from "@/components/AllCourses/WhyChooseUs";
 
 
 
@@ -60,7 +60,7 @@ export default async function Home() {
                   <Partners />
                   <Trending />
                   <Courses />
-                  {/* <HomeEnquiry /> */}
+                  <HomeEnquiry />
                   <TopCourses />
                   <Hire />
                   <Mentors />
@@ -69,6 +69,7 @@ export default async function Home() {
                   <AboutUs about={about} />
                   <PhotoGallery />
                   <DigiCourseSection />
+                  <WhyChooseUs/>
                   <Faq />
                   <Testimonials />
                   <TopCompanies />

@@ -1,7 +1,19 @@
 import { supabase } from '@/lib/supabse/supabaseConfig';
 import dynamic from 'next/dynamic';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify';
+
+import "suneditor/dist/css/suneditor.min.css";
+
+const Editor = dynamic(
+  () => import("@monaco-editor/react"),
+  { ssr: false }
+);
+
+
+const SunEditor = dynamic(() => import("suneditor-react"), {
+  ssr: false,
+});
 
 type Course = {
 
@@ -58,13 +70,6 @@ type Course = {
 }
 
 
-const Editor = dynamic(
-
-  () => import("@monaco-editor/react"),
-  { ssr: false }
-
-);
-
 const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course }) => {
 
   const [imageURL, setimageURL] = useState("");
@@ -74,6 +79,8 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
     metaDescription: ""
 
   });
+  const editorRef = useRef<any>(null);
+
   const [formData, setFormData] = useState({
 
     title: "",
@@ -92,6 +99,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
 
   });
 
+  const [editorContent, setEditorContent] = useState("");
   const [editorValue, setEditorValue] = useState<string>(`{
   
       "Data Science Foundations": [
@@ -275,6 +283,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
 
 
   useEffect(() => {
+
     setFormData({
 
       title: course.title,
@@ -370,6 +379,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
     });
 
     setEditorValue(JSON.stringify(course.modules, null, 2));
+    setEditorContent(course.description);
     setParsedJson(course.modules);
 
 
@@ -408,9 +418,6 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
 
     event.preventDefault();
 
-
-
-
     const validationJson = handleModuleParse();
 
     if (!validationJson) {
@@ -446,7 +453,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
 
       alert("Slug already exists. Please use a unique slug.");
       return;
-      
+
     }
 
     setloading(true);
@@ -456,13 +463,13 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
       {
 
         title: formData.title,
-        description: formData.description,
+        description: editorContent,
         startDate: formData.startDate,
         Duration: formData.Duration,
         language: formData.language,
         domain: formData.domain,
-        low: 0,
-        high: 0,
+        low: formData.low,
+        high: formData.high,
         price: formData.price,
         alt: formData.alt,
         slug: slug,
@@ -589,8 +596,8 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     required
                   >
                     <option value="">Select Mode</option>
-                    <option value="digital Marketing">Digital Marketing</option>
-                    <option value="developement">Development</option>
+                    <option value="Digital Marketing">Digital Marketing</option>
+                    <option value="Developement">Development</option>
                     <option value="IT & Software">IT & Software</option>
                     <option value="Data Science">Data Science</option>
                   </select>
@@ -613,7 +620,6 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     <option value="Hybrid">Other</option>
                   </select>
                 </div>
-
               </div>
 
               {/* Start Date + Duration */}
@@ -635,7 +641,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
 
                 <div className="w-full">
                   <label className="block text-sm font-medium mb-2">
-                    Duration (Days)
+                    Duration (Months)
                   </label>
                   <input
                     type="number"
@@ -646,7 +652,48 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     required
                   />
                 </div>
+              </div>
 
+              <div className="flex gap-4">
+
+                {/* Delivery Mode */}
+
+                <div className='w-full'>
+                  <label className="block text-sm font-medium mb-2">
+                    Delivery Mode
+                  </label>
+                  <select
+                    name="Delivery_Mode"
+                    value={formData.Delivery_Mode}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border px-4 py-3 text-sm"
+                    required
+                  >
+                    <option value="">Select Mode</option>
+                    <option value="Online">Online</option>
+                    <option value="Offline">Offline</option>
+                    <option value="Hybrid">Hybrid</option>
+                  </select>
+                </div>
+
+                <div className="w-full">
+                  <label className="block text-sm font-medium mb-2">
+                    Course Price
+                  </label>
+                  <input
+                    name="price"
+                    value={formData.price}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                    required
+                  />
+                </div>
+
+              </div>
+
+
+
+              <div className="flex gap-4">
                 <div className="w-full">
                   <label className="block text-sm font-medium mb-2">
                     Low Package
@@ -676,25 +723,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                 </div>
               </div>
 
-              {/* Delivery Mode */}
 
-              <div>
-                <label className="block text-sm font-medium mb-2">
-                  Delivery Mode
-                </label>
-                <select
-                  name="Delivery_Mode"
-                  value={formData.Delivery_Mode}
-                  onChange={handleChange}
-                  className="w-full rounded-xl border px-4 py-3 text-sm"
-                  required
-                >
-                  <option value="">Select Mode</option>
-                  <option value="Online">Online</option>
-                  <option value="Offline">Offline</option>
-                  <option value="Hybrid">Hybrid</option>
-                </select>
-              </div>
 
               <div className="flex gap-4">
                 <div className="w-full">
@@ -755,22 +784,6 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
 
               </div>
 
-              {/* Description */}
-
-              <div>
-                <label className="block text-sm font-medium mb-2">
-                  About Us
-                </label>
-                <textarea
-                  name="description"
-                  value={formData.description}
-                  onChange={handleChange}
-                  rows={3}
-                  className="w-full rounded-xl border px-4 py-3 text-sm"
-                  required
-                />
-              </div>
-
 
               {/* Image Upload */}
 
@@ -809,7 +822,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                 <p className="text-center text-2xl font-bold mb-5">Why choose this course section ?</p>
 
                 <div className="flex gap-4 justify-between">
-                  <div className="flex flex-col mb-3">
+                  <div className="flex flex-col mb-3 w-full">
                     <label className="block text-sm font-medium mb-2">
                       FirstTitle
                     </label>
@@ -822,7 +835,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     />
                   </div>
 
-                  <div className="flex flex-col">
+                  <div className="flex flex-col  w-full">
                     <label className="block text-sm font-medium mb-2">
                       First Description
                     </label>
@@ -838,7 +851,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                 </div>
 
                 <div className="flex gap-4 justify-between">
-                  <div className="flex flex-col mb-3">
+                  <div className="flex flex-col mb-3  w-full">
                     <label className="block text-sm font-medium mb-2">
                       SecondTitle
                     </label>
@@ -851,7 +864,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     />
                   </div>
 
-                  <div className="flex flex-col">
+                  <div className="flex flex-col  w-full">
                     <label className="block text-sm font-medium mb-2">
                       Second Description
                     </label>
@@ -867,7 +880,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                 </div>
 
                 <div className="flex gap-4 justify-between">
-                  <div className="flex flex-col mb-3">
+                  <div className="flex flex-col mb-3  w-full">
                     <label className="block text-sm font-medium mb-2">
                       ThirdTitle
                     </label>
@@ -880,7 +893,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     />
                   </div>
 
-                  <div className="flex flex-col">
+                  <div className="flex flex-col  w-full">
 
                     <label className="block text-sm font-medium mb-2">
 
@@ -899,7 +912,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                 </div>
 
                 <div className="flex gap-4 justify-between">
-                  <div className="flex flex-col mb-3">
+                  <div className="flex flex-col mb-3  w-full">
                     <label className="block text-sm font-medium mb-2">
                       fourthTitle
                     </label>
@@ -912,7 +925,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     />
                   </div>
 
-                  <div className="flex flex-col">
+                  <div className="flex flex-col  w-full">
                     <label className="block text-sm font-medium mb-2">
                       fourth Description
                     </label>
@@ -928,7 +941,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                 </div>
 
                 <div className="flex gap-4 justify-between">
-                  <div className="flex flex-col mb-3">
+                  <div className="flex flex-col mb-3  w-full">
                     <label className="block text-sm font-medium mb-2">
                       FifthTitle
                     </label>
@@ -941,7 +954,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     />
                   </div>
 
-                  <div className="flex flex-col">
+                  <div className="flex flex-col  w-full">
                     <label className="block text-sm font-medium mb-2">
                       Fifth Description
                     </label>
@@ -957,7 +970,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                 </div>
 
                 <div className="flex gap-4 justify-between">
-                  <div className="flex flex-col mb-3">
+                  <div className="flex flex-col mb-3  w-full">
                     <label className="block text-sm font-medium mb-2">
                       sixthTitle
                     </label>
@@ -970,7 +983,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
                     />
                   </div>
 
-                  <div className="flex flex-col">
+                  <div className="flex flex-col  w-full">
                     <label className="block text-sm font-medium mb-2">
                       sixth Description
                     </label>
@@ -988,6 +1001,34 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
               </div>
 
             </div>
+          </div>
+
+
+          <div className="h-[85vh] w-full rounded-2xl border p-5 overflow-hidden mb-10">
+            <div className="w-full text-2xl font-extrabold text-center mb-5">About Course Section</div>
+            <SunEditor
+
+              defaultValue={editorContent}
+              setOptions={{
+                minHeight: "65vh",
+                maxHeight: "70vh",
+                buttonList: [
+                  ["undo", "redo"],
+                  ["formatBlock"],   // H1, H2, H3 works here
+                  ["bold", "italic", "underline"],
+                  ["list"],
+                  ["align"],
+                  ["link", "image"],
+                ],
+
+
+              }}
+
+              onChange={(content) => {
+                setEditorContent(content);
+              }}
+
+            />
           </div>
 
 

@@ -16,6 +16,7 @@ const LetsConnect = () => {
           w-full 
           min-h-[150px] sm:min-h-[140px] md:min-h-[162px] lg:min-h-[170px]
           flex items-center
+          
           rounded-b-4xl sm:rounded-b-full
           overflow-hidden
         "

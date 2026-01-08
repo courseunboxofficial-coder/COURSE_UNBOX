@@ -609,6 +609,7 @@ const EditBlog = ({ collapsed, blog }: { collapsed: boolean; blog: Blog }) => {
                                 getSunEditorInstance={(editor) => {
                                     editorRef.current = editor;
                                 }}
+                                
                                 setOptions={{
                                     minHeight: "65vh",
                                     maxHeight: "70vh",

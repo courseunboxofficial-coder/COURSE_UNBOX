@@ -4,11 +4,18 @@ import dynamic from "next/dynamic";
 import { title } from "process";
 import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
+import "suneditor/dist/css/suneditor.min.css";
 
 const Editor = dynamic(
     () => import("@monaco-editor/react"),
     { ssr: false }
 );
+
+
+const SunEditor = dynamic(() => import("suneditor-react"), {
+    ssr: false,
+});
+
 
 const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
 
@@ -20,6 +27,8 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
         metaDescription: ""
 
     });
+
+    const [editorContent, setEditorContent] = useState("");
 
     const [editorValue, setEditorValue] = useState<string>(`{
     "Data Science Foundations": [
@@ -273,7 +282,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
         const { data, error } = await supabase.from("Courses").insert([{
 
             title: formData.title,
-            description: formData.description,
+            description: editorContent,
             startDate: formData.startDate,
             Duration: formData.Duration,
             language: formData.language,
@@ -483,7 +492,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
 
                                 <div className="w-full">
                                     <label className="block text-sm font-medium mb-2">
-                                        Duration (Days)
+                                        Duration (Months)
                                     </label>
                                     <input
                                         type="number"
@@ -543,6 +552,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                     </label>
                                     <input
                                         name="low"
+                                        type="number"
                                         value={formData.low}
                                         onChange={handleChange}
                                         className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
@@ -557,6 +567,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                                     </label>
                                     <input
                                         name="high"
+                                        type="number"
                                         value={formData.high}
                                         onChange={handleChange}
                                         className="w-full rounded-xl border px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
@@ -627,24 +638,6 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                             </div>
 
 
-                            <div>
-                                <label className="block text-sm font-medium mb-2">
-                                    About Course
-                                </label>
-                                <textarea
-                                    name="description"
-                                    value={formData.description}
-                                    onChange={handleChange}
-                                    rows={3}
-                                    className="w-full rounded-xl border px-4 py-3 text-sm resize-none"
-                                    required
-                                />
-                            </div>
-
-
-
-
-
                             {/* Image Upload */}
 
                             <div>
@@ -672,6 +665,9 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
                             </div>
 
                         </div>
+
+
+
 
 
                         <div>
@@ -865,7 +861,34 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
 
                     </div>
 
+
+                    {/* This is the Course Editor */}
+
+                    <div className="h-[85vh] w-full rounded-2xl border p-5 overflow-hidden mb-10">
+                        <div className="w-full text-2xl font-extrabold text-center mb-5">About Course Section</div>
+                        <SunEditor
+                            defaultValue="<p><strong>Welcome!</strong> Start writing your course content here.</p>"
+                            setOptions={{
+                                minHeight: "65vh",
+                                maxHeight: "70vh",
+                                buttonList: [
+                                    ["undo", "redo"],
+                                    ["formatBlock"],   // H1, H2, H3 works here
+                                    ["bold", "italic", "underline"],
+                                    ["list"],
+                                    ["align"],
+                                    ["link", "image"],
+                                ],
+                            }}
+
+                            onChange={(content) => {
+                                setEditorContent(content);
+                            }}
+                        />
+                    </div>
+
                     <div>
+
                         {/* content */}
 
                         <div className="h-[80vh] border p-5 rounded-3xl mb-7">

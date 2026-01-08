@@ -1,8 +1,9 @@
 "use client";
 
+import { supabase } from "@/lib/supabse/supabaseConfig";
 import { ChevronDown, CircleQuestionMark } from "lucide-react";
 import Image from "next/image";
-import  {useState } from "react";
+import React, { useEffect, useState } from "react";
 
 type Course = {
 
@@ -48,10 +49,40 @@ type Course = {
   
 }
 
-function Faq({ courses }: { courses: Course }) {
+function Faq({courseSlug} : {courseSlug : string}) {
 
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
 
+  const [content, setContent] = useState<Course | null>(null);
+  
+    const getBlogData = async () => {
+  
+      const { data, error } = await supabase
+        .from("Courses")
+        .select("*")
+        .eq("slug", courseSlug)
+        .single();
+  
+      if (error) {
+  
+        console.error(error);
+  
+      }
+  
+      console.log("THE DATA IS : ");
+      console.log(data);
+  
+      setContent(data);
+  
+    }
+  
+  
+  
+    useEffect(() => {
+  
+      getBlogData();
+  
+    }, []);
   
 
   return (
@@ -63,7 +94,7 @@ function Faq({ courses }: { courses: Course }) {
           <h2 className="relative inline-block font-extrabold text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-16 text-black">
            FAQs : Frequently Asked Questions
             <svg
-              className="absolute left-0 -bottom-16 w-full"
+              className="absolute left-0 -bottom-12 w-full"
               viewBox="0 0 300 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +102,7 @@ function Faq({ courses }: { courses: Course }) {
               <path
                 d="M5 15 C 60 5, 240 5, 295 15"
                 stroke="#2BB0FF"
-                strokeWidth="4"
+                strokeWidth="6"
                 strokeLinecap="round"
               />
             </svg>
@@ -86,7 +117,7 @@ function Faq({ courses }: { courses: Course }) {
 
           <div className="w-full md:w-[60%] mx-auto md:px-4 px-8">
             <div className="flex flex-col gap-4">
-              {courses?.FAQ.map((data, index) => {
+              {content?.FAQ.map((data, index) => {
                 const isOpen = currentIndex === index;
                 // xl:px-5 xl:py-4 
                 return (
