@@ -1,4 +1,5 @@
 import React from "react";
+import {ChevronLeft , ChevronRight} from 'lucide-react'
 
 interface PaginationProps {
   currentPage: number;
@@ -38,33 +39,33 @@ export default function Pagination({
 
   return (
     <div className="flex items-center justify-center mt-10">
-      <div className="flex items-center gap-2 rounded-full border bg-white px-4 py-2 shadow-sm">
+      <div className="flex items-center gap-2 rounded-full border border-blue-200 bg-white px-4 py-2 shadow-lg ">
         
         {/* Prev */}
         <button
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className={`px-3 py-1 rounded-full text-sm transition
+          className={`px-3 py-1 rounded-full text-sm transition cursor-pointer
             ${
               currentPage === 1
                 ? "text-gray-300 cursor-not-allowed"
                 : "text-gray-600 hover:bg-gray-100"
             }`}
         >
-          ← Prev
+         <span className="flex"><ChevronLeft/> Prev</span>
         </button>
 
-        {/* Page Numbers */}
+      
         {getPages().map((page, index) =>
           page === "..." ? (
-            <span key={index} className="px-2 text-gray-400">
+            <span key={index} className="px-2 text-gray-400 cursor-pointer">
               ...
             </span>
           ) : (
             <button
               key={index}
               onClick={() => onPageChange(page as number)}
-              className={`w-9 h-9 flex items-center justify-center rounded-full text-sm font-medium transition
+              className={`w-9 h-9 flex items-center justify-center rounded-full text-sm font-medium transition cursor-pointer
                 ${
                   currentPage === page
                     ? "border-2 border-blue-600 text-blue-600"
@@ -80,14 +81,14 @@ export default function Pagination({
         <button
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className={`px-3 py-1 rounded-full text-sm transition
+          className={`px-3 py-1 rounded-full text-sm transition cursor-pointer
             ${
               currentPage === totalPages
                 ? "text-gray-300 cursor-not-allowed"
                 : "text-gray-600 hover:bg-gray-100"
             }`}
         >
-          Next →
+          <span className="flex">Next <ChevronRight/></span>
         </button>
       </div>
     </div>

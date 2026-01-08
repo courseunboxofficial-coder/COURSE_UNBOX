@@ -19,8 +19,7 @@ import Faq from "@/components/Home/Faq";
 import DigiCourseSection from "@/components/Home/DigiCourseSection";
 import { UpdatedBanner } from "@/components/Home/UpdatedBanner";
 import { supabase } from "@/lib/supabse/supabaseConfig";
-import WhyChooseUs from "@/components/About/WhyChooseUs";
-
+import WhyChooseUs from "@/components/AllCourses/WhyChooseUs";
 
 const FetchCourseData = async () => {
 

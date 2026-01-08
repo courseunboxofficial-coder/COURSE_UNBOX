@@ -28,7 +28,6 @@ type Blog = {
 };
 
 export default function LeftContent({ Blogs }: { Blogs : Blog }) {
-
   
   return (<article className=" border-r-gray-400 ">
 
@@ -53,12 +52,16 @@ export default function LeftContent({ Blogs }: { Blogs : Blog }) {
       <div className="mt-3 h-1 w-24 bg-linear-to-r from-blue-500 via-indigo-500 to-transparent rounded-full"></div>
 
       <p className="mt-4 text-sm text-slate-600">
-        By <span className="font-medium text-slate-800">{Blogs?.author}</span> · {Blogs && new Date(Blogs?.created_at).toLocaleDateString('en-GB',{
-            day: 'numeric',
-            month: 'short',
-            year: 'numeric',
-        })}
+        By <span className="font-medium text-slate-800">{Blogs?.author}</span>
+        {Blogs?.created_at && (
+          <> · {new Date(Blogs.created_at).toLocaleDateString("en-GB", {
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+          })}</>
+        )}
       </p>
+
     </section>
 
     {/* ===== FEATURE IMAGE ===== */}
@@ -100,7 +103,7 @@ export default function LeftContent({ Blogs }: { Blogs : Blog }) {
 
 
     {/* ===== BLOG CONTENT ===== */}
-    <section className="mx-auto px-4 mt-12">
+    <section className="mx-auto px-4 ">
       <div className="BlogContent
       prose prose-slate max-w-none
       prose-ul:list-disc prose-ul:pl-6
