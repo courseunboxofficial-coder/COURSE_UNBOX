@@ -73,7 +73,21 @@ const Content = () => {
 
 
     <section className="py-16 relative">
+
+
+    
+
       <div className="mx-auto w-full px-6">
+        <nav className="text-sm text-gray-400 mb-4 pl-20 bg-white max-w-sm -mt-8">
+            <Link href="/" className="hover:text-blue-500 transition">
+            Home
+            </Link>
+            <span className="mx-2">/</span>
+            <Link href={"/blog"} className="text-gray-600 font-medium ">
+              Blogs
+            </Link>
+        </nav>
+
         <div className='text-center mb-10'>
           <h2 className="relative inline-block  font-extrabold text-xl sm:text-2xl md:text-4xl lg:text-5xl mb-10 px-20 md:px-16 lg:px-8 ">
             Latest Blogs

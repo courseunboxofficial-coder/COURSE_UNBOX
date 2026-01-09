@@ -17,7 +17,7 @@ export default async function sitemap() {
 
   const courseUrls =
     courses?.map((course) => ({
-      url: `${baseUrl}/courses/${course.slug}`,
+      url: `${baseUrl}/course/${course.slug}`,
       lastModified: course.updatedAt
         ? new Date(course.updatedAt)
         : new Date(),

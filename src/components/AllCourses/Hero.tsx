@@ -4,7 +4,8 @@ import CountUp from "../Category/CountUp";
 import PopUpForm from "./PopUpForm";
 import Image from "next/image";
 import { useState } from "react";
-
+import Link from "next/link";
+import { Home } from "lucide-react";
 export default function Hero(){
     const [expanded , setExpanded] = useState(false);
     const [isOpen , setIsOpen] = useState(false);
@@ -16,6 +17,16 @@ export default function Hero(){
       <section className="relative overflow-hidden bg-linear-to-r from-[#003a8f] via-[#004fb3] to-[#0066d6] py-3 z-99 ">
       
       {/* Soft Pattern Overlay */}
+
+      <nav className="text-sm flex items-center text-white absolute top-15 z-99 left-35 ">
+        <Link href="/" className="hover:text-blue-500 transition">
+         <Home size={19} />
+        </Link>
+        <span className="mx-2.5">/</span>
+        <Link href={"/Courses"} className=" font-medium hover:text-blue-500 transition">
+          Courses
+        </Link>
+      </nav>
      <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(#ffffff_1px,transparent_1px)] bg-size-[24px_24px]" />
 
       <div className="relative max-w-7xl mx-auto px-6 pt-4 sm:pt-12 pb-4 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">

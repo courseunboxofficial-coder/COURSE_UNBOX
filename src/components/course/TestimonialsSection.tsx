@@ -51,15 +51,18 @@ export default function Testimonials({ courseSlug }: { courseSlug : string }) {
 
         <section className="bg-[#F7FBFF] py-16">
             <div className="max-w-7xl mx-auto px-6">
-                <h2 className="text-3xl font-bold text-gray-900 mb-10">
-                    Reviews from placed learners
+                <h2 className="text-3xl font-extrabold text-gray-900 mb-10">
+                    Reviews from placed learners.
                 </h2>
 
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {Testimonials?.map((testimonial, index) => (
                         <div
                             key={index}
-                            className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col justify-between"
+                            className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex 
+                            flex-col justify-between cursor-pointer transition-all duration-300
+                            hover:shadow-blue-900/30
+                            hover:-translate-y-2 hover:shadow-xl hover:shadow-blue-400 "
                         >
                             {/* Top Badges */}
                             <div className="flex items-center justify-between mb-4">
@@ -90,13 +93,13 @@ export default function Testimonials({ courseSlug }: { courseSlug : string }) {
                             {/* User Info */}
 
                             <div className="flex items-center gap-3">
-                                {/* <Image
-                                    src={item.avatar}
-                                    alt={item.name}
+                                <Image
+                                    src="/images/Student/UnboxProfile.png" 
+                                    alt="Avtar Image"
                                     width={44}
                                     height={44}
-                                    className="rounded-full object-cover"
-                                /> */}
+                                    className="rounded-full object-cover border-3 border-blue-600"
+                                />
 
                                 <div className="flex-1">
                                     <div className="flex items-center gap-2">

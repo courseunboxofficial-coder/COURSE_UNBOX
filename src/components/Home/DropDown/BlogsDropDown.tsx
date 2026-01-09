@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ChevronRight, Dot } from "lucide-react";
+import { ChevronRight , Dot} from "lucide-react";
 
 const BLOG_MENU: Record<string, string[]> = {
   "Digital Marketing": [
@@ -67,39 +67,39 @@ type CategoryMap = Record<string, typeBlogs[]>;
 
 
 
-export default function BlogsDropdown({ blogs }: { blogs: typeBlogs[] }) {
+export default function BlogsDropdown({blogs}:{blogs:typeBlogs[]}) {
   console.log(blogs)
   const [open, setOpen] = useState(false);
+ 
+      const [categories, setCategories] = useState<string[]>([]);
+      const [catBlogs, setCatBlogs] = useState<CategoryMap>({});
+      const [activeCategory, setActiveCategory] = useState<string>("");
 
-  const [categories, setCategories] = useState<string[]>([]);
-  const [catBlogs, setCatBlogs] = useState<CategoryMap>({});
-  const [activeCategory, setActiveCategory] = useState<string>("");
+      useEffect(() => {
+      if (blogs.length === 0) return;
 
-  useEffect(() => {
-    if (blogs.length === 0) return;
+      const uniqueCategories = [...new Set(blogs.map(b => b.domain))];
 
-    const uniqueCategories = [...new Set(blogs.map(b => b.domain))];
+      setCategories(uniqueCategories);
 
-    setCategories(uniqueCategories);
+      if (!activeCategory) {
+        setActiveCategory(uniqueCategories[0]);
+      }
 
-    if (!activeCategory) {
-      setActiveCategory(uniqueCategories[0]);
+      const map: CategoryMap = {};
+      uniqueCategories.forEach(cat => {
+        map[cat] = blogs.filter(b => b.domain === cat);
+      });
+
+  setCatBlogs(map);
+}, [blogs]);
+
+
+      
+
+    if(!blogs){
+      return <div>Loading..</div>
     }
-
-    const map: CategoryMap = {};
-    uniqueCategories.forEach(cat => {
-      map[cat] = blogs.filter(b => b.domain === cat);
-    });
-
-    setCatBlogs(map);
-  }, [blogs]);
-
-
-
-
-  if (!blogs) {
-    return <div>Loading..</div>
-  }
 
   return (
     <div
@@ -110,70 +110,77 @@ export default function BlogsDropdown({ blogs }: { blogs: typeBlogs[] }) {
       {/* NAV ITEM */}
       <Link
         href={"/blog"}
-        className="flex items-center gap-2 font-medium text-gray-700 hover:text-blue-400 cursor-pointer">
+       className="flex items-center gap-2 font-medium text-gray-700 hover:text-blue-400 cursor-pointer">
         Blogs
         <span
-          className={`inline-flex transition-transform duration-300 text-xs mt-1 ${open ? "rotate-0" : "rotate-180"
+            className={`inline-flex transition-transform duration-300 text-xs mt-1 ${
+                open ? "rotate-0" : "rotate-180"
             }`}
-        >
-          ▲
-          {/* <Triangle size={12} fill="#474747" /> */}
-        </span>
+            >
+                ▲
+            {/* <Triangle size={12} fill="#474747" /> */}
+            </span>
       </Link>
 
       {/* DROPDOWN */}
+   
+        <div   className={`absolute cursor-pointer h-94  left-0 top-full mt-4 w-[600px] grid grid-cols-2 bg-white rounded-xl shadow-2xl border z-50 p-4 ${open ? "opacity-100 visible" : "opacity-0 invisible"}`}>
+           <div className="absolute -top-6 left-0 w-full h-6" />
 
-      <div className={`absolute cursor-pointer h-90  left-0 top-full mt-4 w-[600px] grid grid-cols-2 bg-white rounded-xl shadow-2xl border z-50 p-4 ${open ? "opacity-100 visible" : "opacity-0 invisible"}`}>
-        <div className="absolute -top-6 left-0 w-full h-6" />
-
-        {/* LEFT CATEGORY LIST */}
-        <div className="w-62 border-r border-blue-300 px-3 py-4 space-y-1 overflow-y-auto not-[]:">
-          <h3 className="font-semibold text-gray-900 mb-4 px-3  text-lg">Category</h3>
-          {categories.map((category) => (
-            <Link
-              href={"/blog"}
-              key={category}
-              onMouseEnter={() => setActiveCategory(category)}
-              className={`w-full flex justify-between text-left px-3 py-4  text-sm transition cursor-pointer
-                  ${activeCategory === category
-                  ? "bg-blue-50 text-blue-600 font-semibold "
-                  : "text-gray-700 hover:bg-gray-100"
-                }
+          {/* LEFT CATEGORY LIST */}
+          <div className="w-62 border-r h-70 border-blue-300 px-3 py-4 space-y-1 overflow-y-auto not-[]:">
+            <h3 className="font-semibold text-gray-900 mb-4 px-3   text-lg">Category</h3>
+            {categories.map((category) => (
+              <Link
+                href={"/blog"}
+                key={category}
+                onMouseEnter={() => setActiveCategory(category)}
+                className={`w-full flex justify-between text-left px-3 py-4  text-sm transition cursor-pointer
+                  ${
+                    activeCategory === category
+                      ? "bg-blue-50 text-blue-600 font-semibold "
+                      : "text-gray-700 hover:bg-gray-100"
+                  }
                 `}
-            >
-              {category} <ChevronRight size={20} />
-            </Link>
-          ))}
-
-          <div className="mt-6 pt-4 ">
-            <Link
-              href="/blog"
-              className="text-blue-600 font-medium  py-2 px-4 rounded-lg bg-blue-500 text-white "
-            >
-              View all blogs →
-            </Link>
-          </div>
-        </div>
-
-        {/* RIGHT BLOG LIST */}
-        <div className="flex-1 px-6 py-5 max-h-80 overflow-y-auto">
-          <h3 className="font-semibold text-gray-900 mb-4  text-lg border border-0 border-b-blue-700">{activeCategory} Blogs</h3>
-          <ul className="space-y-3 text-sm text-gray-700">
-            {(catBlogs[activeCategory] || []).map((blog) => (
-              <li key={blog.id}>
-                <Link href={`/blog/${blog.slug}`} className="hover:text-blue-600 flex ">
-                  • {blog.title}
-                </Link>
-              </li>
+              >
+                {category} <ChevronRight size={20}/>
+              </Link>
             ))}
 
-          </ul>
+            
+          </div>
 
-          {/* CTA */}
+        
 
+          <div className="top-82 absolute  pl-8  z-30 ">
+              <Link
+                href="/blog"
+                className="text-blue-600 font-medium  py-2 px-4 rounded-lg bg-blue-500 text-white "
+              >
+                View all blogs →
+              </Link>
+          </div>
+
+
+
+          {/* RIGHT BLOG LIST */}
+          <div className="flex-1 px-6 py-5 max-h-80 overflow-y-auto">
+            <h3 className="font-semibold text-gray-900 mb-4  text-lg border border-0 border-b-blue-700">{activeCategory} Blogs</h3>
+            <ul className="space-y-3 text-sm text-gray-700">
+              {(catBlogs[activeCategory] || []).map((blog) => (
+                  <li key={blog.id}>
+                    <Link href={`/blog/${blog.slug}`} className="hover:text-blue-600 flex ">
+                      • {blog.title}
+                    </Link>
+                  </li>
+                ))}
+
+            </ul>
+
+            {/* CTA */}
+          </div>
         </div>
-      </div>
-
+    
     </div>
   );
 }
