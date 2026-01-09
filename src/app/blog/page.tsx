@@ -5,6 +5,7 @@ import LetConnect from "@/components/blog/LetConnect";
 import LetsConnect from "@/components/Home/LetsConnect";
 import { supabase } from '@/lib/supabse/supabaseConfig';
 import type { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
     title: "Course Unbox Blogs | Digital Marketing, Tech & Career Insights",
@@ -36,7 +37,7 @@ const page = async () => {
 
         <>
             <Navbar />
-
+           
             <LetConnect />
 
             <Content/>

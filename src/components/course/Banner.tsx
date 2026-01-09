@@ -87,32 +87,65 @@ const Banner = ({ courseSlug }: { courseSlug : string }) => {
 
 
     return (
-        <section className="bg-white  text-black py-6 border-b border-gray-200">
-            <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-5 text-center">
-
-                <div className="py-4 border-r border-gray-300">
-                    <h3 className="text-lg font-semibold">Job Assistance</h3>
-                    <p className="text-gray-600 text-sm">For Pro Plan</p>
+        <section className="bg-white text-black py-6 border-b border-gray-200">
+            <div
+                className="
+                max-w-7xl mx-auto
+                flex gap-4 px-4
+                overflow-x-auto scrollbar-hide
+                md:grid md:grid-cols-2
+                lg:grid-cols-5
+                md:gap-0
+                "
+            >
+               
+                <div className="min-w-[220px] lg:min-w-0 py-4 text-center
+                border border-gray-300
+                lg:border-0 lg:border-r
+                rounded-xl lg:rounded-none
+                hover:bg-gray-50 transition">
+                <h3 className="text-lg font-semibold">Job Assistance</h3>
+                <p className="text-gray-600 text-sm">For Pro Plan</p>
                 </div>
 
-                <div className="py-4 border-r border-gray-300">
-                    <h3 className="text-lg font-semibold">{course?.startDate}</h3>
-                    <p className="text-gray-600 text-sm">Date of Commencement</p>
+               
+                <div className="min-w-[220px] lg:min-w-0 py-4 text-center
+                border border-gray-300
+                lg:border-0 lg:border-r
+                rounded-xl lg:rounded-none
+                hover:bg-gray-50 transition">
+                <h3 className="text-lg font-semibold">{course?.startDate}</h3>
+                <p className="text-gray-600 text-sm">Date of Commencement</p>
                 </div>
 
-                <div className="py-4 border-r border-gray-300">
-                    <h3 className="text-lg font-semibold">{course?.Duration} Months</h3>
-                    <p className="text-gray-600 text-sm">Duration</p>
+                
+                <div className="min-w-[220px] lg:min-w-0 py-4 text-center
+                border border-gray-300
+                lg:border-0 lg:border-r
+                rounded-xl lg:rounded-none
+                hover:bg-gray-50 transition">
+                <h3 className="text-lg font-semibold">{course?.Duration} Months</h3>
+                <p className="text-gray-600 text-sm">Duration</p>
                 </div>
 
-                <div className="py-4 border-r border-gray-300">
-                    <h3 className="text-lg font-semibold">Live</h3>
-                    <p className="text-gray-600 text-sm">{course?.Delivery_Mode}</p>
+             
+                <div className="min-w-[220px] lg:min-w-0 py-4 text-center
+                border border-gray-300
+                lg:border-0 lg:border-r
+                rounded-xl lg:rounded-none
+                hover:bg-gray-50 transition">
+                <h3 className="text-lg font-semibold">Live</h3>
+                <p className="text-gray-600 text-sm">{course?.Delivery_Mode}</p>
                 </div>
 
-                <div className="py-4">
-                    <h3 className="text-lg font-semibold">{course?.language}</h3>
-                    <p className="text-gray-600 text-sm">Language</p>
+               
+                <div className="min-w-[220px] lg:min-w-0 py-4 text-center
+                border border-gray-300
+                lg:border-0
+                rounded-xl lg:rounded-none
+                hover:bg-gray-50 transition">
+                <h3 className="text-lg font-semibold">{course?.language}</h3>
+                <p className="text-gray-600 text-sm">Language</p>
                 </div>
             </div>
         </section>

@@ -8,6 +8,7 @@ import BlogCategories from "@/components/blog/BlogCategories";
 import FinalCTASection from "@/components/blog/FinalCTASection";
 import LeftContent from "@/components/blog/LeftContent";
 import { supabase } from "@/lib/supabse/supabaseConfig";
+import Link from "next/link";
 
 
 
@@ -82,10 +83,11 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
 
       <div className="w-full min-h-screen bg-slate-50"  >
 
+
         <div className="max-w-7xl mx-auto px-4">
 
           <div className="grid grid-cols-1 lg:grid-cols-[70%_30%] gap-10" >
-
+            
 
             <LeftContent Blogs={Blogs} />
 

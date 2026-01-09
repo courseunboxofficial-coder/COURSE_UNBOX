@@ -209,46 +209,109 @@ const Enquiry = ({ courseSlug }: { courseSlug : string }) => {
           </div>
         </section>
 
-          <section
+        <section
           id="features"
-          className="bg-white text-black py-14 sm:py-20"
+          className="relative bg-white text-black py-14 sm:py-20 overflow-hidden"
         >
+         
+          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,#e0e7ff,transparent_60%)]" />
+
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <h3 className="
-              text-2xl sm:text-3xl md:text-4xl
-              font-bold text-center
-              text-[#090952]
-              mb-10 sm:mb-12
-            ">
+            <h3
+              className="
+                text-2xl sm:text-3xl md:text-4xl
+                font-bold text-center
+                text-[#090952]
+                
+                animate-fade-up
+              "
+            >
               Why choose this course?
             </h3>
+            <div
+        className="mx-auto mt-6 h-[3px] w-full max-w-xl md:max-w-2xl rounded-full
+                   bg-linear-to-r
+                   from-transparent
+                   via-blue-600
+                   to-transparent mb-10 sm:mb-14"
+        />
+            
 
-            <div className="
-              grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3
-              gap-6 sm:gap-8
-            ">
+
+            <div
+              className="
+                grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3
+                gap-6 sm:gap-8
+              "
+            >
               {course?.content.map((item, index) => (
                 <div
                   key={index}
+                  style={{ animationDelay: `${index * 120}ms` }}
                   className="
-                    rounded-3xl border-2 border-[#121283]
+                    group relative
+                    rounded-3xl
+                    border border-[#121283]/30
+                    bg-white
                     p-5 sm:p-6
                     text-center
-                    shadow-sm hover:shadow-xl
-                    transition
+                    shadow-sm
+                    transition-all duration-300 ease-out
+                    hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.03]
+                    animate-fade-up
+                    cursor-pointer
+                    bg-linear-to-tr from-white via-blue-50 to-blue-100
+            
                   "
                 >
-                  <h4 className="text-lg sm:text-xl font-semibold">
+                  {/* glow ring */}
+                  <div
+                    className="
+                      absolute inset-0 rounded-3xl
+                      bg-gradient-to-br from-[#121283]/10 to-transparent
+                      opacity-0 group-hover:opacity-100
+                      blur-xl transition
+                    "
+                  />
+
+                  {/* content */}
+                  <h4
+                    className="
+                      relative z-10
+                      text-lg sm:text-xl font-semibold
+                      text-[#090952]
+                    "
+                  >
                     {item.title}
                   </h4>
-                  <p className="mt-2 text-sm text-gray-600">
+
+                  <p
+                    className="
+                      relative z-10
+                      mt-2 text-sm text-gray-600
+                      transition
+                      group-hover:text-gray-800
+                    "
+                  >
                     {item.subtitle}
                   </p>
+
+                  {/* animated underline */}
+                  <span
+                    className="
+                      absolute bottom-5 left-1/2
+                      h-[2px] w-0
+                      bg-[#121283]
+                      transition-all duration-300
+                      group-hover:w-16 group-hover:left-[calc(50%-2rem)]
+                    "
+                  />
                 </div>
               ))}
             </div>
           </div>
-        </section>
+      </section>
+
       </div>
 
 

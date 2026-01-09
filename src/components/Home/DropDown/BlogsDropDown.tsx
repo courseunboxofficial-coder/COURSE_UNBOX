@@ -124,12 +124,12 @@ export default function BlogsDropdown({blogs}:{blogs:typeBlogs[]}) {
 
       {/* DROPDOWN */}
    
-        <div   className={`absolute cursor-pointer h-90  left-0 top-full mt-4 w-[600px] grid grid-cols-2 bg-white rounded-xl shadow-2xl border z-50 p-4 ${open ? "opacity-100 visible" : "opacity-0 invisible"}`}>
+        <div   className={`absolute cursor-pointer h-94  left-0 top-full mt-4 w-[600px] grid grid-cols-2 bg-white rounded-xl shadow-2xl border z-50 p-4 ${open ? "opacity-100 visible" : "opacity-0 invisible"}`}>
            <div className="absolute -top-6 left-0 w-full h-6" />
 
           {/* LEFT CATEGORY LIST */}
-          <div className="w-62 border-r border-blue-300 px-3 py-4 space-y-1 overflow-y-auto not-[]:">
-            <h3 className="font-semibold text-gray-900 mb-4 px-3  text-lg">Category</h3>
+          <div className="w-62 border-r h-70 border-blue-300 px-3 py-4 space-y-1 overflow-y-auto not-[]:">
+            <h3 className="font-semibold text-gray-900 mb-4 px-3   text-lg">Category</h3>
             {categories.map((category) => (
               <Link
                 href={"/blog"}
@@ -146,7 +146,22 @@ export default function BlogsDropdown({blogs}:{blogs:typeBlogs[]}) {
                 {category} <ChevronRight size={20}/>
               </Link>
             ))}
+
+            
           </div>
+
+        
+
+          <div className="top-82 absolute  pl-8  z-30 ">
+              <Link
+                href="/blog"
+                className="text-blue-600 font-medium  py-2 px-4 rounded-lg bg-blue-500 text-white "
+              >
+                View all blogs →
+              </Link>
+          </div>
+
+
 
           {/* RIGHT BLOG LIST */}
           <div className="flex-1 px-6 py-5 max-h-80 overflow-y-auto">
@@ -163,14 +178,6 @@ export default function BlogsDropdown({blogs}:{blogs:typeBlogs[]}) {
             </ul>
 
             {/* CTA */}
-            <div className="mt-6 pt-4 ">
-              <Link
-                href="/blog"
-                className="text-blue-600 font-medium  py-2 px-4 rounded-lg bg-blue-500 text-white "
-              >
-                View all blogs →
-              </Link>
-            </div>
           </div>
         </div>
     
