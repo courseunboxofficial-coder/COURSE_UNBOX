@@ -68,7 +68,7 @@ type CategoryMap = Record<string, typeBlogs[]>;
 
 
 export default function BlogsDropdown({blogs}:{blogs:typeBlogs[]}) {
-  console.log(blogs)
+  
   const [open, setOpen] = useState(false);
  
       const [categories, setCategories] = useState<string[]>([]);

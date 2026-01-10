@@ -112,7 +112,7 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
         <BlogFAQ Blogs = {Blogs}/>
 
 
-        <RelatedBlog/>
+        <RelatedBlog slug={slug}/>
 
 
         <FinalCTASection />

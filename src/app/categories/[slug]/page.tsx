@@ -64,7 +64,7 @@ export default async function page({params}: {params : Promise<{slug:string}>}){
       <TopMentors/>
       <CategoryOverview/>
       <FAQs/>
-      <CategoryCTA category={category} />
+      <CategoryCTA  />
       <Footer/>
       
     </>

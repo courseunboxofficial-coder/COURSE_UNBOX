@@ -3,6 +3,7 @@
 import { supabase } from "@/lib/supabse/supabaseConfig"
 import { useEffect, useState } from "react";
 import Link from "next/link"
+import Image from "next/image";
 
 type Blog = {
 
@@ -30,28 +31,59 @@ type Blog = {
 
 };
 
-export default function RelatedBlog() {
+export default function RelatedBlog({slug}:{slug:string}) {
 
-  const [blogs, setBlogs] = useState<Blog[]>([]);
 
-  const getRelatedBlogs = async () => {
+  const [blog, setBlog] = useState<Blog | null>(null);
+  const [relatedBlogs, setRelatedBlogs] = useState<Blog[]>([]);
+
+  const getBlog = async () => {
     const { data, error } = await supabase
       .from("Blog")
       .select("*")
-      .order("created_at", {ascending : false})
-      .limit(3);
+      .eq('slug',slug)
+      .single();
+
 
     if (error) {
       console.error("RELATED BLOG ERROR:", error);
       return;
     }
-
-    setBlogs(data ?? []);
+   
+    if(data){
+      setBlog(data);
+    }
   };
 
+  const getRelatedBlog = async()=>{
+     const {data,error} = await supabase.from("Blog").select("*").eq("domain",blog?.domain).neq('slug',slug).limit(3);
+     if (error) {
+      console.error("RELATED BLOG ERROR:", error);
+      return;
+    }
+
+    console.log(data)
+
+       if(data){
+        
+         setRelatedBlogs(data ?? []);
+         console.log("Related Blogs", relatedBlogs)
+       }   
+   
+  }
+
   useEffect(() => {
-    getRelatedBlogs();
+    getBlog();
+    
   }, [])
+
+  useEffect(() => {
+  if (blog?.domain) {
+    getRelatedBlog();
+  }
+}, [blog]);
+
+
 
   return (
     <section className="max-w-7xl mx-auto px-4 mt-20 pb-20">
@@ -60,23 +92,23 @@ export default function RelatedBlog() {
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
-        {blogs?.map((blog, idx) => (
+        {relatedBlogs?.map((blog, idx) => (
           <div
             key={idx}
             className="bg-white rounded-xl border-gray-200 shadow-lg  overflow-hidden
-                         transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+                         transition-all duration-300 hover:shadow-blue-200 hover:-translate-y-1  curosr-pointer"
           >
-            <div className="relative h-40">
-              <img
+            <div className="relative h-40 cursor-pointer">
+              <Image
                 src={blog.image}
                 alt={blog.title}
-
-                className="object-cover w-full h-full"
+                fill
+                className="object-center w-full h-full"
               />
             </div>
-            <div className="inset-0 bg-linear-to-bl bg-gray-300 mt-4 h-0.5"></div>
+            <div className="inset-0 bg-linear-to-bl bg-gray-300  hover:bg-blue-300 h-0.5"></div>
 
-            <div className="p-5">
+            <div className="p-5 cursor-pointer">
               <h3 className="font-bold text-slate-900 leading-snug">
                 {blog.title}
               </h3>

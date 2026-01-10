@@ -40,7 +40,8 @@ const Content = () => {
     const getBlogData = async () => {
 
       const { data, error } = await supabase.from("Blog").select("*").order("created_at", {ascending : false});
-
+      
+      
       if (error) {
 
         console.log("There is some of the error I have got");
@@ -64,7 +65,7 @@ const Content = () => {
     const start  =  (page * 12) - 11;
     const end =  page * 12;
     
-    setCurrBlogs(blogs.slice(start,end+1));
+    setCurrBlogs(blogs.slice((start-1),end+1));
   },[blogs,page])
 
 
@@ -158,9 +159,6 @@ const Content = () => {
             onPageChange={(p) => setPage(p)}
           />
         </div>
-
-
-
 
       </div>
     </section>
