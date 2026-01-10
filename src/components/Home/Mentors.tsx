@@ -80,6 +80,7 @@ const Mentors = () => {
                                     transition
                                     hover:scale-[1.02]
                                     shadow-lg
+                                    
                                 
                                     rounded-xl
                                     

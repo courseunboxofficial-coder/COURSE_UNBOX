@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabse/supabaseConfig";
 import emailjs from "@emailjs/browser";
@@ -62,6 +62,12 @@ type Course = {
 
 const Enquiry = ({ courseSlug }: { courseSlug : string }) => {
 
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+
+
   console.log("THE COURSE ID IS :")
   console.log(courseSlug);
 
@@ -86,6 +92,41 @@ const Enquiry = ({ courseSlug }: { courseSlug : string }) => {
     setCourse(data);
 
   }
+
+  const handleSubmit = (e:React.FormEvent)=>{
+      e.preventDefault();
+
+      const template = {
+        name: `${firstName} ${lastName}`,
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        phone: phone,
+      };
+     
+
+    emailjs
+      .send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        template,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      )
+      .then(() => {
+        alert("Message sent successfully!");
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPhone("");
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("Failed to send message");
+      });
+      
+  }
+
+  
 
 
   useEffect(() => {
@@ -130,7 +171,7 @@ const Enquiry = ({ courseSlug }: { courseSlug : string }) => {
               gap-3 sm:gap-4
               w-full sm:w-auto
             ">
-              <button className="
+              <Link href={"/"} className="
                 w-full sm:w-auto
                 rounded-3xl bg-white text-black
                 px-6 sm:px-8 py-2.5 sm:py-3
@@ -138,16 +179,16 @@ const Enquiry = ({ courseSlug }: { courseSlug : string }) => {
                 hover:bg-gray-100 transition
               ">
                 Home
-              </button>
+              </Link>
 
-              <button className="
+              <Link href={"/about"} className="
                 w-full sm:w-auto
                 rounded-3xl border border-white/40
                 px-6 sm:px-8 py-2.5 sm:py-3
                 hover:bg-white/10 transition
               ">
                 About Us
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -167,15 +208,19 @@ const Enquiry = ({ courseSlug }: { courseSlug : string }) => {
               Reach To Us
             </h3>
 
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
               {/* NAME ROW */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <input
+                  value={firstName}
+                  onChange={(e)=>setFirstName(e.target.name)}
                   type="text"
                   placeholder="First Name"
                   className="w-full rounded-xl border px-4 py-3 focus:ring-2 focus:ring-blue-500"
                 />
                 <input
+                  value={lastName}
+                  onChange={(e)=>setLastName(e.target.name)}
                   type="text"
                   placeholder="Last Name"
                   className="w-full rounded-xl border px-4 py-3 focus:ring-2 focus:ring-blue-500"
@@ -183,12 +228,16 @@ const Enquiry = ({ courseSlug }: { courseSlug : string }) => {
               </div>
 
               <input
+                value={email}
+                onChange={(e)=>setEmail(e.target.value)}
                 type="email"
                 placeholder="Email address"
                 className="w-full rounded-xl border px-4 py-3 focus:ring-2 focus:ring-blue-500"
               />
 
               <input
+                value={phone}
+                onChange={(e)=>setPhone(e.target.value)}
                 type="tel"
                 placeholder="Phone Number"
                 className="w-full rounded-xl border px-4 py-3 focus:ring-2 focus:ring-blue-500"

@@ -41,7 +41,7 @@ export default function TopMentors() {
           role="Professor at IIT Indore"
           image="/images/Student/UnboxProfile.png"
           description="Dr. Narendra Chaudhari is a Professor of Computer Science and Engineering at IIT Indore, specializing in network security, mobile computing, and machine learning."
-          readMore
+          
         />
       </div>
     </section>
@@ -105,7 +105,7 @@ export default function TopMentors() {
           </p>
 
           {readMore && (
-            <button className="mt-4 text-sm font-semibold text-blue-600 hover:text-blue-700">
+            <button className="mt-4 text-sm font-semibold text-blue-600 hover:text-blue-700 cursor-pointer">
               Read More →
             </button>
           )}

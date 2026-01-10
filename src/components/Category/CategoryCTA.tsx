@@ -1,55 +1,77 @@
-import Link from "next/link";
+"use client"
 
-interface CategoryCTAProps {
-  category: {
-   _id: number;
-    name: string;
-    slug: string;
-    description: string;
-    banner: string;
-    themeColor:string;
-  };
+import React, { useState } from 'react'
+import PopUpForm from '../AllCourses/PopUpForm';
+
+const CategoryCTA = () => {
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    return (
+
+        <>
+
+            <PopUpForm isOpen={isOpen} onCancel={() => setIsOpen(false)} onConfirm={() => setIsOpen(false)} />
+
+            <section className="w-full pt-10 px-4">
+                <div
+                    className="
+                              max-w-7xl mx-auto
+                              bg-linear-to-br from-blue-950 via-blue-950 to-blue-900
+                              rounded-tr-2xl
+                              rounded-tl-2xl
+                              flex flex-col lg:flex-row
+                              items-center
+                              gap-8 lg:gap-12
+                              px-4 sm:px-8 lg:px-12
+                              py-8 lg:py-12
+                              "
+                >
+                    {/* Image Section */}
+                    <div className="relative w-full lg:w-1/2 flex justify-center">
+                        <img
+                            src="/images/Home/DemoClass.png"
+                            alt="confused person"
+                            className="
+                                      w-full
+                                      max-w-xs sm:max-w-sm md:max-w-md
+                                      h-auto
+                                      object-cover
+                                      rounded-xl
+                                      "
+                        />
+
+                        <span className="absolute -top-6 sm:-top-8 right-6 sm:right-10 text-4xl sm:text-5xl">
+                            ❓
+                        </span>
+                    </div>
+
+                    {/* Content Section */}
+                    <div className="w-full lg:w-1/2 text-white text-center lg:text-left">
+                        <h2
+                            className="
+                                      font-bold
+                                      text-2xl sm:text-3xl md:text-4xl lg:text-5xl
+                                      leading-tight
+                                      mb-6
+                                    "
+                        >
+                            Build <span className='text-yellow-400 font-extrabold'>skills</span> that employers look for, not just marks
+                        </h2>
+
+                        <button
+                            className="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-3 px-6 rounded-lg transition shadow-md cursor-pointer" onClick={() => setIsOpen(true)}
+                        >
+                            Get Free Demo
+                            <span className="text-xl">→</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+        </>
+
+    )
 }
 
-export default function CategoryCTA({ category }: any) {
-  return (
-    <section className="relative overflow-hidden py-20 bg-linear-to-r from-[#182848] via-[#2b4c9a] to-[#4b6cb7]">
-      
-      {/* subtle background glow */}
-      <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
-      <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-white/10 rounded-full blur-3xl" />
-
-      <div className="relative max-w-6xl mx-auto px-6 text-center text-white">
-        
-        <h2 className="text-3xl md:text-4xl font-extrabold">
-          Ready to Start Your Journey in {category.name}?
-        </h2>
-
-        <p className="mt-4 text-lg text-blue-100 max-w-2xl mx-auto">
-          Learn industry-ready skills with structured courses, hands-on projects,
-          and expert mentorship designed for real careers.
-        </p>
-
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-          
-          {/* Primary CTA */}
-          <Link
-            href={`/courses/category/${category.slug}`}
-            className="px-8 py-4 rounded-xl bg-white text-blue-700 font-semibold hover:bg-blue-50 transition"
-          >
-            Explore {category.name} Courses
-          </Link>
-
-          {/* Secondary CTA */}
-          <Link
-            href="/contact"
-            className="px-8 py-4 rounded-xl border border-white/30 text-white hover:bg-white/10 transition"
-          >
-            Talk to a Mentor
-          </Link>
-        </div>
-
-      </div>
-    </section>
-  );
-}
+export default CategoryCTA;
