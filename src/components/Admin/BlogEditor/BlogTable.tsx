@@ -26,7 +26,7 @@ type Blog = {
   slug: string,
   alt: string,
   subcontent: string,
-  created_at: number;
+  created_at: string;
   author: string,
   domain: string;
 
@@ -43,7 +43,7 @@ const BlogTable = ({ onEdit }: { onEdit: any }) => {
     const fetchTableData = async () => {
 
 
-        const { data, error } = await supabase.from("Blog").select("*");
+        const { data, error } = await supabase.from("Blog").select("*").order("created_at", {ascending : false});
 
         if (error) {
 

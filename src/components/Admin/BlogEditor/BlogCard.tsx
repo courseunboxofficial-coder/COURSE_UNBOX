@@ -7,27 +7,27 @@ import { toast, ToastContainer } from "react-toastify";
 
 type Blog = {
 
-  id: string;
-  title: string;
-  content: string;
-  FAQ: {
-    question: string;
-    answer: string
-  }[];
-  image: string,
+    id: string;
+    title: string;
+    content: string;
+    FAQ: {
+        question: string;
+        answer: string
+    }[];
+    image: string,
 
-  meta: {
+    meta: {
 
-    title: string,
-    description: string
-  },
+        title: string,
+        description: string
+    },
 
-  slug: string,
-  alt: string,
-  subcontent: string,
-  created_at: number;
-  author: string,
-  domain: string;
+    slug: string,
+    alt: string,
+    subcontent: string,
+    created_at: number;
+    author: string,
+    domain: string;
 
 };
 
@@ -36,11 +36,12 @@ type Blog = {
 export default function BlogCard({ onEdit }: { onEdit: any }) {
 
     const [Blogs, setBlogs] = useState<Blog[]>([]);
+
     const [loading, setloading] = useState(false);
 
     const fetchTableData = async () => {
 
-        const { data, error } = await supabase.from("Blog").select("*");
+        const { data, error } = await supabase.from("Blog").select("*").order("created_at", { ascending: false });
 
         if (error) {
 
@@ -138,9 +139,13 @@ export default function BlogCard({ onEdit }: { onEdit: any }) {
                             </div>
 
 
-                            <div className="mb-8">
+                            <div className="mb-8 flex gap-1">
                                 <span className="inline-flex items-center rounded-full bg-indigo-50 px-5 py-2 text-xs font-semibold text-indigo-600 shadow-sm">
                                     {blog.domain}
+                                </span>
+
+                                <span className="inline-flex items-center rounded-full bg-indigo-50 px-5 py-2 text-xs font-semibold text-indigo-600 shadow-sm">
+                                    {blog.author}
                                 </span>
                             </div>
 
@@ -161,8 +166,8 @@ export default function BlogCard({ onEdit }: { onEdit: any }) {
 
                                     <Trash2 size={16} />
 
-                                   Delete
-                                    
+                                    Delete
+
 
                                 </button>
                             </div>

@@ -1,6 +1,5 @@
 "use client";
 
-import React from 'react'
 import { useState } from "react"
 import Image from "next/image";
 import HomeEditor from './HomeEditor';
@@ -8,11 +7,12 @@ import CourseEditor from './CourseEditor';
 import BlogEditor from './BlogEditor';
 
 
-import { Home, BookOpen, Info, FileText, Settings, Menu, Users, ChartColumnBigIcon, LogOut } from "lucide-react";
+import { Home, BookOpen, Info, FileText, Settings, Menu, Users, ChartColumnBigIcon, LogOut, BookOpenCheck } from "lucide-react";
 import MentorEditor from './MentorEditor';
 import Stastics from './Stastics';
 import { supabase } from '@/lib/supabse/supabaseConfig';
 import { useRouter } from 'next/navigation';
+import CategoryEditor from "./CategoryEditor";
 
 const sidebarItems = [
 
@@ -21,6 +21,8 @@ const sidebarItems = [
     { key: "courses", label: "Courses", icon: BookOpen },
     { key: "mentors", label: "Mentors", icon: Users },
     { key: "blog", label: "Blog", icon: FileText },
+    { key: "category", label: "Category", icon: BookOpenCheck },
+
 
 
 ];
@@ -93,8 +95,7 @@ const Sidebar = () => {
                     {active === "courses" && <CourseEditor collapsed={collapsed} />}
                     {active === "mentors" && <MentorEditor collapsed={collapsed} />}
                     {active === "blog" && <BlogEditor collapsed={collapsed} />}
-
-
+                    {active === "category" && <CategoryEditor collapsed={collapsed}/>}
                 </div>
             </main>
         </div>

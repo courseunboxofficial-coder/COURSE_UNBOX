@@ -40,18 +40,26 @@ export default function DigitalMarketingDiploma() {
                 {/* HERO SECTION */}
                 <section className="max-w-7xl mx-auto px-6 py-14 grid md:grid-cols-2 gap-12 items-center">
                     <div>
-                        <div className="mb-10">
-                            <Image
-                                src="/images/Home/CourseUnboxLogo.webp"
-                                width={250}
-                                height={40}
-                                alt="logo"
-                                className="cursor-pointer"
-                            />
+                        <div className="flex items-center justify-center">
+
+                            <div className="mb-10 bg-white flex items-center justify-center inline-block">
+                                <Image
+                                    src="/images/Home/CourseUnboxLogo.webp"
+                                    alt="logo"
+                                    width={300}
+                                    height={60}
+                                    className=" cursor-pointer w-28 md:w-44 lg:w-52 xl:w-64 h-auto"
+                                    priority
+                                />
+                            </div>
+
                         </div>
-                        <span className="inline-block bg-yellow-400/20 text-yellow-400 px-4 py-1 rounded-full text-sm mb-4">
-                            Diploma Program • Industry Ready
-                        </span>
+
+                        <div className="mb-4">
+                            <span className="bg-yellow-400/20 text-yellow-400 px-4 py-1 rounded-full text-sm ">
+                                Diploma Program • Industry Ready
+                            </span>
+                        </div>
 
                         <h1 className="text-3xl sm:text-3xl md:text-5xl font-bold leading-tight">
                             AI Based Digital Marketing <span className="text-yellow-400">Diploma</span> Program in Delhi NCR
@@ -62,7 +70,7 @@ export default function DigitalMarketingDiploma() {
                             real-world projects, certifications, and placement support.
                         </p>
 
-                        <div className="mt-8 flex gap-4 flex flex-col md:flex-row">
+                        <div className="mt-8 flex gap-4 flex-col md:flex-row">
                             <button className="bg-yellow-400 text-black px-6 py-3 rounded-xl font-semibold hover:bg-yellow-300 md:py-3 transition cursor-pointer" onClick={() => setIsOpen(true)}>
                                 Enroll Now
                             </button>
@@ -120,12 +128,12 @@ export default function DigitalMarketingDiploma() {
                         </div>
 
 
-                        
+
                     </div>
 
-                    
-                        <FinalMasterclassForm />
-                    
+
+                    <FinalMasterclassForm />
+
                 </section>
 
                 {/* TRUST BAR */}
@@ -239,6 +247,8 @@ export default function DigitalMarketingDiploma() {
                             <Module title="AI Tools & Automation" />
                             <Module title="Analytics & GA4" />
                             <Module title="Freelancing & Agency Model" />
+                            <Module title="Performance Marketing" />
+                            <Module title="Generative AI course" />
                         </div>
                     </div>
                 </section>
@@ -246,8 +256,7 @@ export default function DigitalMarketingDiploma() {
                 {/* ================= CTA SECTION ================= */}
                 <section className="max-w-7xl mx-auto px-6 py-10">
                     <div
-                        className="bg-[#031A3D] rounded-[32px] px-8 py-16 text-center
-               shadow-xl"
+                        className="bg-[#031A3D] rounded-[32px] px-8 py-16 text-center shadow-xl"
                     >
                         <h2 className="text-3xl md:text-4xl font-bold text-white">
                             Ready to Transform Your Career with{" "}
@@ -357,6 +366,51 @@ export default function DigitalMarketingDiploma() {
 
                     </div>
                 </section>
+
+                <section>
+                    <div
+                        className="bg-[#031A3D] px-8 py-16 text-center shadow-xl"
+                    >
+                        <h2 className="text-3xl md:text-4xl font-bold text-white">
+
+                            <span className="text-yellow-400">100% Scholarship </span>
+                            for the Next Generation of Digital Leaders{" "}
+                        </h2>
+
+                        <p className="mt-6 text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                            Join thousands of successful students who landed high-paying jobs in
+                            digital marketing through our proven placement guarantee program.
+                        </p>
+
+                        <div className="mt-10 flex flex-col sm:flex-row gap-6 justify-center">
+                            {/* Primary CTA */}
+                            <button
+                                className="bg-yellow-400 text-black px-10 py-4 rounded-xl
+                   font-semibold text-lg
+                   transition-all duration-300
+                   hover:bg-yellow-300 hover:scale-105 cursor-pointer"
+
+                                onClick={() => setIsOpen(true)}
+                            >
+                                Get Scholarship
+                            </button>
+
+                            {/* Secondary CTA */}
+                            <button
+                                className="border border-yellow-400 text-yellow-400 px-10 py-4 rounded-xl
+                   font-semibold text-lg
+                   transition-all duration-300
+                   hover:bg-yellow-400 hover:text-black hover:scale-105 cursor-pointer"
+
+                                onClick={() => setIsOpen(true)}
+                            >
+                                Talk to Counselor
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+
 
                 <section className="max-w-7xl mx-auto px-6 py-24">
                     {/* Heading */}
@@ -648,7 +702,7 @@ export default function DigitalMarketingDiploma() {
                 <footer className="bg-[#081733] text-gray-300 py-8 text-center text-sm">
                     © 2026 Course Unbox. All rights reserved.
                 </footer>
-            </main>
+            </main >
 
         </>
     );
