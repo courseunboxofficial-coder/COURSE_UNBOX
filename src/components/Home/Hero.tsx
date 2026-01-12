@@ -10,10 +10,22 @@ import PopUpForm from "../AllCourses/PopUpForm";
 const Hero = () => {
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isBrochure , setIsBrochure] = useState(false);
+
+  const handleDownload = ()=>{
+    const link  =  document.createElement('a');
+    link.href = '/Course Unbox Brochure.pdf';
+    link.download = 'Course Unbox Brochure.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+   
+  }
 
   return (
     <>
-      <PopUpForm isOpen={isOpen} onCancel={() => setIsOpen(false)} onConfirm={() => setIsOpen(false)} />
+     {!isBrochure && <PopUpForm isOpen={isOpen} onCancel={() => setIsOpen(false)} onConfirm={() => setIsOpen(false)} />}
+     {isBrochure &&  <PopUpForm isOpen={isOpen} onCancel={() => {setIsOpen(false); setIsBrochure(false)}} onConfirm={() => {setIsOpen(false); handleDownload(); setIsBrochure(false)}} /> }
         
       <section
         className="
@@ -73,7 +85,7 @@ const Hero = () => {
                 <span className="cursor-pointer" onClick={() => setIsOpen(true)}>Let's connect</span>
               </button>
 
-              <a
+              <button
                 className="
                 flex items-center justify-center gap-2
                 bg-blue-500 pl-3
@@ -87,19 +99,13 @@ const Hero = () => {
                 z-99
                 
               "
-                href="/Course Unbox Brochure.pdf"
-                download
+              onClick={()=>{setIsOpen(true); setIsBrochure(true)}}
+                
               >
-                {/* <Image
-                src="/images/Home/GmailLogo.webp"
-                width={36}
-                height={20}
-                alt="email"
-                className="rounded-full"
-              /> */}
+                 
                 <FileText size={24} />
                 <span>Download Brochure</span>
-              </a>
+              </button>
             </div>
 
             

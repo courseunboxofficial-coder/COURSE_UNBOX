@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import CoursesDropdown from "./DropDown/CourseDropDown";
 import BlogsDropdown from "./DropDown/BlogsDropDown";
 import { supabase } from "@/lib/supabse/supabaseConfig";
+import PopUpForm from "../AllCourses/PopUpForm";
 
 
 type typeBlogs = {
@@ -94,6 +95,7 @@ type typeCourse = {
 const Navbar = () => {
   
   const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [blogs, setBlogs] = useState<typeBlogs[]>([]);
   const [courses, setCourses] = useState<typeCourse[]>([]);
   
@@ -125,6 +127,8 @@ const Navbar = () => {
 
 
   return (
+    <>
+    <PopUpForm isOpen={isOpen} onCancel={()=>setIsOpen(false)} onConfirm={()=>setIsOpen(false)}/>
     <nav className="w-full h-full md:h-18 sticky top-0 z-100 border-b bg-white shadow-md">
       <div className=" flex items-center justify-between px-4 sm:px-8 py-4">
 
@@ -180,12 +184,37 @@ const Navbar = () => {
 
         {/* RIGHT: Buttons (Desktop) */}
         <div className="hidden lg:flex items-center gap-4">
-          <button className="px-6 py-3 text-sm rounded-3xl border bg-[#1C336E] font-bold text-white hover:bg-blue-600 transition cursor-pointer">
+          {/* <button className="px-6 py-3 text-sm rounded-3xl border bg-[#1C336E] font-bold text-white hover:bg-blue-600 transition cursor-pointer">
             Login
           </button>
           <button className="px-6 py-3 text-sm bg-blue-600 text-white rounded-3xl font-bold hover:bg-[#1C336E] transition cursor-pointer">
             Register
-          </button>
+          </button> */}
+
+         <button
+  className="
+    relative inline-flex items-center justify-center
+    px-4 py-2.5
+    text-base font-semibold
+    text-white
+    bg-gradient-to-r from-blue-600 to-blue-500
+    rounded-full
+    shadow-md
+    transition-all duration-300 ease-in-out
+    hover:from-yellow-400 hover:to-yellow-500
+    hover:text-blue-900
+    hover:shadow-lg
+    active:scale-95
+    focus:outline-none focus:ring-4 focus:ring-blue-300
+    cursor-pointer
+
+  "
+  onClick={()=>setIsOpen(true)}
+>
+  
+  Apply for Scholarship
+</button>
+
         </div>
 
         {/* Mobile Menu Button */}
@@ -219,6 +248,8 @@ const Navbar = () => {
         </div>
       )}
     </nav>
+    </>
+    
   );
 };
 

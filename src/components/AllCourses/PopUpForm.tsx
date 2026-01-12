@@ -40,6 +40,7 @@ export default function PopUpForm({ isOpen, onCancel, onConfirm }: IPopForm) {
       )
       .then(() => {
         alert("Message sent successfully!");
+        onConfirm();
         setFirstName("");
         setLastName("");
         setEmail("");

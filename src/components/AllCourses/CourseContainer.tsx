@@ -282,11 +282,10 @@ export default function AllCoursesPage() {
                       <div key={i} className="px-2">
                         <div className="bg-white rounded-xl border shadow-sm overflow-hidden">
                           {/* Image */}
-                          <div className="h-36 bg-blue-50 flex items-center justify-center relative">
-
-                            <span className="text-blue-600 font-semibold">
-                              Course Image
-                            </span>
+                          <div className="h-26 bg-blue-50 flex items-center justify-center relative">
+                            <Link href={`/course/${course.slug}`}>
+                              <img className="w-full h-full object-contain" src={course.image} alt={course.alt} />
+                            </Link>
                           </div>
 
                           {/* Content */}

@@ -15,21 +15,39 @@ export type InternshipCard = {
   subcontent: string
   slug: string
   FAQ: string;
-  image: string
+  image: string;
+  author : string;
+  
 
 };
+
+const categories = [
+  "All Blogs",
+  "Digital Marketing",
+  "Data Science",
+  "IT & Software",
+  "Development",
+];
+
+
+
 
 
 const Content = () => {
 
 
   const [blogs, setBlogs] = useState<InternshipCard[]>([]);
-  const totalBlogs = Math.ceil((blogs.length) / 12);
+  const [totalBlogs, setTotalBlogs] = useState( Math.ceil((blogs.length) / 12));
   const [page, setPage] = useState(1);
+  const [authors, setAuthors] = useState<string[]>([]);
   const limit = 12;
 
 
   const [currBlogs, setCurrBlogs] = useState<InternshipCard[]>([]);
+
+  const [activeCategory, setActiveCategory] = useState('All Blogs'); 
+  const [selectedAuthor, setSelectedAuthor] = useState("");
+  const [showAuthorDropdown, setShowAuthorDropdown] = useState(false);
 
 
 
@@ -50,6 +68,7 @@ const Content = () => {
       }
 
       setBlogs(data || []);
+      console.log(blogs)
 
       console.log("THE BLOG DATA COME FROM THE DATA BASE IS : ");
       console.log(data);
@@ -61,12 +80,37 @@ const Content = () => {
 
   }, []);
 
+
+
+  
+
    useEffect(()=>{
+
+    //authors
+    const authors = [...new Set(blogs.map((b)=>b.author))];
+    setAuthors(authors ?? []);
+
+    //Pagenation logic 
     const start  =  (page * 12) - 11;
     const end =  page * 12;
+    const filterBlogs = blogs.filter((blog)=>{
+     
+       if(selectedAuthor){
+           return selectedAuthor===blog?.author
+       }
+
+       if(activeCategory==='All Blogs'){
+          return true;
+       }
+
+       return blog?.domain===activeCategory;
+    });
     
-    setCurrBlogs(blogs.slice((start-1),end));
-  },[blogs,page])
+    setTotalBlogs( Math.ceil((filterBlogs.length) / 12))
+    console.log(filterBlogs)
+    
+    setCurrBlogs(filterBlogs.slice((start-1),end));
+  },[blogs,page, activeCategory, selectedAuthor])
 
 
 
@@ -79,7 +123,8 @@ const Content = () => {
     
 
       <div className="mx-auto w-full px-6">
-        <nav className="text-sm text-gray-400 mb-4 pl-20 bg-white max-w-sm -mt-8">
+        {/* BreadCrumb */}
+        <nav className="text-sm text-gray-400 mb-6 pl-20  bg-white max-w-sm -mt-9">
             <Link href="/" className="hover:text-blue-500 transition">
             Home
             </Link>
@@ -88,6 +133,61 @@ const Content = () => {
               Blogs
             </Link>
         </nav>
+
+        {/* Filters */}
+        <div className="flex flex-wrap items-center gap-3 pl-20 mb-8">
+          {/* Categories */}
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => {
+                setActiveCategory(cat);
+                setSelectedAuthor("");
+              }}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition shadow-sm cursor-pointer
+                ${
+                  activeCategory === cat
+                    ? "bg-blue-600 text-white"
+                    : "bg-slate-100 text-slate-700 hover:bg-blue-100"
+                }
+              `}
+            >
+              {cat}
+            </button>
+          ))}
+
+          {/* Author Dropdown */}
+          <div className="relative">
+            <button
+              onClick={() => setShowAuthorDropdown(!showAuthorDropdown)}
+              className="px-4 py-2 rounded-full bg-slate-100 text-slate-700 hover:bg-blue-100 text-sm font-medium flex items-center gap-1 cursor-pointer"
+            >
+              By   {selectedAuthor ? ` ${selectedAuthor} `   : "Author"}  
+              <span className={`text-xs transition-transform duration-300 ${showAuthorDropdown ? 'rotate-0' : '-rotate-180'}`}>▼</span>
+            </button>
+
+            {showAuthorDropdown && (
+              <div className="absolute left-0 mt-2 w-44 bg-white shadow-lg rounded-xl border border-blue-300 z-20 cursor-pointer">
+                {authors.map((author) => (
+                  <button
+                    key={author}
+                    onClick={() => {
+                      setSelectedAuthor(author);
+                      setShowAuthorDropdown(false);
+                      setActiveCategory("All Blogs");
+                    }}
+                    className="w-full text-left px-4 py-2 text-sm hover:bg-blue-50 cursor-pointer"
+                  >
+                    {author}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
+
+
 
         <div className='text-center mb-10'>
           <h2 className="relative inline-block  font-extrabold text-xl sm:text-2xl md:text-4xl lg:text-5xl mb-10 px-20 md:px-16 lg:px-8 ">

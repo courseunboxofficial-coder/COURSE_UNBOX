@@ -78,7 +78,6 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
   return (
 
     <>
-
       <Navbar />
 
       <div className="w-full min-h-screen bg-slate-50"  >
