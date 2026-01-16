@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image";
 
 
 type Blog = {
@@ -78,7 +79,7 @@ export default function LeftContent({ Blogs }: { Blogs : Blog }) {
     {/* ===== FEATURE IMAGE ===== */}
     <section className="px-6 sm:px-4 mt-10">
       <div className="group relative w-full aspect-[16/9] rounded-2xl overflow-hidden shadow-xl">
-        <img
+        <Image
           src={Blogs?.image}
           alt={Blogs?.alt}
           className="w-full h-full object-contain transition-transform duration-700 group-hover:scale-105"
@@ -86,14 +87,6 @@ export default function LeftContent({ Blogs }: { Blogs : Blog }) {
         <div className="absolute inset-0 bg-linear-to-t from-black/50 via-black/10 to-transparent" />
 
       </div>
-
-      {/* <div className="group relative w-full h-70 sm:h-95 rounded-2xl overflow-hidden shadow-xl">
-        <img
-          src={Blogs?.image}
-          alt="Blog cover"
-          className="object-contain w-full h-full transition-transform duration-700 group-hover:scale-105"
-        />
-      </div> */}
     </section>
 
 
