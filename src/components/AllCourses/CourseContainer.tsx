@@ -277,46 +277,57 @@ export default function AllCoursesPage() {
               {/* Slider */}
               {isOpen && (
                 <div className="px-3 pb-6">
-                  <Slider {...mobileSliderSettings}>
-                    {courses.map((course, i) => (
-                      <div key={i} className="px-2">
-                        <div className="bg-white rounded-xl border shadow-sm overflow-hidden">
-                          {/* Image */}
-                          <div className="h-26 bg-blue-50 flex items-center justify-center relative">
-                            <Link href={`/course/${course.slug}`}>
-                              <img className="w-full h-full object-contain" src={course.image} alt={course.alt} />
-                            </Link>
-                          </div>
+          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+            {courses.map((course, i) => (
+              <div
+                key={i}
+                className="snap-start min-w-[280px] sm:min-w-[300px] md:min-w-[320px]"
+              >
+                <div className="h-full bg-white rounded-xl border shadow-sm overflow-hidden flex flex-col">
+                  
+                  {/* IMAGE */}
+                  <div className="h-36 bg-blue-50 flex items-center justify-center relative">
+                    <Link href={`/course/${course.slug}`}>
+                      <img className="w-full h-full object-cover" src={course.image} alt={course.alt} />
+                    </Link>
+                  </div>
 
-                          {/* Content */}
-                          <div className="p-5">
-                            <div className="flex items-center gap-2 text-sm mb-2">
-                              ⭐ <span className="font-medium">4.5</span>
-                            </div>
+                  {/* CONTENT */}
+                  <div className="p-5 mt-10">
+                  <div className="flex items-center justify-between shadow-lg gap-2 text-sm mb-2 px-3 py-2 rounded-xs bg-linear-to-br from-white via-amber-50 to-amber-100 ">
+                    <div className="flex items-center gap-2 ">
+                      <Star size={16} className="text-yellow-500 fill-yellow-500" /> <span className="font-medium">4.5</span>
+                    </div>
+                    <p className="text-sm text-gray-500">
+                      {course.Duration}
+                    </p>
+                  </div>
 
-                            <h3 className="font-semibold text-lg mb-2">
-                              {course.title}
-                            </h3>
+                  <Link href={`/course/${course.slug}`}>
+                    <h3 className="font-semibold text-lg leading-snug mb-2 hover:text-blue-500">
+                      {course.title}
+                    </h3>
+                  </Link>
 
-                            <p className="text-sm text-gray-600 mb-4">
-                              {course.content[0].subtitle.slice(0, 30)}
-                            </p>
 
-                            <p className="text-sm text-gray-500 mb-5">
-                              {course.Duration}
-                            </p>
 
-                            <Link href={`/course/${course.slug}`}>
-                              <button className="text-blue-600 text-sm font-medium">
-                                Know more →
-                              </button>
-                            </Link>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </Slider>
-                </div>
+                  <p className="text-sm text-gray-600 mb-4">
+                    {course.content[0].subtitle.slice(0, 30)}
+                  </p>
+
+                  <Link href={`/course/${course.slug}`}>
+                    <button className="text-blue-700 text-sm font-medium  flex items-center cursor-pointer hover:text-blue-950">
+                      Know more →
+                    </button>
+                  </Link>
+
+                   </div>
+             </div>
+      </div>
+    ))}
+  </div>
+</div>
+
               )}
             </div>
           );

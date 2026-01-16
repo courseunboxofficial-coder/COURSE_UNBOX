@@ -3,13 +3,13 @@ import { MessageCircle, Send } from "lucide-react";
 export default function CommunityCTA() {
   return (
     <section className="px-6 sm:px-12 py-12 shadow-sm rounded-lg">
-      <div className="relative overflow-hidden rounded-2xl bg-blue-50 p-8 sm:p-10 flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div className="relative overflow-hidden rounded-2xl bg-linear-to-br from-blue-900 via-blue-800 to-blue-900 p-8 sm:p-10 flex flex-col lg:flex-row items-center justify-between gap-8">
         
         {/* Left Content */}
         <div className="max-w-xl">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 leading-snug">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-100 leading-snug">
             Join Our Community & Get Access to <br />
-            <span className="text-blue-600">Latest Updates by Top Mentors</span>
+            <span className="text-yellow-500">Latest Updates by Top Mentors</span>
           </h2>
 
           <div className="mt-6 flex flex-wrap gap-4">

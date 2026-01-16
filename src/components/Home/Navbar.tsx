@@ -100,27 +100,44 @@ const Navbar = () => {
   const [courses, setCourses] = useState<typeCourse[]>([]);
   
 
-  useEffect(()=>{
-    const getBlogs = async()=>{
-       const {data, error} = await supabase.from('Blog').select("*");
-       if(data){
-         setBlogs(data)
-       }
-    }
-    const getCourses = async()=>{
-      const {data, error} = await supabase.from('Courses').select("*");
+    useEffect(() => {
+      let isMounted = true;
 
-      if(data){
-        setCourses(courses);
-      }
-    }
+      const fetchData = async () => {
+        try {
+          const [blogsRes, coursesRes] = await Promise.all([
+            supabase
+              .from("Blog")
+              .select("*")
+              .order("created_at", { ascending: false }),
+            supabase
+              .from("Courses")
+              .select("*"),
+          ]);
 
-    getCourses();
+        
 
-    getBlogs();
-  },[]);
+          if (blogsRes.error) throw blogsRes.error;
+          if (coursesRes.error) throw coursesRes.error;
 
-  console.log("Courses Section" , courses);
+          if (isMounted) {
+            setBlogs(blogsRes.data || []);
+            setCourses(coursesRes.data || []);
+          }
+        } catch (err) {
+          console.error("Error fetching data:", err);
+        }
+      };
+
+      fetchData();
+
+      return () => {
+        isMounted = false;
+      };
+    }, []);
+
+
+
 
   
  
@@ -158,7 +175,7 @@ const Navbar = () => {
             </div>
   
 
-            <CoursesDropdown/>     
+            <CoursesDropdown courses={courses}/>     
             <Link href={"/about"} className="cursor-pointer relative
                                           after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 
                                           after:bg-blue-600 after:transition-all after:duration-400
@@ -192,28 +209,28 @@ const Navbar = () => {
           </button> */}
 
          <button
-  className="
-    relative inline-flex items-center justify-center
-    px-4 py-2.5
-    text-base font-semibold
-    text-white
-    bg-gradient-to-r from-blue-600 to-blue-500
-    rounded-full
-    shadow-md
-    transition-all duration-300 ease-in-out
-    hover:from-yellow-400 hover:to-yellow-500
-    hover:text-blue-900
-    hover:shadow-lg
-    active:scale-95
-    focus:outline-none focus:ring-4 focus:ring-blue-300
-    cursor-pointer
+          className="
+            relative inline-flex items-center justify-center
+            px-4 py-2.5
+            text-base font-semibold
+            text-white
+            bg-gradient-to-r from-blue-600 to-blue-500
+            rounded-full
+            shadow-md
+            transition-all duration-300 ease-in-out
+            hover:from-yellow-400 hover:to-yellow-500
+            hover:text-blue-900
+            hover:shadow-lg
+            active:scale-95
+            focus:outline-none focus:ring-4 focus:ring-blue-300
+            cursor-pointer
 
-  "
-  onClick={()=>setIsOpen(true)}
->
+          "
+            onClick={()=>setIsOpen(true)}
+           >
   
-  Apply for Scholarship
-</button>
+              Apply for Scholarship
+            </button>
 
         </div>
 

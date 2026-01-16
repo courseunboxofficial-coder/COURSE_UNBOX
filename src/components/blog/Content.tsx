@@ -2,21 +2,34 @@
 import { supabase } from '@/lib/supabse/supabaseConfig';
 import Image from 'next/image';
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import DesktopPagenation from './DesktopPagenation';
 import MobilePagenation from './MobilePagenation'
+import SearchBar from './SearchBar'
 
 export type InternshipCard = {
 
-  id: number;
-  domain: string;
-  title: string;
-  content: string;
-  subcontent: string
-  slug: string
-  FAQ: string;
-  image: string;
-  author : string;
+  id: string;
+    title: string;
+    content: string;
+    FAQ: {
+        question: string;
+        answer: string
+    }[];
+    image: string,
+
+    meta: {
+
+        title: string,
+        description: string
+    },
+
+    slug: string,
+    alt: string,
+    subcontent: string,
+    created_at: number;
+    author: string,
+    domain: string;
   
 
 };
@@ -37,18 +50,28 @@ const Content = () => {
 
 
   const [blogs, setBlogs] = useState<InternshipCard[]>([]);
-  const [totalBlogs, setTotalBlogs] = useState( Math.ceil((blogs.length) / 12));
   const [page, setPage] = useState(1);
-  const [authors, setAuthors] = useState<string[]>([]);
   const limit = 12;
 
 
-  const [currBlogs, setCurrBlogs] = useState<InternshipCard[]>([]);
 
   const [activeCategory, setActiveCategory] = useState('All Blogs'); 
   const [selectedAuthor, setSelectedAuthor] = useState("");
   const [showAuthorDropdown, setShowAuthorDropdown] = useState(false);
 
+   
+  function toNormalCase(name: string): string {
+    return name
+        .toLowerCase()
+        .split(" ")
+        .filter(Boolean) // removes extra spaces
+        .map(word => word[0].toUpperCase() + word.slice(1))
+        .join(" ");
+   }
+
+  const authors = useMemo(()=>{
+    return  [...new Set(blogs.map((blog)=> toNormalCase(blog.author).trim()))]
+  },[blogs]);
 
 
 
@@ -79,38 +102,31 @@ const Content = () => {
     getBlogData();
 
   }, []);
+ 
 
+
+    const filteredBlogs = useMemo(() => {
+      return blogs.filter((blog) => {
+        if (selectedAuthor) return blog.author === selectedAuthor;
+        if (activeCategory === "All Blogs") return true;
+        return activeCategory === blog.domain;
+      });
+    }, [blogs, activeCategory, selectedAuthor]);
+    
+
+      const totalBlogs = useMemo(() => {
+      return Math.ceil(filteredBlogs.length / limit);
+    }, [filteredBlogs, limit]);
 
 
   
 
-   useEffect(()=>{
+   const currBlogs = useMemo(() => {
+      const start = (page - 1) * limit;
+      const end = start + limit;
+      return filteredBlogs.slice(start, end);
+    }, [filteredBlogs, page, limit]);
 
-    //authors
-    const authors = [...new Set(blogs.map((b)=>b.author))];
-    setAuthors(authors ?? []);
-
-    //Pagenation logic 
-    const start  =  (page * 12) - 11;
-    const end =  page * 12;
-    const filterBlogs = blogs.filter((blog)=>{
-     
-       if(selectedAuthor){
-           return selectedAuthor===blog?.author
-       }
-
-       if(activeCategory==='All Blogs'){
-          return true;
-       }
-
-       return blog?.domain===activeCategory;
-    });
-    
-    setTotalBlogs( Math.ceil((filterBlogs.length) / 12))
-    console.log(filterBlogs)
-    
-    setCurrBlogs(filterBlogs.slice((start-1),end));
-  },[blogs,page, activeCategory, selectedAuthor])
 
 
 
@@ -118,13 +134,13 @@ const Content = () => {
 
 
     <section className="py-16 relative">
-
-
     
 
-      <div className="mx-auto w-full px-6">
+      <div className="mx-auto w-full px-6 ">
         {/* BreadCrumb */}
-        <nav className="text-sm text-gray-400 mb-6 pl-20  bg-white max-w-sm -mt-9">
+
+        <div className='flex sm:flex-row  flex-col sm:items-center gap-10 mb-2'>
+           <nav className="text-sm text-gray-400 mb-6 pl-5 md:pl-8 lg:pl-10 xl:pl-20 bg-white max-w-sm -mt-9">
             <Link href="/" className="hover:text-blue-500 transition">
             Home
             </Link>
@@ -133,9 +149,14 @@ const Content = () => {
               Blogs
             </Link>
         </nav>
+        <SearchBar blogs={blogs}/>
 
+
+        </div>
+        
+       
         {/* Filters */}
-        <div className="flex flex-wrap items-center gap-3 pl-20 mb-8">
+        <div className="flex flex-wrap items-center gap-3 pl-3 sm:pl-5 md:pl-8 lg:pl-10 xl:pl-20 mb-8">
           {/* Categories */}
           {categories.map((cat) => (
             <button
@@ -185,6 +206,8 @@ const Content = () => {
             )}
           </div>
         </div>
+
+        
 
 
 
