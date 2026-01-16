@@ -4,6 +4,7 @@ import { useState } from "react";
 export default function RecommendedCourse(){
     
     const [visible , setVisible] = useState(3);
+    const [selectedCourse, setSelectedCourse]  = useState('Paid');
     
       const courses = [
     {
@@ -22,7 +23,8 @@ export default function RecommendedCourse(){
       title: "Backend with Node.js",
       description: "APIs, authentication, databases, and scaling.",
     },
-  ];
+      ];
+
     return (
        <section className="py-16 px-12">
       {/* Heading */}
@@ -32,8 +34,8 @@ export default function RecommendedCourse(){
 
       <div className="flex gap-2 text-gray-800  my-6 px-4 ">
 
-        <button className="py-1 px-3 rounded-2xl border border-gray-400 text-sm">Paid</button>
-        <button className="py-1 px-3 rounded-2xl border border-gray-400 text-sm">Free</button>
+        <button className={`py-1 px-3 rounded-2xl border border-gray-400 text-sm cursor-pointer ${selectedCourse==='Paid' ? "bg-[#025378] text-white": "bg-gray-50" }`} onClick={()=>setSelectedCourse('Paid')}>Paid</button>
+        <button className={`py-1 px-3 rounded-2xl border border-gray-400 text-sm cursor-pointer ${selectedCourse==='Free' ? "bg-[#025378] text-white": "bg-gray-50"}`}onClick={()=>setSelectedCourse('Free')}>Free</button>
 
       </div>
 

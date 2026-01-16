@@ -59,11 +59,22 @@ type Course = {
 
 }
 
+const categories = [
+  "All Courses",
+  "Digital Marketing",
+  "Data Science",
+  "IT & Software",
+  "Development",
+];
 
 
 export default function CourseCards({ onEdit }: { onEdit: any }) {
 
     const [courses, setCourses] = useState<Course[]>([]);
+    const [currCourses, setCurrCourses] = useState<Course[]>([]);
+    const [activeCategory, setActiveCategory] = useState("All Courses");
+    
+    
 
     const fetchTableData = async () => {
 
@@ -90,6 +101,23 @@ export default function CourseCards({ onEdit }: { onEdit: any }) {
 
 
     }, []);
+
+    useEffect(()=>{
+
+        const filterCourses = courses.filter((course)=>{
+            
+            if(activeCategory ==='All Courses'){
+                return true;
+            }
+
+            return activeCategory === course.domain;
+        });
+
+        setCurrCourses(filterCourses);
+        
+
+},[courses, activeCategory]);
+
 
 
     const handleDelete = async (id: string) => {
@@ -121,8 +149,7 @@ export default function CourseCards({ onEdit }: { onEdit: any }) {
 
         <section className="w-full max-w-7xl mx-auto px-4 py-14">
 
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-12">
-                <div className="flex items-center gap-4">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-around mb-2">
                     <div>
                         <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight">
                             Manage Courses
@@ -131,22 +158,50 @@ export default function CourseCards({ onEdit }: { onEdit: any }) {
                             Premium, industry-ready courses curated for growth
                         </p>
                     </div>
+
+
+                
+                    <div className="flex flex-wrap items-center gap-3 ">
+                        {/* Categories */}
+                        {categories.map((cat) => (
+                            <button
+                            key={cat}
+                            onClick={() => {
+                                setActiveCategory(cat);
+                               
+                            }}
+                            className={`px-4 py-2 rounded-full text-sm font-medium transition shadow-sm cursor-pointer
+                                ${
+                                activeCategory === cat
+                                    ? "bg-blue-600 text-white"
+                                    : "bg-slate-100 text-slate-700 hover:bg-blue-100"
+                                }
+                            `}
+                            >
+                            {cat}
+                            </button>
+                        ))}
+
+                        
+                   </div>
                 </div>
 
-                <div className="flex items-center gap-2 text-sm font-medium text-gray-500">
+                
+
+                <div className="flex justify-end items-center gap-2 text-sm font-medium text-gray-500 px-20 py-6">
                     <Layers size={18} />
 
                     <span>
 
-                        Total Courses: <span className="text-gray-900">{courses.length}</span>
+                        Total Courses: <span className="text-gray-900">{currCourses.length}</span>
 
                     </span>
                 </div>
-            </div>
+            
 
 
             <div className="flex flex-wrap gap-10 md:gap-4">
-                {courses.map((course) => (
+                {currCourses.map((course) => (
                     <div
                         key={course.id}
                         className="group relative overflow-hidden rounded-2xl bg-white shadow-[0_30px_90px_rgba(0,0,0,0.12)] border border-gray-100 hover:shadow-[0_40px_120px_rgba(0,0,0,0.18)] transition-all duration-300 w-[22vw]"

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Pencil, Trash2, BookOpen } from "lucide-react";
+import { Pencil, Trash2, BookOpen, Layers } from "lucide-react";
 import { supabase } from "@/lib/supabse/supabaseConfig";
 import { toast, ToastContainer } from "react-toastify";
 
@@ -59,11 +59,22 @@ type Course = {
 
 }
 
+const categories = [
+  "All Courses",
+  "Digital Marketing",
+  "Data Science",
+  "IT & Software",
+  "Development",
+];
+
 
 const CourseTable = ({ onEdit }: { onEdit: any }) => {
 
 
   const [courses, setCourses] = useState<Course[]>([]);
+  const [currCourses, setCurrCourses] = useState<Course[]>([]);
+  const [activeCategory, setActiveCategory] = useState("All Courses");
+      
 
   const fetchTableData = async () => {
 
@@ -114,7 +125,24 @@ const CourseTable = ({ onEdit }: { onEdit: any }) => {
 
     fetchTableData();
 
-  }, [])
+   }, []);
+
+   useEffect(()=>{
+   
+           const filterCourses = courses.filter((course)=>{
+               
+               if(activeCategory ==='All Courses'){
+                   return true;
+               }
+   
+               return activeCategory === course.domain;
+           });
+   
+           setCurrCourses(filterCourses);
+           
+   
+   },[courses, activeCategory]);
+    
   return (
 
     <>
@@ -138,10 +166,41 @@ const CourseTable = ({ onEdit }: { onEdit: any }) => {
               </div>
             </div>
 
-            <div className="text-sm font-medium text-gray-500">
-              Total Courses: <span className="text-gray-900">{courses.length}</span>
+            <div className="flex flex-wrap items-center gap-3 ">
+                        {/* Categories */}
+                        {categories.map((cat) => (
+                            <button
+                            key={cat}
+                            onClick={() => {
+                                setActiveCategory(cat);
+                               
+                            }}
+                            className={`px-4 py-2 rounded-full text-sm font-medium transition shadow-sm cursor-pointer
+                                ${
+                                activeCategory === cat
+                                    ? "bg-blue-600 text-white"
+                                    : "bg-slate-100 text-slate-700 hover:bg-blue-100"
+                                }
+                            `}
+                            >
+                            {cat}
+                            </button>
+                        ))}
+
+                        
             </div>
+
           </div>
+
+          <div className="flex justify-end items-center gap-2 text-sm font-medium text-gray-500 px-20 py-6">
+                    <Layers size={18} />
+
+                    <span>
+
+                        Total Courses: <span className="text-gray-900">{currCourses.length}</span>
+
+                    </span>
+            </div>
 
           {/* Table */}
           <div className="overflow-x-auto">

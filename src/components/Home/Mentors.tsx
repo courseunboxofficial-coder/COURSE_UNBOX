@@ -51,117 +51,100 @@ const Mentors = () => {
 
     return (
 
-        <div className="bg-[#eef5fc] w-full  mx-auto px-4 py-12 overflow-hidden">
-
-            <div className="text-center text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#061b52] mb-12">
+        <div className="bg-[#eef5fc] w-full mx-auto px-4 py-10 sm:py-14 overflow-hidden">
+            <h2 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-[#061b52] mb-10">
                 Our Mentors
-            </div>
+            </h2>
 
-            {/* SCROLL WRAPPER */}
+            {/* Scroll Wrapper */}
             <div className="relative w-full overflow-hidden">
+                <div
+                className="
+                    mentor-track
+                    flex gap-6
+                    overflow-x-auto
+                    snap-x snap-mandatory
+                    scroll-smooth
+                    scrollbar-hide
+                "
+                >
+                {[...MentorsData, ...MentorsData].map((mentor, index) => (
+                    <div
+                    key={index}
+                    className="mentor-card snap-center flex-shrink-0"
+                    >
+                    <div
+                        className="
+                        w-[280px] sm:w-[320px] lg:w-[360px]
+                        rounded-2xl
+                        bg-white
+                        shadow-lg
+                        overflow-hidden
+                        flex flex-col
+                        transition-transform
+                        hover:scale-[1.03]
+                        "
+                    >
+                        {/* Image */}
+                        <div className="relative w-full aspect-[4/3] lg:aspect-[3/2]">
+                        <Image
+                            src={mentor.Image}
+                            alt={mentor.name}
+                            fill
+                            className="object-cover"
+                        />
+                        </div>
 
+                        {/* Content */}
+                        <div className="flex flex-col px-4 py-4">
+                        <div>
+                            <p className="font-bold text-base sm:text-lg text-gray-900">
+                            {mentor.name}
+                            </p>
+                            <p className="text-sm text-gray-500">
+                            {mentor.profession}
+                            </p>
+                        </div>
 
-                <div className="mentor-track">
+                        <div className="h-px w-full bg-gradient-to-r from-transparent via-gray-300 to-transparent my-4" />
 
-                    {[...MentorsData, ...MentorsData].map((mentor, index) => (
-                        <div
-                            key={index}
-                            className="mentor-card cursor-pointer "
-                        >
-                            <div
-                                className="
-                                    h-full
-                                    lg:h-[60vh]
-                                    w-[320px] sm:w-[340px] lg:w-[360px] shrink-0
-                                    rounded-2xl
-                                    overflow-hidden
-                                    flex flex-col
-                                    bg-white
-                                    transition
-                                    hover:scale-[1.02]
-                                    shadow-lg
-                                    
-                                
-                                    rounded-xl
-                                    
-                                    "
-                            >
-
-                                <div className="relative w-full h-[40vw] lg:h-[60%] ">
-                                    <Image
-                                        src={mentor.Image}
-                                        alt="Mentor Image"
-                                        fill
-                                        className="object-center"
-                                        
-                                    />
-                                </div>
-
-                            
-                               
-
-
-                                <div className="flex-col px-4  py-1 lg:py-4 flex">
-                                    <div >
-                                        <p className="font-bold text-base sm:text-lg text-gray-900">{mentor.name}</p>
-                                         <p className="font-semibold text-gray-500 sm:text-sm" >{mentor.profession}</p>
-
-                                    </div>
-
-
-                                    <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-gray-300 to-transparent mt-6" />
-
-
-
-                                     
-
-
-                                     <div className=" py-4 space-y-3">
-
-                                        <div className="flex gap-4 justify-around items-center shadow-sm rounded-2xl  p-2 bg-gradient-to-r from-gray-50 via-white to-indigo-50
-                                            border border-gray-50
-                                             ">
-                                            <div className="flex items-center gap-2 text-gray-700">
-                                                <Briefcase className="w-5 h-5 text-gray-600" />
-                                                <div className="leading-tight">
-                                                    <p className="font-semibold text-sm">
-                                                    {mentor.work_Experience}+ Years
-                                                    </p>
-                                                    <p className="text-xs text-gray-500">
-                                                    Work Experience
-                                                    </p>
-                                                </div>
-                                             </div>
-
-
-                                             <div className="flex items-center gap-2 text-gray-700">
-                                             <Users className="w-5 h-5 text-gray-600" />
-                                                <div className="leading-tight">
-                                                    <p className="font-semibold text-sm">
-                                                    {/* {mentor.teaching_Experience} */} 8+ Years
-                                                    </p>
-                                                    <p className="text-xs text-gray-500">
-                                                    Teaching Experience
-                                                    </p>
-                                                </div>
-                                             </div>
-
-                                        </div>
-                                   
-                                        <p className="text-sm w-full text-gray-600 leading-relaxed  ">
-                                            {mentor.description.slice(0 ,90)}...
-                                        </p>
-                                        
-                                    </div>
-
+                        {/* Experience */}
+                        <div className="space-y-3">
+                            <div className="flex justify-between items-center rounded-xl p-3 bg-gradient-to-r from-gray-50 via-white to-indigo-50 border">
+                            <div className="flex items-center gap-2">
+                                <Briefcase className="w-4 h-4 text-gray-600" />
+                                <div>
+                                <p className="font-semibold text-sm">
+                                    {mentor.work_Experience}+ Years
+                                </p>
+                                <p className="text-xs text-gray-500">
+                                    Work Experience
+                                </p>
                                 </div>
                             </div>
-                        </div>
-                    ))}
 
+                            <div className="flex items-center gap-2">
+                                <Users className="w-4 h-4 text-gray-600" />
+                                <div>
+                                <p className="font-semibold text-sm">8+ Years</p>
+                                <p className="text-xs text-gray-500">
+                                    Teaching
+                                </p>
+                                </div>
+                            </div>
+                            </div>
+
+                            <p className="text-sm text-gray-600 leading-relaxed">
+                            {mentor.description.slice(0, 90)}...
+                            </p>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                ))}
                 </div>
             </div>
-        </div>
+            </div>
 
     );
 

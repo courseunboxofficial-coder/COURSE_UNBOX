@@ -1,135 +1,177 @@
 "use client";
-import { Triangle , TrendingUp} from "lucide-react";
-import { useState } from "react";
+
+import { TrendingUp } from "lucide-react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 
-const COURSE_MENU: Record<string, string[]> = {
-  "Digital Marketing": [
-    "Full Stack Digital Marketing",
-    "SEO Course",
-    "Performance Marketing",
-    "Social Media Marketing",
-    "Content Marketing",
-    "Email Marketing",
-    "Affiliate Marketing",
-  ],
-  "Development": [
-    "Full Stack Web Development",
-    "MERN Stack",
-    "React.js",
-    "Next.js",
-    "Backend Development",
-  ],
-  "Data & AI": [
-    "Data Science",
-    "Data Analytics",
-    "Python for Data",
-    "Machine Learning",
-    "AI Tools & Automation",
-  ],
-  "Design": [
-    "UI/UX Design",
-    "Graphic Design",
-    "Figma Mastery",
-  ],
-  "Career Programs": [
-    "Job Guarantee Program",
-    "Placement Courses with AI",
-    "Interview Preparation",
-  ],
+
+type typeCourse = {
+  id: string;
+  title: string;
+  description: string;
+  startDate: string;
+  Duration: number;
+  language: string;
+  domain: string;
+  Delivery_Mode: string;
+  low: number;
+  high: number;
+  price: number;
+  slug: string;
 };
 
+type CategoryMap = Record<string, typeCourse[]>;
 
-export default function CoursesDropdown() {
+
+
+const CATEGORY_LIST = [
+  "Digital Marketing",
+  "Development",
+  "IT & Software",
+  "Data Science",
+  "Free Classes",
+];
+
+
+
+export default function CoursesDropdown({
+  courses,
+}: {
+  courses: typeCourse[];
+}) {
   const [open, setOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("Development");
+  const [categoryCourses, setCategoryCourses] = useState<CategoryMap>({});
+
+
+  useEffect(() => {
+    const map: CategoryMap = {};
+    CATEGORY_LIST.forEach((cat) => {
+      map[cat] = courses.filter((course) => course.domain === cat);
+    });
+    setCategoryCourses(map);
+  }, [courses]);
+
+
 
   return (
     <div
-      className="relative h-full hover:text-blue-300 cursor-pointer "
+      className="relative h-full"
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      {/* NAV ITEM */}
+      {/* ===== NAV ITEM ===== */}
       <Link
-       href={"/course"}
-       className="flex items-center gap-2 font-medium ">
+        href="/course"
+        className="flex items-center gap-2 font-medium cursor-pointer"
+      >
         Courses
         <span className="bg-orange-500 text-white text-xs px-2 py-0.5 rounded">
           OFFER
         </span>
-            <span
-            className={`inline-flex transition-transform duration-300 text-xs ${
-                open ? "rotate-0" : "rotate-180"
-            }`}
-            >
-                ▲
-            {/* <Triangle size={12} fill="#474747" /> */}
-            </span>
+        <span
+          className={`transition-transform duration-300 ${
+            open ? "rotate-180" : ""
+          }`}
+        >
+          ▲
+        </span>
       </Link>
 
-      {/* DROPDOWN */}
-    
-        <div   className={`absolute left-0 top-full mt-4 w-[700px] bg-white rounded-xl shadow-2xl border z-50 p-8 ${open ? "opacity-100 visible" : "opacity-0 invisible"}`}>
-           <div className="absolute -top-6 left-0 w-full h-6" />
-          <div className="grid grid-cols-2 gap-10 divide-x divide-blue-300">
+      {/* ===== DROPDOWN ===== */}
+      <div
+        className={`absolute left-0 top-full mt-5 w-[900px] bg-white rounded-2xl shadow-2xl border z-50 p-10 transition-all
+        ${open ? "opacity-100 visible" : "opacity-0 invisible"}`}
+      >
+        {/* ARROW GAP FIX */}
+        <div className="absolute -top-6 left-0 w-full h-6" />
 
-            {/* LEFT COLUMN */}
-            <div className="">
-              <h4 className="font-semibold text-lg text-gray-900 mb-4">
-                Certification Courses
-              </h4>
+        <div className="grid grid-cols-3 gap-10">
 
-              <ul className="space-y-4 text-gray-600  font-base text-sm ">
-                <li className="tems-center ">
-                  Artificial Intelligence and Machine Learning
-                  <span className=" flex gap-2 text-white w-36 bg-purple-400 py-0.1 px-3 rounded-2xl text-xs">
-                    <TrendingUp size={18}/> Trending in AI
-                  </span>
+          
+          {/* ================= LEFT: CATEGORY ================= */}
+          <div>
+            <h4 className="font-semibold text-lg text-gray-900 mb-6">
+              Course Categories
+            </h4>
+
+            <ul className="flex flex-col gap-3">
+              {CATEGORY_LIST.map((cat) => (
+                <li
+                  key={cat}
+                  onMouseEnter={() => setActiveCategory(cat)}
+                  className={`px-4 py-2 rounded-lg cursor-pointer text-sm transition
+                    ${
+                      activeCategory === cat
+                        ? "bg-blue-50 text-blue-600 font-semibold"
+                        : "text-gray-500 hover:bg-gray-50"
+                    }`}
+                >
+                  {cat}
                 </li>
-                <li>Microsoft Generative AI</li>
-                <li>Generative AI</li>
-                <li>Web Development with AI</li>
-                <li>Programming with Python with AI</li>
-                <li>Digital Marketing with AI</li>
-                <li>Machine Learning with AI</li>
-                <li>Advanced Excel with AI</li>
-              </ul>
+              ))}
+            </ul>
 
-              <Link
-                href="/course"
-                className="block mt-4 text-sm text-blue-600 hover:underline"
-              >
-                View 70+ more courses
-              </Link>
+            <Link
+              href="/course"
+              className="inline-block mt-8 text-sm font-semibold text-blue-600 hover:underline"
+            >
+              View all courses →
+            </Link>
+          </div>
+
+          {/* ================= RIGHT: COURSES ================= */}
+          <div className="col-span-2">
+            {/* TRENDING TAG */}
+            <div className="flex items-center gap-2 mb-5">
+              <span className="bg-orange-100 text-orange-600 text-xs px-3 py-1 rounded-full">
+                🔥 Trending in {activeCategory}
+              </span>
             </div>
 
-            {/* RIGHT COLUMN */}
+            <div className="grid grid-cols-2 gap-5 max-h-[360px] overflow-y-auto pr-2">
+              {(categoryCourses[activeCategory] || []).map((course) => (
+                <Link
+                  key={course.id}
+                  href={`/course/${course.slug}`}
+                  className="group block border rounded-xl p-4 hover:shadow-lg transition"
+                >
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-medium text-gray-800 group-hover:text-blue-600">
+                      {course.title}
+                    </h4>
+                    <TrendingUp size={16} className="text-orange-500" />
+                  </div>
 
-            <div>
+                  <p className="text-xs text-gray-500 mt-1">
+                    {course.Duration} weeks • {course.Delivery_Mode}
+                  </p>
 
-              <h4 className="font-semibold text-gray-900 mb-4  text-lg">
-                Placement Courses with AI
-              </h4>
+                  <p className="text-xs font-semibold text-green-600 mt-2">
+                    ₹{course.low} – ₹{course.high}
+                  </p>
+                </Link>
+              ))}
 
-              <ul className="space-y-4 text-gray-600 text-sm">
-
-                <li>Full Stack Development Course</li>
-                <li>Data Science Course</li>
-                <li>Human Resource Management Course</li>
-                <li>Digital Marketing Course</li>
-                <li>UI/UX Design Course</li>
-                <li>Product Management Course</li>
-                <li>Financial Modelling Course</li>
-                <li>Supply Chain Logistics Course</li>
-                
-              </ul>
-
+              {/* EMPTY STATE */}
+              {(categoryCourses[activeCategory] || []).length === 0 && (
+                <p className="text-sm text-gray-500">
+                  No courses available.
+                </p>
+              )}
             </div>
 
+            {/* CTA */}
+            <Link
+              href="/course"
+              className="block text-center mt-6 text-sm font-semibold text-blue-600 hover:underline"
+            >
+              Explore all {activeCategory} courses →
+            </Link>
           </div>
         </div>
-  
+      </div>
     </div>
   );
 }
