@@ -13,7 +13,9 @@ export default function FinalMasterclassForm() {
 
    
     const handleSubmit = (e:React.FormEvent<HTMLElement | HTMLSelectElement>)=>{
-        const templateParams = {
+      e.preventDefault();
+      
+      const templateParams = {
 
       name: `${firstName} ${lastName}`,
       first_name: firstName,
@@ -70,7 +72,7 @@ export default function FinalMasterclassForm() {
          <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
 
               {/* Name */}
-              <div className="flex gap-6">
+              <div className="flex flex-col md:flex-row gap-6 ">
                 <div className="w-full">
                   <label className="block text-xs sm:text-sm font-semibold text-gray-700 mb-1">
                     Name
@@ -82,7 +84,7 @@ export default function FinalMasterclassForm() {
                     onChange={(e) => setFirstName(e.target.value)}
                     placeholder="Your First Name"
                     className="w-full rounded-lg border border-gray-300 px-3 py-2.5 sm:py-3
-                              text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-600"
+                              text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-600 text-black"
                               required
                   />
                 </div>
@@ -99,7 +101,7 @@ export default function FinalMasterclassForm() {
                     placeholder="Your Last Name"
                     className="w-full rounded-lg border border-gray-300 px-3 py-2.5 sm:py-3
                               text-sm sm:text-base
-                              focus:outline-none focus:ring-2 focus:ring-blue-600"
+                              focus:outline-none focus:ring-2 focus:ring-blue-600 text-black"
                                required
                   />
                 </div>
@@ -120,7 +122,7 @@ export default function FinalMasterclassForm() {
                   placeholder="your@email.com"
                   className="w-full rounded-lg border border-gray-300 px-3 py-2.5 sm:py-3
                             text-sm sm:text-base
-                            focus:outline-none focus:ring-2 focus:ring-blue-600"
+                            focus:outline-none focus:ring-2 focus:ring-blue-600 text-black"
                              required
                 />
               </div>
@@ -138,7 +140,7 @@ export default function FinalMasterclassForm() {
                   placeholder="Phone Number"
                   className="w-full rounded-lg border border-gray-300 px-3 py-2.5 sm:py-3
                             text-sm sm:text-base
-                            focus:outline-none focus:ring-2 focus:ring-blue-600"
+                            focus:outline-none focus:ring-2 focus:ring-blue-600 text-black"
                              required
                 />
               </div>
@@ -153,7 +155,7 @@ export default function FinalMasterclassForm() {
                   onChange={(e) => setOccupation(e.target.value)}
                   className="border border-gray-300 p-3 rounded-md w-full text-black
                   focus:ring-2 focus:ring-purple-500 focus:outline-none
-                  bg-white cursor-pointer"
+                  bg-white cursor-pointer text-black"
                   required
                 >
                   <option value="" disabled>
@@ -176,7 +178,7 @@ export default function FinalMasterclassForm() {
                           text-white text-base sm:text-lg font-bold
                           py-2.5 sm:py-3
                           rounded-xl shadow-lg
-                          transition-all duration-200 cursor-pointer"
+                          transition-all duration-200 cursor-pointer text-black"
               >
                 Connect with an Expert »
               </button>

@@ -1,33 +1,34 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Pencil, Trash2, Layers, Sparkles } from "lucide-react";
 import { supabase } from "@/lib/supabse/supabaseConfig";
 import { toast, ToastContainer } from "react-toastify";
 
+
 type Blog = {
 
-  id: string;
-  title: string;
-  content: string;
-  FAQ: {
-    question: string;
-    answer: string
-  }[];
-  image: string,
+    id: string;
+    title: string;
+    content: string;
+    FAQ: {
+        question: string;
+        answer: string
+    }[];
+    image: string,
 
-  meta: {
+    meta: {
 
-    title: string,
-    description: string
-  },
+        title: string,
+        description: string
+    },
 
-  slug: string,
-  alt: string,
-  subcontent: string,
-  created_at: number;
-  author: string,
-  domain: string;
+    slug: string,
+    alt: string,
+    subcontent: string,
+    created_at: number;
+    author: string,
+    domain: string;
 
 };
 
@@ -42,12 +43,12 @@ const categories = [
 export default function BlogCard({ onEdit }: { onEdit: any }) {
 
     const [Blogs, setBlogs] = useState<Blog[]>([]);
+
     const [loading, setloading] = useState(false);
     const [currBlogs, setCurrBlogs] = useState<Blog[]>([]);
     const [activeCategory, setActiveCategory] = useState("All Blogs");
     const [selectedAuthor, setSelectedAuthor]  = useState("");
     const [showAuthorDropdown, setShowAuthorDropdown] = useState(false);
-    const [authors, setAuthors] = useState<string[]>([]);
 
 
 
@@ -55,7 +56,7 @@ export default function BlogCard({ onEdit }: { onEdit: any }) {
 
     const fetchTableData = async () => {
 
-        const { data, error } = await supabase.from("Blog").select("*");
+        const { data, error } = await supabase.from("Blog").select("*").order("created_at", { ascending: false });
 
         if (error) {
 
@@ -81,12 +82,29 @@ export default function BlogCard({ onEdit }: { onEdit: any }) {
 
     }, []);
 
+    function toNormalCase(name: string): string {
+        return name
+            .toLowerCase()
+            .split(" ")
+            .filter(Boolean) // removes extra spaces
+            .map(word => word[0].toUpperCase() + word.slice(1))
+            .join(" ");
+    }
+
+
+    const allAuthors = useMemo(() => {
+        return [...new Set(
+            Blogs.map(blog => toNormalCase(blog.author).trim())
+        )];
+    }, [Blogs]);
+
+
 
     useEffect(()=>{
 
-        const allAuthors =  [...new Set(Blogs.map((blog)=>blog.author))];
-        setAuthors(allAuthors);
+   
 
+       
         const filterBlogs = Blogs.filter((blog)=>{
             if(selectedAuthor){
                 return blog.author===selectedAuthor;
@@ -175,7 +193,7 @@ export default function BlogCard({ onEdit }: { onEdit: any }) {
 
                             {showAuthorDropdown && (
                             <div className="absolute left-0 mt-2 w-44 bg-white shadow-lg rounded-xl border border-blue-300 z-20 cursor-pointer ">
-                                {authors.map((author) => (
+                                {allAuthors.map((author) => (
                                 <button
                                     key={author}
                                     onClick={() => {
@@ -229,9 +247,13 @@ export default function BlogCard({ onEdit }: { onEdit: any }) {
                             </div>
 
 
-                            <div className="mb-8">
+                            <div className="mb-8 flex gap-1">
                                 <span className="inline-flex items-center rounded-full bg-indigo-50 px-5 py-2 text-xs font-semibold text-indigo-600 shadow-sm">
                                     {blog.domain}
+                                </span>
+
+                                <span className="inline-flex items-center rounded-full bg-indigo-50 px-5 py-2 text-xs font-semibold text-indigo-600 shadow-sm">
+                                    {blog.author}
                                 </span>
                             </div>
 
@@ -252,8 +274,8 @@ export default function BlogCard({ onEdit }: { onEdit: any }) {
 
                                     <Trash2 size={16} />
 
-                                   Delete
-                                    
+                                    Delete
+
 
                                 </button>
                             </div>

@@ -61,11 +61,11 @@ type Course = {
 
 
 
-const categories = ["All Courses", "Digital Marketing", "Development", "IT & Software", "Data Science"];
+const categories = ["Digital Marketing", "Coming Soon.", "Coming Soon..", "Coming Soon...", "All Courses"];
 
 const Courses = () => {
 
-    const [activeCategory, setActiveCategory] = useState("All Courses");
+    const [activeCategory, setActiveCategory] = useState("Digital Marketing");
     const [courses, setCourses] = useState<Course[]>([]);
 
     console.log("THE COURSES DATA IS : ");

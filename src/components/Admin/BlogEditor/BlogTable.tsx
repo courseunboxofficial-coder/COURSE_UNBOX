@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Pencil, Trash2, BookOpen , Layers} from "lucide-react";
 import { supabase } from "@/lib/supabse/supabaseConfig";
 import "react-toastify/dist/ReactToastify.css";
@@ -26,7 +26,7 @@ type Blog = {
   slug: string,
   alt: string,
   subcontent: string,
-  created_at: number;
+  created_at: string;
   author: string,
   domain: string;
 
@@ -58,7 +58,7 @@ const BlogTable = ({ onEdit }: { onEdit: any }) => {
     const fetchTableData = async () => {
 
 
-        const { data, error } = await supabase.from("Blog").select("*");
+        const { data, error } = await supabase.from("Blog").select("*").order("created_at", {ascending : false});
 
         if (error) {
 
@@ -97,6 +97,14 @@ const BlogTable = ({ onEdit }: { onEdit: any }) => {
         toast.success("Data is Deleted");
         setBlogs((prev) => prev.filter((blog) => blog.id !== id));
     }
+    function toNormalCase(name: string): string {
+        return name
+            .toLowerCase()
+            .split(" ")
+            .filter(Boolean) // removes extra spaces
+            .map(word => word[0].toUpperCase() + word.slice(1))
+            .join(" ");
+    }
 
 
     
@@ -106,12 +114,19 @@ const BlogTable = ({ onEdit }: { onEdit: any }) => {
     
     
         }, []);
+
+        
+
+        const allAuthors = useMemo(() => {
+            return [...new Set(
+                Blogs.map(blog => toNormalCase(blog.author).trim())
+            )];
+        }, [Blogs]);
     
     
         useEffect(()=>{
     
-            const allAuthors =  [...new Set(Blogs.map((blog)=>blog.author))];
-            setAuthors(allAuthors);
+        
     
             const filterBlogs = Blogs.filter((blog)=>{
                 if(selectedAuthor){
