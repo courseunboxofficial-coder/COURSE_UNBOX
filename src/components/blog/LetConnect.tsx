@@ -16,7 +16,6 @@ const LetsConnect = () => {
           w-full 
           min-h-[150px] sm:min-h-[140px] md:min-h-[162px] lg:min-h-[170px]
           flex items-center
-          
           rounded-b-4xl sm:rounded-b-full
           overflow-hidden
         "
@@ -34,7 +33,7 @@ const LetsConnect = () => {
         <div className="
           relative z-10 
           w-full max-w-7xl mx-auto
-          px-4 sm:px-36 md:px-26 lg:px-20 xl:px-6
+          px-4 sm:px-36 md:px-26 lg:px-20 xl:px-16
         ">
           <div className="
             flex flex-col 

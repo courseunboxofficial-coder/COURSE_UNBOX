@@ -64,50 +64,50 @@ const Content = () => {
     return name
         .toLowerCase()
         .split(" ")
-        .filter(Boolean) // removes extra spaces
+        .filter(Boolean) 
         .map(word => word[0].toUpperCase() + word.slice(1))
         .join(" ");
    }
 
-  const authors = useMemo(()=>{
-    return  [...new Set(blogs.map((blog)=> toNormalCase(blog.author).trim()))]
-  },[blogs]);
+    const authors = useMemo(()=>{
+      return  [...new Set(blogs.map((blog)=> toNormalCase(blog.author).trim()))]
+    },[blogs]);
 
 
 
 
-  useEffect(() => {
+    useEffect(() => {
 
-    const getBlogData = async () => {
+      const getBlogData = async () => {
 
-      const { data, error } = await supabase.from("Blog").select("*").order("created_at", {ascending : false});
-      
-      
-      if (error) {
+        const { data, error } = await supabase.from("Blog").select("*").order("created_at", {ascending : false});
+        
+        
+        if (error) {
 
-        console.log("There is some of the error I have got");
-        console.log(error);
+          console.log("There is some of the error I have got");
+          console.log(error);
+
+        }
+
+        setBlogs(data || []);
+        console.log(blogs)
+
+        console.log("THE BLOG DATA COME FROM THE DATA BASE IS : ");
+        console.log(data);
 
       }
 
-      setBlogs(data || []);
-      console.log(blogs)
 
-      console.log("THE BLOG DATA COME FROM THE DATA BASE IS : ");
-      console.log(data);
+      getBlogData();
 
-    }
-
-
-    getBlogData();
-
-  }, []);
- 
+    }, []);
+  
 
 
     const filteredBlogs = useMemo(() => {
       return blogs.filter((blog) => {
-        if (selectedAuthor) return blog.author === selectedAuthor;
+        if (selectedAuthor) return toNormalCase(blog.author) === selectedAuthor;
         if (activeCategory === "All Blogs") return true;
         return activeCategory === blog.domain;
       });

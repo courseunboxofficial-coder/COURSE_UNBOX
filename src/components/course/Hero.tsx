@@ -81,12 +81,13 @@ const Hero = ({ courseSlug }: { courseSlug : string }) => {
 
     }
 
-
     useEffect(() => {
 
         getData();
 
     }, []);
+
+    console.log(course);
 
 
     return (

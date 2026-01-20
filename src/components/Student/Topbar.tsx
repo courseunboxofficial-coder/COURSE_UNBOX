@@ -5,7 +5,7 @@ import { Bell, LogOut, BookOpen } from "lucide-react";
 
 export default function Topbar() {
   return (
-    <header className="h-20 flex items-center justify-between px-6 border-b-2 border-cyan-200">
+    <header className="h-20 Cflex items-center justify-between px-6 border-b-2 border-cyan-200">
   <div className="flex items-center space-x-3">
     <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#025378] to-teal-500 flex items-center justify-center">
       <BookOpen className="text-white" size={20} />

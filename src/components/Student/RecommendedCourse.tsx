@@ -1,12 +1,12 @@
 "use client"
-import { Clock ,User } from "lucide-react";
+import { Clock, User } from "lucide-react";
 import { useState } from "react";
-export default function RecommendedCourse(){
-    
-    const [visible , setVisible] = useState(3);
-    const [selectedCourse, setSelectedCourse]  = useState('Paid');
-    
-      const courses = [
+
+export default function RecommendedCourse() {
+  const [visible, setVisible] = useState(3);
+  const [selectedCourse, setSelectedCourse] = useState("Paid");
+
+  const courses = [
     {
       title: "Full Stack Web Development",
       description: "Learn MERN stack from scratch to advanced level.",
@@ -23,119 +23,121 @@ export default function RecommendedCourse(){
       title: "Backend with Node.js",
       description: "APIs, authentication, databases, and scaling.",
     },
-      ];
+  ];
 
-    return (
-       <section className="py-16 px-12">
+  return (
+    <section className="py-12 sm:py-16 px-3 sm:px-6 lg:px-10">
       {/* Heading */}
-      <h2 className="font-bold text-3xl sm:text-4xl text-[#025378] ">
-         Recommended Course
+      <h2 className="font-bold text-2xl sm:text-3xl lg:text-4xl text-[#025378] text-center sm:text-left">
+        Recommended Course
       </h2>
 
-      <div className="flex gap-2 text-gray-800  my-6 px-4 ">
-
-        <button className={`py-1 px-3 rounded-2xl border border-gray-400 text-sm cursor-pointer ${selectedCourse==='Paid' ? "bg-[#025378] text-white": "bg-gray-50" }`} onClick={()=>setSelectedCourse('Paid')}>Paid</button>
-        <button className={`py-1 px-3 rounded-2xl border border-gray-400 text-sm cursor-pointer ${selectedCourse==='Free' ? "bg-[#025378] text-white": "bg-gray-50"}`}onClick={()=>setSelectedCourse('Free')}>Free</button>
-
-      </div>
-
-      {/* Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 px-4 ">
-        {courses.slice(0,visible).map((course, idx) => (
-          <div
-            key={idx}
-            className="
-                group bg-white rounded-2xl shadow-md border border-gray-200
-                hover:shadow-xl transition-all duration-300 overflow-hidden
-                w-full max-w-sm 
-            "
-            >
-            {/* IMAGE SECTION */}
-            <div className="relative h-44 w-full overflow-hidden">
-                <img
-                src="https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/0b01b98d-1711-4869-8cc6-fcda02ab7a51.jpeg"
-                alt={course.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-                />
-
-                {/* Optional overlay */}
-                <div className="absolute inset-0 bg-black/10"></div>
-            </div>
-
-            {/* CONTENT */}
-            <div className="p-5 space-y-3">
-                {/* Title */}
-                <h3 className="font-semibold text-lg text-gray-900 leading-snug line-clamp-2">
-                {course.title}
-                </h3>
-
-                {/* Meta info */}
-                <div className="flex items-center gap-4 text-sm text-gray-600">
-                <div className="flex items-center gap-1">
-                    <Clock size={18}/>                    
-                    <span>8 months</span>
-                </div>
-
-                <div className="flex items-center gap-1">
-                   <User size={18}/>
-                  
-                 
-                    <span>500+ Enrolled</span>
-                </div>
-                </div>
-
-                {/* Divider */}
-                <div className="w-full h-px bg-gray-200"></div>
-
-                {/* CTA */}
-                <button
-                className="
-                    w-full mt-2 py-2.5 rounded-lg font-semibold
-                    text-[#025378] border border-[#025378]
-                    hover:bg-[#025378] hover:text-white
-                    transition cursor-pointer
-                "
-                >
-                Explore Course
-                </button>
-            </div>
-       </div>
+      {/* Tabs */}
+      <div className="flex justify-center sm:justify-start gap-3 my-6 flex-wrap">
+        {["Paid", "Free"].map((type) => (
+          <button
+            key={type}
+            onClick={() => setSelectedCourse(type)}
+            className={`py-1.5 px-4 rounded-full text-sm border transition
+              ${
+                selectedCourse === type
+                  ? "bg-[#025378] text-white border-[#025378]"
+                  : "bg-gray-100 text-gray-800 border-gray-300"
+              }`}
+          >
+            {type}
+          </button>
         ))}
       </div>
 
-      <div className="flex justify-center my-10">
+      {/* Cards */}
+      <div
+        className="
+          grid gap-5
+          grid-cols-1
+          sm:grid-cols-2
+          lg:grid-cols-3
+          place-items-center
+        "
+      >
+        {courses.slice(0, visible).map((course, idx) => (
+          <div
+            key={idx}
+            className="
+              w-full max-w-sm
+              bg-white rounded-2xl
+              border border-gray-200
+              shadow-md hover:shadow-xl
+              transition-all duration-300
+              overflow-hidden
+              group
+            "
+          >
+            {/* Image */}
+            <div className="relative h-40 sm:h-44 md:h-48 w-full overflow-hidden">
+              <img
+                src="https://static.pw.live/5eb393ee95fab7468a79d189/ADMIN/0b01b98d-1711-4869-8cc6-fcda02ab7a51.jpeg"
+                alt={course.title}
+                className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              />
+              <div className="absolute inset-0 bg-black/10" />
+            </div>
 
-       { ((courses.length - visible) > 0) ?
-            <button
-             className="bg-white
-                       text-blue-600
-                         py-2 px-4 border
-                         rounded-lg cursor-pointer
-                       hover:bg-blue-500
-                        hover:text-white"
-                        onClick={()=>setVisible((prev)=>prev + 3)}
-                        >
-                    View More
-            </button>
-            :
+            {/* Content */}
+            <div className="p-4 sm:p-5 space-y-3">
+              <h3 className="font-semibold text-base sm:text-lg text-gray-900 line-clamp-2">
+                {course.title}
+              </h3>
 
-            <button
-             className="bg-white 
-                        text-blue-600 py-2 px-4 
-                        border rounded-lg
-                        cursor-pointer 
-                      hover:bg-blue-500
-                       hover:text-white"
-                       onClick={()=>setVisible((prev)=>prev-3)}
-                       >
-                    View Less
-            </button>
+              {/* Meta */}
+              <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-gray-600">
+                <div className="flex items-center gap-1">
+                  <Clock size={16} />
+                  <span>8 months</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <User size={16} />
+                  <span>500+ Enrolled</span>
+                </div>
+              </div>
 
-        }  
+              <div className="h-px w-full bg-gray-200" />
 
+              {/* CTA */}
+              <button
+                className="
+                  w-full py-2.5 rounded-lg
+                  font-semibold text-sm sm:text-base
+                  text-[#025378] border border-[#025378]
+                  hover:bg-[#025378] hover:text-white
+                  transition
+                "
+              >
+                Explore Course
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
 
-     
+      {/* View More / Less */}
+      <div className="flex justify-center mt-10">
+        {(courses.length - visible) > 0 ? (
+          <button
+            onClick={() => setVisible((prev) => prev + 3)}
+            className="py-2 px-5 rounded-lg border text-blue-600 hover:bg-blue-500 hover:text-white transition"
+          >
+            View More
+          </button>
+        ) : (
+          <button
+            onClick={() => setVisible((prev) => prev - 3)}
+            className="py-2 px-5 rounded-lg border text-blue-600 hover:bg-blue-500 hover:text-white transition"
+          >
+            View Less
+          </button>
+        )}
+      </div>
     </section>
-    )
+  );
 }

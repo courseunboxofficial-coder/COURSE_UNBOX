@@ -24,8 +24,8 @@ const Hero = () => {
 
   return (
     <>
-     {!isBrochure && <PopUpForm isOpen={isOpen} onCancel={() => setIsOpen(false)} onConfirm={() => setIsOpen(false)} />}
-     {isBrochure &&  <PopUpForm isOpen={isOpen} onCancel={() => {setIsOpen(false); setIsBrochure(false)}} onConfirm={() => {setIsOpen(false); handleDownload(); setIsBrochure(false)}} /> }
+     {!isBrochure ? <PopUpForm isOpen={isOpen} onCancel={() => setIsOpen(false)} onConfirm={() => setIsOpen(false)} />
+     :  <PopUpForm isOpen={isOpen} onCancel={() => {setIsOpen(false); setIsBrochure(false)}} onConfirm={() => {setIsOpen(false); handleDownload(); setIsBrochure(false)}} /> }
         
       <section
         className="
@@ -51,7 +51,7 @@ const Hero = () => {
         >
           {/* LEFT CONTENT */}
           <div className="w-[50%] text-center content-center lg:text-left">
-            <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-6xl font-bold mb-4 sm:mb-6">
+            <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl  font-bold mb-4 sm:mb-6">
               Best Digital Marketing Institute <span className="text-yellow-400">In Delhi NCR</span>
             </h1>
 
@@ -180,7 +180,7 @@ const Hero = () => {
             <span className="cursor-pointer" onClick={() => setIsOpen(true)}>Let's connect</span>
           </button>
 
-          <a
+          <button
             className="
                 flex items-center justify-center gap-2
                 bg-blue-500 pl-3
@@ -191,22 +191,17 @@ const Hero = () => {
                 w-full sm:w-auto
                 hover:bg-[#060646]
                 transition
-                z-99
-                
+                z-99 
               "
-            href="/brochure.pdf"
-            download
+              onClick={()=>{
+                 setIsOpen(true);
+                 setIsBrochure(true)
+              }}
           >
-            {/* <Image
-                src="/images/Home/GmailLogo.webp"
-                width={36}
-                height={20}
-                alt="email"
-                className="rounded-full"
-              /> */}
+            
             <FileText size={24} />
             <span>Download Brochure</span>
-          </a>
+          </button>
         </div>
       </section>
 

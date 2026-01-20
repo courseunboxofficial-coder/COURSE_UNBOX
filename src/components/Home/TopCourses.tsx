@@ -35,7 +35,7 @@ const TopCourses = () => {
       <section className="w-full  bg-[#e3f0fd] py-8  sm:py-10 md:py-12  px-6 md:px-12 lg:px-20">
 
 
-        <h2 className="text-3xl sm:text-4xl md:text-5xl text-center font-extrabold mb-13 text-[#020274]">
+        <h2 className="text-3xl  xl:text-4xl 2xl:text-5xl text-center font-extrabold mb-13 text-[#020274]">
           Top Courses
         </h2>
 
@@ -46,7 +46,7 @@ const TopCourses = () => {
           {TopCourses.map((course, idx) => (
             <div
               key={idx}
-              className="flex flex-col shrink-0 min-w-[83vw] sm:min-w-[70vw] md:min-w-[50vw] lg:min-w-[26vw] 2xl:w-[20vw]  bg-white shadow-2xl rounded-3xl
+              className="flex flex-col shrink-0 min-w-[83vw] sm:min-w-[50vw] md:min-w-[40vw] lg:min-w-[26vw] xl:min-w-[25vw] 2xl:w-[20vw]  bg-white shadow-2xl rounded-3xl
                        hover:scale-[1.03] transition cursor-pointer overflow-hidden"
             >
               {/* Image */}
@@ -60,7 +60,7 @@ const TopCourses = () => {
               </div>
 
               {/* Content */}
-              <div className="flex-1 p-2 sm:p-3 md:p-4 lg:p-5 text-gray-700">
+              <div className="flex-1 p-2 sm:p-3 xl:p-4  2xl:p-5  text-gray-700">
                 <div className="">
                   <p className="mt-2 mb-2 text-center text-lg font-bold text-[#213c98]">
                     {course.title}
@@ -74,22 +74,44 @@ const TopCourses = () => {
                     {course.domain}
                   </div>
 
-                  <div className="w-[98%] mx-auto bg-gray-100 flex flex-wrap shadow-2xl justify-center gap-2 md:gap-3 p-1 rounded-lg">
-                    <div className="flex gap-0.5 items-center  md:gap-1 border-r border-[black] p-1 md:p-1.5">
-                      <Clock className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-6 lg:h-6" /> <span className="text-xs sm:text:sm md:text-base">{course.duration}</span>
-                    </div>
-                    <div className="flex gap-0.5  items-center md:gap-1 border-r border-[black] p-1 md:p-1.5">
-                      <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-6 lg:h-6" /> <span className="text-xs sm:text:sm md:text-base">  Certificate </span>
-                    </div>
-                    <div className="flex gap-0.5  items-center  md:gap-1 p-1.5">
-                      <BookA className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 lg:w-6 lg:h-6" /> <span className="text-xs sm:text:sm md:text-base">{course.language}</span>
-                    </div>
+                 <div
+                  id="topCourseCard"
+                  className="
+                    w-[98%] mx-auto
+                    bg-gray-100 shadow-2xl rounded-lg
+                    flex flex-nowrap items-center justify-start
+                    gap-3 p-2
+                   
+                  "
+                >
+                  {/* Duration */}
+                  <div className="flex shrink-0 items-center gap-1 px-2 py-1 border-r border-black">
+                    <Clock className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                    <span className="text-xs sm:text-sm md:text-base whitespace-nowrap">
+                      {course.duration}
+                    </span>
+                  </div>
 
+                  {/* Certificate */}
+                  <div className="flex shrink-0 items-center gap-1 px-2 py-1 border-r border-black">
+                    <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                    <span className="text-xs sm:text-sm md:text-base whitespace-nowrap">
+                      Certificate
+                    </span>
+                  </div>
 
+                  {/* Language */}
+                  <div className="flex shrink-0 items-center gap-1 px-2 py-1">
+                    <BookA className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                    <span className="text-xs sm:text-sm md:text-base whitespace-nowrap">
+                      {course.language}
+                    </span>
                   </div>
                 </div>
 
-                <div className="flex justify-around md:justify-between flex-row py-4 sm:p-3 md:p-4">
+                </div>
+
+                <div className="flex justify-around md:justify-between flex-row sm:p-3 md:p-4">
                   <Link href={`/course/${course.slug}`}>
                     <button className=" sm:w-auto text-sm sm:text-base py-2 px-6 md:py-3 md:px-8 bg-blue-600 rounded-full text-white font-bold hover:bg-[#020276] transition cursor-pointer">
                       Explore
