@@ -149,7 +149,7 @@ const Navbar = () => {
     <nav className="w-full h-full md:h-18 sticky top-0 z-100 border-b bg-white shadow-md">
       <div className=" flex items-center justify-between px-4 sm:px-8 py-4">
 
-        <div className="flex items-center justify-between  space-x-2   w-full   lg:w-[50%] xl:w-[48%] 2xl:w-[44%]">
+        <div className="flex items-center justify-between  space-x-2   w-full   lg:w-[50%] xl:w-[50%] 2xl:w-[44%]">
           <Link href={"/"}>
             
             <Image
@@ -162,7 +162,7 @@ const Navbar = () => {
           </Link>
           
           
-          <div className="hidden lg:flex items-center space-x-15 font-bold text-gray-700">
+          <div className="hidden lg:flex items-center lg:space-x-10 xl:space-x-15 font-bold text-gray-700">
             <div>
 
               <Link href={"/"} className="cursor-pointer relative
@@ -200,37 +200,55 @@ const Navbar = () => {
         </div>
 
         {/* RIGHT: Buttons (Desktop) */}
-        <div className="hidden lg:flex items-center gap-4">
-          {/* <button className="px-6 py-3 text-sm rounded-3xl border bg-[#1C336E] font-bold text-white hover:bg-blue-600 transition cursor-pointer">
-            Login
-          </button>
-          <button className="px-6 py-3 text-sm bg-blue-600 text-white rounded-3xl font-bold hover:bg-[#1C336E] transition cursor-pointer">
-            Register
-          </button> */}
+       <div className="hidden lg:flex items-center gap-4">
+  
+        {/* Student Button */}
+        <Link
+        href={'/register'}
+        className="
+          relative inline-flex items-center justify-center
+          px-5 py-2.5
+          text-base font-semibold
+          rounded-full
+          shadow-md
+          transition-all duration-300 ease-in-out
+          hover:shadow-lg
+          active:scale-95
+          focus:outline-none focus:ring-4
+          focus:ring-yellow-300
+          cursor-pointer
+          bg-yellow-400 hover:bg-yellow-500
+        "
+      >
+        <span className="text-blue-900">
+          Start Learning
+        </span>
+        </Link>
 
-         <button
+
+          {/* Scholarship Button */}
+          <button
+          onClick={() => setIsOpen(true)}
           className="
             relative inline-flex items-center justify-center
-            px-4 py-2.5
+            px-5 py-2.5
             text-base font-semibold
-            text-white
-            bg-gradient-to-r from-blue-600 to-blue-500
             rounded-full
             shadow-md
             transition-all duration-300 ease-in-out
-            hover:from-yellow-400 hover:to-yellow-500
-            hover:text-blue-900
             hover:shadow-lg
             active:scale-95
-            focus:outline-none focus:ring-4 focus:ring-blue-300
+            focus:outline-none focus:ring-4
+            focus:ring-blue-300
             cursor-pointer
-
+            bg-gradient-to-r from-blue-600 to-blue-500
           "
-            onClick={()=>setIsOpen(true)}
-           >
-  
-              Apply for Scholarship
-            </button>
+        >
+          <span className="text-white">
+            Apply for Scholarship
+          </span>
+          </button>
+
 
         </div>
 
@@ -256,10 +274,10 @@ const Navbar = () => {
 
           <div className="flex flex-col gap-3 pt-4">
             <button className="w-full px-6 py-3 rounded-3xl bg-[#1C336E] text-white font-bold hover:bg-blue-600 transition cursor-pointer">
-              Login
+              Start Learning 
             </button>
-            <button className="w-full px-6 py-3 rounded-3xl bg-blue-600 text-white font-bold hover:bg-[#1C336E] transition cursor-pointer">
-              Register
+            <button onClick={() => setIsOpen(true)} className="w-full px-6 py-3 rounded-3xl bg-blue-600 text-white font-bold hover:bg-[#1C336E] transition cursor-pointer">
+              Apply for Scholarship
             </button>
           </div>
         </div>

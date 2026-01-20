@@ -27,12 +27,12 @@ const points = [
 const WhyChooseUs: React.FC = () => {
   return (
 
-    <section className="w-full bg-[#ddf0fd] p-10">
+    <section className="w-full bg-[#ddf0fd] p-0 sm:p-2 md:p-4 lg:p-6 xl:p-8 2xl:p-10">
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 my-16 rounded-3xl shadow-xl overflow-hidden">
 
         {/* Background Glow */}
-        <div className="absolute inset-0 bg-linear-to-br from-[#b3e0fd] via-white to-blue-50/40 blur-3xl" />
+        <div className="absolute inset-0 bg-white to-blue-50/40 blur-3xl" />
 
         {/* Heading */}
         <div className="relative flex gap-4 mb-14">

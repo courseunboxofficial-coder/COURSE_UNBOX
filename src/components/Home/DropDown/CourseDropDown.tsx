@@ -53,6 +53,8 @@ export default function CoursesDropdown({
     setCategoryCourses(map);
   }, [courses]);
 
+  console.log(courses);
+
 
 
   return (
@@ -61,7 +63,7 @@ export default function CoursesDropdown({
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
-      {/* ===== NAV ITEM ===== */}
+     
       <Link
         href="/course"
         className="flex items-center gap-2 font-medium cursor-pointer"
@@ -79,18 +81,17 @@ export default function CoursesDropdown({
         </span>
       </Link>
 
-      {/* ===== DROPDOWN ===== */}
       <div
         className={`absolute left-0 top-full mt-5 w-[900px] bg-white rounded-2xl shadow-2xl border z-50 p-10 transition-all
         ${open ? "opacity-100 visible" : "opacity-0 invisible"}`}
       >
-        {/* ARROW GAP FIX */}
+  
         <div className="absolute -top-6 left-0 w-full h-6" />
 
         <div className="grid grid-cols-3 gap-10">
 
           
-          {/* ================= LEFT: CATEGORY ================= */}
+        
           <div>
             <h4 className="font-semibold text-lg text-gray-900 mb-6">
               Course Categories
@@ -149,7 +150,7 @@ export default function CoursesDropdown({
                   </p>
 
                   <p className="text-xs font-semibold text-green-600 mt-2">
-                    ₹{course.low} – ₹{course.high}
+                    ₹{course.low}LPA – ₹{course.high}LPA
                   </p>
                 </Link>
               ))}

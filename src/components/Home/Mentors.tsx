@@ -87,12 +87,12 @@ const Mentors = () => {
                     >
                         {/* Image */}
                         <div className="relative w-full aspect-[4/3] lg:aspect-[3/2]">
-                        <Image
-                            src={mentor.Image}
-                            alt={mentor.name}
-                            fill
-                            className="object-cover"
-                        />
+                            <Image
+                                src={mentor.Image}
+                                alt={mentor.name}
+                                fill
+                                className="object-cover"
+                            />
                         </div>
 
                         {/* Content */}
@@ -114,7 +114,7 @@ const Mentors = () => {
                             <div className="flex items-center gap-2">
                                 <Briefcase className="w-4 h-4 text-gray-600" />
                                 <div>
-                                <p className="font-semibold text-sm">
+                                <p className="font-semibold text-sm text-gray-600">
                                     {mentor.work_Experience}+ Years
                                 </p>
                                 <p className="text-xs text-gray-500">
@@ -126,7 +126,7 @@ const Mentors = () => {
                             <div className="flex items-center gap-2">
                                 <Users className="w-4 h-4 text-gray-600" />
                                 <div>
-                                <p className="font-semibold text-sm">8+ Years</p>
+                                <p className="font-semibold text-sm text-gray-600">8+ Years</p>
                                 <p className="text-xs text-gray-500">
                                     Teaching
                                 </p>

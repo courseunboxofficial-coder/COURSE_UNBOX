@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import AuthSideBanner from "@/components/Auth/AuthSideBanner";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -92,47 +93,7 @@ export default function LoginPage() {
       </div>
 
       {/* ================= RIGHT : COURSE IMAGE ================= */}
-      <div className="hidden lg:flex items-center justify-center bg-linear-to-br from-blue-950 via-blue-900 to-blue-800 relative overflow-hidden">
-        
-        {/* TEXT CONTENT */}
-        <div className="absolute top-20 left-16 text-white max-w-md space-y-6">
-          <h2 className="text-4xl font-bold leading-tight">
-            Continue Your <br /> Learning Journey 🎓
-          </h2>
-
-          <p className="text-sm text-blue-100 leading-relaxed">
-            Pick up where you left off. Track progress, attend live sessions,
-            and unlock career opportunities from your dashboard.
-          </p>
-
-          <ul className="space-y-3 text-sm">
-            <li className="flex items-center gap-2">
-              <span className="text-green-400">✔</span>
-              Personalized learning dashboard
-            </li>
-            <li className="flex items-center gap-2">
-              <span className="text-green-400">✔</span>
-              Course progress & certificates
-            </li>
-            <li className="flex items-center gap-2">
-              <span className="text-green-400">✔</span>
-              Mentorship & placement support
-            </li>
-          </ul>
-        </div>
-
-        {/* IMAGE */}
-        <div className="w-[42%] relative z-10 top-40 cursor-pointer">
-          <img
-            src="/images/Student/CourseUnboxImage.webp"
-            alt="Student Dashboard"
-            className="w-full object-contain drop-shadow-2xl"
-          />
-        </div>
-
-        {/* BACKGROUND DECOR */}
-        <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-blue-700/20 rounded-full blur-3xl"></div>
-      </div>
+     <AuthSideBanner/>
     </div>
   );
 }

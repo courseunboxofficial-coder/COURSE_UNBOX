@@ -295,3 +295,7 @@
 
 /* Course page */
 
+.topCourseCard ::-webkit-scrollbar{
+   display: none;
+}
+
