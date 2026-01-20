@@ -2,19 +2,15 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { Home } from "lucide-react";
+import AuthSideBanner from "@/components/Auth/AuthSideBanner";
 export default function RegisterPage() {
     const router = useRouter();
   return (
     <div className="min-h-screen grid lg:grid-cols-2 bg-gray-50 relative">
       
-      {/* ================= LEFT : FORM ================= */}
-      <button
-            onClick={() => router.back()}
-            className="fixed top-6 right-6 z-[100] w-10 h-10 rounded-full bg-white shadow-md cursor-pointer"
-        >
-            ✕
-      </button>
-
+      {/* ================ LEFT : FORM ================ */}
+     
       <div className="flex items-center justify-center px-6 py-12 cursor-pointer">
         <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
             
@@ -89,59 +85,7 @@ export default function RegisterPage() {
       </div>
 
      {/* ================= RIGHT : COURSE IMAGE ================= */}
-        <div className="hidden lg:flex items-center justify-center bg-linear-to-br from-blue-950 via-blue-900 to-blue-800 relative overflow-hidden">
-        
-        {/* TEXT CONTENT */}
-        <div className="absolute top-20 left-16 text-white max-w-md space-y-6">
-            
-            <h2 className="text-4xl font-bold leading-tight">
-            Unbox Your <br /> Learning Journey 🎓
-            </h2>
-
-            <p className="text-sm text-blue-100 leading-relaxed">
-            Learn from industry experts, work on real-world projects, and build
-            job-ready skills — all inside one powerful student dashboard.
-            </p>
-
-            {/* FEATURE LIST */}
-            <ul className="space-y-3 text-sm">
-            <li className="flex items-center gap-2">
-                <span className="text-green-400">✔</span>
-                Industry-ready courses & career paths
-            </li>
-            <li className="flex items-center gap-2">
-                <span className="text-green-400">✔</span>
-                Live mentorship & doubt-clearing sessions
-            </li>
-            <li className="flex items-center gap-2">
-                <span className="text-green-400">✔</span>
-                Hands-on projects & real case studies
-            </li>
-            <li className="flex items-center gap-2">
-                <span className="text-green-400">✔</span>
-                Placement support & interview preparation
-            </li>
-            </ul>
-
-            {/* TRUST / CTA LINE */}
-            <p className="text-xs text-blue-200 pt-2">
-            Trusted by <span className="font-semibold text-white">10,000+</span> learners •
-            Beginner to Advanced
-            </p>
-        </div>
-
-        {/* IMAGE */}
-        <div className="w-[42%] top-50 relative z-10">
-            <img
-            src="/images/Student/CourseUnboxImage.webp"
-            alt="Course Unbox"
-            className="w-full object-contain drop-shadow-2xl"
-            />
-        </div>
-
-        {/* BACKGROUND DECOR */}
-        <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-blue-700/20 rounded-full blur-3xl"></div>
-        </div>
+      <AuthSideBanner/>
 
     </div>
   );

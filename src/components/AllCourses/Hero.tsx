@@ -18,7 +18,7 @@ export default function Hero(){
       
       {/* Soft Pattern Overlay */}
 
-      <nav className="text-sm sm:text-sm flex items-center text-white absolute left-6 top-3   sm:left-6 sm:top-10 md:left-6  md:top-15 z-99 xl:top-10 xl:left-35 ">
+      <nav className="text-sm sm:text-sm flex items-center text-white absolute left-6 top-3   sm:left-6 sm:top-10 md:left-3  lg:-left-2  md:top-15 z-99 xl:top-10 xl:left-35 2xl-left-35 ">
         <Link href="/" className="hover:text-blue-500 transition">
          <Home size={19} />
         </Link>

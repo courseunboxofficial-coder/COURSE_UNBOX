@@ -207,7 +207,7 @@ export default function AllCoursesPage() {
                 className="bg-white rounded-xl border border-blue-300 shadow-sm hover:shadow-lg transition overflow-hidden"
               >
                 {/* Image Placeholder */}
-                <div className="h-36 bg-blue-50 flex items-center justify-center relative">
+                <div className="h-36 bg-blue-50 flex items-center justify-center relative my-4">
                   <Link href={`/course/${course.slug}`}>
                     <img className="w-full h-full object-cover" src={course.image} alt={course.alt} />
                   </Link>
