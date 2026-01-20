@@ -5,12 +5,13 @@ import Image from "next/image";
 import HomeEditor from './HomeEditor';
 import CourseEditor from './CourseEditor';
 import BlogEditor from './BlogEditor';
-import { Home, BookOpen, Info, FileText, Settings, Menu, Users, ChartColumnBigIcon, LogOut, BookOpenCheck } from "lucide-react";
+import { Home, BookOpen, Info, FileText, Settings, Menu, Users, ChartColumnBigIcon, LogOut, BookOpenCheck, ChartColumnStacked } from "lucide-react";
 import MentorEditor from './MentorEditor';
 import Stastics from './Stastics';
 import { supabase } from '@/lib/supabse/supabaseConfig';
 import { useRouter } from 'next/navigation';
 import PagesEditor from "./PagesEditor";
+import CategoryEditor from "./CategoryEditor";
 
 const sidebarItems = [
     { key: "stats", label: "Stats", icon: ChartColumnBigIcon },
@@ -19,6 +20,7 @@ const sidebarItems = [
     { key: "mentors", label: "Mentors", icon: Users },
     { key: "blog", label: "Blog", icon: FileText },
     { key: "pages", label: "Pages", icon: BookOpenCheck },
+    { key: "category", label: "Category", icon: ChartColumnStacked },
 ];
 
 const Sidebar = () => {
@@ -90,6 +92,7 @@ const Sidebar = () => {
                     {active === "mentors" && <MentorEditor collapsed={collapsed} />}
                     {active === "blog" && <BlogEditor collapsed={collapsed} />}
                     {active === "pages" && <PagesEditor collapsed={collapsed}/>}
+                     {active === "category" && <CategoryEditor collapsed={collapsed}/>}
                 </div>
             </main>
         </div>

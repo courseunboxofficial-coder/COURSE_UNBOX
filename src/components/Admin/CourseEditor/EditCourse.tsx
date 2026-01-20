@@ -1030,6 +1030,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
 
 
           <div>
+            
             {/* content */}
 
             <div className="h-[80vh] border p-5 rounded-3xl mb-7">

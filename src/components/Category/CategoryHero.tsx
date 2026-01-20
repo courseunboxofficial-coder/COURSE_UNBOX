@@ -1,4 +1,5 @@
 "use client"
+
 import React from "react";
 import { Home } from "lucide-react";
 import { IndianRupee , NotepadText, GraduationCap, Award } from "lucide-react";
@@ -9,52 +10,32 @@ import emailjs from "@emailjs/browser";
 
 
 
-export default function CategoryHero({ categories }: any) {
+export default function CategoryHero({ category }: any) {
 
       const stats = [
     {
-      icon: <NotepadText  className=" text-[#d18800]
-                                        w-8 h-8
-                                        sm:w-10 sm:h-10
-                                        md:w-12 md:h-12
-                                        lg:w-14 lg:h-14
-                                        "  />,
+      icon: <NotepadText  className=" text-[#d18800] w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 "  />,
       value: 40,
       prefix:"",
       suffix : "+",
       text: "Courses",
     },
     {
-      icon: <GraduationCap  className="text-[#d18800]
-                                    w-7 h-7
-                                    xs:w-8 xs:h-8
-                                    sm:w-10 sm:h-10
-                                    md:w-12 md:h-12
-                                  " />,
+      icon: <GraduationCap  className="text-[#d18800]2 w-7 h-72 xs:w-8 xs:h-82 sm:w-10 sm:h-102 md:w-12 md:h-12 " />,
       value: 100,
       suffix: "k+",
       prefix : "",
       text: "Students",
     },
     {
-      icon: <Award   className="text-[#d18800]
-                              w-7 h-7
-                              xs:w-8 xs:h-8
-                              sm:w-10 sm:h-10
-                              md:w-12 md:h-12
-                            "  />,
+      icon: <Award   className="text-[#d18800] w-7 h-7 xs:w-8 xs:h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 "/>,
       value: 12,
       prefix:"",
       suffix : "+",
       text: "Experience",
     },
     {
-      icon: <IndianRupee  className="text-[#d18800]
-                                w-7 h-7
-                                xs:w-8 xs:h-8
-                                sm:w-10 sm:h-10
-                                md:w-12 md:h-12
-                              " />,
+      icon: <IndianRupee  className="text-[#d18800]2 w-7 h-72 xs:w-8 xs:h-82 sm:w-10 sm:h-102 md:w-12 md:h-12 " />,
       value: 450000,
       prefix:"",
       text: " Average salary",
@@ -110,12 +91,11 @@ export default function CategoryHero({ categories }: any) {
         <div className="text-left lg:text-left">
           <div className="flex justify-start gap-2 text-sm text-white/80 mb-5">
             <Home size={18} />
-            <span>/ Data Science & Analytics</span>
+            <span>{category.title}</span>
           </div>
 
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
-            Data Science and <br className="hidden sm:block" />
-            Analytics Courses
+            {category.title}<br className="hidden sm:block" />
           </h1>
 
          <p className="mt-5 text-base sm:text-lg text-white/80 max-w-xl mx-auto lg:mx-0 leading-relaxed">
