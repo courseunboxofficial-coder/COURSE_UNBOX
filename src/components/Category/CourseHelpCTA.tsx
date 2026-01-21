@@ -1,4 +1,5 @@
 "use client"
+
 import Image from "next/image";
 import { Phone } from "lucide-react";
 import PopUpForm from "../AllCourses/PopUpForm";

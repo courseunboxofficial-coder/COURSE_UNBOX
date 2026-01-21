@@ -4,36 +4,9 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 
-const faqs = [
-  {
-    question: "Who can attend this masterclass?",
-    answer:
-      "This masterclass is suitable for students, working professionals, entrepreneurs, and anyone interested in learning AI and Digital Marketing, regardless of prior experience.",
-  },
-  {
-    question: "Is this masterclass really free?",
-    answer:
-      "Yes, the masterclass is completely free. There are no hidden charges or commitments.",
-  },
-  {
-    question: "Will I get a recording if I miss the session?",
-    answer:
-      "Yes, registered participants will receive access to the session recording after the masterclass.",
-  },
-  {
-    question: "How long is the masterclass?",
-    answer:
-      "The masterclass typically lasts between 60 to 90 minutes, including a live Q&A session.",
-  },
-  {
-    question: "Will I receive a certificate?",
-    answer:
-      "Yes, participants who attend the full session will receive a certificate of participation.",
-  },
-];
 
-export default function FAQs() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+export default function FAQs({category} : any) {
+  const [openIndex, setOpenIndex] = useState<number | null>(-1);
 
   return (
     <section className="w-full px-4 py-16">
@@ -69,7 +42,8 @@ export default function FAQs() {
           </div>
 
         <div className="space-y-4 lg:w-[60%] w-[80%] px-6 mx-auto">
-        {faqs.map((faq, index) => {
+        {category.FAQ.map((faq : any, index : number) => {
+
           const isOpen = openIndex === index;
 
           return (

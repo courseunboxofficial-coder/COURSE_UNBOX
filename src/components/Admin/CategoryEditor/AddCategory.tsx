@@ -14,7 +14,7 @@ const SunEditor = dynamic(() => import("suneditor-react"), {
 const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
 
     const [loading, setloading] = useState(false);
-    
+
     const [meta, setMeta] = useState({
 
         metaTitle: "",
@@ -150,6 +150,7 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
 
 
     return (
+        
         <div className={`${collapsed ? "w-[85vw]" : "w-[75vw]"} mx-auto mt-10 px-4`}>
 
             <form onSubmit={handleSave}>

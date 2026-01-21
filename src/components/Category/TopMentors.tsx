@@ -2,7 +2,9 @@ import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 
 export default function TopMentors() {
+
   return (
+
     <section className="max-w-7xl mx-auto px-4 py-16">
       
       {/* Heading */}
@@ -45,6 +47,8 @@ export default function TopMentors() {
         />
       </div>
     </section>
+
+    
   );
 }
 

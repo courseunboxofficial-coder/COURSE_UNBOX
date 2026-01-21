@@ -8,6 +8,7 @@ import TopMentors from '@/components/Category/TopMentors'
 import FAQs from '@/components/Category/FAQSCategory'
 import CategoryOverview from '@/components/Category/CategoryOverview'
 import { supabase } from '@/lib/supabse/supabaseConfig'
+import { notFound } from 'next/navigation'
 
 
 
@@ -31,17 +32,22 @@ async function getCategory(slug:string) {
 export default async function page({params}: {params : Promise<{slug:string}>}){
     const {slug} = await params;
     const category = await getCategory(slug);
+
+
+    if(category == null){
+        notFound();
+    }
     
      return (
 
       <>
       <Navbar/>
       <CategoryHero category={category} />
-      <CourseList  />
+      <CourseList/>
       <CourseHelpCTA/>
       <TopMentors/>
-      <CategoryOverview/>
-      <FAQs/>
+      <CategoryOverview category={category}/>
+      <FAQs category={category}/>
       <CategoryCTA  />
       <Footer/>
       
