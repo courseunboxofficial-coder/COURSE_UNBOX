@@ -4,6 +4,7 @@ import Image from "next/image";
 import { CheckCircle } from "lucide-react";
 import PopUpForm from "../AllCourses/PopUpForm";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function AboutCourseUnbox() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +12,17 @@ export default function AboutCourseUnbox() {
   return (
     <>
       <PopUpForm isOpen={isOpen} onConfirm={()=>setIsOpen(false)} onCancel={()=>setIsOpen(false)} />
+        
      <section className="w-full bg-blue-50 py-12 sm:py-16">
+      <nav aria-label="Breadcrumb" className="text-sm text-gray-400 mb-6 pl-4 sm:pl-16 md:pl-24 lg:pl-30 max-w-sm -mt-9">
+          <Link href="/" className="hover:text-blue-500 transition">
+          Home
+          </Link>
+          <span className="mx-2">/</span>
+          <Link href={"/about"} className="text-gray-600 font-medium ">
+            About Us 
+          </Link>
+      </nav>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 gap-8 sm:gap-12 items-center">
 
         {/* LEFT CONTENT */}
