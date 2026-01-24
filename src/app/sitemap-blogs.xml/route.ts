@@ -9,8 +9,8 @@ export async function GET() {
       `${process.env.NEXT_PUBLIC_SUPABASE_URL}/rest/v1/Blog?select=slug,created_at`,
       {
         headers: {
-          apikey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!}`,
+          apikey: process.env.NEXT_PUBLIC_SUPABASE_KEY!,
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_KEY!}`,
         },
         cache: "force-cache",
       }
