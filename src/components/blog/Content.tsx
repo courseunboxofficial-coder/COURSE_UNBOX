@@ -140,7 +140,7 @@ const Content = () => {
         {/* BreadCrumb */}
 
         <div className='flex sm:flex-row  flex-col sm:items-center gap-10 mb-2'>
-           <nav className="text-sm text-gray-400 mb-6 pl-5 md:pl-8 lg:pl-10 xl:pl-20 bg-white max-w-sm -mt-9">
+           <nav aria-label="Breadcrumb" className="text-sm text-gray-400 mb-6 pl-5 md:pl-8 lg:pl-10 xl:pl-20 bg-white max-w-sm -mt-9">
             <Link href="/" className="hover:text-blue-500 transition">
             Home
             </Link>

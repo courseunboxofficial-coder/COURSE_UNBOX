@@ -11,7 +11,9 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@monaco-editor/react": "^4.7.0",
-    "@supabase/supabase-js": "^2.89.0",
+    "@supabase/auth-helpers-nextjs": "^0.15.0",
+    "@supabase/ssr": "^0.8.0",
+    "@supabase/supabase-js": "^2.91.1",
     "@tailwindcss/typography": "^0.5.19",
     "lucide": "^0.560.0",
     "lucide-react": "^0.560.0",

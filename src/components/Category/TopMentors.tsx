@@ -19,33 +19,18 @@ export default function TopMentors() {
       </div>
 
       {/* Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
-        {/* Card 1 */}
-        <MentorCard
-          name="Prof. Sudeb Das Gupta"
-          role="Professor at IIT Roorkee"
-          image="/images/Student/UnboxProfile.png"
-          description="Dr. Sudeb Das Gupta is currently working as a Professor at IIT Roorkee. He has completed his PhD from Banaras Hindu University in Electronics Engineering and has more than 20 years of teaching experience."
-        />
-
-        {/* Card 2 */}
-        <MentorCard
-          name="Prof. Balasubramanian R"
-          role="Professor & HOD at IIT Roorkee"
-          image="/images/Student/UnboxProfile.png"
-          description="Dr. Balasubramanian is a Professor & HOD of the Computer Science Department at IIT Roorkee. He completed his PhD from IIT Madras and brings over 20 years of academic experience."
-        />
-
-        {/* Card 3 */}
-        <MentorCard
-          name="Prof. Narendra S. Chaudhari"
-          role="Professor at IIT Indore"
-          image="/images/Student/UnboxProfile.png"
-          description="Dr. Narendra Chaudhari is a Professor of Computer Science and Engineering at IIT Indore, specializing in network security, mobile computing, and machine learning."
-          
-        />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 cursor-pointer">
+        {mentors.slice(1, 4).map((mentor) => (
+          <MentorCard
+            key={mentor.id}
+            name={mentor.name}
+            role={mentor.profession}
+            image={mentor.Image}
+            description={mentor.description}
+          />
+        ))}
       </div>
+
     </section>
 
     

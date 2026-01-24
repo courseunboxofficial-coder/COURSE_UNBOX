@@ -18,7 +18,9 @@ export default function Hero(){
       
       {/* Soft Pattern Overlay */}
 
-      <nav className="text-sm sm:text-sm flex items-center text-white absolute left-6 top-3   sm:left-6 sm:top-10 md:left-3  lg:-left-2  md:top-15 z-99 xl:top-10 xl:left-35 2xl-left-35 ">
+      {/* BreadCrumb */}
+
+      <nav aria-label="Breadcrumb" className="text-sm sm:text-sm flex items-center text-white absolute left-6 top-3   sm:left-6 sm:top-10 md:left-3  lg:-left-2  md:top-15 z-99 xl:top-10 xl:left-35 2xl-left-35 ">
         <Link href="/" className="hover:text-blue-500 transition">
          <Home size={19} />
         </Link>
@@ -27,6 +29,8 @@ export default function Hero(){
           Courses
         </Link>
       </nav>
+
+
      <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(#ffffff_1px,transparent_1px)] bg-size-[24px_24px]" />
 
       <div className="relative max-w-7xl mx-auto px-6 pt-8 sm:pt-12 pb-4 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">

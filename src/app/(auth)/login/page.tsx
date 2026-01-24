@@ -3,21 +3,40 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import AuthSideBanner from "@/components/Auth/AuthSideBanner";
+import { useState } from "react";
+import { supabase } from "@/lib/supabse/supabaseConfig";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function LoginPage() {
   const router = useRouter();
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  
+
+  const handleLogin = async (e: React.FormEvent) => {
+      e.preventDefault();
+
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) {
+        alert(error.message); 
+        toast.error(error.message)
+        return;
+      }
+
+      toast.success("Login successful!");
+      
+      router.replace("/student");
+  };
+
+  
 
   return (
+    <>
     <div className="min-h-screen grid lg:grid-cols-2 bg-gray-50 relative">
-      
-      {/* GLOBAL CLOSE / BACK BUTTON */}
-      <button
-        onClick={() => router.back()}
-        className="fixed top-6 right-6 z-[100] cursor-pointer flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-md text-gray-600 hover:text-gray-900 hover:scale-105 transition"
-        aria-label="Go back"
-      >
-        ✕
-      </button>
 
       {/* ================= LEFT : LOGIN FORM ================= */}
       <div className="flex items-center justify-center px-6 py-12">
@@ -47,15 +66,21 @@ export default function LoginPage() {
           </div>
 
           {/* LOGIN FORM */}
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleLogin}>
             <input
               type="email"
+              name="email"
+              value={email}
+              onChange={(e)=>setEmail(e.target.value)}
               placeholder="Email address"
               className="w-full border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
             <input
               type="password"
+              name="password"
+              value={password}
+              onChange={(e)=>setPassword(e.target.value)}
               placeholder="Password"
               className="w-full border rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
@@ -92,8 +117,9 @@ export default function LoginPage() {
         </div>
       </div>
 
-      {/* ================= RIGHT : COURSE IMAGE ================= */}
      <AuthSideBanner/>
     </div>
+    <ToastContainer/>
+    </>
   );
 }

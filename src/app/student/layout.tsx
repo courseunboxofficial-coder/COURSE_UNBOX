@@ -1,7 +1,10 @@
+
 import Sidebar from "@/components/Student/Sidebar";
 import Topbar from "@/components/Student/Topbar";
+import { createSupabaseServerClient } from "@/lib/supabse/supabase-server";
 
-export default function StudentLayout({children,}: {children: React.ReactNode;}) {
+export default async function StudentLayout({children,}: {children: React.ReactNode;}) {
+    
 
   return (
 

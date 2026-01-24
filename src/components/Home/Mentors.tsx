@@ -47,7 +47,9 @@ const Mentors = () => {
         console.log("THE DATA IS FETCHED INTIALLY : ");
         fetchData();
 
-    }, [])
+    }, []);
+
+    console.log("Mentor data", MentorsData)
 
     return (
 

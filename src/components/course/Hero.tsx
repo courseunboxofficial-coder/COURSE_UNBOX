@@ -61,15 +61,31 @@ const Hero = ({ courseData : course }: { courseData : Course }) => {
     return (
 
 
-        <section className="w-full bg-linear-to-br from-[#01016c] via-[#4d14c6] to-violet-800 bg-opacity-90 py-6 px-6 md:px-10 md:py-12">
+        <section className="relative z-40 w-full bg-linear-to-br from-[#01016c] via-[#4d14c6] to-violet-800 py-6 px-6 md:px-10 md:py-12 ">
 
             <div className="w-full md:w-8xl md:mx-auto grid lg:grid-cols-2 gap-12 items-center">
+         
 
 
                 <div className="w-full text-white md:px-10">
 
 
                     {/* Top Badges */}
+                    
+                    <nav aria-label="Breadcrumb" className="text-sm text-gray-300   max-w-sm -mt-1 pb-5  sm:-mt-7 sm:pb-2.5">
+                        <Link href="/" className="hover:text-blue-500 transition cursor-pointer">
+                        Home
+                        </Link>
+                        <span className="mx-1">/</span>
+                        <Link href={'/course'} className='hover:text-blue-500 transition cursor-pointer'>
+                        Courses
+                        </Link>
+                        <span className='mx-1'>/</span>
+                        <Link href={`${course?.slug}`} className="text-gray-500 font-medium curosr-pointer ">
+                        {course?.domain}
+                        </Link>
+                    </nav>
+                 
 
                     <div className="flex flex-wrap items-center gap-3 mb-6">
                         <span className="bg-white/15 px-4 py-1 rounded-full text-sm font-medium">
