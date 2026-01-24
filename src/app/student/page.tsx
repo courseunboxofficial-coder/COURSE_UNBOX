@@ -26,6 +26,8 @@ export default function StudentDashboard() {
         data: { session },
       } = await supabase.auth.getSession();
 
+     
+
       if (!session) {
         router.replace("/login");
         return;
@@ -42,8 +44,13 @@ export default function StudentDashboard() {
         return;
       }
 
+      
+
       setStudentData(data);
       setLoading(false);
+      if(!data.phone_verified){
+         router.replace('/verifyphone');
+      }
     };
 
     loadStudent();

@@ -57,8 +57,7 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
 
   return (
     <>
-      <Navbar />
-      <div className="w-full min-h-screen text-white">
+        <Navbar />
         <Hero courseSlug={slug} />
         <Banner courseSlug={slug} />
         <Enquiry courseSlug={slug} />
@@ -70,7 +69,7 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
         <TopCompanies />
         <Faq courseSlug={slug} />
         <LetsConnect />
-      </div>
+   
       <Footer />
 
     </>

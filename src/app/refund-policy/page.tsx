@@ -1,3 +1,4 @@
+import Link from "next/link";
 export const metadata = {
   title: "Refund & Cancellation Policy | Course Unbox",
   description:
@@ -8,6 +9,18 @@ export default function RefundPolicyPage() {
   return (
     <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       {/* Header */}
+
+      <nav aria-label="Breadcrumb" className="text-sm text-gray-400 mb-6  bg-white max-w-sm -mt-9">
+        <Link href="/" className="hover:text-blue-500 transition">
+        Home
+        </Link>
+        <span className="mx-2">/</span>
+        <Link href={"/refund-policy"} className="text-gray-600 font-medium ">
+          Refund Policy
+        </Link>
+      </nav>
+
+
       <header className="mb-10">
         <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
           Refund and Cancellation Policy

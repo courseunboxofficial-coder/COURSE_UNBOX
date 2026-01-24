@@ -110,10 +110,10 @@ export default function CategoryHero({ categories }: any) {
         
         {/* LEFT CONTENT */}
         <div className="text-left lg:text-left">
-          <div className="flex justify-start gap-2 text-sm text-white/80 mb-5">
+          <nav aria-label="Breadcrumb" className="flex justify-start gap-2 text-sm text-white/80 mb-5">
              <Link href="/" className="cursor-pointer"><Home size={18} /></Link>
             <span>/ Data Science & Analytics</span>
-          </div>
+          </nav>
 
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight">
             Data Science and <br className="hidden sm:block" />

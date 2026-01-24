@@ -34,7 +34,7 @@ export default function LeftContent({ Blogs }: { Blogs : Blog }) {
 
     {/* ===== BLOG HEADER ===== */}
     <section className="px-8 sm:px-4 pt-16 ">
-      <nav className="text-sm text-gray-400 -mt-6 py-4 px-3 ">
+      <nav aria-label="Breadcrumb" className="text-sm text-gray-400 -mt-6 py-4 px-3 ">
                 <Link href="/" className="hover:text-blue-500 transition">
                 Home
                 </Link>

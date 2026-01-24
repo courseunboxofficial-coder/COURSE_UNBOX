@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import AuthSideBanner from "@/components/Auth/AuthSideBanner";
 import { useState } from "react";
 import { supabase } from "@/lib/supabse/supabaseConfig";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -22,17 +22,20 @@ export default function LoginPage() {
       });
 
       if (error) {
-        toast.error(error.message); 
+        alert(error.message); 
+        toast.error(error.message)
         return;
       }
 
       toast.success("Login successful!");
+      
       router.replace("/student");
   };
 
   
 
   return (
+    <>
     <div className="min-h-screen grid lg:grid-cols-2 bg-gray-50 relative">
 
       {/* ================= LEFT : LOGIN FORM ================= */}
@@ -116,5 +119,7 @@ export default function LoginPage() {
 
      <AuthSideBanner/>
     </div>
+    <ToastContainer/>
+    </>
   );
 }

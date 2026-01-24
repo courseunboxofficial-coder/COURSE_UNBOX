@@ -72,7 +72,7 @@ export default function RegisterPage() {
     }
 
     setLoading(false);
-    router.replace("/login");
+    router.replace("/student");
   };
   
   return (
