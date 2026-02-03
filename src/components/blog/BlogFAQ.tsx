@@ -1,6 +1,6 @@
 "use client"
 
-import {useState } from "react";
+import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 
@@ -30,7 +30,7 @@ type Blog = {
 
 };
 
-export default function BlogFAQ({ Blogs} : { Blogs : Blog }) {
+export default function BlogFAQ({ Blogs }: { Blogs: Blog }) {
 
 
   const [openIndex, setOpenIndex] = useState<number | null>(null);

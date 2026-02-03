@@ -24,7 +24,7 @@ const menu = [
 ];
 
 export default function Sidebar() {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [activeIndex, setActiveIndex] = useState<number>(1);
   const [open, setOpen] = useState(false);
 
   return (

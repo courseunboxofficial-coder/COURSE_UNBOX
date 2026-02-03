@@ -63,18 +63,18 @@ export default function BuyButton({ courseData }: { courseData: Course }) {
 
     const handleBuy = async () => {
 
-        const { data } = await supabase.auth.getUser();
+        const { data: userData } = await supabase.auth.getUser();
 
-        if (data.user == null) {
+        if (userData.user == null) {
             router.push("/login");
             return;
         }
 
-        console.log(data);
+        console.log(userData);
         console.log("THE PRICE OF THE COURSE IS : ");
         console.log(courseData.price);
 
-        const res = await fetch("http://localhost:3000/api/razorpay/create-order", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/razorpay/create-order`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -90,26 +90,72 @@ export default function BuyButton({ courseData }: { courseData: Course }) {
         const order = await res.json();
 
         const options = {
-            key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID , // Replace with your Razorpay key_id
-            amount: order.amount, // Amount is in currency subunits.
+
+            key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+            amount: order.amount,
             currency: 'INR',
             name: 'Course Unbox',
             description: courseData.title,
-            image : "/images/Home/CourseUnboxLogo.webp",
-            order_id: order.id, // This is the order_id created in the backend
-            callback_url: 'http://localhost:3000/student/courses', // Your success URL
+            image: "https://pdgzqzyhgeowizefaoxs.supabase.co/storage/v1/object/public/AppImages/CourseUnboxLogo.webp",
+            order_id: order.id,
+            "handler": async function (response: any) {
+
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/razorpay/verify-payment`, {
+
+                    method: "POST",
+                    body: JSON.stringify(response),
+
+                });
+
+                const paymentResult = await res.json();
+
+                if (paymentResult.success === true) {
+
+                    const { data: student, error } = await supabase
+                        .from("Student")
+                        .select("*")
+                        .eq("email", userData.user.email)
+                        .single();
+
+                    if (error) return;
+
+                    const updatedCourses = [
+                        ...(student.course ?? []),
+                        { id: courseData.id }
+                    ];
+
+                    const { error: updateError } = await supabase
+                        .from("Student")
+                        .update({ course: updatedCourses })
+                        .eq("email", userData.user.email);
+
+                    if (updateError) {
+                        return;
+                    }
+
+                    router.push("/student/courses");
+                }
+
+            },
+
             prefill: {
-                name: "Gaurav Kumar",
-                email: 'gaurav.kumar@example.com',
-                contact: '9999999999'
+                name: userData.user.user_metadata?.name ?? "User",
+                email: userData.user.email,
+                contact: '9643065630'
             },
 
             theme: {
+
                 color: '#050568'
+
             },
         };
 
+
         const rzp = new (window as any).Razorpay(options);
+        rzp.on('payment.failed', function (response: any) {
+            alert("The Payment is failed currently : ");
+        });
         rzp.open();
 
     };
@@ -120,6 +166,7 @@ export default function BuyButton({ courseData }: { courseData: Course }) {
             className="flex items-center justify-center gap-2 bg-[#e6ba2b] text-white px-12 py-4 rounded-full mt-5 cursor-pointer hover:bg-[#070739] transition "
         >
             Buy Now Start your Learning
+
         </button>
     );
 }

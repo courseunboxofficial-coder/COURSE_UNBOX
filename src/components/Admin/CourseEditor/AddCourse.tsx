@@ -328,12 +328,14 @@ const AddCourse = ({ collapsed }: { collapsed: boolean }) => {
             ],
 
             FAQ: [
+
                 { question: FAQ.firstQuestion, answer: FAQ.firstAnswer },
                 { question: FAQ.secondQuestion, answer: FAQ.secondAnswer },
                 { question: FAQ.thirdQuestion, answer: FAQ.thirdAnswer },
                 { question: FAQ.fourthQuestion, answer: FAQ.fourthAnswer },
                 { question: FAQ.fifthQuestion, answer: FAQ.fifthAnswer },
                 { question: FAQ.sixthQuestion, answer: FAQ.sixthAnswer },
+                
             ],
 
             Testimonials: [

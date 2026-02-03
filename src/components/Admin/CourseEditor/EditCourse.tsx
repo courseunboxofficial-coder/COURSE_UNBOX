@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { toast, ToastContainer } from 'react-toastify';
 
 import "suneditor/dist/css/suneditor.min.css";
+import EditVideo from './EditVideo';
 
 const Editor = dynamic(
   () => import("@monaco-editor/react"),
@@ -66,6 +67,26 @@ type Course = {
 
   image: string;
 
+  videoModule: {
+    id: string
+    moduleName: string,
+    videos: {
+      id: string,
+      title: string,
+      video: string
+    }[]
+  }[]
+
+}
+
+type VideoModule = {
+  id: string
+  moduleName: string,
+  videos: {
+    id: string,
+    title: string,
+    video: string
+  }[]
 }
 
 
@@ -137,6 +158,15 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
   });
 
   const [parsedJson, setParsedJson] = useState({});
+
+  const [videoModule, setVideoModule] = useState<VideoModule[]>([])
+  console.log("The data of the Video Module is inside the Add Course is : ");
+  console.log(videoModule);
+
+  const handleVideoModule = (module: VideoModule[]) => {
+    setVideoModule(module);
+    console.log("THE handleVideoModule function is also called inside the Add Course : ");
+  }
 
 
 
@@ -469,6 +499,7 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
         price: formData.price,
         alt: formData.alt,
         slug: slug,
+        videoModule : videoModule,
         Delivery_Mode: formData.Delivery_Mode,
         content: [
 
@@ -1026,6 +1057,10 @@ const EditCourse = ({ collapsed, course }: { collapsed: boolean; course: Course 
 
             />
           </div>
+
+          {
+            course.Delivery_Mode == "Online" ? <EditVideo courseData={course} handleVideoModule={handleVideoModule}/> : <></>
+          }
 
 
           <div>

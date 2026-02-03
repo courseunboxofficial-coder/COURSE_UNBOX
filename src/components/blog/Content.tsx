@@ -10,27 +10,27 @@ import SearchBar from './SearchBar'
 export type InternshipCard = {
 
   id: string;
-    title: string;
-    content: string;
-    FAQ: {
-        question: string;
-        answer: string
-    }[];
-    image: string,
+  title: string;
+  content: string;
+  FAQ: {
+    question: string;
+    answer: string
+  }[];
+  image: string,
 
-    meta: {
+  meta: {
 
-        title: string,
-        description: string
-    },
+    title: string,
+    description: string
+  },
 
-    slug: string,
-    alt: string,
-    subcontent: string,
-    created_at: number;
-    author: string,
-    domain: string;
-  
+  slug: string,
+  alt: string,
+  subcontent: string,
+  created_at: number;
+  author: string,
+  domain: string;
+
 
 };
 
@@ -55,77 +55,77 @@ const Content = () => {
 
 
 
-  const [activeCategory, setActiveCategory] = useState('All Blogs'); 
+  const [activeCategory, setActiveCategory] = useState('All Blogs');
   const [selectedAuthor, setSelectedAuthor] = useState("");
   const [showAuthorDropdown, setShowAuthorDropdown] = useState(false);
 
-   
+
   function toNormalCase(name: string): string {
     return name
-        .toLowerCase()
-        .split(" ")
-        .filter(Boolean) 
-        .map(word => word[0].toUpperCase() + word.slice(1))
-        .join(" ");
-   }
+      .toLowerCase()
+      .split(" ")
+      .filter(Boolean)
+      .map(word => word[0].toUpperCase() + word.slice(1))
+      .join(" ");
+  }
 
-    const authors = useMemo(()=>{
-      return  [...new Set(blogs.map((blog)=> toNormalCase(blog.author).trim()))]
-    },[blogs]);
-
-
+  const authors = useMemo(() => {
+    return [...new Set(blogs.map((blog) => toNormalCase(blog.author).trim()))]
+  }, [blogs]);
 
 
-    useEffect(() => {
 
-      const getBlogData = async () => {
 
-        const { data, error } = await supabase.from("Blog").select("*").order("created_at", {ascending : false});
-        
-        
-        if (error) {
+  useEffect(() => {
 
-          console.log("There is some of the error I have got");
-          console.log(error);
+    const getBlogData = async () => {
 
-        }
+      const { data, error } = await supabase.from("Blog").select("*").order("created_at", { ascending: false });
 
-        setBlogs(data || []);
-        console.log(blogs)
 
-        console.log("THE BLOG DATA COME FROM THE DATA BASE IS : ");
-        console.log(data);
+      if (error) {
+
+        console.log("There is some of the error I have got");
+        console.log(error);
 
       }
 
+      setBlogs(data || []);
+      console.log(blogs)
 
-      getBlogData();
+      console.log("THE BLOG DATA COME FROM THE DATA BASE IS : ");
+      console.log(data);
 
-    }, []);
-  
-
-
-    const filteredBlogs = useMemo(() => {
-      return blogs.filter((blog) => {
-        if (selectedAuthor) return toNormalCase(blog.author) === selectedAuthor;
-        if (activeCategory === "All Blogs") return true;
-        return activeCategory === blog.domain;
-      });
-    }, [blogs, activeCategory, selectedAuthor]);
-    
-
-      const totalBlogs = useMemo(() => {
-      return Math.ceil(filteredBlogs.length / limit);
-    }, [filteredBlogs, limit]);
+    }
 
 
-  
+    getBlogData();
 
-   const currBlogs = useMemo(() => {
-      const start = (page - 1) * limit;
-      const end = start + limit;
-      return filteredBlogs.slice(start, end);
-    }, [filteredBlogs, page, limit]);
+  }, []);
+
+
+
+  const filteredBlogs = useMemo(() => {
+    return blogs.filter((blog) => {
+      if (selectedAuthor) return toNormalCase(blog.author) === selectedAuthor;
+      if (activeCategory === "All Blogs") return true;
+      return activeCategory === blog.domain;
+    });
+  }, [blogs, activeCategory, selectedAuthor]);
+
+
+  const totalBlogs = useMemo(() => {
+    return Math.ceil(filteredBlogs.length / limit);
+  }, [filteredBlogs, limit]);
+
+
+
+
+  const currBlogs = useMemo(() => {
+    const start = (page - 1) * limit;
+    const end = start + limit;
+    return filteredBlogs.slice(start, end);
+  }, [filteredBlogs, page, limit]);
 
 
 
@@ -134,27 +134,26 @@ const Content = () => {
 
 
     <section className="py-16 relative">
-    
+
 
       <div className="mx-auto w-full px-6 ">
         {/* BreadCrumb */}
 
         <div className='flex sm:flex-row  flex-col sm:items-center gap-10 mb-2'>
-           <nav aria-label="Breadcrumb" className="text-sm text-gray-400 mb-6 pl-5 md:pl-8 lg:pl-10 xl:pl-20 bg-white max-w-sm -mt-9">
+          <nav aria-label="Breadcrumb" className="text-sm text-gray-400 mb-6 pl-5 md:pl-8 lg:pl-10 xl:pl-20 bg-white max-w-sm -mt-9">
             <Link href="/" className="hover:text-blue-500 transition">
-            Home
+              Home
             </Link>
             <span className="mx-2">/</span>
             <Link href={"/blog"} className="text-gray-600 font-medium ">
               Blogs
             </Link>
-        </nav>
-        <SearchBar blogs={blogs}/>
-
+          </nav>
+          <SearchBar blogs={blogs} />
 
         </div>
-        
-       
+
+
         {/* Filters */}
         <div className="flex flex-wrap items-center gap-3 pl-3 sm:pl-5 md:pl-8 lg:pl-10 xl:pl-20 mb-8">
           {/* Categories */}
@@ -166,10 +165,9 @@ const Content = () => {
                 setSelectedAuthor("");
               }}
               className={`px-4 py-2 rounded-full text-sm font-medium transition shadow-sm cursor-pointer
-                ${
-                  activeCategory === cat
-                    ? "bg-blue-600 text-white"
-                    : "bg-slate-100 text-slate-700 hover:bg-blue-100"
+                ${activeCategory === cat
+                  ? "bg-blue-600 text-white"
+                  : "bg-slate-100 text-slate-700 hover:bg-blue-100"
                 }
               `}
             >
@@ -183,7 +181,7 @@ const Content = () => {
               onClick={() => setShowAuthorDropdown(!showAuthorDropdown)}
               className="px-4 py-2 rounded-full bg-slate-100 text-slate-700 hover:bg-blue-100 text-sm font-medium flex items-center gap-1 cursor-pointer"
             >
-              By   {selectedAuthor ? ` ${selectedAuthor} `   : "Author"}  
+              By   {selectedAuthor ? ` ${selectedAuthor} ` : "Author"}
               <span className={`text-xs transition-transform duration-300 ${showAuthorDropdown ? 'rotate-0' : '-rotate-180'}`}>▼</span>
             </button>
 
@@ -207,7 +205,7 @@ const Content = () => {
           </div>
         </div>
 
-        
+
 
 
 
