@@ -9,11 +9,9 @@ export default function PopupForm() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
-    const [occupation, setOccupation] = useState("");
-
+   
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -51,12 +49,10 @@ export default function PopupForm() {
         e.preventDefault();
 
         const templateParams = {
-            name: `${firstName} ${lastName}`,
+            name: `${firstName}`,
             first_name: firstName,
-            last_name: lastName,
             email,
             phone,
-            occupation,
         };
 
         try {
@@ -68,10 +64,9 @@ export default function PopupForm() {
             );
 
             setFirstName("");
-            setLastName("");
             setEmail("");
             setPhone("");
-            setOccupation("");
+
             setStatus("success");
         } catch (error) {
             console.error(error);
@@ -118,14 +113,6 @@ export default function PopupForm() {
                         required
                     />
 
-                    <input
-                        type="text"
-                        placeholder="Last Name"
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
-                        className="w-full p-3 rounded-lg bg-gray-100 outline-none"
-                        required
-                    />
 
                     <input
                         type="email"
@@ -143,14 +130,6 @@ export default function PopupForm() {
                         onChange={(e) => setPhone(e.target.value)}
                         className="w-full p-3 rounded-lg bg-gray-100 outline-none"
                         required
-                    />
-
-                    <input
-                        type="text"
-                        placeholder="Occupation"
-                        value={occupation}
-                        onChange={(e) => setOccupation(e.target.value)}
-                        className="w-full p-3 rounded-lg bg-gray-100 outline-none"
                     />
 
                     <button
