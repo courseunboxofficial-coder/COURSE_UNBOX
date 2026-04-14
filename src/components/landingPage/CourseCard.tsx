@@ -8,14 +8,14 @@ export function CourseCard() {
         <iframe
           width="560"
           height="315"
-          src="https://www.youtube-nocookie.com/embed/jPB8TcBhyuw?si=AGlrhp7MP_IQkW7E&amp;controls=0"
+          src="https://www.youtube-nocookie.com/embed/jPB8TcBhyuw?si=AGlrhp7MP_IQkW7E&controls=0"
           title="YouTube video player"
-          frameborder="0"
+          frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
         ></iframe>
-        
+
       </div>
 
       <div className="p-6">
