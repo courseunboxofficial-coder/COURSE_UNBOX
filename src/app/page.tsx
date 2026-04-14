@@ -35,7 +35,7 @@ const getAboutData = async () => {
             console.log(error);
 
       }
-
+      console.log(data, "this data is from HOME ABOUT SECTION.");
       return data;
 
 }
