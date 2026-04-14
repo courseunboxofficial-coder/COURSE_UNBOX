@@ -33,14 +33,13 @@ type Course = {
     ranking: string,
     course: string
   }[],
-  modules: Record<
-    string,
-    {
+  modules: {
+    [categoryName: string]: {
       module: string;
       title: string;
       lectures: string[];
-    }[]
-  >,
+    }[];
+  }[];
 
   FAQ: {
     question: string;
@@ -58,48 +57,68 @@ type Course = {
 
   image: string;
 
+  videoModule: {
+    id: string
+    moduleName: string,
+    videos: {
+      id: string,
+      title: string,
+      video: string
+    }[]
+  }[]
+
+}
+
+type VideoModule = {
+  id: string
+  moduleName: string,
+  videos: {
+    id: string,
+    title: string,
+    video: string
+  }[]
 }
 
 
 const CourseEditor = ({ collapsed }: { collapsed: boolean }) => {
-    const [active, setActive] = useState("card");
-    const [editItem, setEditItem] = useState<Course | null>(null);
+  const [active, setActive] = useState("card");
+  const [editItem, setEditItem] = useState<Course | null>(null);
 
-    const handleCardView = () => {
-        setActive("card");
-    }
+  const handleCardView = () => {
+    setActive("card");
+  }
 
-    const handleTableView = () => {
-        setActive("Table")
-    }
+  const handleTableView = () => {
+    setActive("Table")
+  }
 
-    const onEdit = (course: Course) => {
-        setActive("Edit");
-        setEditItem(course);
+  const onEdit = (course: Course) => {
+    setActive("Edit");
+    setEditItem(course);
 
-    }
+  }
 
-    const handleAdd = () => {
-        setActive("Add");
-    }
-    return (
-        <>
+  const handleAdd = () => {
+    setActive("Add");
+  }
+  return (
+    <>
 
-            <div>
-                <div className='flex gap-4 w-full'>
-                    <button className='py-4 px-10 bg-blue-600 rounded-4xl text-white font-bold cursor-pointer' onClick={handleCardView}>Card</button>
-                    <button className='py-4 px-10 bg-blue-600 rounded-4xl text-white font-bold cursor-pointer' onClick={handleTableView}>Table</button>
-                    <button className='py-4 px-10 bg-blue-600 rounded-4xl text-white font-bold cursor-pointer' onClick={handleAdd}>Add</button>
-                </div>
-            </div>
+      <div>
+        <div className='flex gap-4 w-full'>
+          <button className='py-4 px-10 bg-blue-600 rounded-4xl text-white font-bold cursor-pointer' onClick={handleCardView}>Card</button>
+          <button className='py-4 px-10 bg-blue-600 rounded-4xl text-white font-bold cursor-pointer' onClick={handleTableView}>Table</button>
+          <button className='py-4 px-10 bg-blue-600 rounded-4xl text-white font-bold cursor-pointer' onClick={handleAdd}>Add</button>
+        </div>
+      </div>
 
-            {active === "card" && <CourseCards onEdit={onEdit} />}
-            {active === "Table" && <CourseTable onEdit={onEdit} />}
-            {active === "Add" && <AddCourse collapsed={collapsed} />}
-            {active === "Edit" && editItem && (<EditCourse collapsed={collapsed} course={editItem} />)}
+      {active === "card" && <CourseCards onEdit={onEdit} />}
+      {active === "Table" && <CourseTable onEdit={onEdit} />}
+      {active === "Add" && <AddCourse collapsed={collapsed} />}
+      {active === "Edit" && editItem && (<EditCourse collapsed={collapsed} course={editItem} />)}
 
-        </>
-    );
+    </>
+  );
 }
 
 export default CourseEditor
