@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Manrope } from "next/font/google";
 import { CheckoutProvider } from "@/context/CheckoutContext";
-import "../globals.css"
+import { FloatingCTAs } from "@/components/landingPage/FloatingCTAs";
+import "../globals.css";
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
   subsets: ["latin"],
@@ -38,7 +39,8 @@ export default function RootLayout({
         />
         {/* <Navbar /> */}
         <CheckoutProvider>
-        {children}
+          {children}
+          <FloatingCTAs />
         </CheckoutProvider>
         {/* <Footer /> */}
       </body>
