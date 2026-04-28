@@ -6,6 +6,8 @@ import Script from "next/script";
 const roboto = Roboto({
   variable: "--font-roboto",
   subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -13,29 +15,24 @@ export const metadata: Metadata = {
   description: "Course Unbox offers industry-focused courses in digital marketing, technology, and career skills. Learn from experts, gain practical knowledge, and grow your career faster.",
 };
 
-
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-  
-
   return (
     <html lang="en">
-
-      <body
-        className={`${roboto.className}  antialiased`}
-      >
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://checkout.razorpay.com" />
+      </head>
+      <body className={`${roboto.className} antialiased`}>
         {children}
-
-         <Script
+        <Script
           src="https://checkout.razorpay.com/v1/checkout.js"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        
       </body>
     </html>
   );

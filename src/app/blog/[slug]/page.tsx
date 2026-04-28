@@ -20,6 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     .from("Blog")
     .select("*")
     .eq("slug", slug)
+    .eq("status", "published")
     .single();
 
   return {
@@ -36,6 +37,7 @@ const getBlogData = async (BlogId: string) => {
     .from("Blog")
     .select("*")
     .eq("slug", BlogId)
+    .eq("status", "published")
     .single();
 
   if (error) {
@@ -61,6 +63,7 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
     .from("Blog")
     .select("id, slug")
     .eq("slug", slug)
+    .eq("status", "published")
     .maybeSingle();
 
 

@@ -114,10 +114,12 @@ const Hero = () => {
           {/* RIGHT IMAGE */}
           <div className="w-[40%] ">
             <Image
-              src="/images/Home/Hero1.png"
+              src="/images/Home/Hero1.webp"
               width={520}
               height={520}
               alt="HeroImage"
+              priority
+              fetchPriority="high"
               className="w-full  rounded-2xl shadow-lg hover:shadow-2xl hover:shadow-indigo-300 transition cursor-pointer"
             />
           </div>
@@ -150,10 +152,12 @@ const Hero = () => {
 
         <div className="flex justify-center  mb-12">
           <Image
-            src="/images/Home/Hero1.png"
+            src="/images/Home/Hero1.webp"
             width={380}
             height={380}
             alt="Hero"
+            priority
+            fetchPriority="high"
             className="rounded-2xl shadow-lg"
           />
         </div>

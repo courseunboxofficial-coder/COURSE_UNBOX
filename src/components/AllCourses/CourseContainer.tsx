@@ -1,11 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { ChevronDown } from "lucide-react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { ChevronRight, Star } from "lucide-react";
+import { ChevronDown, ChevronRight, Star } from "lucide-react";
 import Link from "next/link"
 import { supabase } from "@/lib/supabse/supabaseConfig";
 
@@ -24,41 +20,6 @@ const categories = [
   "Human Resource",
   "Architecture",
 ];
-
-const mobileSliderSettings = {
-  dots: true,
-  infinite: false,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  arrows: false,
-};
-
-
-/* ---------- Custom Arrows ---------- */
-function PrevArrow(props: any) {
-  const { onClick } = props;
-  return (
-    <button
-      onClick={onClick}
-      className="hidden md:flex absolute -left-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg items-center justify-center text-indigo-600 hover:bg-indigo-600 hover:text-white transition"
-    >
-      ‹
-    </button>
-  );
-}
-
-function NextArrow(props: any) {
-  const { onClick } = props;
-  return (
-    <button
-      onClick={onClick}
-      className="hidden md:flex absolute -right-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white shadow-lg items-center justify-center text-indigo-600 hover:bg-indigo-600 hover:text-white transition"
-    >
-      ›
-    </button>
-  );
-}
 
 type Course = {
 

@@ -30,7 +30,7 @@ const LetsConnect = () => {
                     {/* Image Section */}
                     <div className="relative w-full lg:w-1/2 flex justify-center">
                         <img
-                            src="/images/Home/DemoClass.png"
+                            src="/images/Home/DemoClass.webp"
                             alt="confused person"
                             className="
                                       w-full

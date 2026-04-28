@@ -1,186 +1,232 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ChevronRight , Dot} from "lucide-react";
-
-const BLOG_MENU: Record<string, string[]> = {
-  "Digital Marketing": [
-    "SEO Trends in 2026",
-    "Google Ads Tips for Beginners",
-    "Content Marketing Strategy",
-    "Social Media Growth Hacks",
-    "Email Marketing Best Practices",
-  ],
-  "Web Development": [
-    "Next.js SEO Best Practices",
-    "React Performance Optimization",
-    "Tailwind CSS Tips",
-    "Frontend vs Backend",
-  ],
-  "Data & AI": [
-    "Generative AI Explained",
-    "How AI is Changing Jobs",
-    "Machine Learning Basics",
-    "Top AI Tools for Productivity",
-  ],
-  "Career & Jobs": [
-    "How to Get a Tech Job as Fresher",
-    "Resume Tips for Developers",
-    "Interview Preparation Guide",
-  ],
-  "Guides & Tutorials": [
-    "Complete SEO Guide",
-    "Learn MERN Stack Roadmap",
-    "Beginner’s Guide to Python",
-  ],
-};
+import { ChevronDown, ChevronRight, BookOpen, ArrowRight, PenLine } from "lucide-react";
 
 type typeBlogs = {
-
   id: string;
   title: string;
   content: string;
-  FAQ: {
-    question: string;
-    answer: string
-  }[];
-  image: string,
-
-  meta: {
-
-    title: string,
-    description: string
-  },
-
-  slug: string,
-  alt: string,
-  subcontent: string,
+  FAQ: { question: string; answer: string }[];
+  image: string;
+  meta: { title: string; description: string };
+  slug: string;
+  alt: string;
+  subcontent: string;
   created_at: Date;
-  author: string,
+  author: string;
   domain: string;
-
 };
 
 type CategoryMap = Record<string, typeBlogs[]>;
 
+const CATEGORY_STYLES: Record<string, { bg: string; text: string; dot: string; ring: string; border: string }> = {
+  "Digital Marketing": {
+    bg: "bg-orange-50",   text: "text-orange-600",  dot: "bg-orange-400",
+    ring: "ring-orange-100", border: "border-l-orange-400",
+  },
+  "Web Development": {
+    bg: "bg-blue-50",     text: "text-blue-600",    dot: "bg-blue-400",
+    ring: "ring-blue-100",   border: "border-l-blue-400",
+  },
+  "Data & AI": {
+    bg: "bg-violet-50",   text: "text-violet-600",  dot: "bg-violet-400",
+    ring: "ring-violet-100", border: "border-l-violet-400",
+  },
+  "Career & Jobs": {
+    bg: "bg-emerald-50",  text: "text-emerald-600", dot: "bg-emerald-400",
+    ring: "ring-emerald-100",border: "border-l-emerald-400",
+  },
+  "Guides & Tutorials": {
+    bg: "bg-pink-50",     text: "text-pink-600",    dot: "bg-pink-400",
+    ring: "ring-pink-100",   border: "border-l-pink-400",
+  },
+};
 
+const DEFAULT_STYLE = {
+  bg: "bg-gray-50", text: "text-gray-600", dot: "bg-gray-400",
+  ring: "ring-gray-100", border: "border-l-gray-300",
+};
 
-
-export default function BlogsDropdown({blogs}:{blogs:typeBlogs[]}) {
-  
+export default function BlogsDropdown({ blogs }: { blogs: typeBlogs[] }) {
   const [open, setOpen] = useState(false);
- 
-      const [categories, setCategories] = useState<string[]>([]);
-      const [catBlogs, setCatBlogs] = useState<CategoryMap>({});
-      const [activeCategory, setActiveCategory] = useState<string>("");
+  const [categories, setCategories] = useState<string[]>([]);
+  const [catBlogs, setCatBlogs] = useState<CategoryMap>({});
+  const [activeCategory, setActiveCategory] = useState<string>("");
+  const closeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-      useEffect(() => {
-      if (blogs.length === 0) return;
+  useEffect(() => {
+    if (blogs.length === 0) return;
 
-      const uniqueCategories = [...new Set(blogs.map(b => b.domain))];
+    const uniqueCategories = [...new Set(blogs.map((b) => b.domain))];
+    setCategories(uniqueCategories);
 
-      setCategories(uniqueCategories);
+    if (!activeCategory) setActiveCategory(uniqueCategories[0]);
 
-      if (!activeCategory) {
-        setActiveCategory(uniqueCategories[0]);
-      }
+    const map: CategoryMap = {};
+    uniqueCategories.forEach((cat) => {
+      map[cat] = blogs.filter((b) => b.domain === cat);
+    });
+    setCatBlogs(map);
+  }, [blogs]);
 
-      const map: CategoryMap = {};
-      uniqueCategories.forEach(cat => {
-        map[cat] = blogs.filter(b => b.domain === cat);
-      });
+  const handleMouseEnter = () => {
+    if (closeTimeout.current) clearTimeout(closeTimeout.current);
+    setOpen(true);
+  };
 
-  setCatBlogs(map);
-}, [blogs]);
+  const handleMouseLeave = () => {
+    closeTimeout.current = setTimeout(() => setOpen(false), 150);
+  };
 
-
-      
-
-    if(!blogs){
-      return <div>Loading..</div>
-    }
+  const activeBlogList = catBlogs[activeCategory] || [];
+  const styles = CATEGORY_STYLES[activeCategory] ?? DEFAULT_STYLE;
 
   return (
     <div
-      className="relative hover:text-blue-100 cursor-pointer"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      className="relative"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
-      {/* NAV ITEM */}
-      <Link
-        href={"/blog"}
-       className="flex items-center gap-2 font-medium text-gray-700 hover:text-blue-400 cursor-pointer">
-        Blogs
-        <span
-            className={`inline-flex transition-transform duration-300 text-xs mt-1 ${
-                open ? "rotate-0" : "rotate-180"
-            }`}
-            >
-                ▲
-            {/* <Triangle size={12} fill="#474747" /> */}
-            </span>
-      </Link>
+      {/* ── Trigger ── */}
+      <button className="flex items-center gap-1.5 font-semibold text-gray-700 hover:text-blue-600 transition-colors duration-200 cursor-pointer group">
+        <Link href="/blog">Blogs</Link>
+        <ChevronDown
+          size={14}
+          strokeWidth={2.5}
+          className={`transition-transform duration-300 text-gray-500 group-hover:text-blue-600 ${open ? "rotate-180" : "rotate-0"}`}
+        />
+      </button>
 
-      {/* DROPDOWN */}
-   
-        <div   className={`absolute cursor-pointer h-94  left-0 top-full mt-4 w-[600px] grid grid-cols-2 bg-white rounded-xl shadow-2xl border z-50 p-4 ${open ? "opacity-100 visible" : "opacity-0 invisible"}`}>
-           <div className="absolute -top-6 left-0 w-full h-6" />
+      {/* Hover bridge */}
+      <div className="absolute left-0 top-full h-5 w-40" />
 
-          {/* LEFT CATEGORY LIST */}
-          <div className="w-62 border-r h-70 border-blue-300 px-3 py-4 space-y-1 overflow-y-auto not-[]:">
-            <h3 className="font-semibold text-gray-900 mb-4 px-3   text-lg">Category</h3>
-            {categories.map((category) => (
-              <Link
-                href={"/blog"}
-                key={category}
-                onMouseEnter={() => setActiveCategory(category)}
-                className={`w-full flex justify-between text-left px-3 py-4  text-sm transition cursor-pointer
-                  ${
-                    activeCategory === category
-                      ? "bg-blue-50 text-blue-600 font-semibold "
-                      : "text-gray-700 hover:bg-gray-100"
-                  }
-                `}
-              >
-                {category} <ChevronRight size={20}/>
-              </Link>
-            ))}
+      {/* ── Dropdown panel ── */}
+      <div
+        className={`absolute left-0 top-full mt-5 w-145 bg-white rounded-2xl z-50
+          shadow-[0_20px_60px_-10px_rgba(0,0,0,0.15),0_4px_20px_-4px_rgba(0,0,0,0.08)]
+          border border-gray-100 overflow-hidden
+          transition-all duration-200 origin-top-left
+          ${open ? "opacity-100 visible scale-100 translate-y-0" : "opacity-0 invisible scale-[0.97] -translate-y-3"}`}
+      >
+        <div className="grid grid-cols-[190px_1fr] min-h-80">
 
-            
-          </div>
+          {/* ── LEFT: CATEGORY LIST ── */}
+          <div className="bg-gray-50/60 border-r border-gray-100 p-4 flex flex-col">
+            <p className="text-[9px] font-black uppercase tracking-[0.18em] text-gray-400 mb-3 px-1">
+              Topics
+            </p>
 
-        
-
-          <div className="top-82 absolute  pl-8  z-30 ">
-              <Link
-                href="/blog"
-                className="text-blue-600 font-medium  py-2 px-4 rounded-lg bg-blue-500 text-white "
-              >
-                View all blogs →
-              </Link>
-          </div>
-
-
-
-          {/* RIGHT BLOG LIST */}
-          <div className="flex-1 px-6 py-5 max-h-80 overflow-y-auto">
-            <h3 className="font-semibold text-gray-900 mb-4  text-lg border border-0 border-b-blue-700">{activeCategory} Blogs</h3>
-            <ul className="space-y-3 text-sm text-gray-700">
-              {(catBlogs[activeCategory] || []).map((blog) => (
-                  <li key={blog.id}>
-                    <Link href={`/blog/${blog.slug}`} className="hover:text-blue-600 flex ">
-                      • {blog.title}
-                    </Link>
+            <ul className="space-y-0.5 flex-1">
+              {categories.map((cat) => {
+                const s = CATEGORY_STYLES[cat] ?? DEFAULT_STYLE;
+                const isActive = activeCategory === cat;
+                const count = (catBlogs[cat] || []).length;
+                return (
+                  <li key={cat}>
+                    <button
+                      onMouseEnter={() => setActiveCategory(cat)}
+                      className={`w-full flex items-center gap-2.5 pl-3 pr-2.5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 cursor-pointer border-l-[3px]
+                        ${isActive
+                          ? `${s.bg} ${s.text} border-current shadow-sm`
+                          : "text-gray-500 hover:bg-white hover:text-gray-800 border-transparent hover:border-gray-200 hover:shadow-sm"
+                        }`}
+                    >
+                      <span className={`w-2 h-2 rounded-full shrink-0 transition-colors ${isActive ? s.dot : "bg-gray-300"}`} />
+                      <span className="flex-1 text-left text-[13px] truncate">{cat}</span>
+                      {isActive
+                        ? <ChevronRight size={13} className="shrink-0" />
+                        : count > 0 && <span className="text-[10px] font-bold text-gray-400">{count}</span>
+                      }
+                    </button>
                   </li>
-                ))}
-
+                );
+              })}
             </ul>
 
-            {/* CTA */}
+            <div className="mt-4 pt-4 border-t border-gray-200 px-1">
+              <Link
+                href="/blog"
+                className="group/link flex items-center gap-1.5 text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors"
+              >
+                All articles
+                <ArrowRight size={13} className="transition-transform duration-200 group-hover/link:translate-x-0.5" />
+              </Link>
+            </div>
           </div>
+
+          {/* ── RIGHT: BLOG ARTICLES ── */}
+          <div className="p-5 flex flex-col bg-white">
+            {/* Header */}
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <span className={`p-1.5 rounded-lg ${styles.bg} transition-colors duration-200`}>
+                  <PenLine size={13} className={`${styles.text} transition-colors duration-200`} strokeWidth={2} />
+                </span>
+                <div>
+                  <p className="text-[9px] font-black uppercase tracking-widest text-gray-400 leading-none">Reading</p>
+                  <p className={`text-sm font-bold ${styles.text} leading-tight transition-colors duration-200`}>
+                    {activeCategory || "Select a topic"}
+                  </p>
+                </div>
+              </div>
+              <span className="text-[10px] font-bold text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">
+                {activeBlogList.length} article{activeBlogList.length !== 1 ? "s" : ""}
+              </span>
+            </div>
+
+            {/* Article list */}
+            <ul className="space-y-0.5 flex-1 overflow-y-auto max-h-60">
+              {activeBlogList.map((blog) => (
+                <li key={blog.id}>
+                  <Link
+                    href={`/blog/${blog.slug}`}
+                    className={`group flex items-start gap-3 pl-3 pr-2.5 py-2.5 rounded-xl border-transparent
+                      hover:bg-gray-50 hover:border-current ${styles.text}
+                      transition-all duration-150 border-l-2`}
+                  >
+                    <span className={`w-1.5 h-1.5 rounded-full shrink-0 mt-1.75 ${styles.dot} transition-colors`} />
+                    <div className="flex-1 min-w-0">
+                      <p className="text-[13px] font-semibold text-gray-700 group-hover:text-blue-600 leading-snug line-clamp-2 transition-colors duration-150">
+                        {blog.title}
+                      </p>
+                      {blog.author && (
+                        <p className="text-[11px] text-gray-400 mt-0.5 font-medium">by {blog.author}</p>
+                      )}
+                    </div>
+                    <ChevronRight
+                      size={13}
+                      className="shrink-0 text-gray-300 group-hover:text-blue-400 mt-1 transition-all duration-150 group-hover:translate-x-0.5"
+                    />
+                  </Link>
+                </li>
+              ))}
+
+              {activeBlogList.length === 0 && (
+                <div className="flex flex-col items-center justify-center py-12 text-gray-300">
+                  <BookOpen size={32} strokeWidth={1.5} className="mb-2" />
+                  <p className="text-sm font-medium text-gray-400">No articles yet.</p>
+                </div>
+              )}
+            </ul>
+
+            {/* Footer CTA */}
+            <div className="mt-4 pt-3 border-t border-gray-100">
+              <Link
+                href="/blog"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-white text-xs font-bold
+                  bg-linear-to-r from-blue-700 to-blue-500 hover:from-blue-800 hover:to-blue-600
+                  shadow-sm hover:shadow-md hover:shadow-blue-200/50
+                  transition-all duration-200 hover:-translate-y-px active:translate-y-0"
+              >
+                View all blogs <ArrowRight size={12} strokeWidth={2.5} />
+              </Link>
+            </div>
+          </div>
+
         </div>
-    
+      </div>
     </div>
   );
 }

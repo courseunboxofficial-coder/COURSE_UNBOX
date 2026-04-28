@@ -8,7 +8,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const { data: blogs, error } = await supabase
     .from("Blog")
-    .select("slug, created_at");
+    .select("slug, created_at")
+    .eq("status", "published");
 
   if (error) {
     console.error("Blogs sitemap error:", error.message);

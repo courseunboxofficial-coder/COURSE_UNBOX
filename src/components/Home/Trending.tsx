@@ -1,46 +1,47 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, TrendingUp } from "lucide-react";
-import { supabase } from "@/lib/supabse/supabaseConfig";
 import Image from "next/image";
 import PopUpForm from "../AllCourses/PopUpForm";
 
-type ImageType = { key: string; Image: string }
+const STATIC_IMAGES = [
+  {
+    key: "1",
+    Image:"/images/Home/Image1.webp"
+  },
+
+  {
+    key: "2",
+    Image:
+      "/images/Home/Image2.webp",
+  },
+  {
+    key: "3",
+    Image:
+      "/images/Home/Image3.webp",
+  },
+  {
+    key: "4",
+    Image:
+      "/images/Home/Image4.webp",
+  },
+  {
+    key: "5",
+    Image:
+      "/images/Home/Image5.webp",
+  },
+];
 
 export default function Trending() {
-
-  const [Images, setImages] = useState<ImageType[]>([]);
   const [isOpen, setIsOpen] = useState(false);
-
-  const getImagesData = async () => {
-    const { data, error } = await supabase.from("Home").select("*").eq("section", "Trending").single();
-
-    if (error) {
-      console.log("THERE IS SOME OF THE ERROR IS OCCUR : ");
-      console.log(error);
-    };
-
-
-    console.log("THE DATA COMING FORM THE DATABASE AS THE IMAGE IS : ");
-    console.log(data);
-
-    setImages(data.content);
-
-  }
-
-
-  useEffect(() => {
-    getImagesData();
-  }, []);
-
-
   const scrollRef = useRef<HTMLDivElement>(null);
-
 
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;
+
     const cardWidth = 320;
+
     scrollRef.current.scrollBy({
       left: direction === "left" ? -cardWidth : cardWidth,
       behavior: "smooth",
@@ -49,25 +50,26 @@ export default function Trending() {
 
   return (
     <>
-
-      <PopUpForm isOpen={isOpen} onCancel={() => setIsOpen(false)} onConfirm={() => setIsOpen(false)} />
+      <PopUpForm
+        isOpen={isOpen}
+        onCancel={() => setIsOpen(false)}
+        onConfirm={() => setIsOpen(false)}
+      />
 
       <section className="w-full bg-[#e2eff9] py-14 px-4 cursor-pointer">
         <div className="max-w-6xl mx-auto cursor-pointer">
-
-          {/* Title – aligned to carousel start */}
+          {/* Title */}
           <div className="flex items-center gap-2 mb-6">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
-              Trending Now
+              Trending
             </h2>
             <div className="rounded-full bg-green-300 p-1">
               <TrendingUp className="text-blue-600" />
             </div>
           </div>
 
-          {/* Carousel – centered */}
+          {/* Carousel */}
           <div className="relative">
-
             {/* Left Arrow */}
             <button
               onClick={() => scroll("left")}
@@ -84,20 +86,20 @@ export default function Trending() {
               <ChevronRight />
             </button>
 
-            {/* Cards Track */}
+            {/* Cards */}
             <div
               ref={scrollRef}
               className="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar"
             >
-              {Images.map((image, index) => (
+              {STATIC_IMAGES.map((image) => (
                 <div
-                  key={index}
+                  key={image.key}
                   className="relative min-w-[370px] max-w-[370px] min-h-[250px] rounded-3xl overflow-hidden shadow-xl hover:scale-105 transition ease-in-out"
                   onClick={() => setIsOpen(true)}
                 >
                   <Image
                     src={image.Image}
-                    alt="Course Image"
+                    alt="Digital Marketing Course"
                     fill
                     className="object-cover"
                   />
@@ -107,18 +109,6 @@ export default function Trending() {
           </div>
         </div>
       </section>
-
     </>
-
   );
 }
-
-
-
-
-
-
-
-
-
-

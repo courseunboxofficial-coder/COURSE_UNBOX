@@ -60,7 +60,7 @@ function Faq() {
 
         <div className="flex w-full">
           <div className="w-[40%] h-[60vh] hidden lg:block">
-            <Image src="/images/Home/FAQIMAGE.png" height={850} width={800} alt="Testimonials Section Image" />
+            <Image src="/images/Home/FAQIMAGE.webp" height={850} width={800} alt="Testimonials Section Image" />
           </div>
 
 

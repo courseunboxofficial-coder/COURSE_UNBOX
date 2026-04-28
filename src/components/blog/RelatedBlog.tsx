@@ -41,7 +41,8 @@ export default function RelatedBlog({slug}:{slug:string}) {
     const { data, error } = await supabase
       .from("Blog")
       .select("*")
-      .eq('slug',slug)
+      .eq("slug", slug)
+      .eq("status", "published")
       .single();
 
 
@@ -56,7 +57,7 @@ export default function RelatedBlog({slug}:{slug:string}) {
   };
 
   const getRelatedBlog = async()=>{
-     const {data,error} = await supabase.from("Blog").select("*").eq("domain",blog?.domain).neq('slug',slug).limit(3);
+     const {data,error} = await supabase.from("Blog").select("*").eq("status", "published").eq("domain", blog?.domain).neq("slug", slug).limit(3);
      if (error) {
       console.error("RELATED BLOG ERROR:", error);
       return;

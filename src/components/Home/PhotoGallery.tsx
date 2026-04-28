@@ -6,18 +6,13 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const images = Array.from({ length: 12 }).map((_, i) => ({
   id: i + 1,
-  src: `/images/Photo Gallery/IMAGE${i + 1}.jpg`,
+  src: `/images/Photo Gallery/IMAGE${i + 1}.webp`,
   alt: `Jugal Chauhan Teaching Memories`,
 }));
 
 export default function PhotoGalleryCarousel() {
   const [current, setCurrent] = useState(0);
   const [visible, setVisible] = useState(3);
-
-
-
-
-
   const maxIndex = images.length - visible;
 
 
@@ -49,6 +44,7 @@ export default function PhotoGalleryCarousel() {
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
+    
   }, []);
 
   return (

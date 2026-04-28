@@ -1,16 +1,12 @@
 
 "use client";
 
-import { log } from "console";
 import { useState, useEffect, useRef } from "react";
 import CountUp from "react-countup";
 
 export default function StatsSection() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [inView, setInView] = useState(false);
-  let a = useRef("")
-
-  console.log(a);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

@@ -61,7 +61,7 @@ type Course = {
 
 
 
-const categories = ["Digital Marketing", "Coming Soon.", "Coming Soon..", "Coming Soon...", "All Courses"];
+const categories = ["Digital Marketing", "Data Science", "IT & Software", "Development", "All Courses"];
 
 const Courses = () => {
 

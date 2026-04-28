@@ -13,7 +13,7 @@ const testimonials: Testimonial[] = [
     id: 1,
     name: "Avinash Kumar",
     role: "Digital Marketing Executive",
-    image: "/images/Home/Potray Image.jpg",
+    image: "/images/Home/Potray Image.webp",
     message:
       "Course Unbox completely changed the way I learn online. The courses are well-structured, practical, and easy to follow. Every lesson feels purposeful and helps build real-world skills step by step. I highly recommend Course Unbox.",
   },
@@ -21,7 +21,7 @@ const testimonials: Testimonial[] = [
     id: 2,
     name: "Bharat Kunal",
     role: "Backend Developer",
-    image: "/images/Home/Potray Image.jpg",
+    image: "/images/Home/Potray Image.webp",
     message:
       "What I love most about Course Unbox is the clarity and depth of the content. The instructors explain concepts in a simple yet powerful way. From basics to advanced topics, everything is covered perfectly for both beginners and professionals",
   },
@@ -29,7 +29,7 @@ const testimonials: Testimonial[] = [
     id: 3,
     name: "Prabhakar D",
     role: "Founder & CEO",
-    image: "/images/Home/Potray Image.jpg",
+    image: "/images/Home/Potray Image.webp",
     message:
       "Course Unbox stands out because of its hands-on approach and modern curriculum. The courses helped me gain confidence and practical knowledge that I could immediately apply in real projects. Truly one of the best learning platforms available.",
   },

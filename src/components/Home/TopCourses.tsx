@@ -12,17 +12,17 @@ const TopCourses = () => {
 
   const TopCourses = [
 
-    { title: "Performance Marketing Course", subtitle: "Master Facebook, Instagram, and Google Ads", domain: "Digital Marketing", duration: "2 months", language: "Hybrid", image: "/images/TopCourses/PERFORMANCE MARKETING.png", slug: "performance-marketing-course" },
+    { title: "Performance Marketing Course", subtitle: "Master Facebook, Instagram, and Google Ads", domain: "Digital Marketing", duration: "2 months", language: "Hybrid", image: "/images/Course/Performance_Marketing.webp", slug: "performance-marketing-course" },
 
-    { title: "Prompt Engineering Mastery", subtitle: "Handle ChatGPT, Claude, Gemini, and image-generation", domain: "Digital Marketing", duration: "2 months", language: "Hybrid", image: "/images/TopCourses/Prompt Engineering.png", slug: "prompt-engineering-mastery-program" },
+    { title: "Prompt Engineering Mastery", subtitle: "Handle ChatGPT, Claude, Gemini, and image-generation", domain: "Digital Marketing", duration: "2 months", language: "Hybrid", image: "/images/Course/Prompt_Engennering.webp", slug: "prompt-engineering-mastery-program" },
 
-    { title: "Meta Ads and Google Ads", subtitle: "Get skilled in Meta Ads (Facebook & Instagram) ", domain: "Digital Marketing", duration: "1 months", language: "Hybrid", image: "/images/TopCourses/META ADS AND GOOGLE ADS.png", slug: "meta-ads-and-google-ads-masters-course" },
+    { title: "Meta Ads and Google Ads", subtitle: "Get skilled in Meta Ads (Facebook & Instagram) ", domain: "Digital Marketing", duration: "1 months", language: "Hybrid", image: "/images/Course/Meta_Ads.webp", slug: "meta-ads-and-google-ads-masters-course" },
 
-    { title: "AI Based Digital Marketing Diploma", subtitle: "Work on live projects, case studies and brand simulations", domain: "Digital Marketing", duration: "10 months", language: "Hybrid", image: "/images/TopCourses/AI-BASED DIGITAL MARKETING.png", slug: "ai-based-digital-marketing-diploma-course" },
+    { title: "AI Based Digital Marketing Diploma", subtitle: "Work on live projects, case studies and brand simulations", domain: "Digital Marketing", duration: "10 months", language: "Hybrid", image: "/images/Course/AI_Based_Marketing.webp", slug: "ai-based-digital-marketing-diploma-course" },
 
-    { title: "SEO Masters Course", subtitle: "Understand how to find high-value keywords, analyze", domain: "Digital Marketing", duration: "1 months", language: "Hybrid", image: "/images/TopCourses/SEO MASTERS.png", slug: "seo-masters-course" },
+    { title: "SEO Masters Course", subtitle: "Understand how to find high-value keywords, analyze", domain: "Digital Marketing", duration: "1 months", language: "Hybrid", image: "/images/Course/Seo_Masters_Course.webp", slug: "seo-masters-course" },
 
-    { title: "Advance Meta Ads and GA4 Mastery", subtitle: "Master GA4 — events, conversions, custom reports", domain: "Digital Marketing", duration: "1 months", language: "Hybrid", image: "/images/TopCourses/ADVANCE META ADS ABD GA4.png", slug: "meta-ads-ga4-mastery-course" },
+    { title: "Advance Meta Ads and GA4 Mastery", subtitle: "Master GA4 — events, conversions, custom reports", domain: "Digital Marketing", duration: "1 months", language: "Hybrid", image: "/images/Course/Advance_Meta_Ads.webp", slug: "meta-ads-ga4-mastery-course" },
 
   ]
 
