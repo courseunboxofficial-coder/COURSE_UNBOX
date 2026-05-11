@@ -30,6 +30,18 @@ export default function RootLayout({
       <body className={`${roboto.className} antialiased`}>
         {children}
         <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17701372227"
+          strategy="afterInteractive"
+        />
+        <Script id="google-gtag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17701372227');
+          `}
+        </Script>
+        <Script
           src="https://checkout.razorpay.com/v1/checkout.js"
           strategy="lazyOnload"
         />
