@@ -9,18 +9,15 @@ export function TrainingGallery() {
   const galleries = [
     {
       title: "Corporate AI training",
-      image:
-        "https://media.licdn.com/dms/image/v2/D5622AQGeQy2L7u7wjQ/feedshare-shrink_2048_1536/B56ZghmuRdH0Ao-/0/1752910456994?e=1778112000&v=beta&t=aUKZjCV9QF2lIIq_eKm-I0loejZFqMvRx4C_waEpW0I",
+      image: "/images/Landing/Landing1.webp"
     },
     {
       title: "College AI training",
-      image:
-        "https://media.licdn.com/dms/image/v2/D5622AQEr8Nl-v21BeA/feedshare-shrink_800/B56ZZmg_iAGkAk-/0/1745476651518?e=1778112000&v=beta&t=wIiQ1c8bkGY3Vbk0N5l5ikPUu9pvIQ2fO1Rowzt2l0I",
+      image: "/images/Landing/Landing2.webp",
     },
     {
       title: "Class Room AI training",
-      image:
-        "https://media.licdn.com/dms/image/v2/D5622AQEJPksSVRCCWA/feedshare-shrink_2048_1536/B56ZcusYnsGQAo-/0/1748835077638?e=1778112000&v=beta&t=JCt69c2SJ1oUOKTmPn9P_nA1w8RWN2FfOtsWgfzLErU",
+      image: "/images/Landing/Landing3.webp",
     },
   ];
 
