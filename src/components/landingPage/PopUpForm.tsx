@@ -16,7 +16,7 @@ export default function PopupForm() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShow(true);
-        }, 3000);
+        }, 10000);
 
         return () => clearTimeout(timer);
     }, []);
@@ -38,10 +38,6 @@ export default function PopupForm() {
 
     const handleClose = () => {
         setShow(false);
-
-        setTimeout(() => {
-            setShow(true);
-        }, 5000);
     };
 
 
